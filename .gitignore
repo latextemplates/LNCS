@@ -1,0 +1,7 @@
+trash/
+*.aux
+*.bbl
+*.blg
+*.log
+#The output should not be versioned
+paper.pdf

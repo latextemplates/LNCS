@@ -1,0 +1,167 @@
+\documentclass[runningheads,a4paper]{llncs}
+
+\usepackage[american]{babel}
+
+\usepackage{graphicx}
+
+%extended enumerate, such as \begin{compactenum}
+\usepackage{paralist}
+
+%put figures inside a text
+%\usepackage{picins}
+%use
+%\piccaptioninside
+%\piccaption{...}
+%\parpic[r]{\includegraphics ...}
+%Text...
+
+%Sorts the citations in the brackets
+%\usepackage{cite}
+
+%for easy quotations: \enquote{text}
+\usepackage{csquotes}
+
+\usepackage{fixltx2e}
+
+\usepackage[T1]{fontenc}
+
+%better font, similar to the default springer font
+\usepackage{lmodern}
+%if more space is needed, exchange lmodern by mathptmx
+%\usepackage{mathptmx}
+
+%enable margin kerning
+\usepackage{microtype}
+
+%for demonstration purposes only
+\usepackage[math]{blindtext}
+
+%unobstrusive usage of hyperref
+\ifnum\pdfoutput>0
+\usepackage[
+%pdfauthor={},
+%pdfsubject={},
+%pdftitle={},
+%pdfkeywords={},
+bookmarks=false,
+breaklinks=true,
+colorlinks=true,
+linkcolor=black,
+citecolor=black,
+urlcolor=black,
+%pdfstartpage=19,
+pdfpagelayout=SinglePage
+]{hyperref}
+%enables correct jumping to figures when referencing
+\usepackage[all]{hypcap}
+\else
+\usepackage{hyperref}
+\fi
+
+\usepackage[capitalise,nameinlink]{cleveref}
+%Nice formats for \cref
+\crefname{section}{Sect.}{Sect.}
+\Crefname{section}{Section}{Sections}
+\crefname{figure}{Fig.}{Fig.}
+\Crefname{figure}{Figure}{Figures}
+
+\usepackage{xspace}
+%\newcommand{\eg}{e.\,g.\xspace}
+%\newcommand{\ie}{i.\,e.\xspace}
+\newcommand{\eg}{e.\,g.,\ }
+\newcommand{\ie}{i.\,e.,\ }
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\begin{document}
+
+%Works on MiKTeX only
+%hint by http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html
+%This allows a copy'n'paste of the text from the paper
+\input glyphtounicode.tex
+\pdfgentounicode=1
+
+\title{Paper title}
+%If Title is too long, use \titlerunning
+%\titlerunning{Short title}
+
+%Single insitute
+\author{Firstname Lastname \and Firstname Lastname}
+%If there are too many authors, use \authorrunning
+%\authorrunning{First Author et al.}
+\institute{...}
+
+%Multiple insitutes
+%Currently disaBLED
+%
+\iffalse
+%Multiple institutes are typeset as follows:
+\author{Firstname Lastname\inst{1} \and Firstname Lastname\inst{2} }
+%If there are too many authors, use \authorrunning
+%\authorrunning{First Author et al.}
+
+\institute{
+Insitute 1\\
+\email{...}\and
+Insitute 2\\
+\email{...}
+}
+\fi
+			
+\maketitle
+
+\begin{abstract}
+Abstract goes here
+\end{abstract}
+
+\keywords{...}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\blindtext
+
+Winery~\cite{Winery} is graphical modeling tool.
+
+\begin{figure}
+Simple Figure
+\caption{Simple Figure}
+\label{fig:simple}
+\end{figure}
+
+\begin{table}
+\caption{Simple Table}
+
+\label{tab:simple}
+Simple Table
+\end{table}
+
+cref Demonstration: Cref at beginning of sentence, cref in all other cases.
+
+\Cref{fig:simple} shows a simple fact, although \cref{fig:simple} could also show something else.
+
+\Cref{tab:simple} shows a simple fact, although \cref{tab:simple} could also show something else.
+
+\Cref{sec:intro} shows a simple fact, although \cref{sec:intro} could also show something else.
+
+Brackets work as designed:
+<test>
+
+\begin{inparaenum}
+\item All these items...
+\item ...appear in one line
+\item This is enabled by the paralist package.
+\end{inparaenum}
+
+\section{Conclusion and Outlook}
+
+\subsubsection*{Acknowledgments}
+...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{splncs03}
+\bibliography{paper}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
