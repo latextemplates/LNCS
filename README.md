@@ -12,7 +12,7 @@ This template is based on the one available at http://www.springer.com/computer/
 
 ## Changes in comparison to Springer's version
 
-* Removal of all files excpet llncs.cls and splncs03.bst
+* Removal of all files except llncs.cls and splncs03.bst
 * Adding a skeletton [paper.tex](paper.tex) file
 * Adding modern packages such as `microtype` and `hyperref`
 * Support of copy and paste from the generated PDF: Glyphs are encoded using unicode characters.
