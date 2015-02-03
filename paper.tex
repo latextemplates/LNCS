@@ -70,6 +70,20 @@ pdfpagelayout=SinglePage
 \newcommand{\eg}{e.\,g.,\ }
 \newcommand{\ie}{i.\,e.,\ }
 
+%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+    <-6>  MnSymbolC5
+   <6-7>  MnSymbolC6
+   <7-8>  MnSymbolC7
+   <8-9>  MnSymbolC8
+   <9-10> MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -146,6 +160,8 @@ cref Demonstration: Cref at beginning of sentence, cref in all other cases.
 
 Brackets work as designed:
 <test>
+
+The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\wp$).
 
 \begin{inparaenum}
 \item All these items...
