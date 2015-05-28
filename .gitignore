@@ -2,6 +2,9 @@ trash/
 *.aux
 *.bbl
 *.blg
+*.fdb_latexmk
+*.fls
 *.log
+*.synctex.gz
 #The output should not be versioned
 paper.pdf
