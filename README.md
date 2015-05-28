@@ -14,7 +14,7 @@ This template is based on the one available at http://www.springer.com/computer/
 
 * Removal of all files except llncs.cls and splncs03.bst
 * Adding a skeletton [paper.tex](paper.tex) file
-* Adding modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [lmodern]
+* Adding modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
 * Support of copy and paste from the generated PDF: Glyphs are encoded using unicode characters.
 * Support for `\powerset` command
 * Allow copy and paste of text without getting words with ligatures such as "workflow" destroyed
@@ -33,10 +33,10 @@ If you have, just add https://github.com/latextemplates/LNCS.git as upstream and
 
 After that you can use and push the master branch as usual.
 
+  [cfr-lm]: https://www.ctan.org/pkg/cfr-lm
   [cleveref]: https://ctan.org/pkg/cleveref
   [csquotes]: https://www.ctan.org/pkg/csquotes
   [hypcap]: https://www.ctan.org/pkg/hypcap
   [hyperref]: https://ctan.org/pkg/hyperref
-  [lmodern]: https://www.ctan.org/tex-archive/info/lmodern
   [microtype]: https://ctan.org/pkg/microtype
   [paralist]: https://www.ctan.org/pkg/paralist

@@ -24,13 +24,19 @@
 
 \usepackage[T1]{fontenc}
 
-%better font, similar to the default springer font
-\usepackage{lmodern}
-%if more space is needed, exchange lmodern by mathptmx
-%\usepackage{mathptmx}
-
 %enable margin kerning
 \usepackage{microtype}
+
+%better font, similar to the default springer font
+\usepackage[%
+rm={oldstyle=false,proportional=true},%
+sf={oldstyle=false,proportional=true},%
+tt={oldstyle=false,proportional=true,variable=true},%
+qt=false%
+]{cfr-lm}
+%
+%if more space is needed, exchange lmodern by mathptmx
+%\usepackage{mathptmx}
 
 %for demonstration purposes only
 \usepackage[math]{blindtext}
