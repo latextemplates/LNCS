@@ -1,8 +1,18 @@
 \documentclass[runningheads,a4paper]{llncs}
 
-\usepackage[american]{babel}
+% für neue deutsche Rechtschreibung
+\usepackage[ngerman]{babel}
+% für englische Rechtschreibung
+%\usepackage[american]{babel}
+
+%Eingabeformat UTF-8
+\usepackage[utf8]{inputenc}
 
 \usepackage{graphicx}
+\graphicspath{{graphics/}}
+
+%Tweaks by IPVS/AS
+\usepackage{lncs_as}
 
 %extended enumerate, such as \begin{compactenum}
 \usepackage{paralist}
@@ -40,6 +50,12 @@ qt=false%
 %for demonstration purposes only
 \usepackage[math]{blindtext}
 
+\usepackage{listings}
+\lstloadlanguages{java}
+\lstset{language=java,numbers=left,captionpos=b}
+
+\usepackage[hyperref,svgnames]{xcolor}
+
 \usepackage[
 %pdfauthor={},
 %pdfsubject={},
@@ -50,19 +66,20 @@ breaklinks=true,
 colorlinks=true,
 linkcolor=black,
 citecolor=black,
-urlcolor=black,
-%pdfstartpage=19,
+filecolor=DarkBlue,
+urlcolor=DarkBlue,
+pdfstartview=Fit,
 pdfpagelayout=SinglePage
 ]{hyperref}
 %enables correct jumping to figures when referencing
 \usepackage[all]{hypcap}
 
-\usepackage[capitalise,nameinlink]{cleveref}
-%Nice formats for \cref
-\crefname{section}{Sect.}{Sect.}
-\Crefname{section}{Section}{Sections}
-\crefname{figure}{Fig.}{Fig.}
-\Crefname{figure}{Figure}{Figures}
+\usepackage[capitalise,nameinlink,ngerman]{cleveref}
+%Nice formats for \cref - only for English texts
+%\crefname{section}{Sect.}{Sect.}
+%\Crefname{section}{Section}{Sections}
+%\crefname{figure}{Fig.}{Fig.}
+%\Crefname{figure}{Figure}{Figures}
 
 \usepackage{xspace}
 %\newcommand{\eg}{e.\,g.\xspace}
@@ -100,65 +117,146 @@ pdfpagelayout=SinglePage
 %If Title is too long, use \titlerunning
 %\titlerunning{Short Title}
 
-%Single insitute
-\author{Firstname Lastname \and Firstname Lastname}
-%If there are too many authors, use \authorrunning
-%\authorrunning{First Author et al.}
-\institute{...}
+\author{Vorname Nachname}
 
-%Multiple insitutes
-%Currently disabled
-%
-\iffalse
-%Multiple institutes are typeset as follows:
-\author{Firstname Lastname\inst{1} \and Firstname Lastname\inst{2} }
-%If there are too many authors, use \authorrunning
-%\authorrunning{First Author et al.}
+\supervisor{Vorname Nachname}
 
-\institute{
-Insitute 1\\
-\email{...}\and
-Insitute 2\\
-\email{...}
-}
-\fi
-			
+\seminar{Seminarbezeichung}
+
+\semester{WS 2015/2016}
+
+\abgabedatum{Stuttgart, 22.06.2015}
+
+\institute{\email{autor.eins@beispiel.de}}
+
+\frontpagede % creates the frontpage (in German)
+%\frontpageen % creates the frontpage (in English)
+
+\thispagestyle{empty}
+\cleardoublepage
+
 \maketitle
 
 \begin{abstract}
-Abstract goes here
+Die Kurzfassung sollte den Inhalt der Arbeit kurz wiedergeben und aus mindestens 70 und maximal 150 Wörtern bestehen.
+Sie wird in einer 9-Punkt Schrift gesetzt und 1 cm eingerückt von rechts und links.
+Vor und nach der Kurzfassung sind zwei leere Zeilen.
 \end{abstract}
 
-\keywords{...}
+%\keywords{...}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}\label{sec:intro}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\blindtext
 
-Winery~\cite{Winery} is graphical modeling tool.
+\section{Einleitung}
+Ab diesem Abschnitt fängt die eigentliche Arbeit an und man beginnt mit einer Einführung und der Einordnung des Themas.
 
-\begin{figure}
-Simple Figure
-\caption{Simple Figure}
-\label{fig:simple}
-\end{figure}
+Absätze werden durch Leerzeilen erreicht.
+
+Als \LaTeX-Editor sind TeXstudio\footnote{\url{http://texstudio.sourceforge.net/}} oder TeXlipse\footnote{\url{http://texlipse.sourceforge.net/}} empfehlenswert.
+
+Für die Versionskontrolle bietet es sich an, jeden Satz in einer neuen Zeile zu beginnen.
+
+Als Nachschlagewerk und gute Einführung in das Thema \LaTeX\ bietet sich \emph{The Not So Short Introduction to \LaTeXe}\ von Oetiker et al an.
+Auf der Seite \url{http://tobi.oetiker.ch/lshort/} ist dieses Dokument zum Herunterladen bereitgestellt.
+
+Ein weiteres, empfehlenswertes Dokument ist das \emph{Kochbuch für \LaTeX{}}, welches auf der Seite \url{http://www.uni-giessen.de/hrz/tex/cookbook/cookbook.html} zu finden ist.
+
+Eine Vorlage für Bachelor- und Masterarbeiten ist unter \url{https://github.com/latextemplates/uni-stuttgart-computer-science-template} zu finden.
+
+Für weitere Anleitungen und Informationen empfiehlt sich die Homepage \url{http://www.dante.de/}.
+Des Weiteren gibt es eine Reihe von Literatur zum Thema \LaTeX\ von Bürger~\cite{buerger}, Kopka~\cite{kopka}, Günther~\cite{guenther} und vielen anderen.
+Weitere Hinweise zu \LaTeX{} unter \url{http://wiki.flupp.de/latex}.
+Zu Ausarbeitungen im Allgemeinen unter \url{http://wiki.flupp.de/studium/ausarbeitungen}.
+
+Die Arbeit gleidert sich wie folgt:
+...
+Schließlich wird in \cref{sec:zusfas} eine Zusammenfassung der Arbeit und ein Ausblick auf weitere Forschungsthemen gegeben.
+
+\subsection{Beispiel für Überschrift 2.~Ebene}
+
+\subsubsection{Beispiel für Überschrift 3.~Ebene}
+
+\paragraph{Beispiel für Überschrift 4.~Ebene}
+Dies ist Beispielabsatz zu einem Beispiel einer Überschrift 4.~Ebene.
+
+\section{Formatierungsrichtlinien}
+
+\subsection{Tabellen}
+In diesem Abschnitt wird das Einfügen einer Tabelle und das Füllen derselben mit Werten gezeigt.
+Im Gegensatz zu Abbildungen erfolgt die Beschriftung üblicherweise oberhalb und nicht unterhalb der Tabelle.
+Der letzte Satz der Beschriftung endet ohne Punkt.
+Die \Cref{tab:bsp} zeigt die Größenentwicklung der Weltbevölkerung von 8000 v.\,Chr. bis 1980 n.\,Chr.
 
 \begin{table}
-\caption{Simple Table}
-
-\label{tab:simple}
-Simple Table
+\caption{Dieses Beispiel entstammt dem {\it\TeX{}Buch,} S.\,246}
+\label{tab:bsp}
+\begin{center}
+\begin{tabular}{r@{\quad}rl}
+\hline
+\multicolumn{1}{l}{\rule{0pt}{12pt}
+                   Jahr}&\multicolumn{2}{l}{Weltbevölkerung}\\[2pt]
+\hline\rule{0pt}{12pt}
+8000 v.\,Chr. &     5,000,000& \\
+  50 n\,Chr. &   200,000,000& \\
+1650 n\,Chr. &   500,000,000& \\
+1945 n\,Chr. & 2,300,000,000& \\
+1980 n\,Chr. & 4,400,000,000& \\[2pt]
+\hline
+\end{tabular}
+\end{center}
 \end{table}
 
-cref Demonstration: Cref at beginning of sentence, cref in all other cases.
+\subsection{Code-Beispiele}
 
-\Cref{fig:simple} shows a simple fact, although \cref{fig:simple} could also show something else.
+\Cref{lst:example} zeigt ein Code-Beispiel.
 
-\Cref{tab:simple} shows a simple fact, although \cref{tab:simple} could also show something else.
+\begin{lstlisting}[float,caption=A floating example,label=lst:example]
+public static void main(String[] args) {
+}
+\end{lstlisting}
 
-\Cref{sec:intro} shows a simple fact, although \cref{sec:intro} could also show something else.
+\subsection{Formeln}
+Formeln sind in aufsteigender Reihenfolge, beginnend mit der Nummer~1, durchzunummerieren.
+Dies erleichtert den Bezug vom Text auf die zugehörige Formel.
+Die Formel
+%
+\begin{equation}
+  \psi (u) = \int_{o}^{T} \left[\frac{1}{2}
+  \left(\Lambda_{o}^{-1} u,u\right) + N^{\ast} (-u)\right] dt
+\end{equation}
+%
+berechnet etwas.
+Formeln sind bezüglich der Zeichensetzung wie normaler Text zu behandeln, d.\,h.\ falls ein Satz mit einer Formel endet, folgt dieser ein Punkt, der üblicherweise durch ein schmales Leerzeichen abgesetzt wird.
 
+\subsection{Abbildungen}
+Im nachfolgenden Beispiel wird dargestellt, wie Grafiken eingefügt werden und wie die Beschriftung bzw.\ die Formatierung derselben auszusehen hat.
+
+Bei Abbildungen erfolgt die Beschriftung unterhalb der Abbildung (siehe \cref{fig:logo}).
+Der letzte Satz der Beschreibung endet wie bei Tabellenbeschriftungen ohne Punkt.
+Um eine gute Qualität zu erzielen, muss die Auflösung der Abbildungen mindestens 300~DPI betragen.
+Bei Strichzeichnungen empfiehlt sich sogar eine weit höhere Auflösung, zwischen 800 und
+1200~DPI.
+
+Am besten Vektorgraphiken nehmen und als \texttt{.pdf} exportieren.
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=.5\textwidth]{ipvslogo.png}
+    \caption{Das Logo des Instituts}
+    \label{fig:logo}
+   \end{center}
+\end{figure}
+
+\subsection{Literaturverweise}
+Ein Verweis auf eine im Literaturverzeichnis aufgeführte
+Literaturquelle wird durch die in eckige Klammern eingeschlossene
+Nummer der entsprechenden Literaturquelle angegeben. Als Beispiel ist
+hier nochmals auf Buerger~\cite{buerger} verwiesen.
+
+\subsection{Anführungszeichen}
+Entweder "`so"' tippen oder \enquote{so}.
+``So'' bitte nicht, das führt zu englischen Anführungszeichen.
+
+\subsection{Sonstiges}
 Brackets work as designed:
 <test>
 
@@ -170,21 +268,11 @@ The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\w
 \item This is enabled by the paralist package.
 \end{inparaenum}
 
-``something in quotes'' using plain tex or use \enquote{the enquote command}.
+\section{Zusammenfassung}
+\label{sec:zusfas}
+Dieser Absatz schließt die Arbeit ab.
 
-\section{Conclusion and Outlook}
-
-\subsubsection*{Acknowledgments}
-...
-
-In the bibliography, use \texttt{\textbackslash textsuperscript} for ``st'', ``nd'', ...:
-E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{splncs03}
 \bibliography{paper}
-
-All links were last followed on October 5, 2014.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+Alle Links wurden zuletzt am 22.06.2015 geprüft.
 \end{document}

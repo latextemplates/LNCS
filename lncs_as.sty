@@ -1,0 +1,122 @@
+%encoding: UTF-8
+
+\RequirePackage{graphicx} % needed for the frontpage-logo
+
+\RequirePackage{floatflt} % needed for frontpage-logo
+
+\newcommand{\frontdate}[1]{\def\@frontdate{#1}}
+\newcommand{\frontgroup}[1]{\def\@frontgroup{#1}}
+\newcommand{\supervisor}[1]{\def\@supervisor{#1}}
+\newcommand{\seminar}[1]{\def\@seminar{#1}}
+\newcommand{\semester}[1]{\def\@semester{#1}}
+\newcommand{\abgabedatum}[1]{\def\@abgabedatum{#1}}
+
+\newcommand{\frontpagede}{%
+
+\thispagestyle{empty}
+
+\begin{floatingfigure}[l]{32mm}
+     \includegraphics[width=3cm]{ipvslogo.png}
+\end{floatingfigure}
+
+\ \vspace{-2.2em}
+
+\begin{flushright}
+    {\sf
+    {\LARGE
+    Universität Stuttgart\\
+    \ }
+    \vspace{1.8em}
+    {\large
+    \\Institut für Parallele und Verteilte Systeme\\
+    \ }
+    {\bfseries
+    {\large
+    Anwendersoftware\\
+    \ }
+    }
+    \vspace{8em}
+    {\LARGE
+    \\\@title\\
+    \ }
+    \vspace{1.5em}
+    {\bfseries
+    {\large
+    \\Seminararbeit\\
+    \ }
+    }
+    {\large
+    \\\@seminar\ (\@semester)\\
+    \ }
+    {\large
+    \\Betreuer:\ \@supervisor\\
+    \ }
+    \vspace{1.5em}
+    {\bfseries
+    {\large
+    \\\@author\\
+    \ }
+    }
+    \vfill
+    {\large
+    \@abgabedatum\\
+    \ }
+   }
+\end{flushright}
+
+\newpage}
+
+\newcommand{\frontpageen}{%
+
+\thispagestyle{empty}
+
+\begin{floatingfigure}[l]{32mm}
+     \includegraphics[width=3cm]{ipvslogo.png}
+\end{floatingfigure}
+
+\ \vspace{-2.2em}
+
+\begin{flushright}
+    {\sf
+    {\LARGE
+    University of Stuttgart\\
+    \ }
+    \vspace{1.8em}
+    {\large
+    \\Institute of Parallel and Distributed Systems\\
+    \ }
+    {\bfseries
+    {\large
+    Applications of\\Parallel and Distributed Systems\\
+    \ }
+    }
+    \vspace{8em}
+    {\LARGE
+    \\\@title\\
+    \ }
+    \vspace{1.5em}
+    {\bfseries
+    {\large
+    \\Seminar Paper\\
+    \ }
+    }
+    {\large
+    \\\@seminar\ (\@semester)\\
+    \ }
+    {\large
+    \\Supervisor:\ \@supervisor\\
+    \ }
+    \vspace{1.5em}
+    {\bfseries
+    {\large
+    \\\@author\\
+    \ }
+    }
+    \vfill
+    {\large
+    \@abgabedatum\\
+    \ }
+   }
+\end{flushright}
+
+\newpage}

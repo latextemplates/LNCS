@@ -1,3 +1,6 @@
+Dieser Branch enthält Anpassungen für Seminararbeiten am IPVS.
+Nähere Informationen unter http://www.ipvs.uni-stuttgart.de/abteilungen/as/lehre/lehrveranstaltungen/seminare/richtlinien/#ausarbeitung.
+
 # Simplified LNCS Template
 
 This repository aims to provide a quick start into modern LaTeXing with LNCS.
