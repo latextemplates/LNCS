@@ -40,8 +40,6 @@ qt=false%
 %for demonstration purposes only
 \usepackage[math]{blindtext}
 
-%unobstrusive usage of hyperref
-\ifnum\pdfoutput>0
 \usepackage[
 %pdfauthor={},
 %pdfsubject={},
@@ -58,9 +56,6 @@ pdfpagelayout=SinglePage
 ]{hyperref}
 %enables correct jumping to figures when referencing
 \usepackage[all]{hypcap}
-\else
-\usepackage{hyperref}
-\fi
 
 \usepackage[capitalise,nameinlink]{cleveref}
 %Nice formats for \cref
