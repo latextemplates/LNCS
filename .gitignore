@@ -1,5 +1,6 @@
 trash/
 *.aux
+*.bak
 *.bbl
 *.blg
 *.fdb_latexmk
