@@ -11,7 +11,16 @@ This template is based on the one available at http://www.springer.com/computer/
  * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/template.zip)
  * Extract template.zip in the folder where you want to write your paper
  * Edit [paper.tex](paper.tex).
- * `latexmk -pdf paper.tex`
+ * To build use `latexmk -pdf paper.tex`
+ * To clean up after a build use latexmk -c (in case of *.aux-file errors) 
+
+## Changing the papers language to english instead of german (all changes in [paper.tex](paper.tex)):
+
+ * In case you've already generated the paper.pdf file using `latexmk -pdf paper.tex`, delete the paper.aux file.
+ * Comment out line 4:           `\usepackage[ngerman]{babel}` -> `%\usepackage[ngerman]{babel}`
+ * Remove the `%` from line 6:   `%\usepackage[american]{babel}` -> `\usepackage[american]{babel}`
+ * Comment line 77 `\usepackage[capitalise,nameinlink,ngerman]{cleveref}` -> `%\usepackage[capitalise,nameinlink,ngerman]{cleveref}`
+ * Remove the `%` from line 78 `%\usepackage[capitalise,nameinlink,english]{cleveref}` -> `\usepackage[capitalise,nameinlink,english]{cleveref}`
 
 ## Changes in comparison to Springer's version
 
@@ -32,7 +41,7 @@ If you have, just add https://github.com/latextemplates/LNCS.git as upstream and
 1. git clone https://github.com/latextemplates/LNCS.git
 1. cd LNCS
 1. git remote rename origin github
-1. git checkout -b master
+1. git checkout -b lncs_as 
 
 After that you can use and push the master branch as usual.
 
