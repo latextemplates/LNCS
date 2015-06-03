@@ -35,13 +35,14 @@ This template is based on the one available at http://www.springer.com/computer/
 
 ### Initialization
 This howto assumes that you don't have a git repository for your paper yet.
-If you have, just add https://github.com/latextemplates/LNCS.git as upstream and merge the branch "template" into your "master" branch.
+If you have, just add https://github.com/latextemplates/LNCS.git as upstream and merge the branch "lncs_as" into your "master" branch.
 
 1. Open command line
-1. git clone https://github.com/latextemplates/LNCS.git
-1. cd LNCS
-1. git remote rename origin github
-1. git checkout -b lncs_as 
+1. `git clone https://github.com/latextemplates/LNCS.git`
+1. `cd LNCS`
+1. `git remote rename origin github`
+1. `git checkout lncs_as`
+1. `git checkout -b master`
 
 After that you can use and push the master branch as usual.
 
