@@ -2,6 +2,7 @@
 
 This repository aims to provide a quick start into modern LaTeXing with LNCS.
 This template is based on the one available at http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0
+The files are also available at the FTP server of springer: ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/
 
 ## Quick start
 
