@@ -15,20 +15,22 @@ Follow the quick start instructions.
 
 ## Quick start
 
- * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/template.zip).
- * Extract template.zip in the folder where you want to write your paper.
+ * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/lncs_as.zip).
+ * Extract lncs_as.zip in the folder where you want to write your paper.
  * Execute `gradlew init` or download [llncs.cls] and [splncs03.bst] by hand and store them in the target directory.
  * Edit [paper.tex](paper.tex).
  * To build use `latexmk -pdf paper.tex`
- * To clean up after a build use latexmk -c (in case of *.aux-file errors) 
+ * To clean up after a build use `latexmk -c paper.tex` (in case of `*.aux`-file errors)
 
-## Changing the papers language to english instead of german (all changes in [paper.tex](paper.tex)):
+## Changing the papers language to English instead of German
 
- * In case you've already generated the paper.pdf file using `latexmk -pdf paper.tex`, delete the paper.aux file.
+All changes are in [paper.tex](paper.tex):
+
  * Comment out line 4:           `\usepackage[ngerman]{babel}` -> `%\usepackage[ngerman]{babel}`
  * Remove the `%` from line 6:   `%\usepackage[american]{babel}` -> `\usepackage[american]{babel}`
  * Comment line 77 `\usepackage[capitalise,nameinlink,ngerman]{cleveref}` -> `%\usepackage[capitalise,nameinlink,ngerman]{cleveref}`
  * Remove the `%` from line 78 `%\usepackage[capitalise,nameinlink,english]{cleveref}` -> `\usepackage[capitalise,nameinlink,english]{cleveref}`
+ * In case you've already generated the paper.pdf file, delete the `paper.aux` file.
 
 ## Benefits in comparison to Springer's version
 
