@@ -1,24 +1,30 @@
 # Simplified LNCS Template
 
-This repository aims to provide a quick start into modern LaTeXing with LNCS.
-This template is based on the one available at http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0
-The files are also available at the FTP server of springer: ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/
+This repository aims to provide a quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
+
+The official template is available at http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0.
+The files are also provided at Springer's FTP server at ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/.
+
+Licensing restrictions of Springer do not allow distribution outside of springer.
+See [message #47 for debian bug 31897](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=31897#47) for details.
+Therefore, the required files [llncs.cls] and [splncs03.bst] have to be downloaded in some way.
+Follow the quick start instructions.
 
 ## Quick start
 
- * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/template.zip)
- * Extract template.zip in the folder where you want to write your paper
+ * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/template.zip).
+ * Extract template.zip in the folder where you want to write your paper.
+ * Execute `gradlew init` or download [llncs.cls] and [splncs03.bst] by hand and store them in the target directory.
  * Edit [paper.tex](paper.tex).
- * `latexmk -pdf paper.tex`
+ * `latexmk -pdf paper.tex`.
 
-## Changes in comparison to Springer's version
+## Benefits in comparison to Springer's version
 
-* Removal of all files except llncs.cls and splncs03.bst
-* Adding a skeletton [paper.tex](paper.tex) file
-* Adding modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
+* Provides a skeletton [paper.tex](paper.tex) file
+* Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
 * Support of copy and paste from the generated PDF: Glyphs are encoded using unicode characters.
 * Support for `\powerset` command
-* Allow copy and paste of text without getting words with ligatures such as "workflow" destroyed
+* Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed
 
 ## Using with your git repository
 
@@ -41,3 +47,6 @@ After that you can use and push the master branch as usual.
   [hyperref]: https://ctan.org/pkg/hyperref
   [microtype]: https://ctan.org/pkg/microtype
   [paralist]: https://www.ctan.org/pkg/paralist
+
+  [llncs.cls]: ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls
+  [splncs03.bst]: ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst

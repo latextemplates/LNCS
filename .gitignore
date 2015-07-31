@@ -7,5 +7,13 @@ trash/
 *.fls
 *.log
 *.synctex.gz
+
 #The output should not be versioned
 paper.pdf
+
+#temporary files by gradle
+.gradle
+
+#Files versioned by springer
+llncs.cls
+splncs03.bst
