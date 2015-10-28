@@ -15,6 +15,9 @@ paper.pdf
 #temporary files by gradle
 .gradle
 
+#temporary file produced by lncs_as branch
+latex.zip
+
 #Files versioned by springer
 llncs.cls
 splncs03.bst

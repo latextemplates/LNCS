@@ -17,7 +17,7 @@ Follow the quick start instructions.
 
  * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/lncs_as.zip).
  * Extract lncs_as.zip in the folder where you want to write your paper.
- * Execute `gradlew init` or download [llncs.cls] and [splncs03.bst] by hand and store them in the target directory.
+ * Execute `download-llncs-files-from.springer.bat` to download [llncs.cls] and [splncs03.bst].
  * Edit [paper.tex](paper.tex).
  * To build use `latexmk -pdf paper.tex`
  * To clean up after a build use `latexmk -c paper.tex` (in case of `*.aux`-file errors)

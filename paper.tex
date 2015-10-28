@@ -102,6 +102,11 @@ pdfpagelayout=SinglePage
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
+%improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 

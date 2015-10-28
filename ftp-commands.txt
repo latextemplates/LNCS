@@ -1,0 +1,7 @@
+open ftp.springer.de
+anonymous
+anonymous
+binary
+get pub/tex/latex/llncs/latex2e/llncs.cls
+get pub/tex/latex/llncs/latex2e/splncs03.bst
+quit
