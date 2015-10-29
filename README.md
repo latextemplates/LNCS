@@ -22,7 +22,7 @@ Follow the quick start instructions.
  * To build use `latexmk -pdf paper.tex`
  * To clean up after a build use `latexmk -c paper.tex` (in case of `*.aux`-file errors)
 
-## Changing the papers language to English instead of German
+## Changing the paper's language to English instead of German
 
 All changes are in [paper.tex](paper.tex):
 
