@@ -22,6 +22,12 @@ Follow the quick start instructions.
  * To build use `latexmk -pdf paper.tex`
  * To clean up after a build use `latexmk -c paper.tex` (in case of `*.aux`-file errors)
 
+## Recommended software
+
+* LaTeX editing: [TeXstudio](http://texstudio.sourceforge.net/), also has a Grammar check using [LanguageTool](https://www.languagetool.org/), see [TeX.sx](http://tex.stackexchange.com/a/155665/9075).
+  * See also [List of all available LaTeX editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).
+* Bibliography management: [JabRef](http://jabref.sourceforge.net/)
+
 ## Changing the paper's language to English instead of German
 
 All changes are in [paper.tex](paper.tex):
