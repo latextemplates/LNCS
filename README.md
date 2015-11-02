@@ -46,7 +46,13 @@ All changes are in [paper.tex](paper.tex):
 * Support for `\powerset` command
 * Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed
 
-## Using with your git repository
+## Tool hints
+Grammar and spell checking is available at [TeXstudio].
+Please download [LanguageTool] and [configure Texstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
+Note that it is enough to point to `languagetool.jar`.
+Use [JabRef] to manage your bibliography.
+
+## Using the template with your git repository
 
 ### Initialization
 This howto assumes that you don't have a git repository for your paper yet.
@@ -68,6 +74,10 @@ After that you can use and push the master branch as usual.
   [hyperref]: https://ctan.org/pkg/hyperref
   [microtype]: https://ctan.org/pkg/microtype
   [paralist]: https://www.ctan.org/pkg/paralist
+
+  [JabRef]: http://jabref.sf.net
+  [LanguageTool]: https://languagetool.org/
+  [TeXstudio]: http://texstudio.sourceforge.net/
 
   [llncs.cls]: ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls
   [splncs03.bst]: ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst
