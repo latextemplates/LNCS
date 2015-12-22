@@ -1,6 +1,15 @@
 # Simplified LNCS Template
 
 This repository aims to provide a quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
+In addition to the official template, it offers following features:
+
+ * clean copy and paste of ligatures (e.g., "workflow" stays "workflow" after copying from the PDF).
+ * automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style. Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence. Thanx to [cleveref](https://www.ctan.org/pkg/cleveref).
+ * [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
+ * support of `\powerset`.
+ * support of hyperlinked references without extra color thanx to [hyperref](https://www.ctan.org/pkg/hyperref).
+ * better breaking of URLs.
+ * sharper font.
 
 The official template is available at http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0.
 The files are also provided at Springer's FTP server at ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/.
