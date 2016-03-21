@@ -25,7 +25,7 @@ Follow the quick start instructions.
  * Extract template.zip in the folder where you want to write your paper.
  * Execute `download-llncs-files-from.springer.bat` to download [llncs.cls] and [splncs03.bst].
  * Edit [paper.tex](paper.tex).
- * `latexmk -pdf paper.tex`.
+ * `latexmk paper`.
 
 ## Benefits in comparison to Springer's version
 
@@ -40,6 +40,8 @@ Grammar and spell checking is available at [TeXstudio].
 Please download [LanguageTool] and [configure Texstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
 Note that it is enough to point to `languagetool.jar`.
 Use [JabRef] to manage your bibliography.
+
+If TeXstudio doesn't fit your neesd, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).
 
 ## Using the template with your git repository
 
