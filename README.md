@@ -29,7 +29,7 @@ Follow the quick start instructions.
 
 ## Benefits in comparison to Springer's version
 
-* Provides a skeletton [paper.tex](paper.tex) file
+* Provides a skeletal [paper.tex](paper.tex) file
 * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
 * Support of copy and paste from the generated PDF: Glyphs are encoded using unicode characters.
 * Support for `\powerset` command
@@ -63,7 +63,7 @@ After that you can use and push the master branch as usual.
   [microtype]: https://ctan.org/pkg/microtype
   [paralist]: https://www.ctan.org/pkg/paralist
 
-  [JabRef]: http://jabref.sf.net
+  [JabRef]: http://www.jabref.org
   [LanguageTool]: https://languagetool.org/
   [TeXstudio]: http://texstudio.sourceforge.net/
 
