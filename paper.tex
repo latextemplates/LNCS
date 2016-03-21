@@ -2,6 +2,18 @@
 
 \usepackage[american]{babel}
 
+%better font, similar to the default springer font
+%cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
+\usepackage[%
+rm={oldstyle=false,proportional=true},%
+sf={oldstyle=false,proportional=true},%
+tt={oldstyle=false,proportional=true,variable=true},%
+qt=false%
+]{cfr-lm}
+%
+%if more space is needed, exchange cfr-lm by mathptmx
+%\usepackage{mathptmx}
+
 \usepackage{graphicx}
 
 %extended enumerate, such as \begin{compactenum}
@@ -26,20 +38,31 @@
 %enable margin kerning
 \usepackage{microtype}
 
-%better font, similar to the default springer font
-%cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
-\usepackage[%
-rm={oldstyle=false,proportional=true},%
-sf={oldstyle=false,proportional=true},%
-tt={oldstyle=false,proportional=true,variable=true},%
-qt=false%
-]{cfr-lm}
-%
-%if more space is needed, exchange cfr-lm by mathptmx
-%\usepackage{mathptmx}
-
 %for demonstration purposes only
 \usepackage[math]{blindtext}
+
+%tweak \url{...}
+\usepackage{url}
+%nicer // - solution by http://tex.stackexchange.com/a/98470/9075
+\makeatletter
+\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
+\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
+\makeatother
+\urlstyle{same}
+%improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+%diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
+%slashbox is not available in texlive (due to licensing) and also gives bad results. This, we use diagbox
+%\usepackage{diagbox}
+
+%required for pdfcomment later
+\usepackage{xcolor}
+
+% new packages BEFORE hyperref
+% See also http://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
 
 %enable hyperref without colors and without bookmarks
 \usepackage[
@@ -54,10 +77,19 @@ linkcolor=black,
 citecolor=black,
 urlcolor=black,
 %pdfstartpage=19,
-pdfpagelayout=SinglePage
+pdfpagelayout=SinglePage,
+pdfstartview=Fit
 ]{hyperref}
 %enables correct jumping to figures when referencing
 \usepackage[all]{hypcap}
+
+%enable nice comments
+\usepackage{pdfcomment}
+\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+
+%compatibality with TODO package
+\newcommand{\todo}[1]{\commentatside{#1}}
 
 %enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
 \usepackage[capitalise,nameinlink]{cleveref}
@@ -87,11 +119,6 @@ pdfpagelayout=SinglePage
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
-%improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
-\makeatletter
-\g@addto@macro{\UrlBreaks}{\UrlOrds}
-\makeatother
-
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -112,7 +139,7 @@ pdfpagelayout=SinglePage
 \author{Firstname Lastname \and Firstname Lastname}
 %If there are too many authors, use \authorrunning
 %\authorrunning{First Author et al.}
-\institute{...}
+\institute{Institute}
 
 %Multiple insitutes
 %Currently disabled
@@ -142,9 +169,9 @@ Abstract goes here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\blindtext
+\blindtext\todo{Refine me}
 
-Winery~\cite{Winery} is graphical modeling tool.
+Winery~\cite{Winery} is graphical \commentontext{modeling}{modeling with one \enquote{l}, because of AE} tool.
 
 \begin{figure}
 Simple Figure
@@ -187,6 +214,7 @@ The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\w
 
 In the bibliography, use \texttt{\textbackslash textsuperscript} for ``st'', ``nd'', ...:
 E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
+When you use \href{http://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{splncs03}
