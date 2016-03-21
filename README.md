@@ -47,15 +47,17 @@ If TeXstudio doesn't fit your neesd, check [the list of all available LaTeX Edit
 
 ### Initialization
 This howto assumes that you don't have a git repository for your paper yet.
-If you have, just add https://github.com/latextemplates/LNCS.git as upstream and merge the branch "template" into your "master" branch.
+If you have, just add https://github.com/latextemplates/LNCS.git as upstream and merge the branch `template` into your `master` branch.
 
 1. Open command line
-1. git clone https://github.com/latextemplates/LNCS.git
-1. cd LNCS
-1. git remote rename origin github
-1. git checkout -b master
+1. `git clone https://github.com/latextemplates/LNCS.git`
+1. `cd LNCS`
+1. `git remote rename origin upstream`
+1. `git checkout -b master`
 
-After that you can use and push the master branch as usual.
+After that you can use and push the `master` branch as usual.
+Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
+Note that we decided to call the upstream branch `template` to have a clear distinction between the real content (maintained in your `master` branch) and the template (maintained in the `template` branch).
 
   [cfr-lm]: https://www.ctan.org/pkg/cfr-lm
   [cleveref]: https://ctan.org/pkg/cleveref
