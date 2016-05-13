@@ -8,6 +8,16 @@
 %Eingabeformat UTF-8
 \usepackage[utf8]{inputenc}
 
+%cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
+\usepackage[%
+rm={oldstyle=false,proportional=true},%
+sf={oldstyle=false,proportional=true},%
+tt={oldstyle=false,proportional=true,variable=true},%
+qt=false%
+]{cfr-lm}
+%
+%if more space is needed, exchange cfr-lm by mathptmx
+
 \usepackage{graphicx}
 \graphicspath{{graphics/}}
 
@@ -28,34 +38,43 @@
 %Sorts the citations in the brackets
 %\usepackage{cite}
 
+\usepackage[T1]{fontenc}
+
+%for demonstration purposes only
+\usepackage[math]{blindtext}
+
 %for easy quotations: \enquote{text}
 \usepackage{csquotes}
-
-\usepackage[T1]{fontenc}
 
 %enable margin kerning
 \usepackage{microtype}
 
-%better font, similar to the default springer font
-\usepackage[%
-rm={oldstyle=false,proportional=true},%
-sf={oldstyle=false,proportional=true},%
-tt={oldstyle=false,proportional=true,variable=true},%
-qt=false%
-]{cfr-lm}
-%
-%if more space is needed, exchange cfr-lm by mathptmx
-%\usepackage{mathptmx}
+%tweak \url{...}
+\usepackage{url}
+%nicer // - solution by http://tex.stackexchange.com/a/98470/9075
+\makeatletter
+\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
+\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
+\makeatother
+\urlstyle{same}
+%improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
 
-%for demonstration purposes only
-\usepackage[math]{blindtext}
+%diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
+%slashbox is not available in texlive (due to licensing) and also gives bad results. This, we use diagbox
+%\usepackage{diagbox}
+
+%required for pdfcomment later
+\usepackage[hyperref,svgnames]{xcolor}
 
 \usepackage{listings}
 \lstloadlanguages{java}
 \lstset{language=java,numbers=left,captionpos=b}
 
-\usepackage[hyperref,svgnames]{xcolor}
-
+% See also http://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
+%enable hyperref with some colors and without bookmarks
 \usepackage[
 %pdfauthor={},
 %pdfsubject={},
@@ -68,12 +87,21 @@ linkcolor=black,
 citecolor=black,
 filecolor=DarkBlue,
 urlcolor=DarkBlue,
-pdfstartview=Fit,
-pdfpagelayout=SinglePage
+pdfpagelayout=SinglePage,
+pdfstartview=Fit
 ]{hyperref}
 %enables correct jumping to figures when referencing
 \usepackage[all]{hypcap}
 
+%enable nice comments
+\usepackage{pdfcomment}
+\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+
+%compatibality with TODO package
+\newcommand{\todo}[1]{\commentatside{#1}}
+
+%enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
 \usepackage[capitalise,nameinlink,ngerman]{cleveref}
 %\usepackage[capitalise,nameinlink,english]{cleveref}
 %Nice formats for \cref - only for English texts
@@ -101,11 +129,6 @@ pdfpagelayout=SinglePage
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
-
-%improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
-\makeatletter
-\g@addto@macro{\UrlBreaks}{\UrlOrds}
-\makeatother
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
