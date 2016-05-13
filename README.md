@@ -59,6 +59,11 @@ After that you can use and push the `master` branch as usual.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
 Note that we decided to call the upstream branch `template` to have a clear distinction between the real content (maintained in your `master` branch) and the template (maintained in the `template` branch).
 
+## Links
+
+ * German: Hinweise zu Ausarbeitungen: http://wiki.flupp.de/studium/ausarbeitungen
+ * Other templates: http://latextemplates.github.io/
+
   [cfr-lm]: https://www.ctan.org/pkg/cfr-lm
   [cleveref]: https://ctan.org/pkg/cleveref
   [csquotes]: https://www.ctan.org/pkg/csquotes
