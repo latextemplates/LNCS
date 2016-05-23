@@ -14,6 +14,9 @@ qt=false%
 %if more space is needed, exchange cfr-lm by mathptmx
 %\usepackage{mathptmx}
 
+%Enable direct input of umlauts in the bibliography
+\usepackage[utf8]{inputenc}
+
 \usepackage{graphicx}
 
 %extended enumerate, such as \begin{compactenum}
@@ -44,10 +47,10 @@ qt=false%
 %tweak \url{...}
 \usepackage{url}
 %nicer // - solution by http://tex.stackexchange.com/a/98470/9075
-\makeatletter
-\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
-\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
-\makeatother
+%\makeatletter
+%\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
+%\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
+%\makeatother
 \urlstyle{same}
 %improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
 \makeatletter
@@ -60,6 +63,77 @@ qt=false%
 
 %required for pdfcomment later
 \usepackage{xcolor}
+
+%%%
+%biblatex statt bibtex
+\usepackage[
+  backend       = biber, %minalphanames only works with biber backend
+  sortcites     = true,
+  bibstyle      = alphabetic,
+  citestyle     = alphabetic,
+  firstinits    = true,
+  useprefix     = false, %"von, van, etc." will be printed, too. See below.
+  minnames      = 1,
+  minalphanames = 3,
+  maxalphanames = 4,
+  maxbibnames   = 99,
+  maxcitenames  = 3,
+  doi           = false, %source: http://tex.stackexchange.com/a/23118/9075
+  isbn          = false, %source: http://tex.stackexchange.com/a/23118/9075
+  backref       = false]{biblatex}
+
+%paper.bib is the source of our references
+\bibliography{paper}
+
+%Do not put "vd" in the label, but put it at "\citeauthor"
+%Source: http://tex.stackexchange.com/a/30277/9075
+\makeatletter
+\AtBeginDocument{\toggletrue{blx@useprefix}}
+\AtBeginBibliography{\togglefalse{blx@useprefix}}
+
+%Thin spaces between initials
+%http://tex.stackexchange.com/a/11083/9075
+\renewrobustcmd*{\bibinitdelim}{\,}
+
+%Keep first and last name together in the bibliography
+%http://tex.stackexchange.com/a/196192/9075
+\renewcommand*\bibnamedelimc{\addnbspace}
+\renewcommand*\bibnamedelimd{\addnbspace}
+
+%Replace last "and" by comma in bibliography
+%See http://tex.stackexchange.com/a/41532/9075
+%\AtBeginBibliography{%
+%  \renewcommand*{\finalnamedelim}{\addcomma\space}%
+%}
+
+\DefineBibliographyStrings{ngerman}{
+  backrefpage  = {zitiert auf S\adddot},
+  backrefpages = {zitiert auf S\adddot},
+  andothers    = {et\ \addabbrvspace al\adddot},
+  %Tipp von http://www.mrunix.de/forums/showthread.php?64665-biblatex-Kann-%DCberschrift-vom-Inhaltsverzeichnis-nicht-%E4ndern&p=293656&viewfull=1#post293656
+  bibliography = {Literaturverzeichnis}
+}
+
+%enable hyperlinked author names when using \citeauthor
+%source: http://tex.stackexchange.com/a/75916/9075
+\DeclareCiteCommand{\citeauthor}
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+   \printtext[bibhyperref]{\printnames{labelname}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+%natbib compatibility
+\newcommand{\citep}[1]{\cite{#1}}
+\newcommand{\citet}[1]{\citeauthor{#1} \cite{#1}}
+%Beginning of sentence - analogous to cleveref - important for names such as "zur Muehlen"
+\newcommand{\Citep}[1]{\cite{#1}}
+\newcommand{\Citet}[1]{\Citeauthor{#1} \cite{#1}}
+%%%
 
 % new packages BEFORE hyperref
 % See also http://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
@@ -169,7 +243,15 @@ Abstract goes here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \blindtext\todo{Refine me}
 
-Winery~\cite{Winery} is graphical \commentontext{modeling}{modeling with one \enquote{l}, because of AE} tool.
+Winery~\cite{Kopp2013_Winery} is graphical \commentontext{modeling}{modeling with one \enquote{l}, because of AE} tool.
+
+This is only a demonstration:
+We cite two books \cite{vermesan2013internet, goswami_internet_2012},
+two articles \cite{Petcu2014_MultiCloud, subramoni_design_2008},
+one dissertation \cite{fielding_architectural_2000},
+one workshop paper \cite{Kopp2013_Winery},
+and two web sites \cite{piper_choosing,ApacheODE}.
+
 
 \begin{figure}
 Simple Figure
@@ -214,11 +296,10 @@ In the bibliography, use \texttt{\textbackslash textsuperscript} for ``st'', ``n
 E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
 When you use \href{http://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliographystyle{splncs03}
-\bibliography{paper}
+
+% We do NOT use splncs03, since we switched to biblatex
+\printbibliography
 
 All links were last followed on October 5, 2014.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
