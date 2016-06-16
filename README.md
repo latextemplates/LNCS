@@ -14,7 +14,8 @@ In addition to the official template, it offers following features:
 The official template is available at http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0.
 The files are also provided at Springer's FTP server at ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/.
 
-Licensing restrictions of Springer do not allow distribution outside of springer.
+**Two files of Springer are needed to get the template working:** ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls and ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst.
+Reason: Licensing restrictions of Springer do not allow distribution outside of springer.
 See [message #47 for debian bug 31897](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=31897#47) for details.
 Therefore, the required files [llncs.cls] and [splncs03.bst] have to be downloaded in some way.
 Follow the quick start instructions.
