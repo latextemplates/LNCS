@@ -34,7 +34,9 @@ qt=false%
 %Text...
 
 %Sorts the citations in the brackets
-%\usepackage{cite}
+%It also allows \cite{refa, refb}. Otherwise, the document does not compile.
+%  Error message: "White space in argument"
+\usepackage{cite}
 
 \usepackage[T1]{fontenc}
 
