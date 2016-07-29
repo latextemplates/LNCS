@@ -51,16 +51,17 @@ qt=false%
 
 %tweak \url{...}
 \usepackage{url}
-%nicer // - solution by http://tex.stackexchange.com/a/98470/9075
-\makeatletter
-\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
-\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
-\makeatother
 \urlstyle{same}
 %improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
 \makeatletter
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
+%nicer // - solution by http://tex.stackexchange.com/a/98470/9075
+%DO NOT ACTIVATE -> prevents line breaks
+%\makeatletter
+%\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
+%\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
+%\makeatother
 
 %diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
 %slashbox is not available in texlive (due to licensing) and also gives bad results. This, we use diagbox
