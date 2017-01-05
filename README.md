@@ -25,7 +25,7 @@ Follow the quick start instructions.
  * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/template.zip).
  * Extract template.zip in the folder where you want to write your paper.
  * Place [llncs.cls] and [splncs03.bst] into the directory
-   - Download them manually
+   - Download them manually from ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls and ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst.
    - Alternatively, ensure that `JAVA_HOME` is correctly set. This is ensured by using `choco install jdk8`, whereby `choco` is offered by [chocolatey](https://chocolatey.org/).
      Execute `gradlew init`.
  * Edit [paper.tex](paper.tex).
