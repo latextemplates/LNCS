@@ -40,12 +40,15 @@ Follow the quick start instructions.
 * Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed
 
 ## Tool hints
+
+MiKTeX installation hints are given at <https://github.com/latextemplates/scientific-thesis-template/blob/template/README.md#installation-hints-for-windows>.
+
 Grammar and spell checking is available at [TeXstudio].
-Please download [LanguageTool] and [configure Texstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
+Please download [LanguageTool] and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
 Note that it is enough to point to `languagetool.jar`.
 Use [JabRef] to manage your bibliography.
 
-If TeXstudio doesn't fit your neesd, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).
+If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).
 
 ## Using the template with your git repository
 
