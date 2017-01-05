@@ -24,7 +24,10 @@ Follow the quick start instructions.
 
  * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/template.zip).
  * Extract template.zip in the folder where you want to write your paper.
- * Execute `download-llncs-files-from.springer.bat` to download [llncs.cls] and [splncs03.bst].
+ * Place [llncs.cls] and [splncs03.bst] into the directory
+   - Download them manually
+   - Alternatively, ensure that `JAVA_HOME` is correctly set. This is ensured by using `choco install jdk8`, whereby `choco` is offered by [chocolatey](https://chocolatey.org/).
+     Execute `gradlew init`.
  * Edit [paper.tex](paper.tex).
  * `latexmk paper`.
 
@@ -59,6 +62,11 @@ If you have, just add https://github.com/latextemplates/LNCS.git as upstream and
 After that you can use and push the `master` branch as usual.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
 Note that we decided to call the upstream branch `template` to have a clear distinction between the real content (maintained in your `master` branch) and the template (maintained in the `template` branch).
+
+## Development
+
+- Do not update gradle to a higher version: Starting from 2.14 you will get the output "Unable to get progress logger. Download progress will not be displayed."
+- Do not update de.undercouch.download to a version higher than 2.1.0. FTP downloads are not supported in higher versions. See <https://github.com/michel-kraemer/gradle-download-task/issues/60>.
 
 ## Links
 
