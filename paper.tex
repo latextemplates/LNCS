@@ -1,9 +1,11 @@
+% This template has been tested with LLNCS DOCUMENT CLASS -- version 2.20 (24-JUN-2015)
+
 %"runningheads" enables:
 %  - page number on page 2 onwards
 %  - title/authors on even/odd pages
 %This is good for other readers to enable proper archiving among other papers and pointing to content.
 %Even if the title page states the title, when printed and stored in a folder, when blindly opening the folder, one could hit not the title page, but an arbitrary page. Therefore, it is good to have title printed on the pages, too.
-\documentclass[runningheads,a4paper]{llncs}
+\documentclass[runningheads,a4paper]{llncs}[2015/06/24]
 
 %Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
 \usepackage[english]{babel}
@@ -22,6 +24,10 @@ qt=false%
 
 \usepackage{graphicx}
 
+
+%% If you need packages for other papers,
+%% START COPYING HERE
+
 %extended enumerate, such as \begin{compactenum}
 \usepackage{paralist}
 
@@ -39,6 +45,7 @@ qt=false%
 \usepackage{cite}
 
 \usepackage[T1]{fontenc}
+\usepackage{cmap}
 
 %for demonstration purposes only
 \usepackage[math]{blindtext}
@@ -75,19 +82,15 @@ qt=false%
 
 %enable hyperref without colors and without bookmarks
 \usepackage[
-%pdfauthor={},
-%pdfsubject={},
-%pdftitle={},
-%pdfkeywords={},
-bookmarks=false,
-breaklinks=true,
-colorlinks=true,
-linkcolor=black,
-citecolor=black,
-urlcolor=black,
-%pdfstartpage=19,
-pdfpagelayout=SinglePage,
-pdfstartview=Fit
+%   pdfauthor={},
+%   pdfsubject={},
+%   pdftitle={},
+%   pdfkeywords={},
+   bookmarks=false,
+   colorlinks=true,
+   allcolors=black,
+   pdfstartview=Fit,
+   breaklinks=true,
 ]{hyperref}
 %enables correct jumping to figures when referencing
 \usepackage[all]{hypcap}
@@ -97,8 +100,10 @@ pdfstartview=Fit
 \newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
 \newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
 
-%compatibality with TODO package
+%compatibality with packages todo, easy-todo, todonotes
 \newcommand{\todo}[1]{\commentatside{#1}}
+%compatiblity with package fixmetodonotes
+\newcommand{\TODO}[1]{\commentatside{#1}}
 
 %enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
 \usepackage[capitalise,nameinlink]{cleveref}
@@ -129,14 +134,11 @@ pdfstartview=Fit
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-\begin{document}
 
-%Works on MiKTeX only
-%hint by http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html
-%also http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
-%This allows a copy'n'paste of the text from the paper
-\input glyphtounicode.tex
-\pdfgentounicode=1
+%% END COPYING HERE
+
+
+\begin{document}
 
 \title{Paper Title}
 %If Title is too long, use \titlerunning
@@ -171,7 +173,9 @@ Insitute 2\\
 Abstract goes here
 \end{abstract}
 
-\keywords{...}
+\begin{keywords}
+keyword1, keyword2
+\end{keywords}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:intro}
@@ -221,7 +225,7 @@ The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\w
 
 In the bibliography, use \texttt{\textbackslash textsuperscript} for ``st'', ``nd'', ...:
 E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
-When you use \href{http://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
+When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{splncs03}
