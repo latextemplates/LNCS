@@ -5,7 +5,8 @@
 %  - title/authors on even/odd pages
 %This is good for other readers to enable proper archiving among other papers and pointing to content.
 %Even if the title page states the title, when printed and stored in a folder, when blindly opening the folder, one could hit not the title page, but an arbitrary page. Therefore, it is good to have title printed on the pages, too.
-\documentclass[runningheads,a4paper]{llncs}[2015/06/24]
+\documentclass[runningheads,a4paper]{llncs}
+\usepackage{cmap}
 
 %Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
 \usepackage[english]{babel}
@@ -44,8 +45,8 @@ qt=false%
 %  Error message: "White space in argument"
 \usepackage{cite}
 
+
 \usepackage[T1]{fontenc}
-\usepackage{cmap}
 
 %for demonstration purposes only
 \usepackage[math]{blindtext}
@@ -77,26 +78,20 @@ qt=false%
 %required for pdfcomment later
 \usepackage{xcolor}
 
-% new packages BEFORE hyperref
-% See also http://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before
 
-%enable hyperref without colors and without bookmarks
-\usepackage[
-%   pdfauthor={},
-%   pdfsubject={},
-%   pdftitle={},
-%   pdfkeywords={},
-   bookmarks=false,
-   colorlinks=true,
-   allcolors=black,
-   pdfstartview=Fit,
-   breaklinks=true,
-]{hyperref}
-%enables correct jumping to figures when referencing
-\usepackage[all]{hypcap}
+
 
 %enable nice comments
 \usepackage{pdfcomment}
+%enable hyperref without colors and without bookmarks
+\hypersetup{hidelinks,
+   colorlinks=true,
+   allcolors=black,
+   pdfstartview=Fit,
+   breaklinks=true}
+%enables correct jumping to figures when referencing
+\usepackage[all]{hypcap}
+
 \newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
 \newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
 
