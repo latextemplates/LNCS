@@ -35,7 +35,8 @@ Follow the quick start instructions.
 
 * Provides a skeletal [paper.tex](paper.tex) file
 * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
-* Support of copy and paste from the generated PDF: Glyphs are encoded using unicode characters.
+* Support of copy and paste from the generated PDF: Glyphs are encoded using unicode characters. This is enabled by the [cmap] package.
+* Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
 * Support for `\powerset` command
 * Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed
 
@@ -78,13 +79,15 @@ Note that we decided to call the upstream branch `template` to have a clear dist
 
   [cfr-lm]: https://www.ctan.org/pkg/cfr-lm
   [cleveref]: https://ctan.org/pkg/cleveref
+  [cmap]: https://www.ctan.org/pkg/cmap
   [csquotes]: https://www.ctan.org/pkg/csquotes
   [hypcap]: https://www.ctan.org/pkg/hypcap
   [hyperref]: https://ctan.org/pkg/hyperref
   [microtype]: https://ctan.org/pkg/microtype
   [paralist]: https://www.ctan.org/pkg/paralist
+  [pdfcomment]: https://www.ctan.org/pkg/pdfcomment
 
-  [JabRef]: http://www.jabref.org
+  [JabRef]: https://www.jabref.org
   [LanguageTool]: https://languagetool.org/
   [TeXstudio]: http://texstudio.sourceforge.net/
 
