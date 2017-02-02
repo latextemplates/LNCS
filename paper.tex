@@ -6,7 +6,9 @@
 %This is good for other readers to enable proper archiving among other papers and pointing to content.
 %Even if the title page states the title, when printed and stored in a folder, when blindly opening the folder, one could hit not the title page, but an arbitrary page. Therefore, it is good to have title printed on the pages, too.
 \documentclass[runningheads,a4paper]{llncs}
+
 \usepackage{cmap}
+\usepackage[T1]{fontenc}
 
 %Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
 \usepackage[english]{babel}
@@ -44,9 +46,6 @@ qt=false%
 %It also allows \cite{refa, refb}. Otherwise, the document does not compile.
 %  Error message: "White space in argument"
 \usepackage{cite}
-
-
-\usepackage[T1]{fontenc}
 
 %for demonstration purposes only
 \usepackage[math]{blindtext}
