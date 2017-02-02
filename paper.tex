@@ -7,8 +7,11 @@
 %Even if the title page states the title, when printed and stored in a folder, when blindly opening the folder, one could hit not the title page, but an arbitrary page. Therefore, it is good to have title printed on the pages, too.
 \documentclass[runningheads,a4paper]{llncs}
 
+%cmap has to be loaded before any font package (such as cfr-lm)
 \usepackage{cmap}
 \usepackage[T1]{fontenc}
+
+\usepackage{graphicx}
 
 %Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
 \usepackage[english]{babel}
@@ -25,11 +28,18 @@ qt=false%
 %if more space is needed, exchange cfr-lm by mathptmx
 %\usepackage{mathptmx}
 
-\usepackage{graphicx}
+%for demonstration purposes only
+\usepackage[math]{blindtext}
+
+%Sorts the citations in the brackets
+%It also allows \cite{refa, refb}. Otherwise, the document does not compile.
+%  Error message: "White space in argument"
+\usepackage{cite}
 
 
 %% If you need packages for other papers,
 %% START COPYING HERE
+%% COPY ALSO cmap and fontenc from lines 10 to 12
 
 %extended enumerate, such as \begin{compactenum}
 \usepackage{paralist}
@@ -41,14 +51,6 @@ qt=false%
 %\piccaption{...}
 %\parpic[r]{\includegraphics ...}
 %Text...
-
-%Sorts the citations in the brackets
-%It also allows \cite{refa, refb}. Otherwise, the document does not compile.
-%  Error message: "White space in argument"
-\usepackage{cite}
-
-%for demonstration purposes only
-\usepackage[math]{blindtext}
 
 %for easy quotations: \enquote{text}
 \usepackage{csquotes}
@@ -78,9 +80,8 @@ qt=false%
 \usepackage{xcolor}
 
 
-
-
 %enable nice comments
+%this also loads hyperref
 \usepackage{pdfcomment}
 %enable hyperref without colors and without bookmarks
 \hypersetup{hidelinks,
@@ -127,7 +128,6 @@ qt=false%
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
-
 
 %% END COPYING HERE
 
