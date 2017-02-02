@@ -54,6 +54,7 @@ If TeXstudio doesn't fit your need, check [the list of all available LaTeX Edito
 ## Using the template with your git repository
 
 ### Initialization
+
 This howto assumes that you don't have a git repository for your paper yet.
 If you have, just add https://github.com/latextemplates/LNCS.git as upstream and merge the branch `template` into your `master` branch.
 
@@ -66,6 +67,18 @@ If you have, just add https://github.com/latextemplates/LNCS.git as upstream and
 After that you can use and push the `master` branch as usual.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
 Note that we decided to call the upstream branch `template` to have a clear distinction between the real content (maintained in your `master` branch) and the template (maintained in the `template` branch).
+
+## Warnings on ShareLaTeX
+
+ShareLaTeX might output following warning:
+
+> LaTeX Warning: You have requested, on input line 8, version
+> 2015/06/24' of document class llncs, but only version2004/08/17 v2.14
+> LaTeX document class for Lecture Notes in Computer Science'
+> is available.
+
+The reason is that you did not download `llncs.cls` from <ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/>, but you did get if from somewhere else.
+Please use the latest version offered by Springer.
 
 ## Development
 
