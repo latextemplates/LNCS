@@ -43,6 +43,9 @@ Follow the quick start instructions.
 
 ## Tool hints
 
+There is currently no official biblatex support.
+A first step towards that is done at [biblatex-lncs](https://github.com/neapel/biblatex-lncs/).
+
 MiKTeX installation hints are given at <https://github.com/latextemplates/scientific-thesis-template/blob/template/README.md#installation-hints-for-windows>.
 
 Grammar and spell checking is available at [TeXstudio].
