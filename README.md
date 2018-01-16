@@ -22,8 +22,8 @@ Follow the quick start instructions.
 
 ## Quick start
 
- * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/template.zip).
- * Extract template.zip in the folder where you want to write your paper.
+ * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/master.zip).
+ * Extract `master.zip` in the folder where you want to write your paper.
  * Place [llncs.cls] and [splncs03.bst] into the directory
    - Download them manually from ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls and ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst.
    - On Linux, execute `download-llncs-files-from-springer.sh`.
@@ -60,18 +60,12 @@ If TeXstudio doesn't fit your need, check [the list of all available LaTeX Edito
 
 ### Initialization
 
-This howto assumes that you don't have a git repository for your paper yet.
-If you have, just add https://github.com/latextemplates/LNCS.git as upstream and merge the branch `template` into your `master` branch.
-
-1. Open command line
-1. `git clone https://github.com/latextemplates/LNCS.git`
-1. `cd LNCS`
-1. `git remote rename origin upstream`
-1. `git checkout -b master`
+1. Initialize your git repository as usual
+2. Add this repository as upstream: `git remote add upstream https://github.com/latextemplates/LNCS.git`
+3. Merge the branch `upstream/master` into your `master` branch: `git merge upstream/master`.
 
 After that you can use and push the `master` branch as usual.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
-Note that we decided to call the upstream branch `template` to have a clear distinction between the real content (maintained in your `master` branch) and the template (maintained in the `template` branch).
 
 ## Warnings on ShareLaTeX
 
