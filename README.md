@@ -72,7 +72,7 @@ Notes on syncing with the upstream repository [are available from GitHub](https:
 ShareLaTeX might output following warning:
 
 > LaTeX Warning: You have requested, on input line 8, version
-> 2015/06/24' of document class llncs, but only version2004/08/17 v2.14
+> 2015/06/24' of document class llncs, but only version 2004/08/17 v2.14
 > LaTeX document class for Lecture Notes in Computer Science'
 > is available.
 
