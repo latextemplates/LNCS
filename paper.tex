@@ -60,7 +60,18 @@
 \usepackage{csquotes}
 
 %enable margin kerning
-\usepackage{microtype}
+\RequirePackage{iftex}
+\ifPDFTeX
+   \RequirePackage[%
+      final,%
+      tracking=smallcaps,%
+      expansion=alltext,%
+      protrusion=alltext-nott]{microtype}%
+\else
+   \RequirePackage[%
+      final,%
+      protrusion=alltext-nott]{microtype}%
+\fi%
 
 %tweak \url{...}
 \usepackage{url}

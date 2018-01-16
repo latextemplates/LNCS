@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Tweaked options for "microtype", especially `protrusion=alltext-nott`
+
 ## [1.0.0] - 2018-01-16
 
 First release using semantic versioning.
