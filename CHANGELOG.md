@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Added example `lstlisting` to show how the [listings](https://www.ctan.org/pkg/listings) package can be used.
+
 ### Changed
 - Tweaked options for "microtype", especially `protrusion=alltext-nott`
+
 
 ## [1.0.0] - 2018-01-16
 

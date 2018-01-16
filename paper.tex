@@ -94,6 +94,19 @@
 %required for pdfcomment later
 \usepackage{xcolor}
 
+%for listings
+\usepackage{listings}
+\lstset{%
+   basicstyle=\ttfamily,%
+   columns=fixed,%
+   basewidth=.5em,%
+   xleftmargin=0.5cm,%
+   captionpos=b}%
+\renewcommand{\lstlistingname}{List.}
+%Fix counter as described at https://tex.stackexchange.com/a/28334/9075
+\usepackage{chngcntr}
+\AtBeginDocument{\counterwithout{lstlisting}{section}}
+
 %enable nice comments
 %this also loads hyperref
 \usepackage{pdfcomment}
@@ -119,6 +132,8 @@
 %Nice formats for \cref
 \crefname{section}{Sect.}{Sect.}
 \Crefname{section}{Section}{Sections}
+\crefname{listing}{\lstlistingname}{\lstlistingname}
+\Crefname{listing}{Listing}{Listings}
 
 \usepackage{xspace}
 %\newcommand{\eg}{e.\,g.\xspace}
@@ -202,6 +217,17 @@ Winery~\cite{Winery} is graphical \commentontext{modeling}{modeling with one \en
   \label{tab:simple}
   Simple Table
 \end{table}
+
+\begin{lstlisting}[caption={Example Listing}, label=L1, language=Java]
+public class Hello {
+    public static void main (String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+\end{lstlisting}
+
+\Cref{L1} shows a listing typeset using the \texttt{lstlisting} environment.
+
 
 cref Demonstration: Cref at beginning of sentence, cref in all other cases.
 
