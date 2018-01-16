@@ -83,6 +83,7 @@ Please use the latest version offered by Springer.
 
 - Do not update gradle to a higher version: Starting from 2.14 you will get the output "Unable to get progress logger. Download progress will not be displayed."
 - Do not update de.undercouch.download to a version higher than 2.1.0. FTP downloads are not supported in higher versions. See <https://github.com/michel-kraemer/gradle-download-task/issues/60>.
+- Reindent: `latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w paper.tex`
 
 ## Links
 

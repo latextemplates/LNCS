@@ -1,3 +1,6 @@
+*.bak
+*.bak?
+
 #The output should not be versioned
 paper.pdf
 

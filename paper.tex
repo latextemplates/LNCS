@@ -24,10 +24,10 @@
 %better font, similar to the default springer font
 %cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
 \usepackage[%
-rm={oldstyle=false,proportional=true},%
-sf={oldstyle=false,proportional=true},%
-tt={oldstyle=false,proportional=true,variable=true},%
-qt=false%
+  rm={oldstyle=false,proportional=true},%
+  sf={oldstyle=false,proportional=true},%
+  tt={oldstyle=false,proportional=true,variable=true},%
+  qt=false%
 ]{cfr-lm}
 %
 %if more space is needed, exchange cfr-lm by mathptmx
@@ -40,7 +40,6 @@ qt=false%
 %It also allows \cite{refa, refb}. Otherwise, the document does not compile.
 %  Error message: "White space in argument"
 \usepackage{cite}
-
 
 %% If you need packages for other papers,
 %% START COPYING HERE
@@ -84,16 +83,15 @@ qt=false%
 %required for pdfcomment later
 \usepackage{xcolor}
 
-
 %enable nice comments
 %this also loads hyperref
 \usepackage{pdfcomment}
 %enable hyperref without colors and without bookmarks
 \hypersetup{hidelinks,
-   colorlinks=true,
-   allcolors=black,
-   pdfstartview=Fit,
-   breaklinks=true}
+  colorlinks=true,
+  allcolors=black,
+  pdfstartview=Fit,
+  breaklinks=true}
 %enables correct jumping to figures when referencing
 \usepackage[all]{hypcap}
 
@@ -121,11 +119,11 @@ qt=false%
 \DeclareFontFamily{U}{MnSymbolC}{}
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
 \DeclareFontShape{U}{MnSymbolC}{m}{n}{
-    <-6>  MnSymbolC5
-   <6-7>  MnSymbolC6
-   <7-8>  MnSymbolC7
-   <8-9>  MnSymbolC8
-   <9-10> MnSymbolC9
+  <-6>    MnSymbolC5
+  <6-7>   MnSymbolC6
+  <7-8>   MnSymbolC7
+  <8-9>   MnSymbolC8
+  <9-10>  MnSymbolC9
   <10-12> MnSymbolC10
   <12->   MnSymbolC12%
 }{}
@@ -135,7 +133,6 @@ qt=false%
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 %% END COPYING HERE
-
 
 \begin{document}
 
@@ -149,31 +146,30 @@ qt=false%
 %\authorrunning{First Author et al.}
 \institute{Institute}
 
-%Multiple insitutes
-%Currently disabled
+%% Multiple insitutes - ALTERNATIVE to the above
+% \author{%
+%     Firstname Lastname\inst{1} \and
+%     Firstname Lastname\inst{2}
+% }
 %
-\iffalse
-%Multiple institutes are typeset as follows:
-\author{Firstname Lastname\inst{1} \and Firstname Lastname\inst{2} }
 %If there are too many authors, use \authorrunning
-%\authorrunning{First Author et al.}
+%  \authorrunning{First Author et al.}
+%
+%  \institute{
+%      Insitute 1\\
+%      \email{...}\and
+%      Insitute 2\\
+%      \email{...}
+%}
 
-\institute{
-Insitute 1\\
-\email{...}\and
-Insitute 2\\
-\email{...}
-}
-\fi
-			
 \maketitle
 
 \begin{abstract}
-Abstract goes here
+  Abstract goes here
 \end{abstract}
 
 \begin{keywords}
-keyword1, keyword2
+  keyword1, keyword2
 \end{keywords}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,16 +180,16 @@ keyword1, keyword2
 Winery~\cite{Winery} is graphical \commentontext{modeling}{modeling with one \enquote{l}, because of AE} tool.
 
 \begin{figure}
-Simple Figure
-\caption{Simple Figure}
-\label{fig:simple}
+  Simple Figure
+  \caption{Simple Figure}
+  \label{fig:simple}
 \end{figure}
 
 \begin{table}
-\caption{Simple Table}
+  \caption{Simple Table}
 
-\label{tab:simple}
-Simple Table
+  \label{tab:simple}
+  Simple Table
 \end{table}
 
 cref Demonstration: Cref at beginning of sentence, cref in all other cases.
@@ -210,9 +206,9 @@ Brackets work as designed:
 The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\wp$).
 
 \begin{inparaenum}
-\item All these items...
-\item ...appear in one line
-\item This is enabled by the paralist package.
+  \item All these items...
+  \item ...appear in one line
+  \item This is enabled by the paralist package.
 \end{inparaenum}
 
 ``something in quotes'' using plain tex or use \enquote{the enquote command}.
