@@ -62,15 +62,15 @@
 %enable margin kerning
 \RequirePackage{iftex}
 \ifPDFTeX
-   \RequirePackage[%
-      final,%
-      tracking=smallcaps,%
-      expansion=alltext,%
-      protrusion=alltext-nott]{microtype}%
+  \RequirePackage[%
+    final,%
+    tracking=smallcaps,%
+    expansion=alltext,%
+    protrusion=alltext-nott]{microtype}%
 \else
-   \RequirePackage[%
-      final,%
-      protrusion=alltext-nott]{microtype}%
+  \RequirePackage[%
+    final,%
+    protrusion=alltext-nott]{microtype}%
 \fi%
 
 %tweak \url{...}
@@ -97,11 +97,11 @@
 %for listings
 \usepackage{listings}
 \lstset{%
-   basicstyle=\ttfamily,%
-   columns=fixed,%
-   basewidth=.5em,%
-   xleftmargin=0.5cm,%
-   captionpos=b}%
+  basicstyle=\ttfamily,%
+  columns=fixed,%
+  basewidth=.5em,%
+  xleftmargin=0.5cm,%
+  captionpos=b}%
 \renewcommand{\lstlistingname}{List.}
 %Fix counter as described at https://tex.stackexchange.com/a/28334/9075
 \usepackage{chngcntr}
@@ -134,6 +134,53 @@
 \Crefname{section}{Section}{Sections}
 \crefname{listing}{\lstlistingname}{\lstlistingname}
 \Crefname{listing}{Listing}{Listings}
+
+%\usepackage[newfloat]{minted}
+
+%define IfPackageLoaded
+\usepackage{ltxcmds}
+\makeatletter
+\newcommand{\IfPackageLoaded}[2]{\ltx@ifpackageloaded{#1}{#2}{}}
+\makeatother
+
+\IfPackageLoaded{minted}{
+  % Line numbers not flowing out of the margin
+  \setminted{numbersep=5pt, xleftmargin=12pt}
+
+  %http://www.jevon.org/wiki/Eclipse_Pygments_Style
+  %\usemintedstyle{eclipse}
+  %
+  %\usemintedstyle{autumn}
+  %\usemintedstyle{rrt}
+  %\usemintedstyle{borland}
+  %\usemintedstyle{friendlygrayscale}
+  \usemintedstyle{friendly}
+
+  % We need to load caption to have a bold font on the label
+  % The other parameters mimic the layout of the LNCS class
+  \usepackage[labelfont=bf,font=small,skip=4pt]{caption}
+  \SetupFloatingEnvironment{listing}{name=List.,within=none}
+}{
+}
+%
+%Following definitions are outside of IfPackageLoaded; inside, they are not visible
+%
+%Intermediate solution for hyperlined refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
+\newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
+
+\ifcsmacro{listing}{}{\newenvironment{listing}[1][htbp!]{\begin{figure}[#1]}{\end{figure}}}
+\ifcsmacro{minted}{}{%
+  \newenvironment{minted}[1][]{
+    \bfseries
+    Package minted was not loaded, so there is no XML code shown.
+
+    In case you load minted, please be sure to \begin{enumerate}[a)]
+      \item Have \href{https://www.python.org/downloads/}{python} and \href{http://pygments.org/download/}{pygments} installed
+      \item Excecute pdflatex using \texttt{-shell-escape}
+    \end{enumerate}
+  }{}
+}
 
 \usepackage{xspace}
 %\newcommand{\eg}{e.\,g.\xspace}
@@ -226,8 +273,26 @@ public class Hello {
 }
 \end{lstlisting}
 
+\begin{listing}[ht]
+  \begin{minted}[linenos=true,escapeinside=||]{xml}
+<demo>
+  <node>
+    <!-- comment --> |\Vlabel{commentline}|
+  </node>
+</demo>
+\end{minted}
+  \caption{XML-Dokument rendered using minted}
+  \label{lst:xml}
+\end{listing}
+
 \Cref{L1} shows a listing typeset using the \texttt{lstlisting} environment.
 
+\href{https://github.com/gpoore/minted}{minted} as an alternative package, which enables syntax highlighting using \href{http://pygments.org/}{pygments}.
+This, in turn, requires Pytton, so it is disabled by default.
+In case you load it above, be sure to run pdflatex with \texttt{-shell-escape} option.
+\Cref{lst:xml} shows an XML-Listing.
+You can point to a single line: \lref{commentline}.
+If you do not want to use minted, just delete the example listing and this paragraph.
 
 cref Demonstration: Cref at beginning of sentence, cref in all other cases.
 

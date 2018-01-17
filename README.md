@@ -41,6 +41,7 @@ Follow the quick start instructions.
 * Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
 * Support for `\powerset` command
 * Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed
+* Optional: Support for [minted] package. Uncomment `\usepackage{minted}` to get started.
 
 ## Tool hints
 
@@ -97,6 +98,7 @@ Please use the latest version offered by Springer.
   [hypcap]: https://www.ctan.org/pkg/hypcap
   [hyperref]: https://ctan.org/pkg/hyperref
   [microtype]: https://ctan.org/pkg/microtype
+  [minted]: https://ctan.org/pkg/minted
   [paralist]: https://www.ctan.org/pkg/paralist
   [pdfcomment]: https://www.ctan.org/pkg/pdfcomment
 
