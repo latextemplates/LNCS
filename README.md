@@ -57,6 +57,12 @@ Use [JabRef] to manage your bibliography.
 
 If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).
 
+In case you want to get started using minted, please install python and pygments.
+Then, run pdflatex with the `-shell-escape` switch:
+- `choco install python`
+- `pip instal pygments`
+- `pdflatex -shell-escape paper` (or just `latexmk paper`)
+
 ## Using the template with your git repository
 
 ### Initialization
