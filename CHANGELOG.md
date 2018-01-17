@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Added example `lstlisting` to show how the [listings](https://www.ctan.org/pkg/listings) package can be used.
 - Added example listing typeset using [minted](https://github.com/gpoore/minted).
+- Added `\usepackage[utf8]{inputenc}` to support input of non-ASCII characters using UTF-8.
+- Added TeX magic comments
 
 ### Changed
 - Tweaked options for "microtype", especially `protrusion=alltext-nott`
