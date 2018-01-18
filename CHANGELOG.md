@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Replaced the outdated [mathptmx](https://ctan.org/pkg/mathptmx) by the [newtx](https://ctan.org/pkg/newtx) package and explained its activation.
+- Blindtext now also in the conclusion.
 
 ## [1.1.1] - 2018-01-18
 
