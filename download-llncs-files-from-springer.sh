@@ -1,2 +1,2 @@
-wget ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls
-wget ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst
+wget ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip
+unzip -o llncs2e.zip

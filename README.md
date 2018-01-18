@@ -11,22 +11,27 @@ In addition to the official template, it offers following features:
  * better breaking of URLs.
  * sharper font.
 
-The official template is available at http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0.
+The official template is available at <http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0>.
+Deep link: <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
 The files are also provided at Springer's FTP server at ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/.
 
-**Two files of Springer are needed to get the template working:** ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls and ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst.
+> **Two files of Springer are needed to get the template working:**
+> `llncs.cls` and `splncs03.bst`
+>  You get them from ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls and ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst or
+> inside the ZIP of [llncs2e.zip]
+
 Reason: Licensing restrictions of Springer do not allow distribution outside of springer.
 See [message #47 for debian bug 31897](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=31897#47) for details.
-Therefore, the required files [llncs.cls] and [splncs03.bst] have to be downloaded in some way.
+Therefore, the required files `llncs.cls` and `splncs03.bst` have to be downloaded in some way.
 Follow the quick start instructions.
 
 ## Quick start
 
  * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/master.zip).
  * Extract `master.zip` in the folder where you want to write your paper.
- * Place [llncs.cls] and [splncs03.bst] into the directory
-   - Download them manually from ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls and ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst.
-   - On Linux, execute `download-llncs-files-from-springer.sh`.
+ * Place `llncs.cls` and `splncs03.bst` into the directory
+   - Download [llncs2e.zip] and extract it in the directory.
+     On Linux, just execute `download-llncs-files-from-springer.sh`.
    - In case ftp does not work at your side, you can try online ftp services such as http://www.net2ftp.com/ to download the files. Open the connection to `ftp.springer.de` and navigate to `pub`, `text`, `latex`, `llncs`, `latex2e`, and download the two files.
  * Edit [paper.tex](paper.tex).
  * `latexmk paper`.
@@ -86,8 +91,6 @@ Please use the latest version offered by Springer.
 
 ## Development
 
-- Do not update gradle to a higher version: Starting from 2.14 you will get the output "Unable to get progress logger. Download progress will not be displayed."
-- Do not update de.undercouch.download to a version higher than 2.1.0. FTP downloads are not supported in higher versions. See <https://github.com/michel-kraemer/gradle-download-task/issues/60>.
 - Reindent: `latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w paper.tex`
 
 ## Links
@@ -110,5 +113,4 @@ Please use the latest version offered by Springer.
   [LanguageTool]: https://languagetool.org/
   [TeXstudio]: http://texstudio.sourceforge.net/
 
-  [llncs.cls]: ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls
-  [splncs03.bst]: ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst
+  [llncs2e.zip]: (ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip)
