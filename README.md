@@ -34,6 +34,8 @@
  * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
  * Optional: Support for [minted] package. Uncomment `\usepackage{minted}` to get started.
 
+Examples: [paper.pdf](https://latextemplates.github.io/LNCS/paper.pdf) and [paper-minted.pdf](https://latextemplates.github.io/LNCS/paper-minted.pdf).
+
 ## Background
 
 The official template is available at <http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0>.
