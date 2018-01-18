@@ -1,4 +1,4 @@
-# Simplified LNCS Template
+# Simplified LNCS Template [![Build Status](https://circleci.com/gh/latextemplates/LNCS/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/LNCS/)
 
 This repository aims to provide a quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
 In addition to the official template, it offers following features:
