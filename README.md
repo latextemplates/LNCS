@@ -27,8 +27,6 @@ Follow the quick start instructions.
  * Place [llncs.cls] and [splncs03.bst] into the directory
    - Download them manually from ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls and ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst.
    - On Linux, execute `download-llncs-files-from-springer.sh`.
-   - Alternatively, ensure that `JAVA_HOME` is correctly set. This is ensured by using `choco install jdk8`, whereby `choco` is offered by [chocolatey](https://chocolatey.org/).
-     Execute `gradlew init`.
    - In case ftp does not work at your side, you can try online ftp services such as http://www.net2ftp.com/ to download the files. Open the connection to `ftp.springer.de` and navigate to `pub`, `text`, `latex`, `llncs`, `latex2e`, and download the two files.
  * Edit [paper.tex](paper.tex).
  * `latexmk paper`.

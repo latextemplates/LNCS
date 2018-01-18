@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Removed download of required Springer files using gradle
+
 ## [1.1.0] - 2018-01-17
 
 ### Added
