@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Listings by the packages minted and listings can be mixed now: The counter of "List." at the captions were different.
 
+### Changed
+- Replaced the outdated [mathptmx](https://ctan.org/pkg/mathptmx) by the [newtx](https://ctan.org/pkg/newtx) package and explained its activation.
+
 ## [1.1.1] - 2018-01-18
 
 ### Changed

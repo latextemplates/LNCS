@@ -28,17 +28,21 @@
 %Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
 \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
 
-%better font, similar to the default springer font
-%cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
-\usepackage[%
-  rm={oldstyle=false,proportional=true},%
-  sf={oldstyle=false,proportional=true},%
-  tt={oldstyle=false,proportional=true,variable=true},%
-  qt=false%
-]{cfr-lm}
-%
-%if more space is needed, exchange cfr-lm by mathptmx
-%\usepackage{mathptmx}
+\iftrue % use default-font
+  %better font, similar to the default springer font
+  %cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
+  \usepackage[%
+    rm={oldstyle=false,proportional=true},%
+    sf={oldstyle=false,proportional=true},%
+    tt={oldstyle=false,proportional=true,variable=true},%
+    qt=false%
+  ]{cfr-lm}
+\else
+  %
+  %if more space is needed, exchange cfr-lm by two packages from newtx:
+  \usepackage{newtxtext}
+  \usepackage{newtxmath}
+\fi
 
 %for demonstration purposes only
 \usepackage[math]{blindtext}

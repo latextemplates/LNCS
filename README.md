@@ -14,6 +14,7 @@
 - [FAQ](#faq)
   * [Q: ShareLaTeX outputs a warning regarding the llncs class](#q-sharelatex-outputs-a-warning-regarding-the-llncs-class)
   * [Q: I get the error `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`](#q-i-get-the-error---pdftex-error-font-expansion-auto-expansion-is-only-possible-with-scalable-fonts)
+  * [Q: I need more space. What can I do?](#q-i-need-more-space-what-can-i-do)
 - [Development](#development)
 - [Links](#links)
 
@@ -112,6 +113,22 @@ Please use the latest version offered by Springer.
 
 Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: http://tex.stackexchange.com/a/324972/9075)
 
+### Q: I need more space. What can I do?
+
+The most simple solution to get more space is to exchange the font.
+You can disable the [cfr-lm] package by the [newtx] package's `newtxtext` and `newtxmath`.
+This effectively switches the font from Computer Modern to Times Roman.
+
+This switch is prepared in the template.
+Exchange
+
+    \iftrue % use default-font
+
+by
+
+    \iffalse
+
+
 ## Development
 
 - Reindent: `latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w paper.tex`
@@ -129,6 +146,7 @@ Install the `cm-super` package using the MiKTeX package manager. Then, run `init
   [hyperref]: https://ctan.org/pkg/hyperref
   [microtype]: https://ctan.org/pkg/microtype
   [minted]: https://ctan.org/pkg/minted
+  [newtx]: https://ctan.org/pkg/newtx
   [paralist]: https://www.ctan.org/pkg/paralist
   [pdfcomment]: https://www.ctan.org/pkg/pdfcomment
 
