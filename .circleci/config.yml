@@ -13,4 +13,8 @@ jobs:
        - run: mv paper-nonminted.pdf paper.pdf && mkdir build && cp -r README.md paper*.pdf .github/_config.yml build/
        - store_artifacts:
            path: build/
+       - store_artifacts:
+           path: llncs.cls
+       - store_artifacts:
+           path: splncs03.bst
        - run: if [ "$CIRCLE_BRANCH" == "master" ]; then .circleci/deploy-ghpages.sh build/; fi
