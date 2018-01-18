@@ -20,6 +20,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc} %support umlauts in the input
 
+\usepackage{upquote} % backticks (`) are rendered as such in verbatim environment. See https://tex.stackexchange.com/a/341057/9075 for details.
+
 \usepackage{graphicx}
 
 %Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
@@ -324,6 +326,7 @@ cref Demonstration: Cref at beginning of sentence, cref in all other cases.
 
 Brackets work as designed:
 <test>
+One can also input backquotes in verbatim text: \verb|`test`|.
 
 The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\wp$).
 

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Added package [upquote](https://www.ctan.org/pkg/upquote) to enable backticks beging properly rendered in listings
+
 ### Fixed
 - Listings by the packages minted and listings can be mixed now: The counter of "List." at the captions were different.
 

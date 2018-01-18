@@ -34,7 +34,7 @@
  * Support for `\powerset` command.
  * Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
  * [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
- * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
+ * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [cfr-lm]
  * Optional: Support for [minted] package. Uncomment `\usepackage[newfloat]{minted}` to get started.
 
 Examples:
@@ -153,6 +153,7 @@ by
   [newtx]: https://ctan.org/pkg/newtx
   [paralist]: https://www.ctan.org/pkg/paralist
   [pdfcomment]: https://www.ctan.org/pkg/pdfcomment
+  [upquote]: https://www.ctan.org/pkg/upquote
 
   [JabRef]: https://www.jabref.org
   [LanguageTool]: https://languagetool.org/
