@@ -1,0 +1,16 @@
+version: 2
+jobs:
+   build:
+     docker:
+       - image: koppor/texlive
+     steps:
+       - checkout
+       - run: ./download-llncs-files-from-springer.sh
+       - run: latexmk paper.tex && mv paper.pdf paper-nonminted.pdf
+       # active use of minted package in paper.tex -- it is disabled as default
+       - run: sed -i "s/%\(\\\\usepackage\[.*\]{minted}\)/\1/" paper.tex
+       - run: latexmk paper.tex && mv paper.pdf paper-minted.pdf
+       - run: mv paper-nonminted.pdf paper.pdf && mkdir build && cp -r README.md paper*.pdf .github/_config.yml build/
+       - store_artifacts:
+           path: build/
+       - run: if [ "$CIRCLE_BRANCH" == "master" ]; then .circleci/deploy-ghpages.sh build/; fi
