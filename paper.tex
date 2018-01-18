@@ -114,7 +114,7 @@
 \usepackage{chngcntr}
 \AtBeginDocument{\counterwithout{lstlisting}{section}}
 
-%compatiblity of packages minted and listings with respect to the numbering of "List." caption
+%compatibility of packages minted and listings with respect to the numbering of "List." caption
 %source: https://tex.stackexchange.com/a/269510/9075
 \AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
 \AtEndEnvironment{listing}{\stepcounter{lstlisting}}
