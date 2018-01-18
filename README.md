@@ -1,15 +1,40 @@
 # Simplified LNCS Template [![Build Status](https://circleci.com/gh/latextemplates/LNCS/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/LNCS/)
 
-This repository aims to provide a quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
-In addition to the official template, it offers following features:
+> Quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
 
- * clean copy and paste of ligatures (e.g., "workflow" stays "workflow" after copying from the PDF).
- * automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style. Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence. Thanx to [cleveref](https://www.ctan.org/pkg/cleveref).
+## TOC
+
+<!-- toc -->
+
+- [Features](#features)
+- [Background](#background)
+- [Quick start](#quick-start)
+- [Tool hints](#tool-hints)
+- [Using the template with your git repository](#using-the-template-with-your-git-repository)
+- [Warnings on ShareLaTeX](#warnings-on-sharelatex)
+- [Development](#development)
+- [Links](#links)
+
+<!-- tocstop -->
+
+## Features
+
+ * Provides a skeletal [paper.tex](paper.tex) file.
+ * Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed.
+   This is enabled by the [cmap] package, which encodes ligatures (such as fl) using unicode characters.
+ * Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
+   Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
+   Thanx to [cleveref].
+ * Support of hyperlinked references without extra color thanx to [hyperref].
+ * Better breaking of long URLs.
+ * Sharper font (still compatible with Springer's requirements).
+ * Support for `\powerset` command.
+ * Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
  * [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
- * support of `\powerset`.
- * support of hyperlinked references without extra color thanx to [hyperref](https://www.ctan.org/pkg/hyperref).
- * better breaking of URLs.
- * sharper font.
+ * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
+ * Optional: Support for [minted] package. Uncomment `\usepackage{minted}` to get started.
+
+## Background
 
 The official template is available at <http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0>.
 Deep link: <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
@@ -36,16 +61,6 @@ Follow the quick start instructions.
  * Edit [paper.tex](paper.tex).
  * `latexmk paper`.
 
-## Benefits in comparison to Springer's version
-
-* Provides a skeletal [paper.tex](paper.tex) file
-* Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
-* Support of copy and paste from the generated PDF: Glyphs are encoded using unicode characters. This is enabled by the [cmap] package.
-* Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
-* Support for `\powerset` command
-* Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed
-* Optional: Support for [minted] package. Uncomment `\usepackage{minted}` to get started.
-
 ## Tool hints
 
 There is currently no official biblatex support.
@@ -67,8 +82,6 @@ Then, run pdflatex with the `-shell-escape` switch:
 - `pdflatex -shell-escape paper` (or just `latexmk paper`)
 
 ## Using the template with your git repository
-
-### Initialization
 
 1. Initialize your git repository as usual
 2. Add this repository as upstream: `git remote add upstream https://github.com/latextemplates/LNCS.git`
