@@ -114,6 +114,11 @@
 \usepackage{chngcntr}
 \AtBeginDocument{\counterwithout{lstlisting}{section}}
 
+%compatiblity of packages minted and listings with respect to the numbering of "List." caption
+%source: https://tex.stackexchange.com/a/269510/9075
+\AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
+\AtEndEnvironment{listing}{\stepcounter{lstlisting}}
+
 %enable nice comments
 %this also loads hyperref
 \usepackage{pdfcomment}
@@ -176,7 +181,11 @@
 \newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
 \newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
 
-\ifcsmacro{listing}{}{\newenvironment{listing}[1][htbp!]{\begin{figure}[#1]}{\end{figure}}}
+%If minted is not loaded, provide the environments nevertheless
+\ifcsmacro{listing}{}{
+  \newenvironment{listing}[1][htbp!]{\begin{figure}[#1]}{\end{figure}}
+  \newcounter{listing}
+}
 \ifcsmacro{minted}{}{%
   \newenvironment{minted}[1][]{
     \bfseries
@@ -294,8 +303,8 @@ public class Hello {
 
 \Cref{L1} shows a listing typeset using the \texttt{lstlisting} environment.
 
-\href{https://github.com/gpoore/minted}{minted} as an alternative package, which enables syntax highlighting using \href{http://pygments.org/}{pygments}.
-This, in turn, requires Pytton, so it is disabled by default.
+\href{https://github.com/gpoore/minted}{minted} is an alternative package, which enables syntax highlighting using \href{http://pygments.org/}{pygments}.
+This, in turn, requires Python, so it is disabled by default.
 In case you load it above, be sure to run pdflatex with \texttt{-shell-escape} option.
 \Cref{lst:xml} shows an XML-Listing.
 You can point to a single line: \lref{commentline}.

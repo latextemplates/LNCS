@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- Listings by the packages minted and listings can be mixed now: The counter of "List." at the captions were different.
+
 ## [1.1.1]
 
 ### Changed
