@@ -37,7 +37,11 @@
  * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
  * Optional: Support for [minted] package. Uncomment `\usepackage[newfloat]{minted}` to get started.
 
-Examples: [paper.pdf](https://latextemplates.github.io/LNCS/paper.pdf) and [paper-minted.pdf](https://latextemplates.github.io/LNCS/paper-minted.pdf).
+Examples:
+
+- [paper.pdf](https://latextemplates.github.io/LNCS/paper.pdf) - normal paper.
+- [paper-minted.pdf](https://latextemplates.github.io/LNCS/paper-minted.pdf) - paper showing minted in action.
+- [paper-newtx.pdf](http://latextemplates.github.io/LNCS/paper-newtx.pdf) - paper typeset in Times Roman to save some space.
 
 ## Background
 
