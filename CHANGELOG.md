@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Listings by the packages minted and listings can be mixed now: The counter of "List." at the captions were different.
 
-## [1.1.1]
+## [1.1.1] - 2018-01-18
 
 ### Changed
 - `download-llncs-files-from-springer.sh` now uses <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip> as `ftp.springer.de` seems to be an inofficial site.
