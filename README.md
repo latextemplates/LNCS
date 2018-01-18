@@ -11,7 +11,9 @@
 - [Quick start](#quick-start)
 - [Tool hints](#tool-hints)
 - [Using the template with your git repository](#using-the-template-with-your-git-repository)
-- [Warnings on ShareLaTeX](#warnings-on-sharelatex)
+- [FAQ](#faq)
+  * [Q: ShareLaTeX outputs a warning regarding the llncs class](#q-sharelatex-outputs-a-warning-regarding-the-llncs-class)
+  * [Q: I get the error `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`](#q-i-get-the-error---pdftex-error-font-expansion-auto-expansion-is-only-possible-with-scalable-fonts)
 - [Development](#development)
 - [Links](#links)
 
@@ -32,7 +34,7 @@
  * Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
  * [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
  * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [cfr-lm]
- * Optional: Support for [minted] package. Uncomment `\usepackage{minted}` to get started.
+ * Optional: Support for [minted] package. Uncomment `\usepackage[newfloat]{minted}` to get started.
 
 Examples: [paper.pdf](https://latextemplates.github.io/LNCS/paper.pdf) and [paper-minted.pdf](https://latextemplates.github.io/LNCS/paper-minted.pdf).
 
@@ -79,9 +81,9 @@ If TeXstudio doesn't fit your need, check [the list of all available LaTeX Edito
 
 In case you want to get started using minted, please install python and pygments.
 Then, run pdflatex with the `-shell-escape` switch:
-- `choco install python`
-- `pip instal pygments`
-- `pdflatex -shell-escape paper` (or just `latexmk paper`)
+- `choco install python` - that uses [chocolatey](https://chocolatey.org/) to install Python
+- `pip instal pygments` - that uses the Pyhton package manager to install the pygments library
+- `pdflatex -shell-escape paper` (or just `latexmk paper`) - this compiles the PDF
 
 ## Using the template with your git repository
 
@@ -92,7 +94,9 @@ Then, run pdflatex with the `-shell-escape` switch:
 After that you can use and push the `master` branch as usual.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
 
-## Warnings on ShareLaTeX
+## FAQ
+
+### Q: ShareLaTeX outputs a warning regarding the llncs class
 
 ShareLaTeX might output following warning:
 
@@ -101,8 +105,12 @@ ShareLaTeX might output following warning:
 > LaTeX document class for Lecture Notes in Computer Science'
 > is available.
 
-The reason is that you did not download `llncs.cls` from <ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/>, but you did get if from somewhere else.
+The reason is that you did not use `llncs.cls` from a recent llncs2e.zip (which can be downloaded from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>), but a copy from somewhere else.
 Please use the latest version offered by Springer.
+
+### Q: I get the error  `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
+
+Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: http://tex.stackexchange.com/a/324972/9075)
 
 ## Development
 
