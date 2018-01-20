@@ -34,7 +34,7 @@
  * Support for `\powerset` command.
  * Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
  * [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
- * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [cfr-lm]
+ * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [cfr-lm].
  * Optional: Support for [minted] package. Uncomment `\usepackage[newfloat]{minted}` to get started.
 
 Examples:
@@ -84,9 +84,11 @@ Use [JabRef] to manage your bibliography.
 
 If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).
 
-In case you want to get started using minted, please install python and pygments.
+In case you want to get started using minted, do following steps:
+
+1. Please install python and [pygments]: `choco install python` - that uses [chocolatey](https://chocolatey.org/) to install Python
 Then, run pdflatex with the `-shell-escape` switch:
-- `choco install python` - that uses [chocolatey](https://chocolatey.org/) to install Python
+- 
 - `pip instal pygments` - that uses the Pyhton package manager to install the pygments library
 - `pdflatex -shell-escape paper` (or just `latexmk paper`) - this compiles the PDF
 
@@ -158,5 +160,6 @@ by
   [JabRef]: https://www.jabref.org
   [LanguageTool]: https://languagetool.org/
   [TeXstudio]: http://texstudio.sourceforge.net/
+  [pygments]: http://pygments.org/
 
   [llncs2e.zip]: ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip
