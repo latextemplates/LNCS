@@ -77,20 +77,20 @@ A first step towards that is done at [biblatex-lncs](https://github.com/neapel/b
 
 MiKTeX installation hints are given at <https://github.com/latextemplates/scientific-thesis-template/blob/template/README.md#installation-hints-for-windows>.
 
-Grammar and spell checking is available at [TeXstudio].
-Please download [LanguageTool] and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
-Note that it is enough to point to `languagetool.jar`.
-Use [JabRef] to manage your bibliography.
+- Grammar and spell checking is available at [TeXstudio].
+  Please download [LanguageTool] (Windows: `choco install languagetool`) and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
+  Note that it is enough to point to `languagetool.jar`.
+  **If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).**
+- Use [JabRef] to manage your bibliography (Windows: `choco install jabref`).
 
-If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).
 
 In case you want to get started using minted, do following steps:
 
-1. Please install python and [pygments]: `choco install python` - that uses [chocolatey](https://chocolatey.org/) to install Python
-Then, run pdflatex with the `-shell-escape` switch:
-- 
-- `pip instal pygments` - that uses the Pyhton package manager to install the pygments library
-- `pdflatex -shell-escape paper` (or just `latexmk paper`) - this compiles the PDF
+1. Install python: `choco install python` - that uses [chocolatey](https://chocolatey.org/) to install Python
+2. Install [pygments]: `pip instal pygments` - that uses the Pyhton package manager to install the pygments library
+3. When latexing, use `-shell-escape`: `pdflatex -shell-escape paper`.
+   You can also just execute `latexmk paper`.
+
 
 ## Using the template with your git repository
 
