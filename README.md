@@ -91,7 +91,6 @@ In case you want to get started using minted, do following steps:
 3. When latexing, use `-shell-escape`: `pdflatex -shell-escape paper`.
    You can also just execute `latexmk paper`.
 
-
 ## Using the template with your git repository
 
 1. Initialize your git repository as usual
