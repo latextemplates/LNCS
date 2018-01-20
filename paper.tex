@@ -17,8 +17,6 @@
 
 %cmap has to be loaded before any font package (such as cfr-lm)
 \usepackage{cmap}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc} %support umlauts in the input
 
 \usepackage{graphicx}
 
@@ -45,20 +43,24 @@
   \usepackage[zerostyle=b,scaled=.9]{newtxtt}
 \fi
 
-% backticks (`) are rendered as such in verbatim environment. See https://tex.stackexchange.com/a/341057/9075 for details.
-\usepackage{upquote}
-
 %for demonstration purposes only
 \usepackage[math]{blindtext}
+
+%% If you need packages for other papers,
+%% START COPYING HERE
+%%
+%% COPY ALSO cmap from line 10
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} %support umlauts in the input
 
 %Sorts the citations in the brackets
 %It also allows \cite{refa, refb}. Otherwise, the document does not compile.
 %  Error message: "White space in argument"
 \usepackage{cite}
 
-%% If you need packages for other papers,
-%% START COPYING HERE
-%% COPY ALSO cmap and fontenc from lines 10 to 12
+% backticks (`) are rendered as such in verbatim environment. See https://tex.stackexchange.com/a/341057/9075 for details.
+\usepackage{upquote}
 
 %extended enumerate, such as \begin{compactenum}
 \usepackage{paralist}
