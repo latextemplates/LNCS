@@ -233,10 +233,10 @@
 %better paragraph layouting
 \usepackage{ifluatex}
 \ifluatex
-  \usepackage[lastparline]{impnattypo}
-\else
   %lualatex allows for more optimizations
   \usepackage[lastparline,nosingleletter,homeoarchy]{impnattypo}
+\else
+  \usepackage[lastparline]{impnattypo}
 \fi
 
 % correct bad hyphenation here
