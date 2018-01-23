@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Added package [impnattypo](https://ctan.org/pkg/impnattypo) to ensure that last line of paragraph is not too short.
+- Labeled "Conclusion and Outlook" section to enable an even quicker start.
 
 ## [1.2.0] - 2018-01-19
 
