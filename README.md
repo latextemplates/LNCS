@@ -15,6 +15,8 @@
   * [Q: ShareLaTeX outputs a warning regarding the llncs class](#q-sharelatex-outputs-a-warning-regarding-the-llncs-class)
   * [Q: I get the error `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`](#q-i-get-the-error---pdftex-error-font-expansion-auto-expansion-is-only-possible-with-scalable-fonts)
   * [Q: I need more space. What can I do?](#q-i-need-more-space-what-can-i-do)
+  * [Q: How can I reformat my .tex files?](#q-how-can-i-reformat-my-tex-files)
+  * [Q: How I want to obey the one-sentence-per-line rule.](#q-how-i-want-to-obey-the-one-sentence-per-line-rule)
 - [Development](#development)
 - [Links](#links)
 
@@ -36,6 +38,7 @@
  * [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
  * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [impnattypo], [cfr-lm].
  * Optional: Support for [minted] package. Uncomment `\usepackage[newfloat]{minted}` to get started.
+ * Ready-to-go configuration for [latexindent].
 
 Examples:
 
@@ -134,6 +137,17 @@ by
     \iffalse
 
 
+### Q: How can I reformat my .tex files?
+
+Execute `latexindent -l -s -sl -w paper.tex`
+
+
+### Q: How I want to obey the one-sentence-per-line rule.
+
+Execute `latexindent -m -l -s -sl -w main-english.tex`.
+Attention! This is work in progress and does not always produce best results.
+
+
 ## Development
 
 - Reindent: `latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w paper.tex`
@@ -150,6 +164,7 @@ by
   [hypcap]: https://www.ctan.org/pkg/hypcap
   [hyperref]: https://ctan.org/pkg/hyperref
   [impnattypo]: https://ctan.org/pkg/impnattypo
+  [latexindent]: https://ctan.org/pkg/latexindent
   [microtype]: https://ctan.org/pkg/microtype
   [minted]: https://ctan.org/pkg/minted
   [newtx]: https://ctan.org/pkg/newtx
