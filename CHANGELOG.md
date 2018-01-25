@@ -8,13 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
-- Added ready-to-go configuration for [latexindent](https://ctan.org/pkg/latexindent)
+- Added ready-to-go configuration for [latexindent](https://ctan.org/pkg/latexindent).
 - Added labeled "Conclusion and Outlook" section to enable an even quicker start.
 
 ## [1.2.0] - 2018-01-19
 
 ### Added
-- Added package [upquote](https://www.ctan.org/pkg/upquote) to enable backticks being properly rendered in listings
+- Added package [upquote](https://www.ctan.org/pkg/upquote) to enable backticks being properly rendered in listings.
 
 ### Fixed
 - Listings by the packages minted and listings can be mixed now: The counter of "List." at the captions were different.
@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - `download-llncs-files-from-springer.sh` now uses <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip> as `ftp.springer.de` seems to be an inofficial site.
 - Removed download of required Springer files using gradle.
-- Updated `README.md`: Merged "Features" and "Benefits" into "Features"
+- Updated `README.md`: Merged "Features" and "Benefits" into "Features".
 
 ## [1.1.0] - 2018-01-17
 
@@ -37,10 +37,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added example `lstlisting` to show how the [listings](https://www.ctan.org/pkg/listings) package can be used.
 - Added example listing typeset using [minted](https://github.com/gpoore/minted).
 - Added `\usepackage[utf8]{inputenc}` to support input of non-ASCII characters using UTF-8.
-- Added TeX magic comments
+- Added TeX magic comments.
 
 ### Changed
-- Tweaked options for "microtype", especially `protrusion=alltext-nott`
+- Tweaked options for "microtype", especially `protrusion=alltext-nott`.
 
 ## [1.0.0] - 2018-01-16
 
