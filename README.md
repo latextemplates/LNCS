@@ -144,7 +144,7 @@ Execute `latexindent -l -s -sl -w paper.tex`
 
 ### Q: How I want to obey the one-sentence-per-line rule.
 
-Execute `latexindent -m -l -s -sl -w main-english.tex`.
+Execute `latexindent -m -l -s -sl -w paper.tex`.
 Attention! This is work in progress and does not always produce best results.
 
 
