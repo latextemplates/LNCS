@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added ready-to-go configuration for [latexindent](https://ctan.org/pkg/latexindent).
 - Added labeled "Conclusion and Outlook" section to enable an even quicker start.
 - Added prepared usage of [llncsconf](https://github.com/adbrucker/llncsconf) package.
+- Explicitly added package [hyperref](https://ctan.org/pkg/hyperref) to `paper.tex` in case users remove the `pdfcomment` package.
 
 ## [1.2.0] - 2018-01-19
 

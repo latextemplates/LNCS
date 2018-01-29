@@ -106,14 +106,14 @@
 %\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
 %\makeatother
 
-%diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
-%slashbox is not available in texlive (due to licensing) and also gives bad results. This, we use diagbox
+% Diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
+% Slashbox is not available in texlive (due to licensing) and also gives bad results. This, we use diagbox
 %\usepackage{diagbox}
 
-%required for pdfcomment later
+% Required for package pdfcomment later
 \usepackage{xcolor}
 
-%for listings
+% For listings
 \usepackage{listings}
 \lstset{%
   basicstyle=\ttfamily,%
@@ -122,34 +122,37 @@
   xleftmargin=0.5cm,%
   captionpos=b}%
 \renewcommand{\lstlistingname}{List.}
-%Fix counter as described at https://tex.stackexchange.com/a/28334/9075
+% Fix counter as described at https://tex.stackexchange.com/a/28334/9075
 \usepackage{chngcntr}
 \AtBeginDocument{\counterwithout{lstlisting}{section}}
 
-%compatibility of packages minted and listings with respect to the numbering of "List." caption
-%source: https://tex.stackexchange.com/a/269510/9075
+% Compatibility of packages minted and listings with respect to the numbering of "List." caption
+% Source: https://tex.stackexchange.com/a/269510/9075
 \AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
 \AtEndEnvironment{listing}{\stepcounter{lstlisting}}
 
-%enable nice comments
-%this also loads hyperref
+% Enable nice comments
 \usepackage{pdfcomment}
-%enable hyperref without colors and without bookmarks
+%
+\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+%
+% Compatibality with packages todo, easy-todo, todonotes
+\newcommand{\todo}[1]{\commentatside{#1}}
+% Compatiblity with package fixmetodonotes
+\newcommand{\TODO}[1]{\commentatside{#1}}
+
+% Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
+\usepackage{hyperref}
+% Enable hyperref without colors and without bookmarks
 \hypersetup{hidelinks,
   colorlinks=true,
   allcolors=black,
   pdfstartview=Fit,
   breaklinks=true}
-%enables correct jumping to figures when referencing
+%
+% Enable correct jumping to figures when referencing
 \usepackage[all]{hypcap}
-
-\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
-\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
-
-%compatibality with packages todo, easy-todo, todonotes
-\newcommand{\todo}[1]{\commentatside{#1}}
-%compatiblity with package fixmetodonotes
-\newcommand{\TODO}[1]{\commentatside{#1}}
 
 %enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
 \usepackage[capitalise,nameinlink]{cleveref}
