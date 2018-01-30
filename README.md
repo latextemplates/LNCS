@@ -72,6 +72,11 @@ Follow the quick start instructions.
    - In case ftp does not work at your side, you can try online ftp services such as http://www.net2ftp.com/ to download the files. Open the connection to `ftp.springer.de` and navigate to `pub`, `text`, `latex`, `llncs`, `latex2e`, and download the two files.
  * Edit [paper.tex](paper.tex).
  * `latexmk paper`.
+ 
+ As you see on CircleCI, the paper compiles out of the box.
+ There is no need to adjust the packages or to remove some of them.
+ This might lead to undesiered results such as hyperlinks not working any more or no good microtypographic features.
+ In case you think, a package needs to be altered or added, feel free to open an issue.
 
 ## Tool hints
 
