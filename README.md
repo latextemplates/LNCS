@@ -17,6 +17,7 @@
   * [Q: I need more space. What can I do?](#q-i-need-more-space-what-can-i-do)
   * [Q: How can I reformat my .tex files?](#q-how-can-i-reformat-my-tex-files)
   * [Q: How I want to obey the one-sentence-per-line rule.](#q-how-i-want-to-obey-the-one-sentence-per-line-rule)
+  * [Q: Is it possible to have a footer indicating that the paper is intended to be submitted/submitted/published?](#q-is-it-possible-to-have-a-footer-indicating-that-the-paper-is-intended-to-be-submittedsubmittedpublished)
 - [Development](#development)
 - [Links](#links)
 
@@ -151,6 +152,12 @@ Execute `latexindent -l -s -sl -w paper.tex`
 
 Execute `latexindent -m -l -s -sl -w paper.tex`.
 Attention! This is work in progress and does not always produce best results.
+
+
+### Q: Is it possible to have a footer indicating that the paper is intended to be submitted/submitted/published?
+
+Activate the `llncsconf` package.
+The possible options are listed in `paper.tex`.
 
 
 ## Development
