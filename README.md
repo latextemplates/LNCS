@@ -159,8 +159,8 @@ Attention! This is work in progress and does not always produce best results.
 
 ## Links
 
- * German: Hinweise zu Ausarbeitungen: http://wiki.flupp.de/studium/ausarbeitungen
- * Other templates: http://latextemplates.github.io/
+ * German: Hinweise zu Ausarbeitungen: <http://wiki.flupp.de/studium/ausarbeitungen>
+ * Other templates: <https://latextemplates.github.io/>
 
   [cfr-lm]: https://www.ctan.org/pkg/cfr-lm
   [cleveref]: https://ctan.org/pkg/cleveref
