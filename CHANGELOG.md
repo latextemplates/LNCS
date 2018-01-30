@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.3.0] - 2018-01-30
 
 ### Added
 - Added ready-to-go configuration for [latexindent](https://ctan.org/pkg/latexindent).
@@ -48,7 +48,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 First release using semantic versioning.
 
-[Unreleased]: https://github.com/latextemplates/LNCS/compare/1.2.0...HEAD
+[Unreleased]: https://github.com/latextemplates/LNCS/compare/1.3.0...HEAD
+[1.3.0]: https://github.com/latextemplates/LNCS/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/latextemplates/LNCS/compare/1.1.1...1.2.0
 [1.1.1]: https://github.com/latextemplates/LNCS/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/latextemplates/LNCS/compare/1.0.0...1.1.0
