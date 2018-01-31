@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Removed `tracking=smallcaps` option in microtype to have letters in `\textsc{BPMN}` standing closer together.
+
 ## [1.3.0] - 2018-01-30
 
 ### Added
