@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Support for [booktabs](https://ctan.org/pkg/booktabs) package.
+
 ### Changed
 - Removed `tracking=smallcaps` option in microtype to have letters in `\textsc{BPMN}` standing closer together.
 

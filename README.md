@@ -37,7 +37,7 @@
  * Support for `\powerset` command.
  * Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
  * [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
- * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [cfr-lm].
+ * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [booktabs], [cfr-lm].
  * Optional: Support for [minted] package. Uncomment `\usepackage[newfloat]{minted}` to get started.
  * Ready-to-go configuration for [latexindent].
 
@@ -169,6 +169,7 @@ The possible options are listed in `paper.tex`.
  * German: Hinweise zu Ausarbeitungen: <http://wiki.flupp.de/studium/ausarbeitungen>
  * Other templates: <https://latextemplates.github.io/>
 
+  [booktabs]: https://ctan.org/pkg/booktabs
   [cfr-lm]: https://www.ctan.org/pkg/cfr-lm
   [cleveref]: https://ctan.org/pkg/cleveref
   [cmap]: https://www.ctan.org/pkg/cmap

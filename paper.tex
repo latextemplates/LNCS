@@ -64,6 +64,9 @@
 % backticks (`) are rendered as such in verbatim environment. See https://tex.stackexchange.com/a/341057/9075 for details.
 \usepackage{upquote}
 
+% Nicer tables (\toprule, \midrule, \bottomrule - see example)
+\usepackage{booktabs}
+
 %extended enumerate, such as \begin{compactenum}
 \usepackage{paralist}
 
@@ -316,9 +319,16 @@ Winery~\cite{Winery} is graphical \commentontext{modeling}{modeling with one \en
 
 \begin{table}
   \caption{Simple Table}
-
   \label{tab:simple}
-  Simple Table
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Heading1 & Heading2 \\
+    \midrule
+    One      & Two      \\
+    Thee     & Four     \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 
 \begin{lstlisting}[caption={Example Listing}, label=L1, language=Java]
