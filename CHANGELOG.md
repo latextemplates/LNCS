@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Support for `\cite[prenote][postnote]{ref}` to enable `\cite[based on][]{ref}`.
 - Support for [booktabs](https://ctan.org/pkg/booktabs) package.
 
 ### Changed
