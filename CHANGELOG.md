@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Replace `splncs03.bst` by `splncsnat.bst`, which was [developed in a clean way](http://phaseportrait.blogspot.de/2011/02/natbib-compatible-bibtex-style-bst-file.html) by [@tpavlic](https://github.com/tpavlic).
 
 ### Added
-- Example for `citet` (enabled by `splncsnat.bst`).
+- Example for `\citet` (enabled by `splncsnat.bst`).
 
 ## [1.4.1] - 2018-02-03
 
