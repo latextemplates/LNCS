@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.5.0] - 2018-02-04
 
 ### Changed
 - Ligatures are disabled for monospaced font. E.g., \texttt{--} stays `--` and is not converted to an en dash.
@@ -71,7 +71,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 First release using semantic versioning.
 
-[Unreleased]: https://github.com/latextemplates/LNCS/compare/1.4.1...HEAD
+[Unreleased]: https://github.com/latextemplates/LNCS/compare/1.5.0...HEAD
+[1.5.0]: https://github.com/latextemplates/LNCS/compare/1.4.1...1.5.0
 [1.4.1]: https://github.com/latextemplates/LNCS/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/latextemplates/LNCS/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/latextemplates/LNCS/compare/1.2.0...1.3.0
