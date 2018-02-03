@@ -53,24 +53,24 @@ The official template is available at <http://www.springer.com/computer/lncs?SGW
 Deep link: <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
 The files are also provided at Springer's FTP server at ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/.
 
-> **Two files of Springer are needed to get the template working:**
-> `llncs.cls` and `splncs03.bst`
->  You get them from ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/llncs.cls and ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/splncs03.bst or
-> inside the ZIP of `llncs2e.zip` available at <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
+> **The class file authored by Springer is needed to get the template working:**
+> `llncs.cls`
+>  You get it from inside the ZIP of `llncs2e.zip` available at <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
 
 Reason: Licensing restrictions of Springer do not allow distribution outside of springer.
 See [message #47 for debian bug 31897](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=31897#47) for details.
-Therefore, the required files `llncs.cls` and `splncs03.bst` have to be downloaded in some way.
+Therefore, the required file `llncs.cls` has to be downloaded in some way.
 Follow the quick start instructions.
 
 ## Quick start
 
  * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/master.zip).
  * Extract `master.zip` in the folder where you want to write your paper.
- * Place `llncs.cls` and `splncs03.bst` into the directory
+ * Place `llncs.cls` into the directory
    - Download `llncs2e.zip` from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip> and extract it in the directory.
      On Linux, just execute `download-llncs-files-from-springer.sh`.
-   - In case ftp does not work at your side, you can try online ftp services such as http://www.net2ftp.com/ to download the files. Open the connection to `ftp.springer.de` and navigate to `pub`, `text`, `latex`, `llncs`, `latex2e`, and download the two files.
+   - In case ftp does not work at your side, you can try online ftp services such as http://www.net2ftp.com/ to download the files.
+     Open the connection to `ftp.springernature.com` and navigate to `cs-proceeding`, `llncs`, and download the ZIP archive.
  * Edit [paper.tex](paper.tex).
  * `latexmk paper`.
  

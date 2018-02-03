@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Ligatures are disabled for monospaced font. E.g., \texttt{--} stays `--` and is not converted to an en dash.
+- Replace `splncs03.bst` by `splncsnat.bst`, which was [developed in a clean way](http://phaseportrait.blogspot.de/2011/02/natbib-compatible-bibtex-style-bst-file.html) by [@tpavlic](https://github.com/tpavlic).
 
 ## [1.4.1] - 2018-02-03
 

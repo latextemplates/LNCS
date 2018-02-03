@@ -158,6 +158,15 @@
 ]{natbib}
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
 \renewcommand{\bibnumfmt}[1]{#1.}
+% Prepare more space-saving rendering of the bibliography
+% Source: https://tex.stackexchange.com/a/280936/9075
+\SetExpansion
+[ context = sloppy,
+  stretch = 30,
+  shrink = 60,
+  step = 5 ]
+{ encoding = {OT1,T1,TS1} }
+{ }
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
@@ -414,8 +423,14 @@ When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up com
 See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
 
 \renewcommand{\bibsection}{\section*{References}} % requried for natbib to have "References" printed and as section*, not chapter*
-\bibliographystyle{splncs03}
-\bibliography{paper}
+% Use natbib compatbile splncsnat style.
+% It does provide all features of splncs03, but is developed in a clean way.
+% Source: http://phaseportrait.blogspot.de/2011/02/natbib-compatible-bibtex-style-bst-file.html
+\bibliographystyle{splncsnat}
+\begingroup
+  \microtypecontext{expansion=sloppy}
+  \bibliography{paper}
+\endgroup
 
 % Enfore empty line after bibliography
 \ \\
