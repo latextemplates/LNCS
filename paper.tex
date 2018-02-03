@@ -154,6 +154,8 @@
   sort&compress, % as sort but in addition multiple numerical citations
                  % are compressed if possible (as 3-6, 15);
 ]{natbib}
+% In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
+\renewcommand{\bibnumfmt}[1]{#1.}
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
@@ -315,7 +317,7 @@ Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:out
 \section{Related Work}
 \label{sec:relatedwork}
 
-Winery~\cite{Winery} is graphical \commentontext{modeling}{modeling with one \enquote{l}, because of AE} tool.
+Winery~\cite{Winery} is a graphical \commentontext{modeling}{modeling with one \enquote{l}, because of AE} tool.
 
 \section{LaTeX Hints}
 \label{sec:hints}

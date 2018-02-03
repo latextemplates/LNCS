@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- Numbers in the bibliography are rendered as LNCS required again.
+
 ## [1.4.0] - 2018-02-02
 
 ### Added
-- Support for `\cite[prenote][postnote]{ref}` to enable `\cite[based on][]{ref}`.
+- Support for `\cite[prenote][postnote]{ref}` to enable `\cite[based on][]{ref}` by including the [natib](https://www.ctan.org/pkg/natbib) package.
 - Support for [booktabs](https://ctan.org/pkg/booktabs) package.
 
 ### Changed
