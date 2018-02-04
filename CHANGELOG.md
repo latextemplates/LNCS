@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- The example listing is now floating. Otherwise, the listing flows from one page to the next and interrupted by a floating table.
+
 ## [1.5.0] - 2018-02-04
 
 ### Changed
