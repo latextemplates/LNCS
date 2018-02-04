@@ -1,4 +1,4 @@
-# Simplified LNCS Template [![Build Status](https://circleci.com/gh/latextemplates/LNCS/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/LNCS/)
+# Simplified LNCS Template [![Build Status](https://circleci.com/gh/latextemplates/LNCS/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/LNCS/) [![Donate to koppor on Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/koppor)
 
 > Quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
 
