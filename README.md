@@ -18,7 +18,7 @@
   * [Q: How can I reformat my .tex files?](#q-how-can-i-reformat-my-tex-files)
   * [Q: How I want to obey the one-sentence-per-line rule.](#q-how-i-want-to-obey-the-one-sentence-per-line-rule)
   * [Q: Is it possible to have a footer indicating that the paper is intended to be submitted/submitted/published?](#q-is-it-possible-to-have-a-footer-indicating-that-the-paper-is-intended-to-be-submittedsubmittedpublished)
-- [Development](#development)
+- [Development](#development-)
 - [Links](#links)
 
 <!-- tocstop -->
