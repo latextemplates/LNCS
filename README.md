@@ -1,4 +1,4 @@
-# Simplified LNCS Template [![Build Status](https://circleci.com/gh/latextemplates/LNCS/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/LNCS/) [![Donate to koppor on Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/koppor)
+# Simplified LNCS Template [![Build Status](https://circleci.com/gh/latextemplates/LNCS/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/LNCS/)
 
 > Quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
 
@@ -160,9 +160,11 @@ Activate the `llncsconf` package.
 The possible options are listed in `paper.tex`.
 
 
-## Development
+## Development [![Donate to koppor on Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/koppor)
 
-- Reindent: `latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w paper.tex`
+Reindent: `latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w paper.tex`
+
+If you like this work, please consider donating via [Liberapay](https://liberapay.com/koppor)!
 
 ## Links
 
