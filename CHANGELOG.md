@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Separated minted support to separate file `paper-conference-minted.tex`.
+
 ### Fixed
 - The example listing is now floating. Otherwise, the listing flows from one page to the next and interrupted by a floating table.
 
