@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Separated minted support to separate file `paper-conference-minted.tex`.
 
+### Added
+- Example Java listing using minted.
+- Example XML listing using listings.
+
 ### Fixed
 - The example listing is now floating. Otherwise, the listing flows from one page to the next and interrupted by a floating table.
 
