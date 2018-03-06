@@ -6,12 +6,12 @@ jobs:
      steps:
        - checkout
        - run: ./download-llncs-files-from-springer.sh
-       - run: latexmk paper.tex
+       - run: latexmk paper.tex && mv paper.pdf paper-lmodern.pdf
        - run: latexmk paper-minted.tex
        # activate usage of newtxmath
        - run: sed -i "s/iftrue % use default-font/iffalse/" paper.tex
        - run: latexmk paper.tex && mv paper.pdf paper-newtx.pdf
-       - run: mkdir build && cp -r README.md paper*.pdf .github/_config.yml build/
+       - run: mv paper-lmodern.pdf paper.pdf && mkdir build && cp -r README.md paper*.pdf .github/_config.yml build/
        - store_artifacts:
            path: build/
        - store_artifacts:
