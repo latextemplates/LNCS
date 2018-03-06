@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Separated minted support to separate file `paper-conference-minted.tex`.
+- Changed minted style from friendly to bw.
 
 ### Added
 - Example Java listing using minted.
