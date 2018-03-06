@@ -10,11 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Separated minted support to separate file `paper-conference-minted.tex`.
 - Changed minted style from friendly to bw.
-- Added "aboveskip" and "belowskip" hints
 
 ### Added
-- Example Java listing using minted.
-- Example XML listing using listings.
+- Added "aboveskip" and "belowskip" hints
+- Added example Java listing using minted.
+- Added example XML listing using listings.
 
 ### Fixed
 - The example listing is now floating. Otherwise, the listing flows from one page to the next and interrupted by a floating table.
