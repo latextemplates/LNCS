@@ -30,6 +30,7 @@ subjidx.ind
 
 #The output should not be versioned
 paper.pdf
+paper-minted.pdf
 
 #temporary files by gradle
 .gradle
