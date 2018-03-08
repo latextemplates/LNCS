@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Changed minimum requirement regarding version of `llncs.cls` to `2017/09/04` (version 2.19).
+
+### Fixed
+- Fix multiply defined label L2.
+
 ## [1.6.0] - 2017-03-07
 
 ### Changed
