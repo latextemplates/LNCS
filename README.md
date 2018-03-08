@@ -46,6 +46,7 @@ Examples:
 - [paper.pdf](https://latextemplates.github.io/LNCS/paper.pdf) - normal paper.
 - [paper-minted.pdf](https://latextemplates.github.io/LNCS/paper-minted.pdf) - paper showing minted in action.
 - [paper-newtx.pdf](http://latextemplates.github.io/LNCS/paper-newtx.pdf) - paper typeset in Times Roman to save some space.
+- [paper-minted-newtx.pdf](http://latextemplates.github.io/LNCS/paper-minted-newtx.pdf) - paper typeset in Times Roman to save some space.
 
 ## Background
 
