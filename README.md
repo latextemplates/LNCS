@@ -12,12 +12,6 @@
 - [Tool hints](#tool-hints)
 - [Using the template with your git repository](#using-the-template-with-your-git-repository)
 - [FAQ](#faq)
-  * [Q: ShareLaTeX outputs a warning regarding the llncs class](#q-sharelatex-outputs-a-warning-regarding-the-llncs-class)
-  * [Q: I get the error `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`](#q-i-get-the-error---pdftex-error-font-expansion-auto-expansion-is-only-possible-with-scalable-fonts)
-  * [Q: I need more space. What can I do?](#q-i-need-more-space-what-can-i-do)
-  * [Q: How can I reformat my .tex files?](#q-how-can-i-reformat-my-tex-files)
-  * [Q: How I want to obey the one-sentence-per-line rule.](#q-how-i-want-to-obey-the-one-sentence-per-line-rule)
-  * [Q: Is it possible to have a footer indicating that the paper is intended to be submitted/submitted/published?](#q-is-it-possible-to-have-a-footer-indicating-that-the-paper-is-intended-to-be-submittedsubmittedpublished)
 - [Development](#development-)
 - [Links](#links)
 
@@ -169,6 +163,7 @@ If you like this work, please consider donating via [Liberapay](https://liberapa
 
 ## Links
 
+ * tex.stackexchange.com questions regarding LNCS: <https://tex.stackexchange.com/questions/tagged/lncs>
  * German: Hinweise zu Ausarbeitungen: <http://wiki.flupp.de/studium/ausarbeitungen>
  * Other templates: <https://latextemplates.github.io/>
 
