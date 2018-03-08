@@ -43,11 +43,11 @@
 \else
   % In case more space is needed, it is accepted to use Times New Roman
   \ifluatex
-    \usepackage{newtxtext}
-    \usepackage{newtxmath}
+    \setmainfont{TeX Gyre Termes}
+    \setsansfont[Scale=.9]{TeX Gyre Heros}
     % newtxtt looks good with times, but no equivalent for lualatex found,
     % therefore replaced with inconsolata
-    \usepackage[varl,scaled=.9]{inconsolata}
+    \setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
     \lmodernfalse
   \else
     \usepackage{newtxtext}
