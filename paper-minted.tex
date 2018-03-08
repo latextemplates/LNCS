@@ -2,8 +2,8 @@
 
 % !TeX spellcheck = en-US
 % !TeX encoding = utf8
-% !TeX program = pdflatex
-% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+% !TeX program = lualatex
+% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
 
@@ -19,21 +19,42 @@
 %cmap has to be loaded before any font package (such as cfr-lm)
 \usepackage{cmap}
 
+\usepackage{ifluatex}
+\ifluatex
+  \usepackage{fontspec}
+  \usepackage{selnolig}
+  \newif\iflmodern
+\fi
+
 \iftrue % use default-font
-  %better font, similar to the default springer font
-  %cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
-  \usepackage[%
-    rm={oldstyle=false,proportional=true},%
-    sf={oldstyle=false,proportional=true},%
-    tt={oldstyle=false,proportional=true,variable=true},%
-    qt=false%
-  ]{cfr-lm}
+  \ifluatex
+    \lmoderntrue
+    % select arbitrary font. Will be replaced by latin modern right after "\begin{document}"
+    \setmainfont{TeX Gyre Cursor}
+  \else
+    % better font, similar to the default springer font
+    % cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
+    \usepackage[%
+      rm={oldstyle=false,proportional=true},%
+      sf={oldstyle=false,proportional=true},%
+      tt={oldstyle=false,proportional=true,variable=true},%
+      qt=false%
+    ]{cfr-lm}
+  \fi
 \else
-  %
-  %if more space is needed, exchange cfr-lm by two packages from newtx:
-  \usepackage{newtxtext}
-  \usepackage{newtxmath}
-  \usepackage[zerostyle=b,scaled=.9]{newtxtt}
+  % In case more space is needed, it is accepted to use Times New Roman
+  \ifluatex
+    \usepackage{newtxtext}
+    \usepackage{newtxmath}
+    % newtxtt looks good with times, but no equivalent for lualatex found,
+    % therefore replaced with inconsolata
+    \usepackage[varl,scaled=.9]{inconsolata}
+    \lmodernfalse
+  \else
+    \usepackage{newtxtext}
+    \usepackage{newtxmath}
+    \usepackage[zerostyle=b,scaled=.9]{newtxtt}
+  \fi
 \fi
 
 %for demonstration purposes only
@@ -75,8 +96,12 @@
 %\parpic[r]{\includegraphics ...}
 %Text...
 
-%for easy quotations: \enquote{text}
+% For easy quotations: \enquote{text}
+% This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
 \usepackage{csquotes}
+
+% For even easier quotations: \qq{text}
+\usepackage{textcmds}
 
 %enable margin kerning
 \RequirePackage{iftex}
@@ -255,6 +280,9 @@
 
 
 \begin{document}
+% This line ensures that lmodern is used. Do not remove it.
+% hint by https://tex.stackexchange.com/a/25006/9075 -> switch back to latin modern
+\ifluatex\iflmodern\renewcommand\rmdefault{lmr}\renewcommand\sfdefault{lmss}\renewcommand\ttdefault{lmtt}\fi\fi
 
 \title{Paper Title}
 %If Title is too long, use \titlerunning
@@ -302,7 +330,7 @@ Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:out
 \section{Related Work}
 \label{sec:relatedwork}
 
-Winery~\cite{Winery} is a graphical \commentontext{modeling}{modeling with one \enquote{l}, because of AE} tool.
+Winery~\cite{Winery} is a graphical \commentontext{modeling}{modeling with one \qq{l}, because of AE} tool.
 The whole idea of TOSCA is explained by \citet{Binz2009}.
 
 \section{LaTeX Hints}
@@ -409,12 +437,18 @@ The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\w
   \item This is enabled by the paralist package.
 \end{inparaenum}
 
-``something in quotes'' using plain tex or use \enquote{the enquote command}.
+Please use the \qq{qq command} or the \enquote{enquote command} to quote something.
+``something in quotes'' using plain tex currently does not work, because of \href{https://github.com/micoloretan/selnolig/issues/8}{selnolig\#8}.
 
 You can now write words containing hyphens which are hyphenated (application"=specific) at other places.
 This is enabled by an additional configuration of the babel package.
-In case you write \enquote{application-specific}, then the word will only be hyphenated at the dash.
+In case you write \qq{application-specific}, then the word will only be hyphenated at the dash.
 You can also write applica\allowbreak{}tion-specific, but this is much more effort.
+
+The words \enquote{workflow} and \enquote{dwarflike} can be copied from the PDF and pasted to a text file.
+In case Lua\LaTeX{} is used as compiler, there is no ligature at \enquote{f"|l} in the word \enquote{dwarflike} (in contrast to \enquote{fl} at \enquote{workflow}).
+In other words: \enquote{dwarflike} and \enquote{dwarf"|like} look the same in the PDF.
+In case they do not, there is an issue with Lua\LaTeX{} and the selnolig package.
 
 \section{Conclusion and Outlook}
 \label{sec:outlook}
@@ -423,8 +457,8 @@ You can also write applica\allowbreak{}tion-specific, but this is much more effo
 \subsubsection*{Acknowledgments}
 \ldots
 
-In the bibliography, use \texttt{\textbackslash textsuperscript} for ``st'', ``nd'', ...:
-E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
+In the bibliography, use \texttt{\textbackslash textsuperscript} for \qq{st}, \qq{nd}, \ldots:
+E.g., \qq{The 2\textsuperscript{nd} conference on examples}.
 When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
 See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
 

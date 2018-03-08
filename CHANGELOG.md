@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### Changed
+- Switch to lualatex as default compiler from pdflatex to [lualatex](http://www.luatex.org/).
+- When using "Times New Roman" due to space limitations, the font of the code is [Inconsolata](https://en.wikipedia.org/wiki/Inconsolata) now.
+
 ## [1.6.1] - 2018-03-08
 
 ### Fixed
