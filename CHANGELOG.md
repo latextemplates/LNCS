@@ -5,22 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
-
-### Changed
-- Changed minimum requirement regarding version of `llncs.cls` to `2017/09/04` (version 2.19).
+## [1.6.1] - 2018-03-08
 
 ### Fixed
+- Changed minimum requirement regarding version of `llncs.cls` to `2017/09/04` (version 2.19).
 - Fix multiply defined label L2.
 
 ## [1.6.0] - 2017-03-07
 
 ### Changed
-- Separated minted support to separate file `paper-conference-minted.tex`.
+- Separated minted support to separate file `paper-minted.tex`.
 - Changed minted style from friendly to bw.
 
 ### Added
-- Added "aboveskip" and "belowskip" hints
+- Added "aboveskip" and "belowskip" hints.
 - Added example Java listing using minted.
 - Added example XML listing using listings.
 
@@ -94,6 +92,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 First release using semantic versioning.
 
 [Unreleased]: https://github.com/latextemplates/LNCS/compare/1.6.0...HEAD
+[1.6.1]: https://github.com/latextemplates/LNCS/compare/1.6.0...1.6.1
 [1.6.0]: https://github.com/latextemplates/LNCS/compare/1.5.0...1.6.0
 [1.5.0]: https://github.com/latextemplates/LNCS/compare/1.4.1...1.5.0
 [1.4.1]: https://github.com/latextemplates/LNCS/compare/1.4.0...1.4.1
