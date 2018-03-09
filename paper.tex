@@ -102,17 +102,10 @@
 \usepackage{textcmds}
 
 %enable margin kerning
-\RequirePackage{iftex}
-\ifPDFTeX
-  \RequirePackage[%
-    final,%
-    expansion=alltext,%
-    protrusion=alltext-nott]{microtype}%
-\else
-  \RequirePackage[%
-    final,%
-    protrusion=alltext-nott]{microtype}%
-\fi%
+\RequirePackage[%
+  final,%
+  expansion=alltext,%
+  protrusion=alltext-nott]{microtype}%
 % \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
 \DisableLigatures{encoding = T1, family = tt* }
 
