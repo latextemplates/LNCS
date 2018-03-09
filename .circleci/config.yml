@@ -8,7 +8,7 @@ jobs:
        - run: ./download-llncs-files-from-springer.sh
        # try "old" pdflatex
        - run: pdflatex paper.tex
-       - run: pdflatex paper-minted.tex
+       - run: pdflatex --shell-escape paper-minted.tex
        # remove generated files
        - run: latexmk -c paper
        - run: latexmk -c paper-minted
