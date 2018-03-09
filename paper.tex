@@ -22,14 +22,11 @@
 \ifluatex
   \usepackage{fontspec}
   \usepackage{selnolig}
-  \newif\iflmodern
 \fi
 
 \iftrue % use default-font
   \ifluatex
-    \lmoderntrue
-    % select arbitrary font. Will be replaced by latin modern right after "\begin{document}"
-    \setmainfont{TeX Gyre Cursor}
+    % no special pre-cautions. See https://tex.stackexchange.com/a/419223/9075
   \else
     % better font, similar to the default springer font
     % cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
@@ -48,7 +45,6 @@
     % newtxtt looks good with times, but no equivalent for lualatex found,
     % therefore replaced with inconsolata
     \setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
-    \lmodernfalse
   \else
     \usepackage{newtxtext}
     \usepackage{newtxmath}
@@ -65,8 +61,11 @@
 %%
 %% COPY ALSO cmap from line 19 - it has to be loaded as the first package
 
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc} %support umlauts in the input
+\ifluatex\else
+  % fontenc and inputenc are not required when using lualatex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc} %support umlauts in the input
+\fi
 
 \usepackage{graphicx}
 
@@ -254,9 +253,6 @@
 
 
 \begin{document}
-% This line ensures that lmodern is used. Do not remove it.
-% hint by https://tex.stackexchange.com/a/25006/9075 -> switch back to latin modern
-\ifluatex\iflmodern\renewcommand\rmdefault{lmr}\renewcommand\sfdefault{lmss}\renewcommand\ttdefault{lmtt}\fi\fi
 
 \title{Paper Title}
 %If Title is too long, use \titlerunning
@@ -389,10 +385,10 @@ This is enabled by an additional configuration of the babel package.
 In case you write \enquote{application-specific}, then the word will only be hyphenated at the dash.
 You can also write applica\allowbreak{}tion-specific, but this is much more effort.
 
-The words \enquote{workflow} and \enquote{dwarflike} can be copied from the PDF and pasted to a text file.
-In case Lua\LaTeX{} is used as compiler, there is no ligature at \enquote{f"|l} in the word \enquote{dwarflike} (in contrast to \enquote{fl} at \enquote{workflow}).
-In other words: \enquote{dwarflike} and \enquote{dwarf"|like} look the same in the PDF.
-In case they do not, there is an issue with Lua\LaTeX{} and the selnolig package.
+The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
+
+In case LuaLaTeX is used as compiler, there is no ligature at \qq{f\/l} in the word \qq{dwarflike} (in contrast to \qq{fl} in the word \qq{workflow}).
+In other words: \qq{dwarflike} and \qq{dwarf\/like} look the same in the PDF (but are written \texttt{dwarflike} and \texttt{dwarf\textbackslash{}/like} in the PDF.
 
 \section{Conclusion and Outlook}
 \label{sec:outlook}
