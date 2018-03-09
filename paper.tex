@@ -29,12 +29,12 @@
 \usepackage{ifluatex}
 \ifluatex
   \usepackage{fontspec}
-  \usepackage{selnolig}
+  \usepackage[english]{selnolig}
 \fi
 
 \iftrue % use default-font
   \ifluatex
-    % no special pre-cautions. See https://tex.stackexchange.com/a/419223/9075
+    \setmainfont{Latin Modern Roman}
   \else
     % better font, similar to the default springer font
     % cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
@@ -170,15 +170,21 @@
 ]{natbib}
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
 \renewcommand{\bibnumfmt}[1]{#1.}
-% Prepare more space-saving rendering of the bibliography
-% Source: https://tex.stackexchange.com/a/280936/9075
-\SetExpansion
-[ context = sloppy,
-  stretch = 30,
-  shrink = 60,
-  step = 5 ]
-{ encoding = {OT1,T1,TS1} }
-{ }
+
+\ifluatex
+  % does not work when using luatex
+  % see: https://tex.stackexchange.com/q/419288/9075
+\else
+  % Prepare more space-saving rendering of the bibliography
+  % Source: https://tex.stackexchange.com/a/280936/9075
+  \SetExpansion
+  [ context = sloppy,
+    stretch = 30,
+    shrink = 60,
+    step = 5 ]
+  { encoding = {OT1,T1,TS1} }
+  { }
+\fi
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
@@ -371,7 +377,7 @@ The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\w
 \end{inparaenum}
 
 Please use the \qq{qq command} or the \enquote{enquote command} to quote something.
-``something in quotes'' using plain tex currently does not work, because of \href{https://github.com/micoloretan/selnolig/issues/8}{selnolig\#8}.
+``something in quotes'' using plain tex also works.
 
 You can now write words containing hyphens which are hyphenated (application"=specific) at other places.
 This is enabled by an additional configuration of the babel package.
@@ -401,7 +407,12 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 % Source: http://phaseportrait.blogspot.de/2011/02/natbib-compatible-bibtex-style-bst-file.html
 \bibliographystyle{splncsnat}
 \begingroup
-  \microtypecontext{expansion=sloppy}
+  \ifluatex
+    %try to activate if bibliography looks ugly
+    %\sloppy
+  \else
+    \microtypecontext{expansion=sloppy}
+  \fi
   \bibliography{paper}
 \endgroup
 
