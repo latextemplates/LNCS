@@ -16,21 +16,29 @@
 %it is good to have title printed on the pages, too.
 \documentclass[runningheads,a4paper]{llncs}[2017/09/04]
 
-%cmap has to be loaded before any font package (such as cfr-lm)
+% cmap has to be loaded before any font package (such as cfr-lm)
 \usepackage{cmap}
+
+% Set English as language and allow to write hyphenated"=words
+%
+% Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
+% english has to go last to set it as default language
+\usepackage[ngerman,english]{babel}
+%Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
 
 \usepackage{ifluatex}
 \ifluatex
   \usepackage{fontspec}
-  \usepackage{selnolig}
-  \newif\iflmodern
+  \usepackage[english]{selnolig}
 \fi
 
 \iftrue % use default-font
   \ifluatex
-    \lmoderntrue
-    % select arbitrary font. Will be replaced by latin modern right after "\begin{document}"
-    \setmainfont{TeX Gyre Cursor}
+    % use the better (sharper, ...) Latin Modern variant of Computer Modern
+    \setmainfont{Latin Modern Roman}
+    \setsansfont{Latin Modern Sans}
+    \setmonofont{Latin Modern Mono}
   \else
     % better font, similar to the default springer font
     % cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
@@ -49,7 +57,6 @@
     % newtxtt looks good with times, but no equivalent for lualatex found,
     % therefore replaced with inconsolata
     \setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
-    \lmodernfalse
   \else
     \usepackage{newtxtext}
     \usepackage{newtxmath}
@@ -66,18 +73,13 @@
 %%
 %% COPY ALSO cmap from line 19 - it has to be loaded as the first package
 
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc} %support umlauts in the input
+\ifluatex\else
+  % fontenc and inputenc are not required when using lualatex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc} %support umlauts in the input
+\fi
 
 \usepackage{graphicx}
-
-%Set English as language and allow to write hyphenated"=words
-%
-%Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
-%english has to go last to set it as default language
-\usepackage[ngerman,english]{babel}
-%Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
-\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
 
 % backticks (`) are rendered as such in verbatim environment. See https://tex.stackexchange.com/a/341057/9075 for details.
 \usepackage{upquote}
@@ -104,17 +106,10 @@
 \usepackage{textcmds}
 
 %enable margin kerning
-\RequirePackage{iftex}
-\ifPDFTeX
-  \RequirePackage[%
-    final,%
-    expansion=alltext,%
-    protrusion=alltext-nott]{microtype}%
-\else
-  \RequirePackage[%
-    final,%
-    protrusion=alltext-nott]{microtype}%
-\fi%
+\RequirePackage[%
+  final,%
+  expansion=alltext,%
+  protrusion=alltext-nott]{microtype}%
 % \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
 \DisableLigatures{encoding = T1, family = tt* }
 
@@ -184,15 +179,21 @@
 ]{natbib}
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
 \renewcommand{\bibnumfmt}[1]{#1.}
-% Prepare more space-saving rendering of the bibliography
-% Source: https://tex.stackexchange.com/a/280936/9075
-\SetExpansion
-[ context = sloppy,
-  stretch = 30,
-  shrink = 60,
-  step = 5 ]
-{ encoding = {OT1,T1,TS1} }
-{ }
+
+\ifluatex
+  % does not work when using luatex
+  % see: https://tex.stackexchange.com/q/419288/9075
+\else
+  % Prepare more space-saving rendering of the bibliography
+  % Source: https://tex.stackexchange.com/a/280936/9075
+  \SetExpansion
+  [ context = sloppy,
+    stretch = 30,
+    shrink = 60,
+    step = 5 ]
+  { encoding = {OT1,T1,TS1} }
+  { }
+\fi
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
@@ -280,9 +281,6 @@
 
 
 \begin{document}
-% This line ensures that lmodern is used. Do not remove it.
-% hint by https://tex.stackexchange.com/a/25006/9075 -> switch back to latin modern
-\ifluatex\iflmodern\renewcommand\rmdefault{lmr}\renewcommand\sfdefault{lmss}\renewcommand\ttdefault{lmtt}\fi\fi
 
 \title{Paper Title}
 %If Title is too long, use \titlerunning
@@ -438,16 +436,17 @@ The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\w
 \end{inparaenum}
 
 Please use the \qq{qq command} or the \enquote{enquote command} to quote something.
-``something in quotes'' using plain tex currently does not work, because of \href{https://github.com/micoloretan/selnolig/issues/8}{selnolig\#8}.
+``something in quotes'' using plain tex syntax also works.
 
 You can now write words containing hyphens which are hyphenated (application"=specific) at other places.
 This is enabled by an additional configuration of the babel package.
 In case you write \qq{application-specific}, then the word will only be hyphenated at the dash.
 You can also write applica\allowbreak{}tion-specific, but this is much more effort.
 
-The words \enquote{workflow} and \enquote{dwarflike} can be copied from the PDF and pasted to a text file.
-In case Lua\LaTeX{} is used as compiler, there is no ligature at \enquote{f"|l} in the word \enquote{dwarflike} (in contrast to \enquote{fl} at \enquote{workflow}).
-In other words: \enquote{dwarflike} and \enquote{dwarf"|like} look the same in the PDF.
+The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
+
+In case LuaLaTeX is used as compiler, there is no ligature at \qq{f\/l} in the word \qq{dwarflike} (in contrast to \qq{fl} in the word \qq{workflow}).
+In other words: \qq{dwarflike} and \qq{dwarf\/like} look the same in the PDF (but are written \texttt{dwarflike} and \texttt{dwarf\textbackslash{}/like} in the PDF.
 In case they do not, there is an issue with Lua\LaTeX{} and the selnolig package.
 
 \section{Conclusion and Outlook}
@@ -468,7 +467,12 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 % Source: http://phaseportrait.blogspot.de/2011/02/natbib-compatible-bibtex-style-bst-file.html
 \bibliographystyle{splncsnat}
 \begingroup
-  \microtypecontext{expansion=sloppy}
+  \ifluatex
+    %try to activate if bibliography looks ugly
+    %\sloppy
+  \else
+    \microtypecontext{expansion=sloppy}
+  \fi
   \bibliography{paper}
 \endgroup
 

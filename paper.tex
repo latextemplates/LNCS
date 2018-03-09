@@ -34,7 +34,10 @@
 
 \iftrue % use default-font
   \ifluatex
+    % use the better (sharper, ...) Latin Modern variant of Computer Modern
     \setmainfont{Latin Modern Roman}
+    \setsansfont{Latin Modern Sans}
+    \setmonofont{Latin Modern Mono}
   \else
     % better font, similar to the default springer font
     % cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
@@ -299,7 +302,7 @@ Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:out
 \section{Related Work}
 \label{sec:relatedwork}
 
-Winery~\cite{Winery} is a graphical \commentontext{modeling}{modeling with one \enquote{l}, because of AE} tool.
+Winery~\cite{Winery} is a graphical \commentontext{modeling}{modeling with one \qq{l}, because of AE} tool.
 The whole idea of TOSCA is explained by \citet{Binz2009}.
 
 \section{LaTeX Hints}
@@ -377,17 +380,18 @@ The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\w
 \end{inparaenum}
 
 Please use the \qq{qq command} or the \enquote{enquote command} to quote something.
-``something in quotes'' using plain tex also works.
+``something in quotes'' using plain tex syntax also works.
 
 You can now write words containing hyphens which are hyphenated (application"=specific) at other places.
 This is enabled by an additional configuration of the babel package.
-In case you write \enquote{application-specific}, then the word will only be hyphenated at the dash.
+In case you write \qq{application-specific}, then the word will only be hyphenated at the dash.
 You can also write applica\allowbreak{}tion-specific, but this is much more effort.
 
 The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
 
 In case LuaLaTeX is used as compiler, there is no ligature at \qq{f\/l} in the word \qq{dwarflike} (in contrast to \qq{fl} in the word \qq{workflow}).
 In other words: \qq{dwarflike} and \qq{dwarf\/like} look the same in the PDF (but are written \texttt{dwarflike} and \texttt{dwarf\textbackslash{}/like} in the PDF.
+In case they do not, there is an issue with LuaLaTeX and the selnolig package.
 
 \section{Conclusion and Outlook}
 \label{sec:outlook}
