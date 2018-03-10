@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Switch to lualatex as default compiler from pdflatex to [lualatex](http://www.luatex.org/).
 - When using "Times New Roman" due to space limitations, the font of the code is [Inconsolata](https://en.wikipedia.org/wiki/Inconsolata) now.
 
+### Fixed
+- The font size of the bibliography is fixed.
+
 ## [1.6.1] - 2018-03-08
 
 ### Fixed
