@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - The font size of the bibliography is fixed.
 
+### Changed
+- The monospaced font is not variable any more.
+
 ## [1.6.1] - 2018-03-08
 
 ### Fixed

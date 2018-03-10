@@ -41,14 +41,15 @@
     % use the better (sharper, ...) Latin Modern variant of Computer Modern
     \setmainfont{Latin Modern Roman}
     \setsansfont{Latin Modern Sans}
-    \setmonofont{Latin Modern Mono}
+    \setmonofont{Latin Modern Mono} % "variable=false"
+    %\setmonofont{Latin Modern Mono Prop} % "variable=true"
   \else
     % better font, similar to the default springer font
     % cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
     \usepackage[%
       rm={oldstyle=false,proportional=true},%
       sf={oldstyle=false,proportional=true},%
-      tt={oldstyle=false,proportional=true,variable=true},%
+      tt={oldstyle=false,proportional=true,variable=false},%
       qt=false%
     ]{cfr-lm}
   \fi
@@ -62,7 +63,8 @@
     % However, inconsolata does not look good in the context of LNCS ...
     %\setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
     % ... thus, we use the good old Latin Modern Mono font for source code.
-    \setmonofont{Latin Modern Mono}
+    \setmonofont{Latin Modern Mono} % "variable=false"
+    %\setmonofont{Latin Modern Mono Prop} % "variable=true"
   \else
     % overwrite cmodern with the Times variant
     \usepackage{newtxtext}
