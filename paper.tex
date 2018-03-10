@@ -15,6 +15,9 @@
 %it is good to have title printed on the pages, too.
 \documentclass[runningheads,a4paper]{llncs}[2017/09/04]
 
+%% If you need packages for other papers,
+%% START COPYING HERE
+
 % cmap has to be loaded before any font package (such as cfr-lm)
 \usepackage{cmap}
 
@@ -63,16 +66,8 @@
   \fi
 \fi
 
-%for demonstration purposes only
-\usepackage[math]{blindtext}
-\usepackage{mwe}
-
-%% If you need packages for other papers,
-%% START COPYING HERE
-%%
-%% COPY ALSO cmap from line 19 - it has to be loaded as the first package
-
-\ifluatex\else
+\ifluatex
+\else
   % fontenc and inputenc are not required when using lualatex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc} %support umlauts in the input
@@ -252,6 +247,10 @@
   %example: llncs{Anonymous et al. (eds). \emph{Proceedings of the International Conference on \LaTeX-Hacks}, LNCS~42. Some Publisher, 2016.}{0042}
   \llncs{book editors and title}{0042} %% 0042 is the start page
 \fi
+
+% For demonstration purposes only
+\usepackage[math]{blindtext}
+\usepackage{mwe}
 
 
 \begin{document}
