@@ -33,6 +33,7 @@
  * [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
  * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [natbib], [booktabs], [cfr-lm].
  * Optional: Support for [minted] package. Uncomment `\usepackage[newfloat]{minted}` to get started.
+ * Optional: Compile with `lualatex` instead of `pdflatex`.
  * Ready-to-go configuration for [latexindent].
 
 Examples:

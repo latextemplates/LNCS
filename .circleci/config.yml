@@ -6,6 +6,13 @@ jobs:
      steps:
        - checkout
        - run: ./download-llncs-files-from-springer.sh
+       # try "new" lualatex
+       - run: lualatex paper.tex
+       - run: lualatex --shell-escape paper-minted.tex
+       # remove generated files
+       - run: latexmk -c paper
+       - run: latexmk -c paper-minted
+       # real building
        - run: latexmk paper.tex && mv paper.pdf paper-lmodern.pdf
        - run: latexmk paper-minted.tex && mv paper-minted.pdf paper-minted-lmodern.pdf
        # activate usage of newtxmath

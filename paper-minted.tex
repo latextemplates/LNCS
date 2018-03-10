@@ -16,47 +16,71 @@
 %it is good to have title printed on the pages, too.
 \documentclass[runningheads,a4paper]{llncs}[2017/09/04]
 
-%cmap has to be loaded before any font package (such as cfr-lm)
-\usepackage{cmap}
-
-\iftrue % use default-font
-  %better font, similar to the default springer font
-  %cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
-  \usepackage[%
-    rm={oldstyle=false,proportional=true},%
-    sf={oldstyle=false,proportional=true},%
-    tt={oldstyle=false,proportional=true,variable=true},%
-    qt=false%
-  ]{cfr-lm}
-\else
-  %
-  %if more space is needed, exchange cfr-lm by two packages from newtx:
-  \usepackage{newtxtext}
-  \usepackage{newtxmath}
-  \usepackage[zerostyle=b,scaled=.9]{newtxtt}
-\fi
-
-%for demonstration purposes only
-\usepackage[math]{blindtext}
-\usepackage{mwe}
-
 %% If you need packages for other papers,
 %% START COPYING HERE
-%%
-%% COPY ALSO cmap from line 19 - it has to be loaded as the first package
 
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc} %support umlauts in the input
+% cmap has to be loaded before any font package (such as cfr-lm)
+\usepackage{cmap}
 
-\usepackage{graphicx}
-
-%Set English as language and allow to write hyphenated"=words
+% Set English as language and allow to write hyphenated"=words
 %
-%Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
-%english has to go last to set it as default language
+% Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
+% english has to go last to set it as default language
 \usepackage[ngerman,english]{babel}
 %Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
 \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+
+\usepackage{ifluatex}
+\ifluatex
+  \usepackage{fontspec}
+  \usepackage[english]{selnolig}
+\fi
+
+\iftrue % use default-font
+  \ifluatex
+    % use the better (sharper, ...) Latin Modern variant of Computer Modern
+    \setmainfont{Latin Modern Roman}
+    \setsansfont{Latin Modern Sans}
+    \setmonofont{Latin Modern Mono} % "variable=false"
+    %\setmonofont{Latin Modern Mono Prop} % "variable=true"
+  \else
+    % better font, similar to the default springer font
+    % cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
+    \usepackage[%
+      rm={oldstyle=false,proportional=true},%
+      sf={oldstyle=false,proportional=true},%
+      tt={oldstyle=false,proportional=true,variable=false},%
+      qt=false%
+    ]{cfr-lm}
+  \fi
+\else
+  % In case more space is needed, it is accepted to use Times New Roman
+  \ifluatex
+    \setmainfont{TeX Gyre Termes}
+    \setsansfont[Scale=.9]{TeX Gyre Heros}
+    % newtxtt looks good with times, but no equivalent for lualatex found,
+    % therefore tried to replace with inconsolata.
+    % However, inconsolata does not look good in the context of LNCS ...
+    %\setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
+    % ... thus, we use the good old Latin Modern Mono font for source code.
+    \setmonofont{Latin Modern Mono} % "variable=false"
+    %\setmonofont{Latin Modern Mono Prop} % "variable=true"
+  \else
+    % overwrite cmodern with the Times variant
+    \usepackage{newtxtext}
+    \usepackage{newtxmath}
+    \usepackage[zerostyle=b,scaled=.9]{newtxtt}
+  \fi
+\fi
+
+\ifluatex
+\else
+  % fontenc and inputenc are not required when using lualatex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc} %support umlauts in the input
+\fi
+
+\usepackage{graphicx}
 
 % backticks (`) are rendered as such in verbatim environment. See https://tex.stackexchange.com/a/341057/9075 for details.
 \usepackage{upquote}
@@ -75,21 +99,18 @@
 %\parpic[r]{\includegraphics ...}
 %Text...
 
-%for easy quotations: \enquote{text}
+% For easy quotations: \enquote{text}
+% This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
 \usepackage{csquotes}
 
+% For even easier quotations: \qq{text}
+\usepackage{textcmds}
+
 %enable margin kerning
-\RequirePackage{iftex}
-\ifPDFTeX
-  \RequirePackage[%
-    final,%
-    expansion=alltext,%
-    protrusion=alltext-nott]{microtype}%
-\else
-  \RequirePackage[%
-    final,%
-    protrusion=alltext-nott]{microtype}%
-\fi%
+\RequirePackage[%
+  final,%
+  expansion=alltext,%
+  protrusion=alltext-nott]{microtype}%
 % \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
 \DisableLigatures{encoding = T1, family = tt* }
 
@@ -159,15 +180,21 @@
 ]{natbib}
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
 \renewcommand{\bibnumfmt}[1]{#1.}
-% Prepare more space-saving rendering of the bibliography
-% Source: https://tex.stackexchange.com/a/280936/9075
-\SetExpansion
-[ context = sloppy,
-  stretch = 30,
-  shrink = 60,
-  step = 5 ]
-{ encoding = {OT1,T1,TS1} }
-{ }
+
+\ifluatex
+  % does not work when using luatex
+  % see: https://tex.stackexchange.com/q/419288/9075
+\else
+  % Prepare more space-saving rendering of the bibliography
+  % Source: https://tex.stackexchange.com/a/280936/9075
+  \SetExpansion
+  [ context = sloppy,
+    stretch = 30,
+    shrink = 60,
+    step = 5 ]
+  { encoding = {OT1,T1,TS1} }
+  { }
+\fi
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
@@ -253,6 +280,10 @@
   \llncs{book editors and title}{0042} %% 0042 is the start page
 \fi
 
+% For demonstration purposes only
+\usepackage[math]{blindtext}
+\usepackage{mwe}
+
 
 \begin{document}
 
@@ -302,7 +333,7 @@ Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:out
 \section{Related Work}
 \label{sec:relatedwork}
 
-Winery~\cite{Winery} is a graphical \commentontext{modeling}{modeling with one \enquote{l}, because of AE} tool.
+Winery~\cite{Winery} is a graphical \commentontext{modeling}{modeling with one \qq{l}, because of AE} tool.
 The whole idea of TOSCA is explained by \citet{Binz2009}.
 
 \section{LaTeX Hints}
@@ -409,12 +440,16 @@ The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\w
   \item This is enabled by the paralist package.
 \end{inparaenum}
 
-``something in quotes'' using plain tex or use \enquote{the enquote command}.
+Please use the \qq{qq command} or the \enquote{enquote command} to quote something.
+``something in quotes'' using plain tex syntax also works.
 
 You can now write words containing hyphens which are hyphenated (application"=specific) at other places.
 This is enabled by an additional configuration of the babel package.
-In case you write \enquote{application-specific}, then the word will only be hyphenated at the dash.
+In case you write \qq{application-specific}, then the word will only be hyphenated at the dash.
 You can also write applica\allowbreak{}tion-specific, but this is much more effort.
+
+The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
+
 
 \section{Conclusion and Outlook}
 \label{sec:outlook}
@@ -423,8 +458,8 @@ You can also write applica\allowbreak{}tion-specific, but this is much more effo
 \subsubsection*{Acknowledgments}
 \ldots
 
-In the bibliography, use \texttt{\textbackslash textsuperscript} for ``st'', ``nd'', ...:
-E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
+In the bibliography, use \texttt{\textbackslash textsuperscript} for \qq{st}, \qq{nd}, \ldots:
+E.g., \qq{The 2\textsuperscript{nd} conference on examples}.
 When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
 See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
 
@@ -434,7 +469,13 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 % Source: http://phaseportrait.blogspot.de/2011/02/natbib-compatible-bibtex-style-bst-file.html
 \bibliographystyle{splncsnat}
 \begingroup
-  \microtypecontext{expansion=sloppy}
+  \ifluatex
+    %try to activate if bibliography looks ugly
+    %\sloppy
+  \else
+    \microtypecontext{expansion=sloppy}
+  \fi
+  \small % ensure correct font size for the bibliography
   \bibliography{paper}
 \endgroup
 

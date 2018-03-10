@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### Added
+- Support for [lualatex](http://www.luatex.org/) as compiler.
+  When using "Times New Roman" due to space limitations, the font of the code is still "Latin Modern" in the case of lualatex.
+
+### Fixed
+- The font size of the bibliography is fixed.
+
+### Changed
+- The monospaced font is not variable any more.
+
 ## [1.6.1] - 2018-03-08
 
 ### Fixed
