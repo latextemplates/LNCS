@@ -2,8 +2,8 @@
 
 % !TeX spellcheck = en-US
 % !TeX encoding = utf8
-% !TeX program = lualatex
-% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]
+% !TeX program = pdflatex
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
 
@@ -445,9 +445,6 @@ You can also write applica\allowbreak{}tion-specific, but this is much more effo
 
 The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
 
-In case LuaLaTeX is used as compiler, there is no ligature at \qq{f\/l} in the word \qq{dwarflike} (in contrast to \qq{fl} in the word \qq{workflow}).
-In other words: \qq{dwarflike} and \qq{dwarf\/like} look the same in the PDF (but are written \texttt{dwarflike} and \texttt{dwarf\textbackslash{}/like} in the PDF.
-In case they do not, there is an issue with Lua\LaTeX{} and the selnolig package.
 
 \section{Conclusion and Outlook}
 \label{sec:outlook}
