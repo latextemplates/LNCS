@@ -58,9 +58,13 @@
     \setmainfont{TeX Gyre Termes}
     \setsansfont[Scale=.9]{TeX Gyre Heros}
     % newtxtt looks good with times, but no equivalent for lualatex found,
-    % therefore replaced with inconsolata
-    \setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
+    % therefore tried to replace with inconsolata.
+    % However, inconsolata does not look good in the context of LNCS ...
+    %\setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
+    % ... thus, we use the good old Latin Modern Mono font for source code.
+    \setmonofont{Latin Modern Mono}
   \else
+    % overwrite cmodern with the Times variant
     \usepackage{newtxtext}
     \usepackage{newtxmath}
     \usepackage[zerostyle=b,scaled=.9]{newtxtt}

@@ -9,9 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Support for [lualatex](http://www.luatex.org/) as compiler.
-
-### Changed
-- When using "Times New Roman" due to space limitations, the font of the code is [Inconsolata](https://en.wikipedia.org/wiki/Inconsolata) now.
+  When using "Times New Roman" due to space limitations, the font of the code is still "Latin Modern" in the case of lualatex.
 
 ### Fixed
 - The font size of the bibliography is fixed.
