@@ -6,9 +6,9 @@ jobs:
      steps:
        - checkout
        - run: ./download-llncs-files-from-springer.sh
-       # try "old" pdflatex
-       - run: pdflatex paper.tex
-       - run: pdflatex --shell-escape paper-minted.tex
+       # try "new" lualatex
+       - run: lualatex paper.tex
+       - run: lualatex --shell-escape paper-minted.tex
        # remove generated files
        - run: latexmk -c paper
        - run: latexmk -c paper-minted
