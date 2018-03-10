@@ -6,13 +6,6 @@ jobs:
      steps:
        - checkout
        - run: ./download-llncs-files-from-springer.sh
-       # try "new" lualatex
-       - run: lualatex paper.tex
-       - run: lualatex --shell-escape paper-minted.tex
-       # remove generated files
-       - run: latexmk -c paper
-       - run: latexmk -c paper-minted
-       # real building
        - run: latexmk paper.tex && mv paper.pdf paper-lmodern.pdf
        - run: latexmk paper-minted.tex && mv paper-minted.pdf paper-minted-lmodern.pdf
        # activate usage of newtxmath
@@ -28,3 +21,14 @@ jobs:
        - store_artifacts:
            path: splncs03.bst
        - run: if [ "$CIRCLE_BRANCH" == "master" ]; then .circleci/deploy-ghpages.sh build/; fi
+       # remove generated files
+       - run: latexmk -c paper
+       - run: latexmk -c paper-minted
+       # try compilation with lualatex
+       # ensure that --shell-escape is only needed at paper-minted.tex
+       - run: lualatex paper.tex
+       - run: lualatex --shell-escape paper-minted.tex
+       # full compilation with latexmk
+       - run: sed -i "s|$pdflatex = 'pdflatex|$pdflatex = 'lualatex|" .latexmkrc
+       - run: latexmk paper
+       - run: latexmk paper-minted
