@@ -6,14 +6,20 @@ jobs:
      steps:
        - checkout
        - run: ./download-llncs-files-from-springer.sh
+       # create paper-*-lmodern.pdf
        - run: latexmk paper.tex && mv paper.pdf paper-lmodern.pdf
        - run: latexmk paper-minted.tex && mv paper-minted.pdf paper-minted-lmodern.pdf
-       # activate usage of newtxmath
+       # activate usage of newtxmath and create paper-*-newtx.pdf
        - run: sed -i "s/iftrue % use default-font/iffalse/" paper.tex
        - run: latexmk paper.tex && mv paper.pdf paper-newtx.pdf
        - run: sed -i "s/iftrue % use default-font/iffalse/" paper-minted.tex
        - run: latexmk paper-minted.tex && mv paper-minted.pdf paper-minted-newtx.pdf
-       - run: mv paper-lmodern.pdf paper.pdf && mv paper-minted-lmodern.pdf paper-minted.pdf && mkdir build && cp -r README.md paper*.pdf .github/_config.yml build/
+       # try to build tex files distributed by springer
+       - run: latexmk llncs.dem && mv llncs.pdf llcns-dem.pdf
+       - run: latexmk llncs.doc && mv llncs.pdf llncs-doc.pdf
+       # collect results in build/ folder
+       - run: mv paper-lmodern.pdf paper.pdf && mv paper-minted-lmodern.pdf paper-minted.pdf && mkdir build && cp -r README.md paper*.pdf llncs-*.pdf .github/_config.yml build/
+       # store and publish build results
        - store_artifacts:
            path: build/
        - store_artifacts:

@@ -47,7 +47,7 @@ Examples:
 
 The official template is available at <http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0>.
 Deep link: <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
-The files are also provided at Springer's FTP server at ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/.
+The files are also provided at Springer's FTP server at <ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/>.
 
 > **The class file authored by Springer is needed to get the template working:**
 > `llncs.cls`
@@ -167,6 +167,8 @@ If you like this work, please consider donating via [Liberapay](https://liberapa
  * tex.stackexchange.com questions regarding LNCS: <https://tex.stackexchange.com/questions/tagged/lncs>
  * German: Hinweise zu Ausarbeitungen: <http://wiki.flupp.de/studium/ausarbeitungen>
  * Other templates: <https://latextemplates.github.io/>
+ * Original LNCS demonstration (without the improvements): [llncs-dem.pdf](llncs-dem.pdf)
+ * Original LNCS documentation (without the improvements): [llncs-doc.pdf](llncs-doc.pdf)
 
   [booktabs]: https://ctan.org/pkg/booktabs
   [cfr-lm]: https://www.ctan.org/pkg/cfr-lm

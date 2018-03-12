@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Refined `README.md`
+
 ## [1.7.0] - 2018-03-10
 
 ### Added
