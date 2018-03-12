@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Added [stfloats](https://ctan.org/pkg/stfloats) package to enable footnotes appearing after floats.
+
 ### Changed
 - Refined `README.md`
 
