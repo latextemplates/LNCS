@@ -208,6 +208,8 @@
 % Enable correct jumping to figures when referencing
 \usepackage[all]{hypcap}
 
+\usepackage[group-four-digits,per-mode=fraction]{siunitx}
+
 %enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
 \usepackage[capitalise,nameinlink]{cleveref}
 %Nice formats for \cref
@@ -400,6 +402,10 @@ You can also write applica\allowbreak{}tion-specific, but this is much more effo
 
 The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
 
+Numbers can written using the siunitx package like that:
+\SI{100}{\km\per\hour}
+or just plain \LaTeX{}:
+$100 \frac{\mathit{km}}{h}$.
 
 \section{Conclusion and Outlook}
 \label{sec:outlook}

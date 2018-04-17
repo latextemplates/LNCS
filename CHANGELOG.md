@@ -10,9 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Added [stfloats](https://ctan.org/pkg/stfloats) package to enable footnotes appearing after floats.
 - Added option `babel` to microtype package to ensure that documents written in a language other than English also work.
+- Added package [siunitx](https://ctan.org/pkg/siunitx) incluing an example.
 
 ### Changed
-- Refined `README.md`
+- Refined `README.md`.
 
 ## [1.7.0] - 2018-03-10
 
