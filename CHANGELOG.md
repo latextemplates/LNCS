@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Refined `README.md`.
 
+### Removed
+- Removed building of `llncs.dem` and `llncs.doc` from CircleCI script, because these files are not distributed by Springer anymore.
+
 ## [1.7.0] - 2018-03-10
 
 ### Added
