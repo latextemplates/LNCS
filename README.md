@@ -61,7 +61,7 @@ Follow the quick start instructions.
 ## Quick start
 
  * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/master.zip).
- * Extract `master.zip` in the folder where you want to write your paper.
+ * Extract `LNCS-master.zip` in the folder where you want to write your paper.
  * Place `llncs.cls` into the directory
    - Download `llncs2e.zip` from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip> and extract it in the directory.
      On Linux, just execute `download-llncs-files-from-springer.sh`.
