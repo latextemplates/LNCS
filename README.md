@@ -173,7 +173,6 @@ If you like this work, please consider donating via [Liberapay](https://liberapa
   [booktabs]: https://ctan.org/pkg/booktabs
   [cfr-lm]: https://www.ctan.org/pkg/cfr-lm
   [cleveref]: https://ctan.org/pkg/cleveref
-  [cmap]: https://www.ctan.org/pkg/cmap
   [csquotes]: https://www.ctan.org/pkg/csquotes
   [hypcap]: https://www.ctan.org/pkg/hypcap
   [hyperref]: https://ctan.org/pkg/hyperref

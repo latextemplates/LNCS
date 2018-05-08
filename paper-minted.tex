@@ -19,9 +19,6 @@
 %% If you need packages for other papers,
 %% START COPYING HERE
 
-% cmap has to be loaded before any font package (such as cfr-lm)
-\usepackage{cmap}
-
 % Set English as language and allow to write hyphenated"=words
 %
 % Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
@@ -267,6 +264,12 @@
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+% Enable copy and paste - also of numbers
+% This has to be done instead of \usepackage{cmap}, because it does not work together with cfr-lm.
+% See: https://tex.stackexchange.com/a/430599/9075
+\input glyphtounicode
+\pdfgentounicode=1
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}

@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Refined `README.md`.
 
+### Fixed
+- Numbers can be copied. Enabled by switching from [cmap](https://www.ctan.org/pkg/cmap) to `glyphtounicode`. Fixes [#22](https://github.com/latextemplates/LNCS/issues/22).
+
 ### Removed
 - Removed building of `llncs.dem` and `llncs.doc` from CircleCI script, because these files are not distributed by Springer anymore.
 
