@@ -265,11 +265,14 @@
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
-% Enable copy and paste - also of numbers
-% This has to be done instead of \usepackage{cmap}, because it does not work together with cfr-lm.
-% See: https://tex.stackexchange.com/a/430599/9075
-\input glyphtounicode
-\pdfgentounicode=1
+\ifluatex
+\else
+  % Enable copy and paste - also of numbers
+  % This has to be done instead of \usepackage{cmap}, because it does not work together with cfr-lm.
+  % See: https://tex.stackexchange.com/a/430599/9075
+  \input glyphtounicode
+  \pdfgentounicode=1
+\fi
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
