@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## Changed
+- Paper size is now letter as default (some people complained).
+  In case you want to have DIN A4, please add `a4paper` as package option.
+- Minimum required `llncs.cls` file: 2018/03/10.
+
 ### Removed
 - Removed babel package, because it changed the layout of the paper.
   see <https://tex.stackexchange.com/q/441670/9075> for details.

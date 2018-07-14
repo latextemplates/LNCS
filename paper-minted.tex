@@ -1,4 +1,4 @@
-% This template has been tested with LLNCS DOCUMENT CLASS -- version 2.19 (04-Sep-2017)
+% This template has been tested with LLNCS DOCUMENT CLASS -- version 2.20 (10-Mar-2018)
 
 % !TeX spellcheck = en-US
 % !TeX encoding = utf8
@@ -7,14 +7,23 @@
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
 
-%"runningheads" enables:
+% "a4paper" enables:
+%  - easy print out on DIN A4 paper size
+% One can configure a4 vs. letter in the LaTeX installation. So it is configuration dependend, what the paper size will be.
+% This option is not present, since in most cases, letter format is produced.
+% To prevent WTFs at persons not used to the A4 vs. letter argument, this option is not set.
+
+% "runningheads" enables:
 %  - page number on page 2 onwards
 %  - title/authors on even/odd pages
-%This is good for other readers to enable proper archiving among other papers and pointing to
-%content. Even if the title page states the title, when printed and stored in a folder, when
-%blindly opening the folder, one could hit not the title page, but an arbitrary page. Therefore,
-%it is good to have title printed on the pages, too.
-\documentclass[runningheads,a4paper]{llncs}[2017/09/04]
+% This is good for other readers to enable proper archiving among other papers and pointing to
+% content. Even if the title page states the title, when printed and stored in a folder, when
+% blindly opening the folder, one could hit not the title page, but an arbitrary page. Therefore,
+% it is good to have title printed on the pages, too.
+%
+% It is enabled by default as the springer template as of 2018/03/10 uses this as default
+
+\documentclass[runningheads]{llncs}[2018/03/10]
 
 %% If you need packages for other papers,
 %% START COPYING HERE
