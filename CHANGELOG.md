@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Removed
+- Removed babel package, because it changed the layout of the paper.
+  see <https://tex.stackexchange.com/q/441670/9075> for details.
+
 ## [1.8.0] – 2018-05-09
 
 ### Added
