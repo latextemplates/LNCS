@@ -23,7 +23,10 @@
 %
 % It is enabled by default as the springer template as of 2018/03/10 uses this as default
 
-\documentclass[runningheads,a4paper]{llncs}[2018/03/10]
+% German documents: pass ngerman as class option
+% \documentclass[ngerman,runningheads,a4paper]{llncs}[2018/03/10]
+% English documents: pass english as class option
+\documentclass[english,runningheads,a4paper]{llncs}[2018/03/10]
 
 %% If you need packages for other papers,
 %% START COPYING HERE
@@ -34,8 +37,8 @@
 % english has to go last to set it as default language
 %
 % In case you write German, switch the parameters, so that the command becomes
-%  \usepackage[english,ngerman]{babel}
-\usepackage[ngerman,english]{babel}
+\usepackage[english,ngerman]{babel}
+%\usepackage[ngerman,english]{babel}
 %
 % Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
 \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
@@ -234,10 +237,29 @@
 %enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
 \usepackage[capitalise,nameinlink]{cleveref}
 %Nice formats for \cref
-\crefname{section}{Sect.}{Sect.}
-\Crefname{section}{Section}{Sections}
-\crefname{listing}{\lstlistingname}{\lstlistingname}
-\Crefname{listing}{Listing}{Listings}
+\usepackage{iflang}
+\IfLanguageName{ngerman}{
+  \crefname{table}{Tab.}{Tab.}
+  \Crefname{table}{Tabelle}{Tabellen}
+  \crefname{figure}{\figurename}{\figurename}
+  \Crefname{figure}{Abbildungen}{Abbildungen}
+  \crefname{equation}{Gleichung}{Gleichungen}
+  \Crefname{equation}{Gleichung}{Gleichungen}
+  \crefname{listing}{\lstlistingname}{\lstlistingname}
+  \Crefname{listing}{Listing}{Listings}
+  \crefname{section}{Abschnitt}{Abschnitte}
+  \Crefname{section}{Abschnitt}{Abschnitte}
+  \crefname{paragraph}{Abschnitt}{Abschnitte}
+  \Crefname{paragraph}{Abschnitt}{Abschnitte}
+  \crefname{subparagraph}{Abschnitt}{Abschnitte}
+  \Crefname{subparagraph}{Abschnitt}{Abschnitte}
+}{
+  \crefname{section}{Sect.}{Sect.}
+  \Crefname{section}{Section}{Sections}
+  \crefname{listing}{\lstlistingname}{\lstlistingname}
+  \Crefname{listing}{Listing}{Listings}
+}
+
 
 %Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
 \newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}

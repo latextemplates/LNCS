@@ -156,13 +156,19 @@ The possible options are listed in `paper.tex`.
 
 ### Q: Can I also write in German?
 
-Yes. Please search for `babel` in `paper.tex` and use
+Yes.
 
-    \usepackage[english,ngerman]{babel}
+1. Pass parameter `ngerman` to the document class:
 
-instead of
+       \documentclass[english,runningheads,a4paper]{llncs}[2018/03/10]
 
-    \usepackage[ngerman,english]{babel}
+1. Please search for `babel` in `paper.tex` and use
+
+       \usepackage[english,ngerman]{babel}
+
+    instead of
+
+        \usepackage[ngerman,english]{babel}
 
 ## Development
 
