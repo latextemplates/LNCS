@@ -144,7 +144,7 @@ by
 
 Execute `latexindent -l -s -sl -w paper.tex`
 
-### Q: How I want to obey the one-sentence-per-line rule.
+### Q: I want to obey the one-sentence-per-line rule. How can I do that?
 
 Execute `latexindent -m -l -s -sl -w paper.tex`.
 Attention! This is work in progress and does not always produce best results.
@@ -154,7 +154,17 @@ Attention! This is work in progress and does not always produce best results.
 Activate the `llncsconf` package.
 The possible options are listed in `paper.tex`.
 
-## Development [![Donate to koppor on Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/koppor)
+### Q: Can I also write in German?
+
+Yes. Please search for `babel` in `paper.tex` and use
+
+    \usepackage[english,ngerman]{babel}
+
+instead of
+
+    \usepackage[ngerman,english]{babel}
+
+## Development
 
 Reindent: `latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w paper.tex`
 
