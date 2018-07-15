@@ -33,9 +33,9 @@
 %
 % Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
 % english has to go last to set it as default language
-%\usepackage[ngerman,english]{babel}
+\usepackage[ngerman,english]{babel}
 %Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
-%\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
 
 \usepackage{ifluatex}
 \ifluatex
@@ -467,11 +467,10 @@ The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\w
 Please use the \qq{qq command} or the \enquote{enquote command} to quote something.
 ``something in quotes'' using plain tex syntax also works.
 
-% Currently not working - see https://tex.stackexchange.com/q/441670/9075
-% You can now write words containing hyphens which are hyphenated (application"=specific) at other places.
-% This is enabled by an additional configuration of the babel package.
-% In case you write \qq{application-specific}, then the word will only be hyphenated at the dash.
-% You can also write applica\allowbreak{}tion-specific, but this is much more effort.
+You can now write words containing hyphens which are hyphenated (application"=specific) at other places.
+This is enabled by an additional configuration of the babel package.
+In case you write \qq{application-specific}, then the word will only be hyphenated at the dash.
+You can also write applica\allowbreak{}tion-specific, but this is much more effort.
 
 The words \qq{workflow} and \qq{dwarflike} can be copied from the PDF and pasted to a text file.
 
