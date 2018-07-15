@@ -19,22 +19,22 @@
 
 ## Features
 
- * Provides a skeletal [paper.tex](paper.tex) file.
- * Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed.
-   This is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters.
- * Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
-   Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
-   Thanx to [cleveref].
- * Support of hyperlinked references without extra color thanx to [hyperref].
- * Better breaking of long URLs.
- * Sharper font (still compatible with Springer's requirements).
- * Support for `\powerset` command.
- * Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
- * [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
- * Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [natbib], [booktabs], [cfr-lm].
- * Optional: Support for [minted] package. Uncomment `\usepackage[newfloat]{minted}` to get started.
- * Optional: Compile with `lualatex` instead of `pdflatex`.
- * Ready-to-go configuration for [latexindent].
+* Provides a skeletal [paper.tex](paper.tex) file.
+* Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed.
+  This is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters.
+* Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
+  Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
+  Thanx to [cleveref].
+* Support of hyperlinked references without extra color thanx to [hyperref].
+* Better breaking of long URLs.
+* Sharper font (still compatible with Springer's requirements).
+* Support for `\powerset` command.
+* Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
+* [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
+* Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [natbib], [booktabs], [cfr-lm].
+* Optional: Support for [minted] package. Uncomment `\usepackage[newfloat]{minted}` to get started.
+* Optional: Compile with `lualatex` instead of `pdflatex`.
+* Ready-to-go configuration for [latexindent].
 
 Examples:
 
@@ -60,16 +60,16 @@ Follow the quick start instructions.
 
 ## Quick start
 
- * Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/master.zip).
- * Extract `LNCS-master.zip` in the folder where you want to write your paper.
- * Place `llncs.cls` into the directory
-   - Download `llncs2e.zip` from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip> and extract it in the directory.
-     On Linux, just execute `download-llncs-files-from-springer.sh`.
-   - In case ftp does not work at your side, you can try online ftp services such as http://www.net2ftp.com/ to download the files.
-     Open the connection to `ftp.springernature.com` and navigate to `cs-proceeding`, `llncs`, and download the ZIP archive.
- * Edit [paper.tex](paper.tex).
- * `latexmk paper`.
- 
+* Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/master.zip).
+* Extract `LNCS-master.zip` in the folder where you want to write your paper.
+* Place `llncs.cls` into the directory
+  - Download `llncs2e.zip` from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip> and extract it in the directory.
+    On Linux, just execute `download-llncs-files-from-springer.sh`.
+  - In case ftp does not work at your side, you can try online ftp services such as http://www.net2ftp.com/ to download the files.
+    Open the connection to `ftp.springernature.com` and navigate to `cs-proceeding`, `llncs`, and download the ZIP archive.
+* Edit [paper.tex](paper.tex).
+* `latexmk paper`.
+
  As you see on CircleCI, the paper compiles out of the box.
  There is no need to adjust the packages or to remove some of them.
  This might lead to undesiered results such as hyperlinks not working any more or no good microtypographic features.
@@ -138,23 +138,19 @@ by
 
     \iffalse
 
-
 ### Q: How can I reformat my .tex files?
 
 Execute `latexindent -l -s -sl -w paper.tex`
-
 
 ### Q: How I want to obey the one-sentence-per-line rule.
 
 Execute `latexindent -m -l -s -sl -w paper.tex`.
 Attention! This is work in progress and does not always produce best results.
 
-
 ### Q: Is it possible to have a footer indicating that the paper is intended to be submitted/submitted/published?
 
 Activate the `llncsconf` package.
 The possible options are listed in `paper.tex`.
-
 
 ## Development [![Donate to koppor on Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/koppor)
 
@@ -164,11 +160,11 @@ If you like this work, please consider donating via [Liberapay](https://liberapa
 
 ## Links
 
- * tex.stackexchange.com questions regarding LNCS: <https://tex.stackexchange.com/questions/tagged/lncs>
- * German: Hinweise zu Ausarbeitungen: <http://wiki.flupp.de/studium/ausarbeitungen>
- * Other templates: <https://latextemplates.github.io/>
- * Original LNCS demonstration (without the improvements): [llncs-dem.pdf](llncs-dem.pdf)
- * Original LNCS documentation (without the improvements): [llncs-doc.pdf](llncs-doc.pdf)
+* tex.stackexchange.com questions regarding LNCS: <https://tex.stackexchange.com/questions/tagged/lncs>
+* German: Hinweise zu Ausarbeitungen: <http://wiki.flupp.de/studium/ausarbeitungen>
+* Other templates: <https://latextemplates.github.io/>
+* Original LNCS demonstration (without the improvements): [llncs-dem.pdf](llncs-dem.pdf)
+* Original LNCS documentation (without the improvements): [llncs-doc.pdf](llncs-doc.pdf)
 
   [booktabs]: https://ctan.org/pkg/booktabs
   [cfr-lm]: https://www.ctan.org/pkg/cfr-lm
