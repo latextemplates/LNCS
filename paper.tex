@@ -33,8 +33,17 @@
 % Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
 % english has to go last to set it as default language
 \usepackage[ngerman,english]{babel}
-%Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+% Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
 \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+% Fix by https://tex.stackexchange.com/a/441701/9075
+\usepackage{regexpatch}
+\makeatletter
+\edef\switcht@albion{%
+  \relax\unexpanded\expandafter{\switcht@albion}%
+}
+\xpatchcmd*{\switcht@albion}{ \def}{\def}{}{}
+\xpatchcmd{\switcht@albion}{\relax}{}{}{}
+\makeatother
 
 \usepackage{ifluatex}
 \ifluatex

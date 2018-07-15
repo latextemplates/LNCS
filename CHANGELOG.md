@@ -7,12 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## Added
+- Added a fix for using the babel package.
+  See <https://tex.stackexchange.com/q/441670/9075> for details.
+
 ## Changed
 - Minimum required `llncs.cls` file: 2018/03/10.
-
-### Removed
-- Removed babel package, because it changed the layout of the paper.
-  see <https://tex.stackexchange.com/q/441670/9075> for details.
 
 ## [1.8.0] – 2018-05-09
 

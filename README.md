@@ -19,6 +19,8 @@
 
 ## Features
 
+* Contains a fix to increase compatibility with Babel.
+  See <https://tex.stackexchange.com/a/441701/9075> for details.
 * Provides a skeletal [paper.tex](paper.tex) file.
 * Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed.
   This is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters.
