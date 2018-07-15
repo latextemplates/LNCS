@@ -134,19 +134,32 @@ This effectively switches the font from Computer Modern to Times Roman.
 This switch is prepared in the template.
 Exchange
 
-    \iftrue % use default-font
+```latex
+\iftrue % use default-font
+```
 
 by
 
-    \iffalse
+```latex
+\iffalse
+```
 
 ### Q: How can I reformat my .tex files?
 
-Execute `latexindent -l -s -sl -w paper.tex`
+Execute following command:
+
+```shell
+latexindent -l -s -sl -w paper.tex
+```
 
 ### Q: I want to obey the one-sentence-per-line rule. How can I do that?
 
-Execute `latexindent -m -l -s -sl -w paper.tex`.
+Execute following command:
+
+```shell
+latexindent -m -l -s -sl -w paper.tex
+```
+
 Attention! This is work in progress and does not always produce best results.
 
 ### Q: Is it possible to have a footer indicating that the paper is intended to be submitted/submitted/published?
@@ -160,19 +173,29 @@ Yes.
 
 1. Pass parameter `ngerman` to the document class:
 
-       \documentclass[english,runningheads,a4paper]{llncs}[2018/03/10]
+    ```latex
+    \documentclass[english,runningheads,a4paper]{llncs}[2018/03/10]
+    ```
 
 1. Please search for `babel` in `paper.tex` and use
 
-       \usepackage[english,ngerman]{babel}
+    ```latex
+    \usepackage[english,ngerman]{babel}
+    ```
 
     instead of
 
-        \usepackage[ngerman,english]{babel}
+    ```latex
+    \usepackage[ngerman,english]{babel}
+    ```
 
 ## Development
 
-Reindent: `latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w paper.tex`
+Reindent:
+
+```shell
+latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w paper.tex`
+```
 
 If you like this work, please consider donating via [Liberapay](https://liberapay.com/koppor)!
 
