@@ -8,8 +8,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ## Changed
-- Paper size is now letter as default (some people complained).
-  In case you want to have DIN A4, please add `a4paper` as package option.
 - Minimum required `llncs.cls` file: 2018/03/10.
 
 ### Removed

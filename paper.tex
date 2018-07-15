@@ -8,9 +8,10 @@
 
 % "a4paper" enables:
 %  - easy print out on DIN A4 paper size
+%
 % One can configure a4 vs. letter in the LaTeX installation. So it is configuration dependend, what the paper size will be.
-% This option is not present, since in most cases, letter format is produced.
-% To prevent WTFs at persons not used to the A4 vs. letter argument, this option is not set.
+% This option  present, because the current word template offered by Springer is DIN A4.
+% We accept that DIN A4 cause WTFs at persons not used to A4 in USA.
 
 % "runningheads" enables:
 %  - page number on page 2 onwards
@@ -22,7 +23,7 @@
 %
 % It is enabled by default as the springer template as of 2018/03/10 uses this as default
 
-\documentclass[runningheads]{llncs}[2018/03/10]
+\documentclass[runningheads,a4paper]{llncs}[2018/03/10]
 
 %% If you need packages for other papers,
 %% START COPYING HERE
