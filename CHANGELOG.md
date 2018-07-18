@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.9.0] – 2018-07-18
 
 ## Added
 - Added explanation how to use this class for German papers.
@@ -129,7 +129,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 First release using semantic versioning.
 
-[Unreleased]: https://github.com/latextemplates/LNCS/compare/1.8.0...HEAD
+[Unreleased]: https://github.com/latextemplates/LNCS/compare/1.9.0...HEAD
+[1.9.0]: https://github.com/latextemplates/LNCS/compare/1.8.0...1.9.0
 [1.8.0]: https://github.com/latextemplates/LNCS/compare/1.7.0...1.8.0
 [1.7.0]: https://github.com/latextemplates/LNCS/compare/1.6.1...1.7.0
 [1.6.1]: https://github.com/latextemplates/LNCS/compare/1.6.0...1.6.1
