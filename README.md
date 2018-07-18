@@ -19,7 +19,8 @@
 
 ## Features
 
-* Contains a fix to increase compatibility with Babel.
+* Support for German documents (without broken headers):
+  Contains a fix to increase compatibility with Babel.
   See <https://tex.stackexchange.com/a/441701/9075> for details.
 * Provides a skeletal [paper.tex](paper.tex) file.
 * Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed.
