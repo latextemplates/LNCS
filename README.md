@@ -48,9 +48,8 @@ Examples:
 
 ## Background
 
-The official template is available at <http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0>.
+The official template is available at <https://www.springer.com/gp/computer-science/lncs/conference-proceedings-guidelines> --> "Templates, samples files & useful links" --> "LaTeX2e Proceedings Templates (zip)"
 Deep link: <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
-The files are also provided at Springer's FTP server at <ftp://ftp.springer.de/pub/tex/latex/llncs/latex2e/>.
 
 > **The class file authored by Springer is needed to get the template working:**
 > `llncs.cls`
