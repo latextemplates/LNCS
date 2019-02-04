@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed compatibility with recent babel versions: using `main=english` as package parameter.
+
 ## [1.9.0] – 2018-07-18
 
 ## Added
