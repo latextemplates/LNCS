@@ -13,12 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.9.0] – 2018-07-18
 
-## Added
+### Added
 - Added explanation how to use this class for German papers.
 - Added a fix for using the babel package.
   See <https://tex.stackexchange.com/q/441670/9075> for details.
 
-## Changed
+### Changed
 - Minimum required `llncs.cls` file: 2018/03/10.
 
 ## [1.8.0] – 2018-05-09
