@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Enable deletion of *.bbl when calling `latexmk -c`
+
 ## [1.9.1] – 2019-02-04
 
 ### Fixed
