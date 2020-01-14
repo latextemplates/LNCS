@@ -22,11 +22,10 @@ splncs_srt.bst
 sprmindx.sty
 subjidx.ind
 
-
-
-
-
-
+# more contents of llncs2e.zip as of 2020-01-14
+fig1.eps
+samplepaper.tex
+splncs04.bst
 
 #The output should not be versioned
 paper.pdf
