@@ -64,6 +64,8 @@ Therefore, the required file `llncs.cls` has to be downloaded in some way.
 After that you can use and push the `master` branch as usual.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
 
+If you want to pull in later changes done to this template repository, you can simply repeat steps 3 and 4, or use `git pull upstream master`
+
 Note:
 If by some change, ftp does not work on your side, you should try online ftp services such as https://www.net2ftp.com/ to download the needed llncs.cls file.
 
