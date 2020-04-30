@@ -27,9 +27,8 @@ fig1.eps
 samplepaper.tex
 splncs04.bst
 
-#The output should not be versioned
-paper.pdf
-paper-minted.pdf
+# compiled papers should not be versioned
+*.pdf
 
 #temporary files by gradle
 .gradle
@@ -252,7 +251,7 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
-# auto folder when using emacs and auctex 
+# auto folder when using emacs and auctex
 /auto/*
 
 # expex forward references with \gathertags
