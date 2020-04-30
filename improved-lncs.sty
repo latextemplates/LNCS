@@ -1,0 +1,317 @@
+%% If you need packages for other papers,
+%% START COPYING HERE
+
+% Set English as language and allow to write hyphenated"=words
+%
+% In case you write German, use the following
+%\usepackage[english,main=ngerman]{babel}
+%
+% Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
+\usepackage[ngerman,main=english]{babel}
+%
+% Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+%
+% Fix by https://tex.stackexchange.com/a/441701/9075
+\usepackage{regexpatch}
+\makeatletter
+\edef\switcht@albion{%
+  \relax\unexpanded\expandafter{\switcht@albion}%
+}
+\xpatchcmd*{\switcht@albion}{ \def}{\def}{}{}
+\xpatchcmd{\switcht@albion}{\relax}{}{}{}
+\edef\switcht@deutsch{%
+  \relax\unexpanded\expandafter{\switcht@deutsch}%
+}
+\xpatchcmd*{\switcht@deutsch}{ \def}{\def}{}{}
+\xpatchcmd{\switcht@deutsch}{\relax}{}{}{}
+\edef\switcht@francais{%
+  \relax\unexpanded\expandafter{\switcht@francais}%
+}
+\xpatchcmd*{\switcht@francais}{ \def}{\def}{}{}
+\xpatchcmd{\switcht@francais}{\relax}{}{}{}
+\makeatother
+
+\usepackage{ifluatex}
+\ifluatex
+  \usepackage{fontspec}
+  \usepackage[english]{selnolig}
+\fi
+
+\iftrue % use default-font
+  \ifluatex
+    % use the better (sharper, ...) Latin Modern variant of Computer Modern
+    \setmainfont{Latin Modern Roman}
+    \setsansfont{Latin Modern Sans}
+    \setmonofont{Latin Modern Mono} % "variable=false"
+    %\setmonofont{Latin Modern Mono Prop} % "variable=true"
+  \else
+    % better font, similar to the default springer font
+    % cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
+    \usepackage[%
+      rm={oldstyle=false,proportional=true},%
+      sf={oldstyle=false,proportional=true},%
+      tt={oldstyle=false,proportional=true,variable=false},%
+      qt=false%
+    ]{cfr-lm}
+  \fi
+\else
+  % In case more space is needed, it is accepted to use Times New Roman
+  \ifluatex
+    \setmainfont{TeX Gyre Termes}
+    \setsansfont[Scale=.9]{TeX Gyre Heros}
+    % newtxtt looks good with times, but no equivalent for lualatex found,
+    % therefore tried to replace with inconsolata.
+    % However, inconsolata does not look good in the context of LNCS ...
+    %\setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
+    % ... thus, we use the good old Latin Modern Mono font for source code.
+    \setmonofont{Latin Modern Mono} % "variable=false"
+    %\setmonofont{Latin Modern Mono Prop} % "variable=true"
+  \else
+    % overwrite cmodern with the Times variant
+    \usepackage{newtxtext}
+    \usepackage{newtxmath}
+    \usepackage[zerostyle=b,scaled=.9]{newtxtt}
+  \fi
+\fi
+
+\ifluatex
+\else
+  % fontenc and inputenc are not required when using lualatex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc} %support umlauts in the input
+\fi
+
+\usepackage{graphicx}
+
+% backticks (`) are rendered as such in verbatim environment. See https://tex.stackexchange.com/a/341057/9075 for details.
+\usepackage{upquote}
+
+% Nicer tables (\toprule, \midrule, \bottomrule - see example)
+\usepackage{booktabs}
+
+%extended enumerate, such as \begin{compactenum}
+\usepackage{paralist}
+
+%put figures inside a text
+%\usepackage{picins}
+%use
+%\piccaptioninside
+%\piccaption{...}
+%\parpic[r]{\includegraphics ...}
+%Text...
+
+% For easy quotations: \enquote{text}
+% This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
+\usepackage{csquotes}
+
+% For even easier quotations: \qq{text}
+\usepackage{textcmds}
+
+%enable margin kerning
+\RequirePackage[%
+  babel,%
+  final,%
+  expansion=alltext,%
+  protrusion=alltext-nott]{microtype}%
+% \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
+\DisableLigatures{encoding = T1, family = tt* }
+
+%tweak \url{...}
+\usepackage{url}
+%\urlstyle{same}
+%improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+%nicer // - solution by http://tex.stackexchange.com/a/98470/9075
+%DO NOT ACTIVATE -> prevents line breaks
+%\makeatletter
+%\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
+%\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
+%\makeatother
+
+% Diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
+% Slashbox is not available in texlive (due to licensing) and also gives bad results. This, we use diagbox
+%\usepackage{diagbox}
+
+% Required for package pdfcomment later
+\usepackage{xcolor}
+
+% For listings
+\usepackage{listings}
+\lstset{%
+  basicstyle=\ttfamily,%
+  columns=fixed,%
+  basewidth=.5em,%
+  xleftmargin=0.5cm,%
+  captionpos=b}%
+\renewcommand{\lstlistingname}{List.}
+% Fix counter as described at https://tex.stackexchange.com/a/28334/9075
+\usepackage{chngcntr}
+\AtBeginDocument{\counterwithout{lstlisting}{section}}
+
+% Compatibility of packages minted and listings with respect to the numbering of "List." caption
+% Source: https://tex.stackexchange.com/a/269510/9075
+\AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
+\AtEndEnvironment{listing}{\stepcounter{lstlisting}}
+
+% Enable nice comments
+\usepackage{pdfcomment}
+%
+\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+%
+% Compatibality with packages todo, easy-todo, todonotes
+\newcommand{\todo}[1]{\commentatside{#1}}
+% Compatiblity with package fixmetodonotes
+\newcommand{\TODO}[1]{\commentatside{#1}}
+
+% Bibliopgraphy enhancements
+%  - enable \cite[prenote][]{ref}
+%  - enable \cite{ref1,ref2}
+% Alternative: \usepackage{cite}, which enables \cite{ref1, ref2} only (otherwise: Error message: "White space in argument")
+
+% Doc: http://texdoc.net/natbib
+\usepackage[%
+  square,        % for square brackets
+  comma,         % use commas as separators
+  numbers,       % for numerical citations;
+%  sort,          % orders multiple citations into the sequence in which they appear in the list of references;
+  sort&compress, % as sort but in addition multiple numerical citations
+                 % are compressed if possible (as 3-6, 15);
+]{natbib}
+% In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
+\renewcommand{\bibnumfmt}[1]{#1.}
+
+\ifluatex
+  % does not work when using luatex
+  % see: https://tex.stackexchange.com/q/419288/9075
+\else
+  % Prepare more space-saving rendering of the bibliography
+  % Source: https://tex.stackexchange.com/a/280936/9075
+  \SetExpansion
+  [ context = sloppy,
+    stretch = 30,
+    shrink = 60,
+    step = 5 ]
+  { encoding = {OT1,T1,TS1} }
+  { }
+\fi
+
+% Put footnotes below floats
+% Source: https://tex.stackexchange.com/a/32993/9075
+\usepackage{stfloats}
+\fnbelowfloat
+
+% Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
+\usepackage{hyperref}
+% Enable hyperref without colors and without bookmarks
+\hypersetup{hidelinks,
+  colorlinks=true,
+  allcolors=black,
+  pdfstartview=Fit,
+  breaklinks=true}
+%
+% Enable correct jumping to figures when referencing
+\usepackage[all]{hypcap}
+
+\usepackage[group-four-digits,per-mode=fraction]{siunitx}
+
+%enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
+\usepackage[capitalise,nameinlink]{cleveref}
+%Nice formats for \cref
+\usepackage{iflang}
+\IfLanguageName{ngerman}{
+  \crefname{table}{Tab.}{Tab.}
+  \Crefname{table}{Tabelle}{Tabellen}
+  \crefname{figure}{\figurename}{\figurename}
+  \Crefname{figure}{Abbildungen}{Abbildungen}
+  \crefname{equation}{Gleichung}{Gleichungen}
+  \Crefname{equation}{Gleichung}{Gleichungen}
+  \crefname{listing}{\lstlistingname}{\lstlistingname}
+  \Crefname{listing}{Listing}{Listings}
+  \crefname{section}{Abschnitt}{Abschnitte}
+  \Crefname{section}{Abschnitt}{Abschnitte}
+  \crefname{paragraph}{Abschnitt}{Abschnitte}
+  \Crefname{paragraph}{Abschnitt}{Abschnitte}
+  \crefname{subparagraph}{Abschnitt}{Abschnitte}
+  \Crefname{subparagraph}{Abschnitt}{Abschnitte}
+}{
+  \crefname{section}{Sect.}{Sect.}
+  \Crefname{section}{Section}{Sections}
+  \crefname{listing}{\lstlistingname}{\lstlistingname}
+  \Crefname{listing}{Listing}{Listings}
+}
+\crefname{section}{Sect.}{Sect.}
+\Crefname{section}{Section}{Sections}
+\crefname{listing}{\lstlistingname}{\lstlistingname}
+\Crefname{listing}{Listing}{Listings}
+
+\usepackage[newfloat]{minted}
+
+% Line numbers not flowing out of the margin
+\setminted{numbersep=5pt, xleftmargin=12pt}
+
+\usemintedstyle{bw} %black and white style
+%\usemintedstyle{vs} %visual studio
+%\usemintedstyle{friendlygrayscale} % custom style - submitted as pull request https://bitbucket.org/birkenfeld/pygments-main/pull-requests/748/add-style-friendly-grayscale/diff
+%\usemintedstyle{friendly}
+%\usemintedstyle{eclipse} %http://www.jevon.org/wiki/Eclipse_Pygments_Style
+%\usemintedstyle{autumn}
+%\usemintedstyle{rrt}
+%\usemintedstyle{borland}
+
+% We need to load caption to have a bold font on the label
+% The other parameters mimic the layout of the LNCS class
+\usepackage[labelfont=bf,font=small,skip=4pt]{caption}
+\SetupFloatingEnvironment{listing}{name=List.,within=none}
+
+%Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
+\newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
+
+\usepackage{xspace}
+%\newcommand{\eg}{e.\,g.\xspace}
+%\newcommand{\ie}{i.\,e.\xspace}
+\newcommand{\eg}{e.\,g.,\ }
+\newcommand{\ie}{i.\,e.,\ }
+
+%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+  <-6>    MnSymbolC5
+  <6-7>   MnSymbolC6
+  <7-8>   MnSymbolC7
+  <8-9>   MnSymbolC8
+  <9-10>  MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+\ifluatex
+\else
+  % Enable copy and paste - also of numbers
+  % This has to be done instead of \usepackage{cmap}, because it does not work together with cfr-lm.
+  % See: https://tex.stackexchange.com/a/430599/9075
+  \input glyphtounicode
+  \pdfgentounicode=1
+\fi
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+% useful for leaving todonotes
+\usepackage[colorinlistoftodos]{todonotes}
+% Color boxes for comment
+\usepackage{tcolorbox}
+
+\newcommand{\hightodo}[1]{\todo[inline,backgroundcolor=red!90!yellow!80!white]{\textbf{\userId}: #1}}
+\newcommand{\lowtodo}[1]{\todo[inline,backgroundcolor=blue!30!white]{\textbf{\userId}: #1}}
+
+\newtcolorbox{tip}{colback=blue!5!white,colframe=blue!75!black}
+\newtcolorbox{tipt}[1]{colback=blue!5!white,colframe=blue!75!black,fonttitle=\bfseries,title=#1}
+
+%% END COPYING HERE
