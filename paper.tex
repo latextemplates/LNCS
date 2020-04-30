@@ -3,6 +3,7 @@
 % !TeX spellcheck = en-US
 % !TeX encoding = utf8
 % !TeX program = pdflatex
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
 
@@ -33,11 +34,10 @@
 
 % Set English as language and allow to write hyphenated"=words
 %
-% In case you write German, switch the parameters, so that the command becomes
+% In case you write German, use the following
 %\usepackage[english,main=ngerman]{babel}
 %
 % Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
-% english has to go last to set it as default language
 \usepackage[ngerman,main=english]{babel}
 %
 % Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
@@ -182,6 +182,11 @@
 \usepackage{chngcntr}
 \AtBeginDocument{\counterwithout{lstlisting}{section}}
 
+% Compatibility of packages minted and listings with respect to the numbering of "List." caption
+% Source: https://tex.stackexchange.com/a/269510/9075
+\AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
+\AtEndEnvironment{listing}{\stepcounter{lstlisting}}
+
 % Enable nice comments
 \usepackage{pdfcomment}
 %
@@ -269,7 +274,29 @@
   \crefname{listing}{\lstlistingname}{\lstlistingname}
   \Crefname{listing}{Listing}{Listings}
 }
+\crefname{section}{Sect.}{Sect.}
+\Crefname{section}{Section}{Sections}
+\crefname{listing}{\lstlistingname}{\lstlistingname}
+\Crefname{listing}{Listing}{Listings}
 
+\usepackage[newfloat]{minted}
+
+% Line numbers not flowing out of the margin
+\setminted{numbersep=5pt, xleftmargin=12pt}
+
+\usemintedstyle{bw} %black and white style
+%\usemintedstyle{vs} %visual studio
+%\usemintedstyle{friendlygrayscale} % custom style - submitted as pull request https://bitbucket.org/birkenfeld/pygments-main/pull-requests/748/add-style-friendly-grayscale/diff
+%\usemintedstyle{friendly}
+%\usemintedstyle{eclipse} %http://www.jevon.org/wiki/Eclipse_Pygments_Style
+%\usemintedstyle{autumn}
+%\usemintedstyle{rrt}
+%\usemintedstyle{borland}
+
+% We need to load caption to have a bold font on the label
+% The other parameters mimic the layout of the LNCS class
+\usepackage[labelfont=bf,font=small,skip=4pt]{caption}
+\SetupFloatingEnvironment{listing}{name=List.,within=none}
 
 %Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
 \newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
@@ -432,7 +459,37 @@ public class Hello {
 </example>
 \end{lstlisting}
 
+\begin{listing}[htbp]
+  \begin{minted}[linenos=true,escapeinside=||]{java}
+public class Hello {
+    public static void main (String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+\end{minted}
+  \caption{Java code rendered using minted}
+  \label{lst:java}
+\end{listing}
+
+\begin{listing}[htbp]
+  \begin{minted}[linenos=true,escapeinside=||]{xml}
+<demo>
+  <node>
+    <!-- comment --> |\Vlabel{commentline}|
+  </node>
+</demo>
+\end{minted}
+  \caption{XML-Dokument rendered using minted}
+  \label{lst:xml}
+\end{listing}
+
 \Cref{L1,L2} show listings typeset using the \texttt{lstlisting} environment.
+
+\href{https://github.com/gpoore/minted}{minted} is an alternative package, which enables syntax highlighting using \href{http://pygments.org/}{pygments}.
+This, in turn, requires Python, so it is disabled by default.
+In case you load it above, be sure to run pdflatex with \texttt{-shell-escape} option.
+\Cref{lst:java,lst:xml} show listings rendered using minted.
+You can point to a single line: \lref{commentline}.
 
 cref Demonstration: Cref at beginning of sentence, cref in all other cases.
 
