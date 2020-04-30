@@ -15,4 +15,4 @@ $pdf_mode = 1;
 $bibtex_use = 2;
 
 #remove more files than in the default configuration
-@generated_exts = qw(acn acr alg aux code ist fls glg glo gls idx ind lof lot out thm toc tpt);
+@generated_exts = qw(acn acr alg aux code ist fls glg glo gls idx ind lof lot out thm toc tpt upa upb synctex);
