@@ -56,9 +56,10 @@ Therefore, the required file `llncs.cls` has to be downloaded in some way.
 
 1. Initialize your git repository as usual
 2. Add this repository as upstream: `git remote add upstream https://github.com/eloquenza/LNCS.git`
-3. Merge the branch `upstream/master` into your `master` branch: `git merge upstream/master`.
-4. Edit [paper.tex](paper.tex).
-5. Compile the paper by `make`, `make compile` or `latexmk paper.tex`
+3. Fetch upstream changes: `git fetch upstream`
+4. Merge the branch `upstream/master` into your `master` branch: `git merge upstream/master --allow-unrelated-histories --ff`.
+5. Edit [paper.tex](paper.tex).
+6. Compile the paper by `make`, `make compile` or `latexmk paper.tex`
 
 After that you can use and push the `master` branch as usual.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
