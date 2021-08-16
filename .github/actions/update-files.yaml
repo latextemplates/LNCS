@@ -1,0 +1,87 @@
+name: Update Files
+on: [workflow_dispatch]
+jobs:
+  lncs-pdflatex-bibtex:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: [en, de]
+        # "arial" not available on linux
+        font: [default, times]
+        listings: [listings, minted]
+        cleveref: [true]
+        enquotes: [csquotes]
+        tweak_outerquote: [babel]
+        todo: [pdfcomment]
+        examples: [true]
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - run: npm install
+        working_directory: '/github/workspace/generator-latex-template'
+      - name: Create llncs.cls
+        id: createllncs
+        shell: bash
+        working_directory: '/github/workspace/generator-latex-template'
+        run: |
+           mkdir tmp
+           if [ "$LLNCS_CLS" == "" ]; then
+             echo ::set-output name=lncsclspresent::false
+           else
+             echo ::set-output name=lncsclspresent::true
+             echo "$LLNCS_CLS" > tmp/llncs.cls
+           fi
+        env:
+          LLNCS_CLS: ${{secrets.LLNCS_CLS}}
+      - name: Generate template
+        run: |
+          mkdir -p tmp
+          cd tmp
+          npx yo $GITHUB_WORKSPACE/generator-latex-template\
+           --githubpublish\
+           --documentclass=lncs\
+           --latexcompiler=pdflatex\
+           --bibtextool=bibtex\
+           --texlive=2021\
+           --language==${{ matrix.language }}\
+           --font=${{ matrix.font }}\
+           --listings==${{ matrix.listings }}\
+           --cleveref=${{ matrix.cleveref }}\
+           --enquotes=${{ matrix.enquotes }}\
+           --tweak_outerquote=${{ matrix.tweak_outerquote }}\
+           --todo=${{ matrix.todo }}\
+           --examples=${{ matrix.examples }}
+          pwd
+          ls -la
+        env:
+          yeoman_test: true
+        if: ${{ steps.createllncs.outputs.lncsclspresent }}
+      - name: latexmk
+        uses: dante-ev/latex-action@edge
+        with:
+          root_file: main.tex
+          # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
+          working_directory: '/github/workspace/tmp'
+        if: ${{ steps.createllncs.outputs.lncsclspresent }}
+      - name: Rename main.tex
+        working-directory: '/github/workspace/tmp'
+        run: |
+          if [ ${{ matrix.cleveref }} ]; then
+            mv main.tex main-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
+          else
+            mv main.tex main-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
+          fi
+      - name: Overwrite files
+        run: cp /github/workspace/tmp/* .
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        commit_message: Update files based on generated files by template generator
