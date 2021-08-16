@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Enable deletion of *.bbl when calling `latexmk -c`
+- Enable deletion of `*.bbl` when calling `latexmk -c`
+- Add explicit `LICENSE`: [0BSD](https://opensource.org/licenses/0BSD)
 
 ## [1.9.1] – 2019-02-04
 
