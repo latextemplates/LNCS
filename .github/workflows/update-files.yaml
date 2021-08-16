@@ -1,5 +1,8 @@
 name: Update Files
-on: [workflow_dispatch]
+on:
+  push:
+    branches: [ switch-to-github-actions ]
+  workflow_dispatch:
 jobs:
   lncs-pdflatex-bibtex:
     runs-on: ubuntu-latest
