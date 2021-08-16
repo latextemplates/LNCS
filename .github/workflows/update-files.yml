@@ -34,12 +34,11 @@ jobs:
         shell: bash
         working-directory: '/github/workspace/generator-latex-template'
         run: |
-           mkdir tmp
            if [ "$LLNCS_CLS" == "" ]; then
              echo ::set-output name=lncsclspresent::false
            else
              echo ::set-output name=lncsclspresent::true
-             echo "$LLNCS_CLS" > tmp/llncs.cls
+             echo "$LLNCS_CLS" > llncs.cls
            fi
         env:
           LLNCS_CLS: ${{secrets.LLNCS_CLS}}
