@@ -32,7 +32,7 @@ jobs:
       - name: Create llncs.cls
         id: createllncs
         shell: bash
-        working-directory: '/github/workspace/generator-latex-template'
+        working-directory: $GITHUB_WORKSPACE/generator-latex-template
         run: |
            if [ "$LLNCS_CLS" == "" ]; then
              echo ::set-output name=lncsclspresent::false
@@ -70,10 +70,10 @@ jobs:
         with:
           root_file: main.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
-          working_directory: '/github/workspace/tmp'
+          working_directory: $GITHUB_WORKSPACE/tmp
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
       - name: Rename main.tex
-        working-directory: '/github/workspace/tmp'
+        working-directory: $GITHUB_WORKSPACE/tmp
         run: |
           if [ ${{ matrix.cleveref }} ]; then
             mv main.tex main-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
@@ -81,7 +81,9 @@ jobs:
             mv main.tex main-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           fi
       - name: Overwrite files
-        run: cp /github/workspace/tmp/* .
+        run: |
+          cp tmp/* .
+          rm -rf tmp
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
