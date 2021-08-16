@@ -29,8 +29,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - run: npm install
-        working_directory: '/github/workspace/generator-latex-template'
       - name: Create llncs.cls
         id: createllncs
         shell: bash
