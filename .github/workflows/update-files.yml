@@ -30,11 +30,11 @@ jobs:
         with:
           node-version: '14'
       - run: npm install
-        working_directory: '/github/workspace/generator-latex-template'
+        working-directory: '/github/workspace/generator-latex-template'
       - name: Create llncs.cls
         id: createllncs
         shell: bash
-        working_directory: '/github/workspace/generator-latex-template'
+        working-directory: '/github/workspace/generator-latex-template'
         run: |
            mkdir tmp
            if [ "$LLNCS_CLS" == "" ]; then
