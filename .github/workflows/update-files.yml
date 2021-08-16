@@ -87,4 +87,5 @@ jobs:
         run: cp /github/workspace/tmp/* .
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
-        commit_message: Update files based on generated files by template generator
+        with:
+          commit_message: Update files based on generated files by template generator
