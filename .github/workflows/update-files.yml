@@ -29,11 +29,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - run: ls -la
-      - run: ls -la
-        working-directory: ${{ github.workspace }}
-      - run: ls -la
-        working-directory: ${{ github.workspace }}/generator-latex-template
       - name: Create llncs.cls
         id: createllncs
         shell: bash
@@ -75,19 +70,19 @@ jobs:
         with:
           root_file: main.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
-          working_directory: $GITHUB_WORKSPACE/tmp
+          working_directory: ${{ github.workspace }}/tmp
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
       - name: Rename main.tex
-        working-directory: $GITHUB_WORKSPACE/tmp
+        working-directory: ${{ github.workspace }}/tmp
         run: |
           if [ ${{ matrix.cleveref }} ]; then
             mv main.tex main-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
           else
             mv main.tex main-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           fi
-      - name: Overwrite files
+      - name: Prepare files
         run: |
-          cp tmp/* .
+          cp -r tmp/* .
           rm -rf tmp
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
