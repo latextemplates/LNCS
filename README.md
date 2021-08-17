@@ -14,33 +14,20 @@ Following features are enabled in this template:
 
 - Provides a skeletal [paper.tex](paper.tex) file
 - Example to have an image being placed right to a text
-- Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
+- (Optional) Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
   Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
   Thanx to [cleveref].
+- Sharper font (still compatible with Springer's requirements).
+- (Optional) Typesetting of listings using advanced highlighting powered by the [minted] package.
 - Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed.
   This is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters.
 - Support of hyperlinked references without extra color thanx to [hyperref].
 - Better breaking of long URLs.
 - Support for `\powerset` command.
-- Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
+- (Optional) Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
 - [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
 - Modern packages such as [microtype], [cleveref], [csquotes], [hyperref], [hypcap], [upquote], [natbib], [booktabs].
 - Ready-to-go configuration for [latexindent].
-
-## Disabled Features
-
-Following features were not activated for this template.
-You can rerun the latex-template generator to enable the features.
-
-- Support for German documents (without broken headers):
-  Contains a fix to increase compatibility with Babel.
-  See <https://tex.stackexchange.com/a/441701/9075> for details.
-- Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
-  Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
-  Thanx to [cleveref].
-- Typesetting of listings using advanced highlighting powered by the [minted] package.
-- Modern packages such as .
-- LaTeX compilation using the modern lualatex compiler.
 
 ## Examples
 
@@ -93,7 +80,6 @@ MiKTeX installation hints are given at <http://latextemplates.github.io/scientif
   **If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).**
 - Use [JabRef] to manage your bibliography (Windows: `choco install jabref`).
 
-
 ## FAQs
 
 ### Q: ShareLaTeX outputs a warning regarding the llncs class
@@ -117,7 +103,6 @@ Please use the latest version offered by Springer.
 After that you can use and push the `main` branch as usual.
 Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
 
-
 ### Q: I get the error  `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
 
 Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: <https://tex.stackexchange.com/a/324972/9075>)
@@ -138,17 +123,13 @@ The most simple solution to get more space is to exchange the font.
 
 Execute following command:
 
-```shell
-latexindent -l -s -sl -w paper.tex
-```
+    latexindent -l -s -sl -w paper.tex
 
 ### Q: I want to obey the one-sentence-per-line rule. How can I do that?
 
 Execute following command:
 
-```shell
-latexindent -m -l -s -sl -w paper.tex
-```
+    latexindent -m -l -s -sl -w paper.tex
 
 Attention! This is work in progress and does not always produce best results.
 
