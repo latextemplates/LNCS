@@ -73,7 +73,7 @@ jobs:
         with:
           root_file: main.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
-          working_directory: ${{ github.workspace }}/generator-latex-template/tmp
+          working_directory: generator-latex-template/tmp
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
       - name: Rename main.tex
         working-directory: ${{ github.workspace }}/generator-latex-template/tmp
