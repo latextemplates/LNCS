@@ -49,9 +49,6 @@ jobs:
         shell: bash
         working-directory: ${{ github.workspace }}/generator-latex-template/tmp
         run: |
-          pwd
-          ls -la
-          yo --version
           yo latex-template\
            --githubpublish\
            --documentclass=lncs\
