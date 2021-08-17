@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Now generated using the [latex template generator](https://www.npmjs.com/package/generator-latex-template).
 
 ### Added
 
