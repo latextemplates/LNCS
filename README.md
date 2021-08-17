@@ -1,45 +1,49 @@
-# Simplified LNCS Template [![Build Status](https://circleci.com/gh/latextemplates/LNCS/tree/master.svg?style=shield)](https://circleci.com/gh/latextemplates/LNCS/)
+# Simplified LNCS Template
 
 > Quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
 
-## TOC
+This document was created using the [latex-template generator](https://www.npmjs.com/package/generator-latex-template).
 
-<!-- toc -->
+Compile it using
 
-- [Features](#features)
-- [Background](#background)
-- [Quick start](#quick-start)
-- [Tool hints](#tool-hints)
-- [Using the template with your git repository](#using-the-template-with-your-git-repository)
-- [FAQ](#faq)
-- [Development](#development-)
-- [Links](#links)
+    pdflatex main
 
-<!-- tocstop -->
+## Benefits
 
-## Features
+Following features are enabled in this template:
 
-* Support for German documents (without broken headers):
-  Contains a fix to increase compatibility with Babel.
-  See <https://tex.stackexchange.com/a/441701/9075> for details.
-* Provides a skeletal [paper.tex](paper.tex) file.
-* Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed.
-  This is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters.
-* Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
+- Provides a skeletal [main.tex](main.tex) file
+- Example to have an image being placed right to a text
+- Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
   Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
   Thanx to [cleveref].
-* Support of hyperlinked references without extra color thanx to [hyperref].
-* Better breaking of long URLs.
-* Sharper font (still compatible with Springer's requirements).
-* Support for `\powerset` command.
-* Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
-* [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
-* Adds modern packages such as [microtype], [cleveref], [csquotes], [paralist], [hyperref], [hypcap], [upquote], [natbib], [booktabs], [cfr-lm].
-* Optional: Support for [minted] package. Uncomment `\usepackage[newfloat]{minted}` to get started.
-* Optional: Compile with `lualatex` instead of `pdflatex`.
-* Ready-to-go configuration for [latexindent].
+- Sharper font (still compatible with Springer's requirements).
+- Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed.
+  This is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters.
+- Support of hyperlinked references without extra color thanx to [hyperref].
+- Better breaking of long URLs.
+- Support for `\powerset` command.
+- Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
+- [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
+- Modern packages such as [microtype], [cleveref], [csquotes], [hyperref], [hypcap], [upquote], [natbib], [booktabs].
+- Ready-to-go configuration for [latexindent].
 
-Examples:
+## Disabled Features
+
+Following features were not activated for this template.
+You can rerun the latex-template generator to enable the features.
+
+- Support for German documents (without broken headers):
+  Contains a fix to increase compatibility with Babel.
+  See <https://tex.stackexchange.com/a/441701/9075> for details.
+- Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
+  Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
+  Thanx to [cleveref].
+- Typesetting of listings using advanced highlighting powered by the [minted] package.
+- Modern packages such as .
+- LaTeX compilation using the modern lualatex compiler.
+
+## Examples
 
 - [paper.pdf](https://latextemplates.github.io/LNCS/paper.pdf) - normal paper.
 - [paper-minted.pdf](https://latextemplates.github.io/LNCS/paper-minted.pdf) - paper showing minted in action.
@@ -72,7 +76,7 @@ Follow the quick start instructions.
 * Edit [paper.tex](paper.tex).
 * `latexmk paper`.
 
- As you see on CircleCI, the paper compiles out of the box.
+ As you see on GitHub actions, the paper compiles out of the box.
  There is no need to adjust the packages or to remove some of them.
  This might lead to undesiered results such as hyperlinks not working any more or no good microtypographic features.
  In case you think, a package needs to be altered or added, feel free to open an issue.
@@ -80,9 +84,9 @@ Follow the quick start instructions.
 ## Tool hints
 
 There is currently no official biblatex support.
-A first step towards that is done at [biblatex-lncs](https://github.com/neapel/biblatex-lncs/).
+A first step towards that is done at [biblatex-lncs](https://github.com/mgttlinger/biblatex-lncs).
 
-MiKTeX installation hints are given at <https://github.com/latextemplates/scientific-thesis-template/blob/template/README.md#installation-hints-for-windows>.
+MiKTeX installation hints are given at <http://latextemplates.github.io/scientific-thesis-template/#installation-hints-for-windows>.
 
 - Grammar and spell checking is available at [TeXstudio].
   Please download [LanguageTool] (Windows: `choco install languagetool`) and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
@@ -91,23 +95,7 @@ MiKTeX installation hints are given at <https://github.com/latextemplates/scient
 - Use [JabRef] to manage your bibliography (Windows: `choco install jabref`).
 
 
-In case you want to get started using minted, do following steps:
-
-1. Install python: `choco install python` - that uses [chocolatey](https://chocolatey.org/) to install Python
-2. Install [pygments]: `pip instal pygments` - that uses the Pyhton package manager to install the pygments library
-3. When latexing, use `-shell-escape`: `pdflatex -shell-escape paper`.
-   You can also just execute `latexmk paper`.
-
-## Using the template with your git repository
-
-1. Initialize your git repository as usual
-2. Add this repository as upstream: `git remote add upstream https://github.com/latextemplates/LNCS.git`
-3. Merge the branch `upstream/master` into your `master` branch: `git merge upstream/master`.
-
-After that you can use and push the `master` branch as usual.
-Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
-
-## FAQ
+## FAQs
 
 ### Q: ShareLaTeX outputs a warning regarding the llncs class
 
@@ -121,30 +109,33 @@ ShareLaTeX might output following warning:
 The reason is that you did not use `llncs.cls` from a recent llncs2e.zip (which can be downloaded from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>), but a copy from somewhere else.
 Please use the latest version offered by Springer.
 
+### Q: How can I synchronize updates from the template to my repository?
+
+1. Initialize your git repository as usual
+2. Add this repository as upstream: `git remote add upstream https://github.com/latextemplates/LNCS.git`
+3. Merge the branch `upstream/main` into your `main` branch: `git merge upstream/main`.
+
+After that you can use and push the `main` branch as usual.
+Notes on syncing with the upstream repository [are available from GitHub](https://help.github.com/articles/syncing-a-fork/).
+
+
 ### Q: I get the error  `! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts.`
 
-Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: http://tex.stackexchange.com/a/324972/9075)
+Install the `cm-super` package using the MiKTeX package manager. Then, run `initexmf --mkmaps` on the command line. (Long description: <https://tex.stackexchange.com/a/324972/9075>)
+
+### Q: I get `Package csquotes Error: Unbalanced groups or invalid nesting.` What can I do?
+
+A: You have activated `\MakeOuterQuote{"}` and used some special babel command to allow hyphenation at other places as a dash. One example is writing `application"=specific`.
+Now, you have to decide whether you want keep using plain quotes to enquote a word or use the special hyphenation command.
+In other words: Do you want `"quote"` and `app\-lication\-specific` or `\enquote{quote} and  application"=specific`?
+
+Note that this should not happen when the template is generated as the setting `tweak_outerquote` ensures that these two options are mutually exclusive.
 
 ### Q: I need more space. What can I do?
 
 The most simple solution to get more space is to exchange the font.
-You can disable the [cfr-lm] package by the [newtx] package's `newtxtext` and `newtxmath`.
-This effectively switches the font from Computer Modern to Times Roman.
 
-This switch is prepared in the template.
-Exchange
-
-```latex
-\iftrue % use default-font
-```
-
-by
-
-```latex
-\iffalse
-```
-
-### Q: How can I reformat my .tex files?
+### Q: How can I reformat my `.tex` files?
 
 Execute following command:
 
@@ -165,66 +156,40 @@ Attention! This is work in progress and does not always produce best results.
 ### Q: Is it possible to have a footer indicating that the paper is intended to be submitted/submitted/published?
 
 Activate the `llncsconf` package.
-The possible options are listed in `paper.tex`.
+The possible options are listed in `main.tex`.
 
 ### Q: Can I also write in German?
 
-Yes.
+Yes. You can regenerate the template and choose "German" as language.
 
-1. Pass parameter `ngerman` to the document class:
+## Further information
 
-    ```latex
-    \documentclass[english,runningheads,a4paper]{llncs}[2018/03/10]
-    ```
+- tex.stackexchange.com questions regarding LNCS: <https://tex.stackexchange.com/questions/tagged/lncs>
+- Original LNCS demonstration (without the improvements): [llncs-dem.pdf](llncs-dem.pdf)
+- Original LNCS documentation (without the improvements): [llncs-doc.pdf](llncs-doc.pdf)
+- Other templates: <https://latextemplates.github.io/>
 
-1. Please search for `babel` in `paper.tex` and use
+[booktabs]: https://ctan.org/pkg/booktabs
+[cfr-lm]: https://www.ctan.org/pkg/cfr-lm
+[cleveref]: https://ctan.org/pkg/cleveref
+[csquotes]: https://www.ctan.org/pkg/csquotes
+[hypcap]: https://www.ctan.org/pkg/hypcap
+[hyperref]: https://ctan.org/pkg/hyperref
+[latexindent]: https://ctan.org/pkg/latexindent
+[microtype]: https://ctan.org/pkg/microtype
+[minted]: https://ctan.org/pkg/minted
+[natbib]: https://ctan.org/pkg/natbib
+[newtx]: https://ctan.org/pkg/newtx
+[paralist]: https://www.ctan.org/pkg/paralist
+[pdfcomment]: https://www.ctan.org/pkg/pdfcomment
+[upquote]: https://www.ctan.org/pkg/upquote
 
-    ```latex
-    \usepackage[english,ngerman]{babel}
-    ```
+[JabRef]: https://www.jabref.org
+[LanguageTool]: https://languagetool.org/
+[TeXstudio]: http://texstudio.sourceforge.net/
+[pygments]: http://pygments.org/
 
-    instead of
+[llncs2e.zip]: ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip
 
-    ```latex
-    \usepackage[ngerman,english]{babel}
-    ```
-
-## Development
-
-Reindent:
-
-```shell
-latexindent -y="indentPreamble:1,defaultIndent:'  '" -m -w paper.tex`
-```
-
-If you like this work, please consider donating via [Liberapay](https://liberapay.com/koppor)!
-
-## Links
-
-* tex.stackexchange.com questions regarding LNCS: <https://tex.stackexchange.com/questions/tagged/lncs>
-* German: Hinweise zu Ausarbeitungen: <http://wiki.flupp.de/studium/ausarbeitungen>
-* Other templates: <https://latextemplates.github.io/>
-* Original LNCS demonstration (without the improvements): [llncs-dem.pdf](llncs-dem.pdf)
-* Original LNCS documentation (without the improvements): [llncs-doc.pdf](llncs-doc.pdf)
-
-  [booktabs]: https://ctan.org/pkg/booktabs
-  [cfr-lm]: https://www.ctan.org/pkg/cfr-lm
-  [cleveref]: https://ctan.org/pkg/cleveref
-  [csquotes]: https://www.ctan.org/pkg/csquotes
-  [hypcap]: https://www.ctan.org/pkg/hypcap
-  [hyperref]: https://ctan.org/pkg/hyperref
-  [latexindent]: https://ctan.org/pkg/latexindent
-  [microtype]: https://ctan.org/pkg/microtype
-  [minted]: https://ctan.org/pkg/minted
-  [natbib]: https://ctan.org/pkg/natbib
-  [newtx]: https://ctan.org/pkg/newtx
-  [paralist]: https://www.ctan.org/pkg/paralist
-  [pdfcomment]: https://www.ctan.org/pkg/pdfcomment
-  [upquote]: https://www.ctan.org/pkg/upquote
-
-  [JabRef]: https://www.jabref.org
-  [LanguageTool]: https://languagetool.org/
-  [TeXstudio]: http://texstudio.sourceforge.net/
-  [pygments]: http://pygments.org/
-
-  [llncs2e.zip]: ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip
+<!-- disable markdown-lint rules contradicting our writing of FAQs -->
+<!-- markdownlint-disable-file MD001 MD013 MD026 -->
