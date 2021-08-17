@@ -68,14 +68,14 @@ jobs:
         env:
           yeoman_test: true
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
-      - name: latexmk
+      - name: Check build (latexmk)
         uses: dante-ev/latex-action@edge
         with:
           root_file: main.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
           working_directory: generator-latex-template/tmp
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
-      - name: Rename main.tex
+      - name: Prepare files
         working-directory: ${{ github.workspace }}/generator-latex-template/tmp
         run: |
           if [ ${{ matrix.cleveref }} ]; then
@@ -83,8 +83,13 @@ jobs:
           else
             mv main.tex main-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           fi
-      - name: Prepare files
-        run: |
+          # remove compiled output
+          rm main.pdf
+          # remove files which should not be overwritten
+          rm LICENSE
+
+          # copy everything
+          cd ../..
           cp -r generator-latex-template/tmp/* .
           rm -rf generator-latex-template/tmp
       - name: Commit changes
