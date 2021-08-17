@@ -17,7 +17,6 @@ Following features are enabled in this template:
 - Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
   Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
   Thanx to [cleveref].
-- Sharper font (still compatible with Springer's requirements).
 - Generated PDF allows for copy and paste of text without getting words with ligatures such as "workflow" destroyed.
   This is enabled by `glyphtounicode`, which encodes ligatures (such as fl) using unicode characters.
 - Support of hyperlinked references without extra color thanx to [hyperref].
