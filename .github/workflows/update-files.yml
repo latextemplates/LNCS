@@ -71,7 +71,7 @@ jobs:
       - name: Check build (latexmk)
         uses: dante-ev/latex-action@edge
         with:
-          root_file: main.tex
+          root_file: paper.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
           working_directory: generator-latex-template/tmp
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
@@ -79,12 +79,12 @@ jobs:
         working-directory: ${{ github.workspace }}/generator-latex-template/tmp
         run: |
           if [ ${{ matrix.cleveref }} ]; then
-            mv main.tex main-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
+            mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
           else
-            mv main.tex main-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
+            mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           fi
           # remove compiled output
-          rm main.pdf
+          rm paper.pdf
           # remove files which should not be overwritten
           rm LICENSE
 
