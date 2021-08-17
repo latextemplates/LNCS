@@ -51,6 +51,7 @@ jobs:
         run: |
           pwd
           ls -la
+          yo --version
           yo latex-template\
            --githubpublish\
            --documentclass=lncs\
@@ -68,7 +69,7 @@ jobs:
           pwd
           ls -la
           cat .latexmkrc
-          grep minted *.tex
+          grep minted -C 10 *.tex
         env:
           yeoman_test: true
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
