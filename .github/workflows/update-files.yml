@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        language: [en]
-        font: [default]
-        listings: [listings]
+        language: [en, de]
+        font: [default, times]
+        listings: [listings, minted]
         cleveref: [true]
         enquotes: [csquotes]
         tweak_outerquote: [babel]
