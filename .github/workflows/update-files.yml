@@ -63,8 +63,8 @@ jobs:
            --tweak_outerquote=${{ matrix.tweak_outerquote }}\
            --todo=${{ matrix.todo }}\
            --examples=${{ matrix.examples }}
-          pwd
           ls -la
+          cat .latexmkrc
         env:
           yeoman_test: true
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
