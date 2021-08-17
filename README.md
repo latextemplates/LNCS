@@ -12,7 +12,7 @@ Compile it using
 
 Following features are enabled in this template:
 
-- Provides a skeletal [main.tex](main.tex) file
+- Provides a skeletal [paper.tex](paper.tex) file
 - Example to have an image being placed right to a text
 - Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
   Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
@@ -156,7 +156,7 @@ Attention! This is work in progress and does not always produce best results.
 ### Q: Is it possible to have a footer indicating that the paper is intended to be submitted/submitted/published?
 
 Activate the `llncsconf` package.
-The possible options are listed in `main.tex`.
+The possible options are listed in `paper.tex`.
 
 ### Q: Can I also write in German?
 

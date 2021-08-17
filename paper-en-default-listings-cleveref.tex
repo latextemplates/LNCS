@@ -250,6 +250,7 @@
   step = 5 ]
 { encoding = {OT1,T1,TS1} }
 { }
+
 % Enable nice comments
 \usepackage{pdfcomment}
 
@@ -409,7 +410,8 @@
 \lipsum[1-3]\todo{Refine me}
 
 The remainder of the paper starts with a presentation of related work (\cref{sec:relatedwork}).
-It is followed by a presentation of hints on \LaTeX{} (\cref{sec:latexhints}).Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:outlook}).
+It is followed by a presentation of hints on \LaTeX{} (\cref{sec:latexhints}).
+Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:outlook}).
 
 \section{Related Work}
 \label{sec:relatedwork}
@@ -631,6 +633,9 @@ One can also add \verb+float+ as paramter to have the listing floating.
 
 \begin{ltgexample}
 \begin{lstlisting}[
+  % one can adjust spacing here if required
+  % aboveskip=2.5\baselineskip,
+  % belowskip=-.8\baselineskip,
   float,
   language=XML,
   caption={Example XML Listing -- placed as floating figure},
@@ -690,8 +695,8 @@ One can enumerate items as follows:
 
 \begin{ltgexample}
 \begin{enumerate}
-\item Item One
-\item Item Two
+  \item Item One
+  \item Item Two
 \end{enumerate}
 \end{ltgexample}
 
@@ -700,9 +705,9 @@ With paralist, one can even have all items typset after each other and have them
 
 \begin{ltgexample}
 \begin{inparaenum}
-\item All these items...
-\item ...appear in one line
-\item This is enabled by the paralist package.
+  \item All these items...
+  \item ...appear in one line
+  \item This is enabled by the paralist package.
 \end{inparaenum}
 \end{ltgexample}
 
