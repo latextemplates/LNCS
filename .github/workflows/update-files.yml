@@ -8,10 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        language: [en, de]
-        # "arial" not available on linux
-        font: [default, times]
-        listings: [listings, minted]
+        language: [en]
+        font: [default]
+        listings: [listings]
         cleveref: [true]
         enquotes: [csquotes]
         tweak_outerquote: [babel]
