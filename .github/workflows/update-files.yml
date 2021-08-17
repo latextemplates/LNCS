@@ -63,6 +63,7 @@ jobs:
            --tweak_outerquote=${{ matrix.tweak_outerquote }}\
            --todo=${{ matrix.todo }}\
            --examples=${{ matrix.examples }}
+          pwd
           ls -la
           cat .latexmkrc
         env:
@@ -81,6 +82,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install pygments
         if: ${{ matrix.listings == 'minted' }}
+      - run: grep minted *.tex
+        working-directory: ${{ github.workspace }}/generator-latex-template/tmp
       - name: Check build (latexmk)
         uses: dante-ev/latex-action@edge
         with:
