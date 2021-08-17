@@ -40,13 +40,16 @@ jobs:
              echo ::set-output name=lncsclspresent::true
              echo "$LLNCS_CLS" > llncs.cls
            fi
+           # source: https://yeoman.io/authoring/index.html
+           npm link
+           npm install -g yo
         env:
           LLNCS_CLS: ${{secrets.LLNCS_CLS}}
       - name: Generate template
         run: |
           mkdir -p tmp
           cd tmp
-          npx yo $GITHUB_WORKSPACE/generator-latex-template\
+          yo generator-latex-template\
            --githubpublish\
            --documentclass=lncs\
            --latexcompiler=pdflatex\
