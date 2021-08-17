@@ -31,13 +31,13 @@ jobs:
           node-version: '14'
       - run: ls -la
       - run: ls -la
-        working-directory: $GITHUB_WORKSPACE
+        working-directory: ${{ github.workspace }}
       - run: ls -la
-        working-directory: $GITHUB_WORKSPACE/generator-latex-template
+        working-directory: ${{ github.workspace }}/generator-latex-template
       - name: Create llncs.cls
         id: createllncs
         shell: bash
-        working-directory: $GITHUB_WORKSPACE/generator-latex-template
+        working-directory: ${{ github.workspace }}/generator-latex-template
         run: |
            if [ "$LLNCS_CLS" == "" ]; then
              echo ::set-output name=lncsclspresent::false
