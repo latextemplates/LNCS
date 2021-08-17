@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        language: [en, de]
-        font: [default, times]
-        listings: [listings, minted]
+        language: [en]
+        font: [default]
+        listings: [listings]
         cleveref: [true]
         enquotes: [csquotes]
         tweak_outerquote: [babel]
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - name: Prepare generattion
+      - name: Prepare generation
         id: createllncs
         shell: bash
         working-directory: ${{ github.workspace }}/generator-latex-template
@@ -66,6 +66,7 @@ jobs:
           pwd
           ls -la
           cat .latexmkrc
+          grep minted *.tex
         env:
           yeoman_test: true
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
