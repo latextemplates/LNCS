@@ -92,6 +92,7 @@ jobs:
           cd ../..
           cp -r generator-latex-template/tmp/* .
           rm -rf generator-latex-template/tmp
+          git pull
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
