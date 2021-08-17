@@ -68,7 +68,7 @@ jobs:
         env:
           yeoman_test: true
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
-     - name: Set up Python 3.x
+      - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
           # Semantic version range syntax or exact version of a Python version
