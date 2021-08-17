@@ -4,13 +4,13 @@ on:
     branches: [ switch-to-github-actions ]
   workflow_dispatch:
 jobs:
-  lncs-pdflatex-bibtex:
+  generatetex:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        language: [en]
-        font: [default]
-        listings: [listings]
+        language: [en, de]
+        font: [default, times]
+        listings: [listings, minted]
         cleveref: [true]
         enquotes: [csquotes]
         tweak_outerquote: [babel]
@@ -96,3 +96,38 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update files based on generated files by template generator
+  publish:
+    runs-on: ubuntu-latest
+    needs: [generatetex]
+    steps:
+      - run: |
+          cp paper-en-default-listings-cleveref.tex paper.tex
+          cp paper-en-default-minted-cleveref.tex paper-minted.tex
+          cp paper-en-times-listings-cleveref.tex paper-newtx.tex
+          cp paper-en-times-minted-cleveref.tex paper-newtx-minted.tex
+      - name: Build paper.tex
+        uses: dante-ev/latex-action@edge
+        with:
+          root_file: paper.tex
+      - name: Build paper-minted.tex
+        uses: dante-ev/latex-action@edge
+        with:
+          root_file: paper-minted.tex
+      - name: Build paper-newtx.tex
+        uses: dante-ev/latex-action@edge
+        with:
+          root_file: paper-newtx.tex
+      - name: Build paper-newtx-minted.tex
+        uses: dante-ev/latex-action@edge
+        with:
+          root_file: paper-newtx-minted.tex
+      - run: |
+          mkdir publish
+          cp *.pdf publish/
+          cp paper.tex publish/
+          cp README.md publish/
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
