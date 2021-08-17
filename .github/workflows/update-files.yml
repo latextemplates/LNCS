@@ -28,27 +28,28 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - name: Create llncs.cls
+      - name: Prepate generattion
         id: createllncs
         shell: bash
         working-directory: ${{ github.workspace }}/generator-latex-template
         run: |
+          npm link
+          npm install -g yo
+          mkdir -p tmp
+          cd tmp
            if [ "$LLNCS_CLS" == "" ]; then
              echo ::set-output name=lncsclspresent::false
            else
              echo ::set-output name=lncsclspresent::true
              echo "$LLNCS_CLS" > llncs.cls
            fi
-           # source: https://yeoman.io/authoring/index.html
-           npm link
-           npm install -g yo
         env:
           LLNCS_CLS: ${{secrets.LLNCS_CLS}}
       - name: Generate template
+        shell: bash
+        working-directory: ${{ github.workspace }}/generator-latex-template/tmp
         run: |
-          mkdir -p tmp
-          cd tmp
-          yo generator-latex-template\
+          yo latex-template\
            --githubpublish\
            --documentclass=lncs\
            --latexcompiler=pdflatex\
