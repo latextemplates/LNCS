@@ -118,14 +118,6 @@
 
 \usepackage{graphicx}
 
-% For easy quotations: \enquote{text}
-% This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
-\usepackage[autostyle=true]{csquotes}
-
-% Enable using "`quote"' - see https://tex.stackexchange.com/a/150954/9075
-\defineshorthand{"`}{\openautoquote}
-\defineshorthand{"'}{\closeautoquote}
-
 % Diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
 % Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
 \usepackage{diagbox}
@@ -214,6 +206,15 @@
 % Fix counter as described at https://tex.stackexchange.com/a/28334/9075
 \usepackage{chngcntr}
 \AtBeginDocument{\counterwithout{lstlisting}{section}}
+
+
+% For easy quotations: \enquote{text}
+% This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
+\usepackage[autostyle=true]{csquotes}
+
+% Enable using "`quote"' - see https://tex.stackexchange.com/a/150954/9075
+\defineshorthand{"`}{\openautoquote}
+\defineshorthand{"'}{\closeautoquote}
 
 % Nicer tables (\toprule, \midrule, \bottomrule)
 \usepackage{booktabs}
@@ -638,7 +639,7 @@ One can also add \verb+float+ as paramter to have the listing floating.
   % belowskip=-.8\baselineskip,
   float,
   language=XML,
-  caption={Example XML Listing -- placed as floating figure},
+  caption={Example XML listing -- placed as floating figure},
   label={lst:flXML}]
 <listing name="example">
   Floating
@@ -646,29 +647,26 @@ One can also add \verb+float+ as paramter to have the listing floating.
 \end{lstlisting}
 \end{ltgexample}
 
-One can also typeset JSON as shown in \cref{lst:flJSON}.
+One can also typeset JSON as shown in \cref{lst:json}.
 
 \begin{ltgexample}
 \begin{lstlisting}[
   float,
   language=json,
-  caption={Example JSON Listing -- placed as floating figure},
-  label={lst:flJSON}]
+  caption={Example JSON listing -- placed as floating figure},
+  label={lst:json}]
 {
   key: "value"
 }
 \end{lstlisting}
 \end{ltgexample}
 
-Java is also possible as shown in \cref{lst:flJava}.
+Java is also possible as shown in \cref{lst:java}.
 
 \begin{ltgexample}
 \begin{lstlisting}[
-  % one can adjust spacing here if required
-  % aboveskip=2.5\baselineskip,
-  % belowskip=-.8\baselineskip,
-  caption={Example Java Listing},
-  label=lst:flJava,
+  caption={Example Java listing},
+  label=lst:java,
   language=Java,
   float]
 public class Hello {
