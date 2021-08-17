@@ -113,9 +113,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [generatetex]
     steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
       - run: |
-          # pull changes of the matrix build (they are commited in "Commit changes")
-          git pull
           cp paper-en-default-listings-cleveref.tex paper.tex
           cp paper-en-default-minted-cleveref.tex paper-minted.tex
           cp paper-en-times-listings-cleveref.tex paper-newtx.tex
