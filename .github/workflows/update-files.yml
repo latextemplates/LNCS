@@ -103,6 +103,8 @@ jobs:
     needs: [generatetex]
     steps:
       - run: |
+          # pull changes of the matrix build (they are commited in "Commit changes")
+          git pull
           cp paper-en-default-listings-cleveref.tex paper.tex
           cp paper-en-default-minted-cleveref.tex paper-minted.tex
           cp paper-en-times-listings-cleveref.tex paper-newtx.tex
