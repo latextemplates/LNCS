@@ -110,7 +110,13 @@ jobs:
 
           cd ..
           git status
-      - uses: EndBug/add-and-commit@v7
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          message: 'Update files based on generated files by template generator'
+          push: false
+      - name: Push changes
+        uses: EndBug/add-and-commit@v7
         with:
           message: 'Update files based on generated files by template generator'
           pull_strategy: '--rebase'
