@@ -102,6 +102,10 @@ jobs:
           # copy everything
           cd ../..
           cp -r generator-latex-template/tmp/* .
+
+          # reset generator-latex-template to enable comitting
+          cd generator-latex-template
+          git reset --hard
       - uses: EndBug/add-and-commit@v7
         with:
           message: 'Update files based on generated files by template generator'
