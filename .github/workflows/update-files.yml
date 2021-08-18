@@ -106,6 +106,7 @@ jobs:
           # reset generator-latex-template to enable comitting
           cd generator-latex-template
           git reset --hard
+          git clean -xdf
 
           cd ..
           git status
