@@ -43,11 +43,14 @@ jobs:
             echo ::set-output name=lncsclspresent::true
             echo "$LLNCS_CLS" > llncs.cls
           fi
+          cd $RUNNER_TEMP
+          mkdir build
+          pwd
         env:
           LLNCS_CLS: ${{secrets.LLNCS_CLS}}
       - name: Generate template
         shell: bash
-        working-directory: ${{ github.workspace }}/generator-latex-template/tmp
+        working-directory: ${{ runner.temp }}/build
         run: |
           yo latex-template\
            --githubpublish\
@@ -84,10 +87,10 @@ jobs:
         with:
           root_file: paper.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
-          working_directory: generator-latex-template/tmp
+          working_directory: ${{ runner.temp }}/build
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
       - name: Prepare files
-        working-directory: ${{ github.workspace }}/generator-latex-template/tmp
+        working-directory: ${{ runner.temp }}/build
         run: |
           if [ ${{ matrix.cleveref }} ]; then
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
@@ -100,16 +103,7 @@ jobs:
           rm LICENSE
 
           # copy everything
-          cd ../..
-          cp -r generator-latex-template/tmp/* .
-
-          # reset generator-latex-template to enable comitting
-          cd generator-latex-template
-          git reset --hard
-          git clean -xdf
-
-          cd ..
-          git status
+          cp -r . $GITHUB_WORKSPACE
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
         with:
