@@ -79,12 +79,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install pygments
         if: ${{ matrix.listings == 'minted' }}
+      - name: Prepare check build
+        run: |
+          mkdir $RUNNER_TEMP/build
+          cp -r . $RUNNER_TEMP/build
+        working-directory: ${{ github.workspace }}/generator-latex-template/tmp
       - name: Check build (latexmk)
         uses: dante-ev/latex-action@edge
         with:
           root_file: paper.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
-          working_directory: generator-latex-template/tmp
+          working_directory: ${{ runner.temp }}/build
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
       - name: Prepare files
         working-directory: ${{ github.workspace }}/generator-latex-template/tmp
@@ -94,8 +99,6 @@ jobs:
           else
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           fi
-          # remove compiled output
-          rm paper.pdf
           # remove files which should not be overwritten
           rm LICENSE
 
