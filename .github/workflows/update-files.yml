@@ -89,7 +89,7 @@ jobs:
         with:
           root_file: paper.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
-          working_directory: ${{ github.workspace }}/../build
+          working_directory: ../build
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
       - name: Prepare files
         working-directory: ${{ github.workspace }}/generator-latex-template/tmp
