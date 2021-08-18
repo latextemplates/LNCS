@@ -198,12 +198,6 @@
   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
 }
 
-\renewcommand{\lstlistingname}{List.}
-
-% Fix counter wie bei https://tex.stackexchange.com/a/28334/9075 beschrieben
-\usepackage{chngcntr}
-\AtBeginDocument{\counterwithout{lstlisting}{section}}
-
 
 % For easy quotations: \enquote{text}
 % This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
@@ -298,13 +292,13 @@
 
 \crefname{table}{Tabelle}{Tab.}
 \Crefname{table}{Tabelle}{Tabellen}
-\crefname{figure}{\figurename}{\figurename}
+\crefname{figure}{Abbildung}{Abbildungen}
 \Crefname{figure}{Abbildung}{Abbildungen}
 \crefname{equation}{Gleichung}{Gleichungen}
 \Crefname{equation}{Gleichung}{Gleichungen}
 \crefname{theorem}{Theorem}{Theoreme}
 \Crefname{theorem}{Theorem}{Theoreme}
-\crefname{listing}{\lstlistingname}{\lstlistingname}
+\crefname{listing}{Listing}{Listings}
 \Crefname{listing}{Listing}{Listings}
 \crefname{section}{Abschnitt}{Abschnitte}
 \Crefname{section}{Abschnitt}{Abschnitte}
@@ -313,6 +307,7 @@
 \crefname{subparagraph}{Abschnitt}{Abschnitte}
 \Crefname{subparagraph}{Abschnitt}{Abschnitte}
 
+\usepackage{lipsum}
 
 % For demonstration purposes only
 % These packages can be removed when all examples have been deleted
