@@ -87,6 +87,7 @@ jobs:
         with:
           root_file: paper.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
+          # See https://github.community/t/how-can-i-access-the-current-repo-context-and-files-from-a-docker-container-action/17711/8 for details
           working_directory: ${{ runner.temp }}/build
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
       - name: Prepare files
