@@ -80,6 +80,13 @@ MiKTeX installation hints are given at <http://latextemplates.github.io/scientif
   **If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).**
 - Use [JabRef] to manage your bibliography (Windows: `choco install jabref`).
 
+To have minted running properly, you have to do following steps on Windows:
+
+1. Install python: `choco install python` - that uses [chocolatey](https://chocolatey.org/) to install Python
+2. Install [pygments]: `pip instal pygments` - that uses the Pyhton package manager to install the pygments library
+3. When latexing, use `-shell-escape`: `pdflatex -shell-escape paper`.
+   You can also just execute `latexmk paper`.
+
 ## FAQs
 
 ### Q: ShareLaTeX outputs a warning regarding the llncs class
