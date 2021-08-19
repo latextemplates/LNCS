@@ -113,6 +113,7 @@ jobs:
         with:
           message: 'Update files based on generated files by template generator'
           push: false
+          pull_strategy: 'NO-PULL'
           cwd: 'code'
       - name: Push changes
         run: |
