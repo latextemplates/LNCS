@@ -1,7 +1,6 @@
 name: Update Files
 on:
   push:
-    branches: [ switch-to-github-actions ]
   workflow_dispatch:
 jobs:
   generatetex:
@@ -166,6 +165,7 @@ jobs:
           cp README.md publish/
           cp .github/_config.yml publish/
       - name: Deploy
+        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
