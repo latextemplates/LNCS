@@ -164,6 +164,7 @@ jobs:
           cp *.pdf publish/
           cp paper.tex publish/
           cp README.md publish/
+          cp .github/_config.yml publish/
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
