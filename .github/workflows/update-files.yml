@@ -94,8 +94,10 @@ jobs:
         run: |
           if [ ${{ matrix.cleveref }} ]; then
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
+            touch new-paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
           else
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
+            touch new-paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           fi
           # remove compiled output
           rm paper.pdf
