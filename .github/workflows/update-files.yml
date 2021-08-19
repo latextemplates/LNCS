@@ -25,17 +25,33 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
+          path: 'code'
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - name: Prepare generation
-        id: createllncs
-        shell: bash
-        working-directory: ${{ github.workspace }}/generator-latex-template
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.x'
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+        if: ${{ matrix.listings == 'minted' }}
+      - name: Install pygments
+        run: |
+          python -m pip install --upgrade pip
+          pip install pygments
+        if: ${{ matrix.listings == 'minted' }}
+      - name: Make generator available globally
+        working-directory: ${{ github.workspace }}/code/generator-latex-template
         run: |
           npm link
           npm install -g yo
-          mkdir -p tmp
+      - name: Prepare generation
+        id: createllncs
+        shell: bash
+        run: |
+          mkdir tmp
           cd tmp
           if [ "$LLNCS_CLS" == "" ]; then
             echo ::set-output name=lncsclspresent::false
@@ -47,7 +63,7 @@ jobs:
           LLNCS_CLS: ${{secrets.LLNCS_CLS}}
       - name: Generate template
         shell: bash
-        working-directory: ${{ github.workspace }}/generator-latex-template/tmp
+        working-directory: ${{ github.workspace }}/tmp
         run: |
           yo latex-template\
            --githubpublish\
@@ -66,29 +82,15 @@ jobs:
         env:
           yeoman_test: true
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
-      - name: Set up Python 3.x
-        uses: actions/setup-python@v2
-        with:
-          # Semantic version range syntax or exact version of a Python version
-          python-version: '3.x'
-          # Optional - x64 or x86 architecture, defaults to x64
-          architecture: 'x64'
-        if: ${{ matrix.listings == 'minted' }}
-      - name: Install pygments
-        run: |
-          python -m pip install --upgrade pip
-          pip install pygments
-        if: ${{ matrix.listings == 'minted' }}
       - name: Check build (latexmk)
         uses: dante-ev/latex-action@edge
         with:
           root_file: paper.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
-          # See https://github.community/t/how-can-i-access-the-current-repo-context-and-files-from-a-docker-container-action/17711/8 for details
-          working_directory: generator-latex-template/tmp
+          working_directory: tmp
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
       - name: Prepare files
-        working-directory: ${{ github.workspace }}/generator-latex-template/tmp
+        working-directory: ${{ github.workspace }}/tmp
         run: |
           if [ ${{ matrix.cleveref }} ]; then
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
@@ -101,15 +103,9 @@ jobs:
           rm LICENSE
 
           # copy everything
-          cd ../..
-          cp -r generator-latex-template/tmp/* .
+          cp * ../code/
 
-          # reset generator-latex-template to enable comitting
-          cd generator-latex-template
-          git reset --hard
-          git clean -xdf
-
-          cd ..
+          cd ../code/
           git status
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
