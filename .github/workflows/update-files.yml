@@ -115,12 +115,10 @@ jobs:
           push: false
           cwd: 'code'
       - name: Push changes
-        uses: EndBug/add-and-commit@v7
-        with:
-          message: 'Update files based on generated files by template generator'
-          pull_strategy: '--rebase'
-          push: true
-          cwd: 'code'
+        run: |
+          cd code
+          git pull --rebase
+          git push
   publish:
     runs-on: ubuntu-latest
     needs: [generatetex]
