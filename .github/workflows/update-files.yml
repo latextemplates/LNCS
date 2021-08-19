@@ -130,7 +130,7 @@ jobs:
           cp paper-en-default-listings-cleveref.tex paper.tex
           cp paper-en-default-minted-cleveref.tex paper-minted.tex
           cp paper-en-times-listings-cleveref.tex paper-newtx.tex
-          cp paper-en-times-minted-cleveref.tex paper-newtx-minted.tex
+          cp paper-en-times-minted-cleveref.tex paper-minted-newtx.tex
       - name: Prepare generation
         id: createllncs
         shell: bash
@@ -155,10 +155,10 @@ jobs:
         uses: dante-ev/latex-action@edge
         with:
           root_file: paper-newtx.tex
-      - name: Build paper-newtx-minted.tex
+      - name: Build paper-minted-newtx.tex
         uses: dante-ev/latex-action@edge
         with:
-          root_file: paper-newtx-minted.tex
+          root_file: paper-minted-newtx.tex
       - run: |
           mkdir publish
           cp *.pdf publish/
