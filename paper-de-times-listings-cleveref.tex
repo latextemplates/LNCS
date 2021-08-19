@@ -1,0 +1,750 @@
+% Dieses Template wurde mit der "LLNCS DOCUMENT CLASS -- version 2.20 (10-Mar-2018)" getestet
+
+% !TeX spellcheck = de-DE
+% !TeX encoding = utf8
+% !TeX program = pdflatex
+% !BIB program = bibtex
+% -*- coding:utf-8 mod:LaTeX -*-
+
+% Neue deutsche Trennmuster
+% Siehe http://www.ctan.org/pkg/dehyph-exptl und http://projekte.dante.de/Trennmuster/WebHome
+% Nur für pdflatex, nicht für lualatex
+\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+
+% "runningheads" zeigt Author + Titel auf jeder Seite.
+% Diese Option nach Aufforderung durch die Herausgeber entfernen.
+% Während des Schreibens und das Review des Papers hilft das, um z.B. auf konkrete Seitenzahlen einfach verweisen zu können.
+\documentclass[ngerman,runningheads,a4paper]{llncs}[2018/03/10]
+
+% backticks (`) werden als solches in verbatim-Umgebungen dargestellt
+% Details unter:
+%   - https://tex.stackexchange.com/a/341057/9075
+%   - https://tex.stackexchange.com/a/47451/9075
+%   - https://tex.stackexchange.com/a/166791/9075
+\usepackage{upquote}
+
+% Setze Deutsch als Sprache
+\usepackage[english,main=ngerman]{babel}
+%
+% Hinweis von http://tex.stackexchange.com/a/321066/9075
+% Ermögliche die Benutzung von "= als Trennstriche
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+%
+% Fix von https://tex.stackexchange.com/a/441701/9075
+\usepackage{regexpatch}
+\makeatletter
+\edef\switcht@albion{%
+  \relax\unexpanded\expandafter{\switcht@albion}%
+}
+\xpatchcmd*{\switcht@albion}{ \def}{\def}{}{}
+\xpatchcmd{\switcht@albion}{\relax}{}{}{}
+\edef\switcht@deutsch{%
+  \relax\unexpanded\expandafter{\switcht@deutsch}%
+}
+\xpatchcmd*{\switcht@deutsch}{ \def}{\def}{}{}
+\xpatchcmd{\switcht@deutsch}{\relax}{}{}{}
+\edef\switcht@francais{%
+  \relax\unexpanded\expandafter{\switcht@francais}%
+}
+\xpatchcmd*{\switcht@francais}{ \def}{\def}{}{}
+\xpatchcmd{\switcht@francais}{\relax}{}{}{}
+\makeatother
+
+% Links verhalten sich so, wie sie sollen
+% Zeilenumbrüche bei URLs auch bei Bindestrichen erlauben, auch wenn es verwirrend sein könnte: Gehört der Bindestrich zur URL oder ist es ein Trennstrich?
+% Siehe https://tex.stackexchange.com/a/3034/9075.
+\usepackage[hyphens]{url}
+% \urlstyle{same}
+%
+% Hinweis von http://tex.stackexchange.com/a/10419/9075.
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\RequirePackage{newtxtext}
+\RequirePackage{newtxmath}
+\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+
+% Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
+\usepackage[T1]{fontenc}
+
+% Optischer Randausgleich und Grauwertkorrektur. Siehe See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
+
+\usepackage[
+  babel=true,
+  expansion=alltext,
+  protrusion=alltext-nott,
+  final
+]{microtype}
+
+% \texttt{test -- test} - diese Einstellung behält "--" bei (und konveriert sie nicht zu einem Bindestrich)
+\DisableLigatures{encoding = T1, family = tt* }
+
+% tracking=true muss als Parameter des microtype-packages mitgegeben werden
+% Deaktiviert, da dies bei Algorithmen seltsam aussieht
+
+%\DeclareMicrotypeSet*[tracking]{my}{ font = */*/*/sc/* }%
+
+% Hier wird festgelegt, dass alle Passagen in Kapitälchen automatisch leicht gesperrt werden.
+% Quelle: http://homepage.ruhr-uni-bochum.de/Georg.Verweyen/pakete.html
+% Deaktiviert, da sonst "BPEL", "BPMN" usw. wirklich komisch aussehen.
+% Macht wohl nur bei geisteswissenschaftlichen Arbeiten Sinn.
+%\SetTracking{ encoding = *, shape = sc }{ 45 }
+
+\usepackage{graphicx}
+
+% Diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
+% Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
+\usepackage{diagbox}
+
+\usepackage{xcolor}
+
+% Code Listings
+\usepackage{listings}
+
+\definecolor{eclipseStrings}{RGB}{42,0.0,255}
+\definecolor{eclipseKeywords}{RGB}{127,0,85}
+\colorlet{numb}{magenta!60!black}
+
+% JSON definition
+% Source: https://tex.stackexchange.com/a/433961/9075
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    commentstyle=\color{eclipseStrings}, % style of comment
+    stringstyle=\color{eclipseKeywords}, % style of strings
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    % backgroundcolor=\color{gray}, %only if you like
+    string=[s]{"}{"},
+    comment=[l]{:\ "},
+    morecomment=[l]{:"},
+    literate=
+        *{0}{{{\color{numb}0}}}{1}
+         {1}{{{\color{numb}1}}}{1}
+         {2}{{{\color{numb}2}}}{1}
+         {3}{{{\color{numb}3}}}{1}
+         {4}{{{\color{numb}4}}}{1}
+         {5}{{{\color{numb}5}}}{1}
+         {6}{{{\color{numb}6}}}{1}
+         {7}{{{\color{numb}7}}}{1}
+         {8}{{{\color{numb}8}}}{1}
+         {9}{{{\color{numb}9}}}{1}
+}
+
+\lstset{
+  language=XML,
+  %
+  showstringspaces=false,
+  %
+  extendedchars=true,
+  %
+  basicstyle=\footnotesize\ttfamily,
+  %
+  commentstyle=\slshape,
+  %
+  % Default: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
+  stringstyle=\ttfamily,
+  %
+  breaklines=true,
+  %
+  breakatwhitespace=true,
+  %
+  % Alternative: fixed
+  columns=flexible,
+  %
+  numbers=left,
+  %
+  numberstyle=\tiny,
+  %
+  basewidth=.5em,
+  %
+  xleftmargin=.5cm,
+  %
+  % aboveskip=0mm,
+  %
+  % belowskip=0mm,
+  %
+  captionpos=b
+}
+
+% Ermögliche Umlaute when using \lstinputputlisting.
+% Siehe https://stackoverflow.com/a/29260603/873282 für Details.
+% listingsutf8 hat im Juni 2020 nicht funktioniert.
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+}
+
+
+% For easy quotations: \enquote{text}
+% This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
+\usepackage[autostyle=true]{csquotes}
+
+% Enable using "`quote"' - see https://tex.stackexchange.com/a/150954/9075
+\defineshorthand{"`}{\openautoquote}
+\defineshorthand{"'}{\closeautoquote}
+
+% Nicer tables (\toprule, \midrule, \bottomrule)
+\usepackage{booktabs}
+
+% Extended enumerate, such as \begin{compactenum}
+\usepackage{paralist}
+
+% Put figures aside a text
+\usepackage[rflt]{floatflt}
+
+% Bibliopgraphy enhancements
+%  - enable \cite[prenote][]{ref}
+%  - enable \cite{ref1,ref2}
+% Alternative: \usepackage{cite}, which enables \cite{ref1, ref2} only (otherwise: Error message: "White space in argument")
+
+% Doc: http://texdoc.net/natbib
+\usepackage[%
+  square,        % for square brackets
+  comma,         % use commas as separators
+  numbers,       % for numerical citations;
+%  sort,          % orders multiple citations into the sequence in which they appear in the list of references;
+  sort&compress, % as sort but in addition multiple numerical citations
+                 % are compressed if possible (as 3-6, 15);
+]{natbib}
+% In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
+\renewcommand{\bibnumfmt}[1]{#1.}
+
+% Prepare more space-saving rendering of the bibliography
+% Source: https://tex.stackexchange.com/a/280936/9075
+\SetExpansion
+[ context = sloppy,
+  stretch = 30,
+  shrink = 60,
+  step = 5 ]
+{ encoding = {OT1,T1,TS1} }
+{ }
+
+% Enable nice comments
+\usepackage{pdfcomment}
+
+\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+
+% Compatibality with packages todo, easy-todo, todonotes
+\newcommand{\todo}[1]{\commentatside{#1}}
+
+% Compatiblity with package fixmetodonotes
+\newcommand{\TODO}[1]{\commentatside{#1}}
+
+
+% Fußnoten unter Gleitumgebungen ("floats") platzieren
+% Quelle: https://tex.stackexchange.com/a/32993/9075
+\usepackage{stfloats}
+\fnbelowfloat
+
+\usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
+
+\addto\extrasgerman{\sisetup{locale = DE}}
+
+% Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
+\usepackage{hyperref}
+
+% Enable hyperref without colors and without bookmarks
+\hypersetup{
+  hidelinks,
+  colorlinks=true,
+  allcolors=black,
+  pdfstartview=Fit,
+  breaklinks=true
+}
+
+% Enable correct jumping to figures when referencing
+\usepackage[all]{hypcap}
+
+% Hint by https://tex.stackexchange.com/a/193370/9075 to suppress strange outputs of the babel package
+% Example strange output: Package babel Info: Redefining ngerman shorthand "|
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@decl@short}{\bbl@info}{\@gobble}{}{}
+\makeatother
+
+% cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
+\usepackage[capitalise,nameinlink]{cleveref}
+
+\crefname{table}{Tabelle}{Tab.}
+\Crefname{table}{Tabelle}{Tabellen}
+\crefname{figure}{Abbildung}{Abbildungen}
+\Crefname{figure}{Abbildung}{Abbildungen}
+\crefname{equation}{Gleichung}{Gleichungen}
+\Crefname{equation}{Gleichung}{Gleichungen}
+\crefname{theorem}{Theorem}{Theoreme}
+\Crefname{theorem}{Theorem}{Theoreme}
+\crefname{listing}{Listing}{Listings}
+\Crefname{listing}{Listing}{Listings}
+\crefname{section}{Abschnitt}{Abschnitte}
+\Crefname{section}{Abschnitt}{Abschnitte}
+\crefname{paragraph}{Abschnitt}{Abschnitte}
+\Crefname{paragraph}{Abschnitt}{Abschnitte}
+\crefname{subparagraph}{Abschnitt}{Abschnitte}
+\Crefname{subparagraph}{Abschnitt}{Abschnitte}
+
+\usepackage{lipsum}
+
+% For demonstration purposes only
+% These packages can be removed when all examples have been deleted
+\usepackage[math]{blindtext}
+\usepackage{mwe}
+\usepackage{currfile}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings}
+
+%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+  <-6>    MnSymbolC5
+  <6-7>   MnSymbolC6
+  <7-8>   MnSymbolC7
+  <8-9>   MnSymbolC8
+  <9-10>  MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+
+% Enable hyphenation at other places as the dash.
+% Example: applicaiton\hydash specific
+\makeatletter
+\newcommand{\hydash}{\penalty\@M-\hskip\z@skip}
+% Definition of "= taken from http://mirror.ctan.org/macros/latex/contrib/babel-contrib/german/ngermanb.dtx
+\makeatother
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+% Add copyright
+% Do that for the final version or if you send it to colleagues
+\iffalse
+  %state: intended|submitted|llncs
+  %you can add "crop" if the paper should be cropped to the format Springer is publishing
+  \usepackage[intended]{llncsconf}
+
+  \conference{name of the conference}
+
+  %in case of "llncs" (final version!)
+  %example: llncs{Anonymous et al. (eds). \emph{Proceedings of the International Conference on \LaTeX-Hacks}, LNCS~42. Some Publisher, 2016.}{0042}
+  \llncs{book editors and title}{0042} %% 0042 is the start page
+\fi
+
+% Enable copy and paste of text from the PDF
+% Only required for pdflatex. It "just works" in the case of lualatex.
+% Alternative: cmap or mmap package
+% mmap enables mathematical symbols, but does not work with the newtx font set
+% See: https://tex.stackexchange.com/a/64457/9075
+% Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
+% Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+%
+% According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
+\input glyphtounicode
+\pdfgentounicode=1
+
+\begin{document}
+
+\title{Paper Title}
+% If Title is too long, use \titlerunning
+%\titlerunning{Short Title}
+
+% Single insitute
+\author{Firstname Lastname \and Firstname Lastname}
+
+% If there are too many authors, use \authorrunning
+%\authorrunning{First Author et al.}
+
+\institute{Institute}
+
+%% Multiple insitutes - ALTERNATIVE to the above
+% \author{%
+%     Firstname Lastname\inst{1} \and
+%     Firstname Lastname\inst{2}
+% }
+%
+%If there are too many authors, use \authorrunning
+%  \authorrunning{First Author et al.}
+%
+%  \institute{
+%      Insitute 1\\
+%      \email{...}\and
+%      Insitute 2\\
+%      \email{...}
+%}
+
+\maketitle
+
+\begin{abstract}
+  \lipsum[1]
+\end{abstract}
+
+\begin{keywords}
+  keyword1, keyword2
+\end{keywords}
+
+\section{Introduction}
+\label{sec:intro}
+\lipsum[1-3]\todo{Refine me}
+
+The remainder of the paper starts with a presentation of related work (\cref{sec:relatedwork}).
+It is followed by a presentation of hints on \LaTeX{} (\cref{sec:latexhints}).Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:outlook}).
+
+\section{Related Work}
+\label{sec:relatedwork}
+
+Winery~\cite{Winery} is a graphical \commentontext{modeling}{modeling with one ``l'', because of AE} tool.
+The whole idea of TOSCA is explained by \citet{Binz2009}.
+
+\section{LaTeX Hinweise}
+\label{chap:latexhints}
+
+% Benötigt für eine korrekte Darstellung der Hinweise im erzeugten PDF
+\newcount\LTGbeginlineexample
+\newcount\LTGendlineexample
+\newenvironment{ltgexample}%
+{\LTGbeginlineexample=\numexpr\inputlineno+1\relax}%
+{%
+\LTGendlineexample=\numexpr\inputlineno-1\relax%
+
+\tcbinputlisting{%
+  listing only,
+  listing file=\currfilepath,
+  colback=green!5!white,
+  colframe=green!25,
+  coltitle=black!90,
+  coltext=black!90,
+  left=8mm,
+  title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilepath},
+  listing options={%
+    frame=none,
+    language={[LaTeX]TeX},
+    escapeinside={},
+    firstline=\the\LTGbeginlineexample,
+    lastline=\the\LTGendlineexample,
+    firstnumber=\the\LTGbeginlineexample,
+    basewidth=.5em,
+    aboveskip=0mm,
+    belowskip=0mm,
+    numbers=left,
+    xleftmargin=0mm,
+    numberstyle=\tiny,
+    numbersep=8pt%
+  }
+}
+}%
+
+Hier sollen allgemeine \LaTeX-Hinweise gegeben werden, damit man Minimalbeispiele vorliegen hat, um sofort loszulegen.
+
+\subsection{Trennung von Absätzen}
+
+\begin{ltgexample}
+Pro Satz eine neue Zeile.
+Das ist wichtig, um sauber versionieren zu können.
+In LaTeX werden Absätze durch eine Leerzeile getrennt.
+Analogie zu Word: Bei Word werden neue Absätze durch einmal Eingabetaste herbeigeführt.
+Dies führt bei LaTeX jedoch nicht zu einem neuen Absatz, da LaTeX direkt aufeinanderfolgende Zeilen zu einer Zeile zusammenfügt.
+Mächte man nun einen Absatz haben, muss man zweimal die Eingabetaste drücken.
+Dies führt zu einer leeren Zeile.
+In Word gibt es die Funktion Großschreibetaste und Eingabetaste gleichzeitig.
+Wenn man dies drückt, wird einer harter Umbruch erzwungen.
+Der Text fängt am Anfang der neuen Zeile an.
+In LaTeX erreicht man dies durch Doppelbackslashes (\textbackslash\textbackslash) erzeugt.\\
+Dies verwendet man quasi nie.
+
+Folglich werden neue Abstäze insbesondere \emph{nicht} durch Doppelbackslashes erzeugt.
+Beispielsweise begann der letzte Satz in einem neuen Absatz.
+Eine ausführliche Motivation hierfür findet sich in \url{http://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}.
+\end{ltgexample}
+
+
+\subsection{Hyphenation}
+
+\LaTeX{} automatically hyphenates words.
+When using microtype, there should be less hypnetations than in other settings.
+It might be necessary to tweak the hyphenations nevertheless.
+Here are some hints:
+
+\begin{ltgexample}
+In case you write \enquote{application-specific}, then the word will only be hyphenated at the dash.
+You can also write \verb1applica\allowbreak{}tion-specific1 (result: applica\allowbreak{}tion-specific), but this is much more effort.
+
+You can now write words containing hyphens which are hyphenated at other places in the word.
+For instance, \verb1application"=specific1 gets application"=specific.
+This is enabled by an additional configuration of the babel package.
+\end{ltgexample}
+
+\subsection{Typesetting Units}
+
+\begin{ltgexample}
+Numbers can written plain text (such as 100), by using the siunitx package like that:
+\SI{100}{\km\per\hour},
+or by using plain \LaTeX{} (and math mode):
+$100 \frac{\mathit{km}}{h}$.
+\end{ltgexample}
+
+\begin{ltgexample}
+\SI{5}{\percent} of \SI{10}{kg}
+\end{ltgexample}
+
+\begin{ltgexample}
+Numbers are automatically grouped: \num{123456}.
+\end{ltgexample}
+
+\subsection{Surrounding Text by Quotes}
+
+\begin{ltgexample}
+Please use the \enquote{enquote command} to quote something.
+Quoting with "`quote"' or ``quote'' also works.
+
+\end{ltgexample}
+\subsection{Cleveref examples}
+\label{sec:ex:cref}
+
+Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
+
+\begin{figure}
+    \centering
+    Figure
+    \caption{Example figure for cref demo}
+    \label{fig:ex:cref}
+\end{figure}
+
+\begin{table}
+    \centering
+    Table
+    \caption{Example table for cref demo}
+    \label{tab:ex:cref}
+\end{table}
+
+\begin{ltgexample}
+\Cref{fig:ex:cref} shows a simple fact, although \cref{fig:ex:cref} could also show something else.
+
+\Cref{tab:ex:cref} shows a simple fact, although \cref{tab:ex:cref} could also show something else.
+
+\Cref{sec:ex:cref} shows a simple fact, although \cref{sec:ex:cref} could also show something else.
+\end{ltgexample}
+\subsection{Abbildungen}
+
+\begin{ltgexample}
+\Cref{fig:label} zeigt etwas Interessantes
+
+\begin{figure}
+  \centering
+  Füge deine Abbildung hier ein.
+  \caption{Bildunterschrift.}
+  \label{fig:label}
+\end{figure}
+\end{ltgexample}
+
+One can also have pictures floating inside text:
+\clearpage
+
+\begin{ltgexample}
+\begin{floatingfigure}{.33\linewidth}
+\includegraphics[width=.29\linewidth]{example-image-a}
+\caption{A floating figure}
+\end{floatingfigure}
+\blindtext[2]
+\end{ltgexample}
+
+
+\subsection{Tables}
+
+\begin{ltgexample}
+\begin{table}
+  \caption{Simple Table}
+  \label{tab:simple}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Heading1 & Heading2 \\
+    \midrule
+    One      & Two      \\
+    Thee     & Four     \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{ltgexample}
+
+\begin{ltgexample}
+% Source: https://tex.stackexchange.com/a/468994/9075
+\begin{table}
+\caption{Table with diagonal line}
+\label{tab:diag}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\diagbox[width=10em]{Diag\\Column Head I}{Diag Column\\Head II} & Second & Third \\
+\hline
+& foo & bar \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+ \end{ltgexample}
+
+
+\subsection{Quellcode}
+
+\begin{ltgexample}
+\Cref{lst:XML} zeigt XML-Quelltext.
+\Cref{line:comment} enthält einen Kommentar.
+
+\begin{lstlisting}[
+  language=XML,
+  caption={Beispiel-XML-Listing},
+  label={lst:XML}]
+<listing name="example">
+  <!-- comment --> (* \label{line:comment} *)
+  <content>not interesting</content>
+</listing>
+\end{lstlisting}
+\end{ltgexample}
+
+Der zusätzliche Paramter \verb+float+ führt dazu, dass das Listing auch floated.
+\Cref{lst:flXML} zeigt das gleitendede Listing.
+
+\begin{ltgexample}
+\begin{lstlisting}[
+  % Es ist möglcih, die Abstände bei Bedarf einzustellen
+  % aboveskip=2.5\baselineskip,
+  % belowskip=-.8\baselineskip,
+  float,
+  language=XML,
+  caption={Beispiel-XML-Listing -- gleitend},
+  label={lst:flXML}]
+<listing name="example">
+  Floating
+</listing>
+\end{lstlisting}
+\end{ltgexample}
+
+Es ist möglich auch JSON zu setzen, wie in \cref{lst:json} gezeigt.
+
+\begin{ltgexample}
+\begin{lstlisting}[
+  float,
+  language=json,
+  caption={Beispiel-JSON-listing},
+  label={lst:json}]
+{
+  key: "value"
+}
+\end{lstlisting}
+\end{ltgexample}
+
+Java ist auch möglich -- \cref{lst:java}.
+
+\begin{ltgexample}
+\begin{lstlisting}[
+  caption={Example Java listing},
+  label=lst:java,
+  language=Java,
+  float]
+public class Hello {
+    public static void main (String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+\end{lstlisting}
+\end{ltgexample}
+
+\subsection{Itemization}
+
+One can list items as follows:
+
+\begin{ltgexample}
+\begin{itemize}
+\item Item One
+\item Item Two
+\end{itemize}
+\end{ltgexample}
+
+
+One can enumerate items as follows:
+
+\begin{ltgexample}
+\begin{enumerate}
+  \item Item One
+  \item Item Two
+\end{enumerate}
+\end{ltgexample}
+
+
+With paralist, one can even have all items typset after each other and have them clean in the tex document:
+
+\begin{ltgexample}
+\begin{inparaenum}
+  \item All these items...
+  \item ...appear in one line
+  \item This is enabled by the paralist package.
+\end{inparaenum}
+\end{ltgexample}
+
+\subsection{Other Features}
+
+\begin{ltgexample}
+The words \enquote{workflow} and \enquote{dwarflike} can be copied from the PDF and pasted to a text file.
+\end{ltgexample}
+
+\begin{ltgexample}
+The symbol for powerset is now correct: $\powerset$ and not a Weierstrass p ($\wp$).
+
+$\powerset({1,2,3})$
+\end{ltgexample}
+
+\begin{ltgexample}
+Brackets work as designed:
+<test>
+One can also input backquotes in verbatim text: \verb|`test`|.
+\end{ltgexample}
+
+
+\section{Zusammenfassung und Ausblick}
+\label{sec:outlook}
+\lipsum[1-2]
+
+\subsubsection*{Danksagungen}
+\ldots
+
+In the bibliography, use \texttt{\textbackslash textsuperscript} for \enquote{st}, \enquote{nd}, \ldots:
+E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
+When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up command to achieve that.
+See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
+
+\renewcommand{\bibsection}{\section*{Literatur}} % requried for natbib to have "References" printed and as section*, not chapter*
+% Use natbib compatbile splncsnat style.
+% It does provide all features of splncs03, but is developed in a clean way.
+% Source: http://phaseportrait.blogspot.de/2011/02/natbib-compatible-bibtex-style-bst-file.html
+\bibliographystyle{splncsnat}
+\begingroup
+  \microtypecontext{expansion=sloppy}
+  \small % ensure correct font size for the bibliography
+  \bibliography{paper}
+\endgroup
+
+% Enfore empty line after bibliography
+\ \\
+%
+Alle Links wurden zuletzt am 29.03.2021 geprüft.
+
+\end{document}
