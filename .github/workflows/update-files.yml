@@ -104,7 +104,7 @@ jobs:
           rm LICENSE
 
           # copy everything
-          cp * ../code/
+          cp -r * ../code/
 
           cd ../code/
           git status
