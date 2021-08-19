@@ -43,14 +43,11 @@ jobs:
             echo ::set-output name=lncsclspresent::true
             echo "$LLNCS_CLS" > llncs.cls
           fi
-          cd $RUNNER_TEMP
-          mkdir build
-          pwd
         env:
           LLNCS_CLS: ${{secrets.LLNCS_CLS}}
       - name: Generate template
         shell: bash
-        working-directory: ${{ runner.temp }}/build
+        working-directory: ${{ github.workspace }}/generator-latex-template/tmp
         run: |
           yo latex-template\
            --githubpublish\
@@ -88,10 +85,10 @@ jobs:
           root_file: paper.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
           # See https://github.community/t/how-can-i-access-the-current-repo-context-and-files-from-a-docker-container-action/17711/8 for details
-          working_directory: ${{ runner.temp }}/build
+          working_directory: generator-latex-template/tmp
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
       - name: Prepare files
-        working-directory: ${{ runner.temp }}/build
+        working-directory: ${{ github.workspace }}/generator-latex-template/tmp
         run: |
           if [ ${{ matrix.cleveref }} ]; then
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
@@ -104,7 +101,16 @@ jobs:
           rm LICENSE
 
           # copy everything
-          cp -r . $GITHUB_WORKSPACE
+          cd ../..
+          cp -r generator-latex-template/tmp/* .
+
+          # reset generator-latex-template to enable comitting
+          cd generator-latex-template
+          git reset --hard
+          git clean -xdf
+
+          cd ..
+          git status
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
         with:
