@@ -29,6 +29,13 @@ Following features are enabled in this template:
 - Modern packages such as [microtype], [cleveref], [csquotes], [hyperref], [hypcap], [upquote], [natbib], [booktabs].
 - Ready-to-go configuration for [latexindent].
 
+## Disabled features
+
+Following features were not activated for this template.
+You can run the latex-template generator to enable the features.
+
+Hints on writing an abstract and thesis by Dirk Fahland.
+
 ## Examples
 
 - [paper.pdf](https://latextemplates.github.io/LNCS/paper.pdf) - normal paper.
@@ -52,15 +59,15 @@ Follow the quick start instructions.
 
 ## Quick start
 
-* Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/master.zip).
-* Extract `LNCS-master.zip` in the folder where you want to write your paper.
-* Place `llncs.cls` into the directory
+- Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/master.zip).
+- Extract `LNCS-master.zip` in the folder where you want to write your paper.
+- Place `llncs.cls` into the directory
   - Download `llncs2e.zip` from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip> and extract it in the directory.
     On Linux, just execute `download-llncs-files-from-springer.sh`.
   - In case ftp does not work at your side, you can try online ftp services such as http://www.net2ftp.com/ to download the files.
     Open the connection to `ftp.springernature.com` and navigate to `cs-proceeding`, `llncs`, and download the ZIP archive.
-* Edit [paper.tex](paper.tex).
-* `latexmk paper`.
+- Edit [paper.tex](paper.tex).
+- `latexmk paper`.
 
  As you see on GitHub actions, the paper compiles out of the box.
  There is no need to adjust the packages or to remove some of them.
