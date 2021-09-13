@@ -2,9 +2,13 @@
 
 > Quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
 
-This document was created using the [latex-template generator](https://www.npmjs.com/package/generator-latex-template).
+To build the whole document, execute following command.
+Note that this requires a working perl installation.
 
-Compile it using
+    latexmk paper
+
+In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
+
 
     pdflatex paper
 
@@ -27,12 +31,13 @@ Following features are enabled in this template:
 - (Optional) Support todos as pdf annotations. This is enabled by the [pdfcomment] package.
 - [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
 - Modern packages such as [microtype], [cleveref], [csquotes], [hyperref], [hypcap], [upquote], [natbib], [booktabs].
+- (Optional) LaTeX compilation using the modern lualatex compiler.
 - Ready-to-go configuration for [latexindent].
 
 ## Disabled features
 
 Following features were not activated for this template.
-You can run the latex-template generator to enable the features.
+You can run the [latex template generator] to enable the features.
 
 Hints on writing an abstract and thesis by Dirk Fahland.
 
@@ -50,7 +55,7 @@ Deep link: <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
 
 > **The class file authored by Springer is needed to get the template working:**
 > `llncs.cls`
->  You get it from inside the ZIP of `llncs2e.zip` available at <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
+> You get it from inside the ZIP of `llncs2e.zip` available at <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
 
 Reason: Licensing restrictions of Springer do not allow distribution outside of springer.
 See [message #47 for debian bug 31897](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=31897#47) for details.
@@ -59,8 +64,8 @@ Follow the quick start instructions.
 
 ## Quick start
 
-- Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/master.zip).
-- Extract `LNCS-master.zip` in the folder where you want to write your paper.
+- Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/main.zip).
+- Extract `LNCS-main.zip` in the folder where you want to write your paper.
 - Place `llncs.cls` into the directory
   - Download `llncs2e.zip` from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip> and extract it in the directory.
     On Linux, just execute `download-llncs-files-from-springer.sh`.
@@ -180,8 +185,9 @@ Yes. You can regenerate the template and choose "German" as language.
 
 [JabRef]: https://www.jabref.org
 [LanguageTool]: https://languagetool.org/
-[TeXstudio]: http://texstudio.sourceforge.net/
+[latex template generator]: https://www.npmjs.com/package/generator-latex-template
 [pygments]: http://pygments.org/
+[TeXstudio]: http://texstudio.sourceforge.net/
 
 [llncs2e.zip]: ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip
 
