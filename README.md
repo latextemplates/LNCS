@@ -52,14 +52,13 @@ Follow the quick start instructions.
 
 ## Quick start
 
-* Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/main.zip).
-* Extract `LNCS-main.zip` in the folder where you want to write your paper.
+* Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/master.zip).
+* Extract `LNCS-master.zip` in the folder where you want to write your paper.
 * Place `llncs.cls` into the directory
   - Download `llncs2e.zip` from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip> and extract it in the directory.
     On Linux, just execute `download-llncs-files-from-springer.sh`.
   - In case ftp does not work at your side, you can try online ftp services such as http://www.net2ftp.com/ to download the files.
     Open the connection to `ftp.springernature.com` and navigate to `cs-proceeding`, `llncs`, and download the ZIP archive.
-* Rename `paper-en-default-listings-cleveref.tex` to `paper.tex`.
 * Edit [paper.tex](paper.tex).
 * `latexmk paper`.
 
