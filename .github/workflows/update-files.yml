@@ -77,7 +77,7 @@ jobs:
            --enquotes=${{ matrix.enquotes }}\
            --tweak_outerquote=${{ matrix.tweak_outerquote }}\
            --todo=${{ matrix.todo }}\
-           --examples=${{ matrix.examples }}}\
+           --examples=${{ matrix.examples }}\
            --howtotext=false
         env:
           yeoman_test: true
