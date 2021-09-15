@@ -113,8 +113,8 @@ jobs:
         with:
           message: 'Update files based on generated files by template generator'
           committer_email: actions@github.com
-          push: true
-          pull_strategy: '--rebase'
+          push: false
+          pull_strategy: 'NO-PULL'
           cwd: 'code'
       - name: Push changes
         run: |
