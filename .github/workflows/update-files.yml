@@ -112,7 +112,7 @@ jobs:
         uses: EndBug/add-and-commit@v7
         with:
           message: 'Update files based on generated files by template generator'
-          comitter_email: actions@github.com
+          committer_email: actions@github.com
           push: true
           pull_strategy: '--rebase'
           cwd: 'code'
@@ -133,7 +133,7 @@ jobs:
         uses: EndBug/add-and-commit@v7
         with:
           message: 'Update files based on generated files by template generator'
-          comitter_email: actions@github.com
+          committer_email: actions@github.com
           push: true
           pull_strategy: 'NO-PULL'
   publish:
