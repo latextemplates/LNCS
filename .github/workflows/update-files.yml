@@ -136,7 +136,6 @@ jobs:
           committer_email: actions@github.com
           push: false
           pull_strategy: 'NO-PULL'
-          cwd: 'code'
       - name: Push changes
         run: |
           cd code
