@@ -467,14 +467,21 @@ Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 
 \begin{figure}
     \centering
-    Figure
+    \includegraphics[width=.75\columnwidth]{example-image-a}
     \caption{Example figure for cref demo}
     \label{fig:ex:cref}
 \end{figure}
 
 \begin{table}
     \centering
-    Table
+    \begin{tabular}{ll}
+      \toprule
+      Heading1 & Heading2 \\
+      \midrule
+      One      & Two      \\
+      Thee     & Four     \\
+      \bottomrule
+    \end{tabular}
     \caption{Example table for cref demo}
     \label{tab:ex:cref}
 \end{table}
@@ -544,7 +551,7 @@ One can also have pictures floating inside text:
 \end{tabular}
 \end{center}
 \end{table}
- \end{ltgexample}
+\end{ltgexample}
 
 
 \subsection{Source Code}
