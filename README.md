@@ -2,6 +2,9 @@
 
 > Quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
 
+Please be aware that this template is optimized for overleaf, which [is based on TeXLive 2020](https://de.overleaf.com/blog/tex-live-2020-now-available).
+In case you are running a later TeXLive version (or use MiKTeX), please regenerate the template with the help of the [latex template generator].
+
 To build the whole document, execute following command.
 Note that this requires a working perl installation.
 
