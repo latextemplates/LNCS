@@ -69,7 +69,7 @@ jobs:
            --documentclass=lncs\
            --latexcompiler=pdflatex\
            --bibtextool=bibtex\
-           --texlive=2019\
+           --texlive=2020\
            --language=${{ matrix.language }}\
            --font=${{ matrix.font }}\
            --listings=${{ matrix.listings }}\
@@ -83,7 +83,7 @@ jobs:
           yeoman_test: true
         if: ${{ steps.createllncs.outputs.lncsclspresent }}
       - name: Check build (latexmk)
-        uses: dante-ev/latex-action@2019-A
+        uses: dante-ev/latex-action@2020-A
         with:
           root_file: paper.tex
           # ${{ github.workspace }} holds wrong directory (only valid for "run" tasks, not for container-based tasks)
@@ -164,19 +164,19 @@ jobs:
         env:
           LLNCS_CLS: ${{secrets.LLNCS_CLS}}
       - name: Build paper.tex
-        uses: dante-ev/latex-action@2019-A
+        uses: dante-ev/latex-action@2020-A
         with:
           root_file: paper.tex
       - name: Build paper-minted.tex
-        uses: dante-ev/latex-action@2019-A
+        uses: dante-ev/latex-action@2020-A
         with:
           root_file: paper-minted.tex
       - name: Build paper-newtx.tex
-        uses: dante-ev/latex-action@2019-A
+        uses: dante-ev/latex-action@2020-A
         with:
           root_file: paper-newtx.tex
       - name: Build paper-minted-newtx.tex
-        uses: dante-ev/latex-action@2019-A
+        uses: dante-ev/latex-action@2020-A
         with:
           root_file: paper-minted-newtx.tex
       - run: |
