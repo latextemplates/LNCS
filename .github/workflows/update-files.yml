@@ -102,16 +102,12 @@ jobs:
       - run: |
           cp paper-en-default-listings-cleveref.tex paper.tex
       - name: Commit changes
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v8
         with:
           message: 'Update files based on generated files by template generator'
           committer_email: actions@github.com
-          push: false
-          pull_strategy: 'NO-PULL'
-      - name: Push changes
-        run: |
-          git pull --rebase
-          git push
+          pull: '--autostash'
+          push: true
   publish:
     runs-on: ubuntu-latest
     needs: [generatetex]
