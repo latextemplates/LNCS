@@ -244,6 +244,7 @@
 \usepackage[caption=false,font=footnotesize]{subfig}
 
 \usepackage{mindflow}
+
 % Extensions for references inside the document (\cref{fig:sample}, ...)
 % Enable usage \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
 % That means, "Figure 5" is a full link instead of just "5".
@@ -258,6 +259,7 @@
 % Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
 \newcommand{\llabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
 \newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
+
 
 \usepackage{lipsum}
 
