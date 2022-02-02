@@ -114,8 +114,6 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
-        with:
-          submodules: recursive
       - run: |
           cp paper-en-default-listings-cleveref.tex paper.tex
           cp paper-en-default-minted-cleveref.tex paper-minted.tex
@@ -132,7 +130,8 @@ jobs:
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx
-      - name: Build docker image
+      - rm -rf .git
+      - name: Build Docker image
         uses: docker/build-push-action@v2
         with:
           push: true
