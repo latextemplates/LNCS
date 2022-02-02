@@ -44,9 +44,9 @@ jobs:
       - name: Make generator available globally
         working-directory: ${{ github.workspace }}/code/generator-latex-template
         run: |
-          npm install -g yo
-          npm install -g generator-generator
+          npm install
           npm link
+          npm install -g yo
       - run: mkdir /tmp/ltg
       - name: Generate template
         shell: bash
