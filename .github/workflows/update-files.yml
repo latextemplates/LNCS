@@ -72,6 +72,7 @@ jobs:
       - name: Prepare files
         working-directory: /tmp/ltg
         run: |
+          ls -la
           if [ ${{ matrix.cleveref }} ]; then
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
           else
