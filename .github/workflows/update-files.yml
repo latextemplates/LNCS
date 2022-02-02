@@ -45,7 +45,7 @@ jobs:
         working-directory: ${{ github.workspace }}/code/generator-latex-template
         run: |
           npm install -g yo
-          npm isntall -g generator-generator
+          npm install -g generator-generator
           npm link
       - run: mkdir /tmp/ltg
       - name: Generate template
