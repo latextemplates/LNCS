@@ -2,7 +2,6 @@
 
 > Quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
 
-
 To build the whole document, execute following command.
 Note that this requires a working perl installation.
 
