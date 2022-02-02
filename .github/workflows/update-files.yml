@@ -128,8 +128,6 @@ jobs:
         with:
           push: true
           tags: localhost:5000/name/app:latest
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.GIT_AUTH_TOKEN }}
       - name: Set up Git repository
         uses: actions/checkout@v2
       - run: |
