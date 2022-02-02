@@ -11,12 +11,15 @@ From 2021-08-17 on versioning is done using [Calendar Versioning](https://calver
 
 - LNCS is now based on the offical CTAN package [llncs](https://ctan.org/pkg/llncs).
 - Now generated using the [latex template generator](https://www.npmjs.com/package/generator-latex-template).
+- Replaced `\ifluatex` statements by separate `.tex` documents. This makes each `.tex` document smaller and simpler to understand.
+- Quoting is done with <code>``...''</code> instead of `\qq{...}`
 
 ### Added
 
 - Added initial `Dockerfile` to enable building using Docker.
 - Enable deletion of `*.bbl` when calling `latexmk -c`
-- Add explicit `LICENSE`: [0BSD](https://opensource.org/licenses/0BSD)
+- Added explicit `LICENSE`: [0BSD](https://opensource.org/licenses/0BSD)
+- Added more LaTeX hints
 
 ## [1.9.1] – 2019-02-04
 
