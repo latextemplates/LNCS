@@ -79,8 +79,7 @@ jobs:
           else
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           fi
-          # remove compiled output
-          rm paper.pdf
+
           # remove files which should not be overwritten
           rm LICENSE
 
