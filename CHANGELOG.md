@@ -9,10 +9,12 @@ From 2021-08-17 on versioning is done using [Calendar Versioning](https://calver
 
 ### Changed
 
+- LNCS is now based on the offical CTAN package [llncs](https://ctan.org/pkg/llncs).
 - Now generated using the [latex template generator](https://www.npmjs.com/package/generator-latex-template).
 
 ### Added
 
+- Added initial `Dockerfile` to enable building using Docker.
 - Enable deletion of `*.bbl` when calling `latexmk -c`
 - Add explicit `LICENSE`: [0BSD](https://opensource.org/licenses/0BSD)
 
