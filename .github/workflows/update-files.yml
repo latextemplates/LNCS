@@ -49,7 +49,7 @@ jobs:
       - run: mkdir /tmp/ltg
       - name: Generate template
         shell: bash
-        working-directory: ${{ github.workspace }}/ltg
+        working-directory: /tmp/ltg
         run: |
           yo latex-template\
            --githubpublish\
@@ -70,7 +70,7 @@ jobs:
         env:
           yeoman_test: true
       - name: Prepare files
-        working-directory: ${{ github.workspace }}/ltg
+        working-directory: /tmp/ltg
         run: |
           if [ ${{ matrix.cleveref }} ]; then
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
