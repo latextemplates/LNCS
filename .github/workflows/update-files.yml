@@ -24,17 +24,6 @@ jobs:
         with:
           submodules: recursive
           path: 'code'
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-        with:
-          driver-opts: network=host
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
@@ -80,8 +69,14 @@ jobs:
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           fi
 
+
           # remove files which should not be overwritten
+
+          # the LICENSE of the repository should be kept
           rm LICENSE
+
+          # latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep one version of it
+          rm latexmkrc
 
           # copy everything
           cp -r * ${{ github.workspace }}/code/
@@ -128,6 +123,17 @@ jobs:
           cp paper-en-default-minted-cleveref.tex paper-minted.tex
           cp paper-en-times-listings-cleveref.tex paper-newtx.tex
           cp paper-en-times-minted-cleveref.tex paper-minted-newtx.tex
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          driver-opts: network=host
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx
       - name: Build docker image
         uses: docker/build-push-action@v2
         with:
