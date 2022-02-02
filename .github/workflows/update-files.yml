@@ -114,6 +114,8 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - run: |
           cp paper-en-default-listings-cleveref.tex paper.tex
           cp paper-en-default-minted-cleveref.tex paper-minted.tex
