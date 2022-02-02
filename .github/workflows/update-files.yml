@@ -46,9 +46,10 @@ jobs:
         run: |
           npm link
           npm install -g yo
+      - run: mkdir /tmp/ltg
       - name: Generate template
         shell: bash
-        working-directory: ${{ github.workspace }}/tmp
+        working-directory: ${{ github.workspace }}/ltg
         run: |
           yo latex-template\
            --githubpublish\
@@ -69,7 +70,7 @@ jobs:
         env:
           yeoman_test: true
       - name: Prepare files
-        working-directory: ${{ github.workspace }}/tmp
+        working-directory: ${{ github.workspace }}/ltg
         run: |
           if [ ${{ matrix.cleveref }} ]; then
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
@@ -134,10 +135,9 @@ jobs:
         with:
           push: true
           tags: localhost:5000/name/app:latest
+      - run: mkdir /tmp/out
       - name: Build paper.tex
-        run: |
-          mkdir /tmp/out
-          docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk paper.tex"
+        run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk paper.tex"
       - name: Build paper-minted.tex
         run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk paper-minted.tex"
       - name: Build paper-newtx.tex
