@@ -130,7 +130,7 @@ jobs:
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx
-      - rm -rf .git
+      - run: rm -rf .git
       - name: Build Docker image
         uses: docker/build-push-action@v2
         with:
