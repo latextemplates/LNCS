@@ -95,7 +95,7 @@ jobs:
         with:
           message: 'Update files based on generated files by template generator'
           committer_email: actions@github.com
-          pull: '--rebase'
+          pull: '--autostash'
           push: true
           cwd: 'code'
   update:
