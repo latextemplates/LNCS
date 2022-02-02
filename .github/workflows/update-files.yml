@@ -99,6 +99,7 @@ jobs:
       - name: Push changes
         run: |
           cd code
+          sleep $[ ( $RANDOM % 15 )  + 1 ]s
           git pull --rebase
           git push
   update:
