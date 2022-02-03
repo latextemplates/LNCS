@@ -92,10 +92,7 @@ jobs:
           cwd: 'code'
       - name: Push changes
         run: |
-          cd code
-          sleep $[ ( $RANDOM % 30 )  + 1 ]s
-          git pull --rebase
-          git push
+          parallel --retries 10 --delay 3 ::: "git pull --rebase && git push"
   update:
     runs-on: ubuntu-latest
     needs: [generatetex]
@@ -112,9 +109,7 @@ jobs:
           push: false
       - name: Push changes
         run: |
-          sleep $[ ( $RANDOM % 10 )  + 1 ]s
-          git pull --rebase
-          git push
+          parallel --retries 10 --delay 3 ::: "git pull --rebase && git push"
   publish:
     runs-on: ubuntu-latest
     needs: [update]
