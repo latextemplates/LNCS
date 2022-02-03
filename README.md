@@ -59,10 +59,17 @@ Deep link: <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
 - Edit [paper.tex](paper.tex).
 - `latexmk paper`.
 
- As you see on GitHub actions, the paper compiles out of the box.
- There is no need to adjust the packages or to remove some of them.
- This might lead to undesiered results such as hyperlinks not working any more or no good microtypographic features.
- In case you think, a package needs to be altered or added, feel free to open an issue.
+When using on overleaf, you have to add the file `llncs.cls` manually:
+
+1. Navigate to "Add Files"
+2. Select "From External URL"
+3. Paste <https://latextemplates.github.io/stys-for-overleaf/llncs.cls> into the field "URL to fetch the file from"
+4. Click "Create"
+
+As you see on GitHub actions, the paper compiles out of the box.
+There is no need to adjust the packages or to remove some of them.
+This might lead to undesiered results such as hyperlinks not working any more or no good microtypographic features.
+In case you think, a package needs to be altered or added, feel free to open an issue.
 
 ## Tool hints
 
