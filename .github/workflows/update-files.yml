@@ -92,6 +92,7 @@ jobs:
           cwd: 'code'
       - name: Push changes
         run: |
+          cd code
           parallel --retries 10 --delay 3 ::: "git pull --rebase && git push"
   update:
     runs-on: ubuntu-latest
