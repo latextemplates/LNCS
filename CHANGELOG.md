@@ -13,10 +13,12 @@ From 2021-08-17 on versioning is done using [Calendar Versioning](https://calver
 - Now generated using the [latex template generator](https://www.npmjs.com/package/generator-latex-template).
 - Replaced `\ifluatex` statements by separate `.tex` documents. This makes each `.tex` document smaller and simpler to understand.
 - Quoting is done with <code>``...''</code> instead of `\qq{...}`
+- Updated to TeXLive 2021
 
 ### Added
 
 - Added initial `Dockerfile` to enable building using Docker.
+- Added package [mindflow](https://www.ctan.org/pkg/mindflow), which supports quickly noting down thoughts with a) a proper rendering of LaTeX and b) a proper differentiation from the main text
 - Enable deletion of `*.bbl` when calling `latexmk -c`
 - Added explicit `LICENSE`: [0BSD](https://opensource.org/licenses/0BSD)
 - Added more LaTeX hints
