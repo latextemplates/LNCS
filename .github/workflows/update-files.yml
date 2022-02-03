@@ -155,6 +155,10 @@ jobs:
           cp paper.tex publish/
           cp README.md publish/
           cp .github/_config.yml publish/
+      - uses: actions/upload-artifact@v2
+        with:
+          name: publish
+          path: publish/
       - name: Deploy
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
