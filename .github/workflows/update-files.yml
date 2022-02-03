@@ -110,7 +110,7 @@ jobs:
           push: true
   publish:
     runs-on: ubuntu-latest
-    needs: [generatetex]
+    needs: [update]
     services:
       registry:
         image: registry:2
