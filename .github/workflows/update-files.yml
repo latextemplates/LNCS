@@ -83,16 +83,19 @@ jobs:
 
           cd ${{ github.workspace }}/code/
           git status
-
-          sleep $[ ( $RANDOM % 30 )  + 1 ]s
       - name: Commit changes
         uses: EndBug/add-and-commit@v8
         with:
           message: 'Update files based on generated files by template generator'
           committer_email: actions@github.com
-          pull: '--rebase --autostash'
-          push: true
+          push: false
           cwd: 'code'
+      - name: Push changes
+        run: |
+          cd code
+          sleep $[ ( $RANDOM % 30 )  + 1 ]s
+          git pull --rebase
+          git push
   update:
     runs-on: ubuntu-latest
     needs: [generatetex]
@@ -106,8 +109,12 @@ jobs:
         with:
           message: 'Update files based on generated files by template generator'
           committer_email: actions@github.com
-          pull: '--rebase --autostash'
-          push: true
+          push: false
+      - name: Push changes
+        run: |
+          sleep $[ ( $RANDOM % 10 )  + 1 ]s
+          git pull --rebase
+          git push
   publish:
     runs-on: ubuntu-latest
     needs: [update]
