@@ -2,16 +2,12 @@
 
 > Quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
 
-Please be aware that this template is optimized for overleaf, which [is based on TeXLive 2020](https://de.overleaf.com/blog/tex-live-2020-now-available).
-In case you are running a later TeXLive version (or use MiKTeX), please regenerate the template with the help of the [latex template generator].
-
 To build the whole document, execute following command.
 Note that this requires a working perl installation.
 
     latexmk paper
 
 In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
-
 
     pdflatex paper
 
@@ -56,24 +52,10 @@ Hints on writing an abstract and thesis by Dirk Fahland.
 The official template is available at <https://www.springer.com/gp/computer-science/lncs/conference-proceedings-guidelines> --> "Templates, samples files & useful links" --> "LaTeX2e Proceedings Templates (zip)"
 Deep link: <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
 
-> **The class file authored by Springer is needed to get the template working:**
-> `llncs.cls`
-> You get it from inside the ZIP of `llncs2e.zip` available at <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
-
-Reason: Licensing restrictions of Springer do not allow distribution outside of springer.
-See [message #47 for debian bug 31897](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=31897#47) for details.
-Therefore, the required file `llncs.cls` has to be downloaded in some way.
-Follow the quick start instructions.
-
 ## Quick start
 
 - Click on `Download ZIP` or [here](https://github.com/latextemplates/LNCS/archive/main.zip).
 - Extract `LNCS-main.zip` in the folder where you want to write your paper.
-- Place `llncs.cls` into the directory
-  - Download `llncs2e.zip` from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip> and extract it in the directory.
-    On Linux, just execute `download-llncs-files-from-springer.sh`.
-  - In case ftp does not work at your side, you can try online ftp services such as http://www.net2ftp.com/ to download the files.
-    Open the connection to `ftp.springernature.com` and navigate to `cs-proceeding`, `llncs`, and download the ZIP archive.
 - Edit [paper.tex](paper.tex).
 - `latexmk paper`.
 
@@ -85,7 +67,7 @@ Follow the quick start instructions.
 ## Tool hints
 
 There is currently no official biblatex support.
-A first step towards that is done at [biblatex-lncs](https://github.com/mgttlinger/biblatex-lncs).
+A first step towards that is done at [biblatex-lncs](https://ctan.org/pkg/biblatex-lncs).
 
 MiKTeX installation hints are given at <http://latextemplates.github.io/scientific-thesis-template/#installation-hints-for-windows>.
 
@@ -101,6 +83,17 @@ To have minted running properly, you have to do following steps on Windows:
 2. Install [pygments]: `pip instal pygments` - that uses the Pyhton package manager to install the pygments library
 3. When latexing, use `-shell-escape`: `pdflatex -shell-escape paper`.
    You can also just execute `latexmk paper`.
+
+## Usage with docker
+
+The generated `Dockerfile` is based on the [Dockerfile by reitzig](https://github.com/reitzig/texlive-docker).
+The idea of that system is to host the document sources in a directory separated from the output directory.
+
+    docker run --rm -v "c:\users\example\latex-document:/work/src" -v "c:\users\example\latex-document\out:/work/out" ltg work latexmk
+
+Following one-time setup is requried:
+
+    docker build -t ltg .
 
 ## FAQs
 

@@ -191,8 +191,7 @@
 \usepackage{stfloats}
 \fnbelowfloat
 
-\usepackage[group-four-digits,per-mode=fraction]{siunitx}
-
+\usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
 \addto\extrasgerman{\sisetup{locale = DE}}
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
@@ -217,6 +216,7 @@
 \patchcmd{\@decl@short}{\bbl@info}{\@gobble}{}{}
 \makeatother
 
+\usepackage{mindflow}
 % cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
 \usepackage[capitalise,nameinlink]{cleveref}
 
@@ -413,6 +413,15 @@ Eine ausführliche Motivation hierfür findet sich in \url{http://loopspace.math
 \end{ltgexample}
 
 
+\subsection{Notes separated from the text}
+
+The package mindflow enables writing down notes and annotations in a way so that they are separated from the main text.
+
+\begin{ltgexample}
+\begin{mindflow}
+This is a small note.
+\end{mindflow}
+\end{ltgexample}
 \subsection{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.

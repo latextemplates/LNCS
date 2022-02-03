@@ -223,8 +223,7 @@
 \usepackage{stfloats}
 \fnbelowfloat
 
-\usepackage[group-four-digits,per-mode=fraction]{siunitx}
-
+\usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
 \addto\extrasgerman{\sisetup{locale = DE}}
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
@@ -243,6 +242,8 @@
 \usepackage[all]{hypcap}
 
 \usepackage[caption=false,font=footnotesize]{subfig}
+
+\usepackage{mindflow}
 
 % Extensions for references inside the document (\cref{fig:sample}, ...)
 % Enable usage \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
@@ -436,6 +437,16 @@ For instance, this sentence belongs to the same paragraph, whereas the last one 
 A long motivation for that is provided at \url{http://loopspace.mathforge.org/HowDidIDoThat/TeX/VCS/#section.3}.
 \end{ltgexample}
 
+\subsection{Notes separated from the text}
+
+The package mindflow enables writing down notes and annotations in a way so that they are separated from the main text.
+
+\begin{ltgexample}
+\begin{mindflow}
+This is a small note.
+\end{mindflow}
+\end{ltgexample}
+
 \subsection{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.
@@ -476,6 +487,7 @@ Please use the \enquote{enquote command} to quote something.
 Quoting with "`quote"' or ``quote'' also works.
 
 \end{ltgexample}
+
 \subsection{Cleveref examples}
 \label{sec:ex:cref}
 
@@ -509,6 +521,7 @@ Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 
 \Cref{sec:ex:cref} shows a simple fact, although \cref{sec:ex:cref} could also show something else.
 \end{ltgexample}
+
 \subsection{Figures}
 
 \begin{ltgexample}
@@ -532,7 +545,6 @@ One can also have pictures floating inside text:
 \end{floatingfigure}
 \blindtext[2]
 \end{ltgexample}
-
 
 
 \subsection{Sub Figures}
