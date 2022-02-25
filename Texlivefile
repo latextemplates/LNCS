@@ -6,7 +6,6 @@ auxhook
 babel
 babel-english
 babel-german
-biber
 bigintcalc
 bitset
 blindtext
@@ -30,10 +29,15 @@ floatflt
 framed
 fvextra
 gettitlestring
+glossaries
+glossaries-extra
 graphics
 hyperref
 hyperxmp
 hyph-utf8
+hyphen-english
+hyphen-german
+hyphenex
 inconsolata
 ieeetran
 ifmtarg
