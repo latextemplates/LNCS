@@ -18,9 +18,7 @@ comment
 csquotes
 currfile
 datetime2
-datetime2-german
 datetime2-english
-dehyph-exptl
 diagbox
 environ
 etexcmds
@@ -36,7 +34,6 @@ hyperref
 hyperxmp
 hyph-utf8
 hyphen-english
-hyphen-german
 hyphenex
 inconsolata
 ieeetran
