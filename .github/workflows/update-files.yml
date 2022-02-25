@@ -69,7 +69,6 @@ jobs:
             mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           fi
 
-
           # remove files which should not be overwritten
 
           # the LICENSE of the repository should be kept
