@@ -68,7 +68,7 @@ jobs:
           else
             cp paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           fi
-          if [ paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex != paper-en-default-listings-cleveref.tex paper.tex ]; then
+          if [ "paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex" != "paper-en-default-listings-cleveref.tex" ]; then
             # keep paper.tex only for English, default font, listings, cleveref
             rm paper.tex
           fi
