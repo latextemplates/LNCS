@@ -23,6 +23,10 @@ From 2021-08-17 on versioning is done using [Calendar Versioning](https://calver
 - Added explicit `LICENSE`: [0BSD](https://opensource.org/licenses/0BSD)
 - Added more LaTeX hints
 
+### Fixed
+
+- Examples now also work on overleaf. `\currfile` now correctly returns `main.tex`/`paper.tex` instead of `output.tex`.
+
 ## [1.9.1] – 2019-02-04
 
 ### Fixed
