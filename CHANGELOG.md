@@ -3,9 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
-From 2021-08-17 on versioning is done using [Calendar Versioning](https://calver.org/).
+From 2022-03-01 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
-## [Unreleased]
+## [2022-03-01]
 
 ### Changed
 
@@ -182,7 +182,8 @@ From 2021-08-17 on versioning is done using [Calendar Versioning](https://calver
 
 First release using semantic versioning.
 
-[Unreleased]: https://github.com/latextemplates/LNCS/compare/1.9.1...HEAD
+[Unreleased]: https://github.com/latextemplates/LNCS/compare/2022-03-01...HEAD
+[2022-03-01]: https://github.com/latextemplates/LNCS/compare/1.9.1...2022-03-01
 [1.9.1]: https://github.com/latextemplates/LNCS/compare/1.9.0...1.9.1
 [1.9.0]: https://github.com/latextemplates/LNCS/compare/1.8.0...1.9.0
 [1.8.0]: https://github.com/latextemplates/LNCS/compare/1.7.0...1.8.0
