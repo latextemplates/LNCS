@@ -64,9 +64,13 @@ jobs:
         run: |
           ls -la
           if [ ${{ matrix.cleveref }} ]; then
-            mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
+            cp paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
           else
-            mv paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
+            cp paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
+          fi
+          if [ paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex != paper-en-default-listings-cleveref.tex paper.tex ]; then
+            # keep paper.tex only for English, default font, listings, cleveref
+            rm paper.tex
           fi
 
           # remove files which should not be overwritten
@@ -95,26 +99,9 @@ jobs:
         run: |
           cd code
           parallel --retries 10 --delay 3 ::: "git pull --rebase && git push"
-  update:
-    runs-on: ubuntu-latest
-    needs: [generatetex]
-    steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v2
-      - run: |
-          cp paper-en-default-listings-cleveref.tex paper.tex
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v8
-        with:
-          message: 'Update files based on generated files by template generator'
-          committer_email: actions@github.com
-          push: false
-      - name: Push changes
-        run: |
-          parallel --retries 10 --delay 3 ::: "git pull --rebase && git push"
   publish:
     runs-on: ubuntu-latest
-    needs: [update]
+    needs: [generatetex]
     services:
       registry:
         image: registry:2
