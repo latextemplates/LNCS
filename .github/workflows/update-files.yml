@@ -47,6 +47,7 @@ jobs:
            --documentclass=lncs\
            --latexcompiler=pdflatex\
            --bibtextool=bibtex\
+           --overleaf=true\
            --texlive=2021\
            --language=${{ matrix.language }}\
            --font=${{ matrix.font }}\
