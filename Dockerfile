@@ -3,9 +3,8 @@ RUN apk update && apk add --no-cache bash perl python3 py3-pip
 RUN pip3 install pygments
 
 # Emulate "Install dependencies" of "entrypoint work ..."
-RUN tlmgr update --self --repository https://mirror.mwt.me/ctan/systems/texlive/tlnet
 COPY Texlivefile /work/src
-RUN xargs tlmgr install --repository https://mirror.mwt.me/ctan/systems/texlive/tlnet < "/work/src/Texlivefile" && \
+RUN xargs tlmgr install --repository ftp://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final < "/work/src/Texlivefile" && \
     sha256sum "/work/src/Texlivefile" > "/work/tmp/Texlivefile.sha" && \
 #
 # make latexmk and texlogsieve available
