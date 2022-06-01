@@ -428,11 +428,10 @@
 
 \begin{abstract}
 \lipsum[1]
+
+\keywords{First keyword \and Second keyword \and Third keyword}
 \end{abstract}
 
-\begin{keywords}
-  keyword1, keyword2
-\end{keywords}
 
 \section{Introduction}
 \label{sec:introduction}
@@ -807,9 +806,9 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 
 \renewcommand{\bibsection}{\section*{References}} % requried for natbib to have "References" printed and as section*, not chapter*
 % Use natbib compatbile splncsnat style.
-% It does provide all features of splncs03, but is developed in a clean way.
-% Source: http://phaseportrait.blogspot.de/2011/02/natbib-compatible-bibtex-style-bst-file.html
-\bibliographystyle{splncsnat}
+% It does provide all features of splncs04.bst, but is developed in a clean way.
+% Source: https://github.com/tpavlic/splncs04nat
+\bibliographystyle{splncs04nat}
 \begingroup
   \microtypecontext{expansion=sloppy}
   \small % ensure correct font size for the bibliography
@@ -820,7 +819,6 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 \ \\
 %
 All links were last followed on October 5, 2020.
-
 
 %%% ===============================================================================
 %\appendix
