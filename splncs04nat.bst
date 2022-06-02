@@ -1,49 +1,14 @@
-%% natbib-compatible BibTeX bibliography style `splncsnat'
 %%
-%% BibTeX bibliography style for use with numbered references in
-%% Springer Verlag's "Lecture Notes in Computer Science" series.
-%% (See Springer's documentation for llncs.cls for
-%% more details of the suggested reference format.)
-%%
-%% Use
-%%
-%% \documentclass{llncs}
-%% \usepackage[numbers]{natbib}
-%% \bibliographystyle{splncsnat}
-%%
-%% and cite references with (e.g.)
-%%
-%% \cite{smith77}       % to get a "[1]" in the text
-%% \citep{smith77}      % to get a "[1]" in the text
-%% \citet{smith77}      % to get a "Smith [1]" in the text
-%% \citeauthor{smith77} % to get a "Smith" in the text
-%%
-%% The changes below are inspired by similar changes made to
-%% splncs03.bst by Maurizio "Titto" Patrignani of
-%% Dipartimento di Informatica e Automazione Universita' Roma Tre.
-%% Unfortunately, splncs03.bst was not compatible with natbib (because it
-%% was not built with author-year capability).
-%%
-%% ================================================================================================
-%% MANUAL CHANGES
-%% (with respect to splncsnat-unpatched.bst produced from
-%%  splncsnat-unpatched.dbj):
-%% [ search for ++++ to find the changes ]
-%% - Emptied \urlprefix by default
-%% - Added a new.sentence command to separate with a dot booktitle and series in the inproceedings
-%% - Commented all new.block commands before notes (to separate them with a comma)
-%% ================================================================================================
-%%
-%% This is derived from `splncsnat-unpatched.bst',
+%% This is file `splncs04nat.bst',
 %% generated with the docstrip utility.
 %%
-%% The original source files for splncsnat-unpatched.bst were:
+%% The original source files were:
 %%
-%% merlin.mbs  (with options: `ay,nat,vonx,nm-rvvc,ed-rev,yr-par,aymth,note-yr,jttl-rm,volp-com,numser,ser-vol,jnm-x,btit-rm,bt-rm,edparxc,au-col,in-col,fin-bare,pp,ed,abr,mth-bare,xedn,jabr,and-com,and-com-ed,xand,url,url-nt,em-x,nfss,')
+%% merlin.mbs  (with options: `ay,nat,vonx,nm-rvvc,ed-rev,nmfted,yr-par,aymth,jttl-rm,vol-bf,volp-com,num-xser,numser,ser-vol,jnm-x,btit-rm,bt-rm,isbn,issn,doi,edparxc,blk-tit,au-col,in-col,fin-bare,pp,ed,abr,mth-bare,xedn,jabr,and-com,and-com-ed,xand,url,url-blk,em-x,nfss,')
 %% ----------------------------------------
-%% *** natbib-compatible .bst file for Springer LNCS ***
+%% *** natbib-compatible splncs04 ***
 %% 
-%% Copyright 1994-2007 Patrick W Daly
+%% Copyright 1994-2011 Patrick W Daly
  % ===============================================================
  % IMPORTANT NOTICE:
  % This bibliographic style (bst) file has been generated from one or
@@ -55,7 +20,7 @@
  % version 1 of the License, or any later version.
  % ===============================================================
  % Name and version information of the main mbs file:
- % \ProvidesFile{merlin.mbs}[2007/04/24 4.20 (PWD, AO, DPC)]
+ % \ProvidesFile{merlin.mbs}[2011/11/18 4.33 (PWD, AO, DPC)]
  %   For use with BibTeX version 0.99a or later
  %-------------------------------------------------------------------
  % This bibliography style file is intended for texts in ENGLISH
@@ -80,7 +45,7 @@
  %   \citep*{key} ==>>               (Jones, Baker, and Smith, 1990)
  %   \citep[chap. 2]{key} ==>>       (Jones et al., 1990, chap. 2)
  %   \citep[e.g.][]{key} ==>>        (e.g. Jones et al., 1990)
- %   \citep[e.g.][p. 32]{key} ==>>   (e.g. Jones et al., p. 32)
+ %   \citep[e.g.][p. 32]{key} ==>>   (e.g. Jones et al., 1990, p. 32)
  %   \citeauthor{key} ==>>           Jones et al.
  %   \citeauthor*{key} ==>>          Jones, Baker, and Smith
  %   \citeyear{key} ==>>             1990
@@ -91,11 +56,14 @@ ENTRY
     author
     booktitle
     chapter
+    doi
     edition
     editor
     eid
     howpublished
     institution
+    isbn
+    issn
     journal
     key
     month
@@ -192,7 +160,7 @@ FUNCTION {add.colon}
 
 FUNCTION {date.block}
 {
-  new.block
+  skip$
 }
 
 FUNCTION {not}
@@ -211,17 +179,24 @@ FUNCTION {or}
   if$
 }
 STRINGS {z}
+
 FUNCTION {remove.dots}
 { 'z :=
-  ""
-  { z empty$ not }
-  { z #1 #1 substring$
-    z #2 global.max$ substring$ 'z :=
-    duplicate$ "." = 'pop$
-      { * }
-    if$
-  }
-  while$
+   ""
+   { z empty$ not }
+   { z #1 #2 substring$
+     duplicate$ "\." =
+       { z #3 global.max$ substring$ 'z :=  * }
+       { pop$
+         z #1 #1 substring$
+         z #2 global.max$ substring$ 'z :=
+         duplicate$ "." = 'pop$
+           { * }
+         if$
+       }
+     if$
+   }
+   while$
 }
 FUNCTION {new.block.checkb}
 { empty$
@@ -239,6 +214,12 @@ FUNCTION {field.or.null}
 }
 FUNCTION {emphasize}
 { skip$ }
+FUNCTION {bolden}
+{ duplicate$ empty$
+    { pop$ "" }
+    { "\textbf{" swap$ * "}" * }
+  if$
+}
 FUNCTION {tie.or.space.prefix}
 { duplicate$ text.length$ #3 <
     { "~" }
@@ -407,6 +388,15 @@ FUNCTION {bibinfo.warn}
     }
   if$
 }
+FUNCTION {format.url}
+{
+  url
+  duplicate$ empty$
+    { pop$ "" }
+    { "\urlprefix\url{" swap$ * "}" * }
+  if$
+}
+
 INTEGERS { nameptr namesleft numnames }
 
 
@@ -480,12 +470,34 @@ FUNCTION {format.editors}
     }
   if$
 }
+FUNCTION {format.isbn}
+{ isbn "isbn" bibinfo.check
+  duplicate$ empty$ 'skip$
+    {
+      "ISBN " swap$ *
+    }
+  if$
+}
+
+FUNCTION {format.issn}
+{ issn "issn" bibinfo.check
+  duplicate$ empty$ 'skip$
+    {
+      "ISSN " swap$ *
+    }
+  if$
+}
+
+FUNCTION {format.doi}
+{ doi empty$
+    { "" }
+    {
+      "\doi{" doi * "}" *
+    }
+  if$
+}
 FUNCTION {format.note}
 {
-  url empty$
-    'skip$
-    { "\urlprefix\url{" url * "}" * output }
-  if$
  note empty$
     { "" }
     { note #1 #1 substring$
@@ -700,14 +712,14 @@ FUNCTION {format.number.series}
 { volume empty$
     { number empty$
         { series field.or.null }
-        { output.state mid.sentence =
-            { bbl.number }
-            { bbl.number capitalize }
-          if$
-          number tie.or.space.prefix "number" bibinfo.check * *
-          series empty$
-            { "there's a number but no series in " cite$ * warning$ }
-            { bbl.in space.word *
+        { series empty$
+            { number "number" bibinfo.check }
+            { output.state mid.sentence =
+                { bbl.number }
+                { bbl.number capitalize }
+              if$
+              number tie.or.space.prefix "number" bibinfo.check * *
+              bbl.in space.word *
               series "series" bibinfo.check *
             }
           if$
@@ -801,6 +813,7 @@ FUNCTION {format.vol.num.pages}
       "volume" bibinfo.check
     }
   if$
+  bolden
   number "number" bibinfo.check duplicate$ empty$ 'skip$
     {
       swap$ duplicate$ empty$
@@ -930,9 +943,8 @@ FUNCTION {article}
   format.authors "author" output.check
   author format.key output
   add.colon
-  new.block
   format.title "title" output.check
-  new.block
+  new.sentence
   crossref missing$
     {
       journal
@@ -946,7 +958,9 @@ FUNCTION {article}
       format.pages output
     }
   if$
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.issn output
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -965,23 +979,23 @@ FUNCTION {book}
       if$
     }
   if$
-  new.block
   format.btitle "title" output.check
   crossref missing$
     { format.bvolume output
-      new.block
-      new.sentence
+  new.sentence
       format.number.series output
       format.publisher.address output
     }
     {
-      new.block
+  new.sentence
       format.book.crossref output.nonnull
     }
   if$
   format.edition output
   format.date "year" output.check
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.isbn output
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -990,13 +1004,14 @@ FUNCTION {booklet}
   format.authors output
   author format.key output
   add.colon
-  new.block
   format.title "title" output.check
-  new.block
+  new.sentence
   howpublished "howpublished" bibinfo.check output
   address "address" bibinfo.check output
   format.date "year" output.check
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.isbn output
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1016,26 +1031,29 @@ FUNCTION {inbook}
       if$
     }
   if$
-  new.block
   format.btitle "title" output.check
   crossref missing$
     {
       format.bvolume output
       format.chapter.pages "chapter and pages" output.check
-      new.block
-      new.sentence
+  new.sentence
       format.number.series output
       format.publisher.address output
     }
     {
       format.chapter.pages "chapter and pages" output.check
-      new.block
+  new.sentence
       format.book.crossref output.nonnull
     }
   if$
   format.edition output
   format.date "year" output.check
-  % new.block       ++++ REMOVED (to get comma before note)
+  crossref missing$
+    { format.isbn output }
+    'skip$
+  if$
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1045,24 +1063,24 @@ FUNCTION {incollection}
   format.authors "author" output.check
   author format.key output
   add.colon
-  new.block
   format.title "title" output.check
-  new.block
+  new.sentence
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
       format.bvolume output
       format.chapter.pages output
-      new.sentence
       format.number.series output
       format.publisher.address output
       format.edition output
       format.date "year" output.check
+      format.isbn output
     }
     { format.incoll.inproc.crossref output.nonnull
       format.chapter.pages output
     }
   if$
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1071,15 +1089,12 @@ FUNCTION {inproceedings}
   format.authors "author" output.check
   author format.key output
   add.colon
-  new.block
   format.title "title" output.check
-  new.block
+  new.sentence
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
-      new.sentence % ++++ ADDED (to get period b/w booktitle and series)
       format.bvolume output
       format.pages output
-      new.sentence
       format.number.series output
       publisher empty$
         { format.organization.address output }
@@ -1088,12 +1103,15 @@ FUNCTION {inproceedings}
         }
       if$
       format.date "year" output.check
+      format.isbn output
+      format.issn output
     }
     { format.incoll.inproc.crossref output.nonnull
       format.pages output
     }
   if$
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1103,14 +1121,14 @@ FUNCTION {manual}
   format.authors output
   author format.key output
   add.colon
-  new.block
   format.btitle "title" output.check
-  organization address new.block.checkb
+  new.sentence
   organization "organization" bibinfo.check output
   address "address" bibinfo.check output
   format.edition output
   format.date "year" output.check
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1120,15 +1138,15 @@ FUNCTION {mastersthesis}
   format.authors "author" output.check
   author format.key output
   add.colon
-  new.block
   format.btitle
   "title" output.check
-  new.block
+  new.sentence
   bbl.mthesis format.thesis.type output.nonnull
   school "school" bibinfo.warn output
   address "address" bibinfo.check output
   format.date "year" output.check
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1138,12 +1156,12 @@ FUNCTION {misc}
   format.authors output
   author format.key output
   add.colon
-  new.block
   format.title output
-  new.block
+  new.sentence
   howpublished "howpublished" bibinfo.check output
   format.date "year" output.check
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1152,15 +1170,15 @@ FUNCTION {phdthesis}
   format.authors "author" output.check
   author format.key output
   add.colon
-  new.block
   format.btitle
   "title" output.check
-  new.block
+  new.sentence
   bbl.phdthesis format.thesis.type output.nonnull
   school "school" bibinfo.warn output
   address "address" bibinfo.check output
   format.date "year" output.check
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1170,10 +1188,8 @@ FUNCTION {proceedings}
   format.editors output
   editor format.key output
   add.colon
-  new.block
   format.btitle "title" output.check
   format.bvolume output
-  new.sentence
   format.number.series output
   publisher empty$
     { format.organization.address output }
@@ -1182,7 +1198,10 @@ FUNCTION {proceedings}
     }
   if$
   format.date "year" output.check
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.isbn output
+  format.issn output
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1192,15 +1211,15 @@ FUNCTION {techreport}
   format.authors "author" output.check
   author format.key output
   add.colon
-  new.block
   format.title
   "title" output.check
-  new.block
+  new.sentence
   format.tr.number output.nonnull
   institution "institution" bibinfo.warn output
   address "address" bibinfo.check output
   format.date "year" output.check
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.doi output
+  format.url output
   format.note output
   fin.entry
 }
@@ -1210,10 +1229,10 @@ FUNCTION {unpublished}
   format.authors "author" output.check
   author format.key output
   add.colon
-  new.block
   format.title "title" output.check
   format.date "year" output.check
-  % new.block       ++++ REMOVED (to get comma before note)
+  format.doi output
+  format.url output
   format.note "note" output.check
   fin.entry
 }
@@ -1315,7 +1334,7 @@ FUNCTION {calc.label}
   *
   year duplicate$ empty$
      { pop$ "????" }
-     'skip$
+     { purify$ #-1 #4 substring$ }
   if$
   *
   'label :=
@@ -1329,15 +1348,16 @@ FUNCTION {sort.format.names}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{ll{ }}{  ff{ }}{  jj{ }}"
+      "{ll{ }}{  f{ }}{  jj{ }}"
       format.name$ 't :=
       nameptr #1 >
         {
           "   "  *
           namesleft #1 = t "others" = and
-            { "zzzzz" * }
-            { t sortify * }
+            { "zzzzz" 't := }
+            'skip$
           if$
+          t sortify *
         }
         { t sortify * }
       if$
@@ -1428,17 +1448,30 @@ FUNCTION {presort}
 ITERATE {presort}
 SORT
 STRINGS { last.label next.extra }
-INTEGERS { last.extra.num number.label }
+INTEGERS { last.extra.num last.extra.num.extended last.extra.num.blank number.label }
 FUNCTION {initialize.extra.label.stuff}
 { #0 int.to.chr$ 'last.label :=
   "" 'next.extra :=
   #0 'last.extra.num :=
+  "a" chr.to.int$ #1 - 'last.extra.num.blank :=
+  last.extra.num.blank 'last.extra.num.extended :=
   #0 'number.label :=
 }
 FUNCTION {forward.pass}
 { last.label label =
     { last.extra.num #1 + 'last.extra.num :=
-      last.extra.num int.to.chr$ 'extra.label :=
+      last.extra.num "z" chr.to.int$ >
+       { "a" chr.to.int$ 'last.extra.num :=
+         last.extra.num.extended #1 + 'last.extra.num.extended :=
+       }
+       'skip$
+      if$
+      last.extra.num.extended last.extra.num.blank >
+        { last.extra.num.extended int.to.chr$
+          last.extra.num int.to.chr$
+          * 'extra.label := }
+        { last.extra.num int.to.chr$ 'extra.label := }
+      if$
     }
     { "a" chr.to.int$ 'last.extra.num :=
       "" 'extra.label :=
@@ -1491,8 +1524,13 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\url}[1]{\texttt{#1}}"
   write$ newline$
-%  "\providecommand{\urlprefix}{URL }"      ++++ EMPTIED by default
-  "\providecommand{\urlprefix}{}"
+  "\providecommand{\urlprefix}{URL }"
+  write$ newline$
+  "\expandafter\ifx\csname urlstyle\endcsname\relax"
+  write$ newline$
+  "  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else"
+  write$ newline$
+  "  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup \urlstyle{rm}\Url}\fi"
   write$ newline$
 }
 EXECUTE {begin.bib}
@@ -1505,4 +1543,4 @@ FUNCTION {end.bib}
 EXECUTE {end.bib}
 %% End of customized bst file
 %%
-%% End of file `splncsnat.bst'.
+%% End of file `splncs04nat.bst'.

@@ -47,6 +47,7 @@ jobs:
            --documentclass=lncs\
            --latexcompiler=pdflatex\
            --bibtextool=bibtex\
+           --overleaf=true\
            --texlive=2021\
            --language=${{ matrix.language }}\
            --font=${{ matrix.font }}\
@@ -78,8 +79,8 @@ jobs:
           # the LICENSE of the repository should be kept
           rm LICENSE
 
-          # latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep one version of it
-          rm latexmkrc
+          # _latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep one version of it
+          rm _latexmkrc
 
           # copy everything
           cp -r * ${{ github.workspace }}/code/
@@ -132,6 +133,8 @@ jobs:
           cp paper-en-times-listings-cleveref.tex paper-newtx.tex
           cp paper-en-times-minted-cleveref.tex paper-minted-newtx.tex
           mkdir /tmp/out
+          # use latexmkrc (which is disabled due to easy overleaf usage)
+          cp _latexmkrc latexmkrc
       - name: Build paper.tex
         run: docker run -v $(pwd):/work/src -v /tmp/out:/work/out localhost:5000/name/app:latest work "latexmk paper.tex"
       - name: Build paper-minted.tex
