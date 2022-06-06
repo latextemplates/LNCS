@@ -362,17 +362,20 @@
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 % Add copyright
-% Do that for the final version or if you send it to colleagues
+%
+% This is recommended if you intend to send the version to colleagues
+% See https://ctan.org/pkg/llncsconf for details
 \iffalse
-  %state: intended|submitted|llncs
-  %you can add "crop" if the paper should be cropped to the format Springer is publishing
+  % state: intended | submitted | llncs
+  % you can add "crop" if the paper should be cropped to the format Springer is publishing
   \usepackage[intended]{llncsconf}
 
   \conference{name of the conference}
 
-  %in case of "llncs" (final version!)
-  %example: llncs{Anonymous et al. (eds). \emph{Proceedings of the International Conference on \LaTeX-Hacks}, LNCS~42. Some Publisher, 2016.}{0042}
-  \llncs{book editors and title}{0042} %% 0042 is the start page
+  % in case of "proceedings" (final version!)
+  % example: \llncs{Anonymous et al. (eds). \emph{Proceedings of the International Conference on \LaTeX-Hacks}, LNCS~42. Some Publisher, 2016.}{0042}
+  % 0042 denotes an example start page
+  \llncs{book editors and title}{0042}
 \fi
 
 % Enable copy and paste of text from the PDF
@@ -431,7 +434,8 @@
 \lipsum[1-3]\todo{Refine me}
 
 The remainder of the paper starts with a presentation of related work (\cref{sec:relatedwork}).
-It is followed by a presentation of hints on \LaTeX{} (\cref{sec:latexhints}).Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:outlook}).
+It is followed by a presentation of hints on \LaTeX{} (\cref{sec:latexhints}).
+Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:outlook}).
 
 \section{Related Work}
 \label{sec:relatedwork}
@@ -681,7 +685,7 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 \end{lstlisting}
 \end{ltgexample}
 
-One can also add \verb+float+ as paramter to have the listing floating.
+One can also add \verb+float+ as parameter to have the listing floating.
 \Cref{lst:flXML} shows the floating listing.
 
 \begin{ltgexample}
