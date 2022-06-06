@@ -45,6 +45,7 @@ jobs:
            --githubpublish\
            --docker=reitzig\
            --documentclass=lncs\
+           --papersize=a4\
            --latexcompiler=pdflatex\
            --bibtextool=bibtex\
            --overleaf=true\
