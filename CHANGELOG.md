@@ -13,12 +13,14 @@ From 2022-03-01 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
+- Refined description of usage of [llncsconf](https://ctan.org/pkg/llncsconf) package.
 - Update `splncsnat` to [splncs04nat](https://github.com/tpavlic/splncs04nat). [lncs#35](https://github.com/latextemplates/LNCS/issues/35)
 - `_latexmkrc` is available instead of `latexmkrc` to ease usage at overleaf. [lncs#40](https://github.com/latextemplates/LNCS/issues/40)
 
 ### Fixed
 
 - Correct `\keywords{}` syntax for LCNS. [lncs#39](https://github.com/latextemplates/LNCS/issues/39)
+- Fixed line break in introduction
 
 ## [2022-03-01]
 
