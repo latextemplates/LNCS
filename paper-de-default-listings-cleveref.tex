@@ -1,6 +1,7 @@
 % Dieses Template wurde mit der "LLNCS DOCUMENT CLASS -- version 2.21 (12-Jan-2022)" getestet
 
 % !TeX spellcheck = de-DE
+% LTeX: language=de-DE
 % !TeX encoding = utf8
 % !TeX program = pdflatex
 % !BIB program = bibtex
@@ -413,7 +414,8 @@
 \lipsum[1-3]\todo{Refine me}
 
 The remainder of the paper starts with a presentation of related work (\cref{sec:relatedwork}).
-It is followed by a presentation of hints on \LaTeX{} (\cref{sec:latexhints}).Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:outlook}).
+It is followed by a presentation of hints on \LaTeX{} (\cref{sec:latexhints}).
+Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:outlook}).
 
 \section{Related Work}
 \label{sec:relatedwork}
@@ -565,6 +567,7 @@ Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 
 \Cref{sec:ex:cref} shows a simple fact, although \cref{sec:ex:cref} could also show something else.
 \end{ltgexample}
+
 \subsection{Abbildungen}
 
 \begin{ltgexample}
@@ -755,10 +758,10 @@ When you use \href{https://www.jabref.org}{JabRef}, you can use the clean up com
 See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the cleanup functionality.
 
 \renewcommand{\bibsection}{\section*{Literatur}} % requried for natbib to have "References" printed and as section*, not chapter*
-% Use natbib compatbile splncsnat style.
+% Use natbib compatbile splncs04nat style.
 % It does provide all features of splncs03, but is developed in a clean way.
 % Source: http://phaseportrait.blogspot.de/2011/02/natbib-compatible-bibtex-style-bst-file.html
-\bibliographystyle{splncsnat}
+\bibliographystyle{splncs04nat}
 \begingroup
   \microtypecontext{expansion=sloppy}
   \small % ensure correct font size for the bibliography

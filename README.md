@@ -17,7 +17,7 @@ Following features are enabled in this template:
 
 - Provides a skeletal [paper.tex](https://latextemplates.github.io/LNCS/paper.tex) file
 - Example to have an image being placed right to a text
-- (Optional) Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
+- Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
   Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
   Thanx to [cleveref].
 - Sharper font (still compatible with Springer's requirements).
