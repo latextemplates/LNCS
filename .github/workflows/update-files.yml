@@ -24,8 +24,6 @@ jobs:
           submodules: recursive
           path: 'code'
       - uses: actions/setup-node@v3
-        with:
-          node-version: 'lts'
       - name: Update npm
         run: npm i -g npm@latest
       - run: npm i npm@latest
