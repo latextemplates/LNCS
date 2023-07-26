@@ -13,7 +13,6 @@ jobs:
         language: [en, de]
         font: [default, times]
         listings: [listings, minted]
-        cleveref: [true]
         enquotes: [csquotes]
         tweak_outerquote: [babel]
         todo: [pdfcomment]
@@ -24,9 +23,9 @@ jobs:
         with:
           submodules: recursive
           path: 'code'
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: 'lts'
       - name: Update npm
         run: npm i -g npm@latest
       - run: npm i npm@latest
@@ -53,7 +52,6 @@ jobs:
            --language=${{ matrix.language }}\
            --font=${{ matrix.font }}\
            --listings=${{ matrix.listings }}\
-           --cleveref=${{ matrix.cleveref }}\
            --enquotes=${{ matrix.enquotes }}\
            --tweak_outerquote=${{ matrix.tweak_outerquote }}\
            --todo=${{ matrix.todo }}\
@@ -65,12 +63,8 @@ jobs:
         working-directory: /tmp/ltg
         run: |
           ls -la
-          if [ ${{ matrix.cleveref }} ]; then
-            cp paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex
-          else
-            cp paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
-          fi
-          if [ "paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}-cleveref.tex" != "paper-en-default-listings-cleveref.tex" ]; then
+          cp paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
+          if [ "paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex" != "paper-en-default-listings.tex" ]; then
             # keep paper.tex only for English, default font, listings, cleveref
             rm paper.tex
           fi
@@ -111,9 +105,9 @@ jobs:
           - 5000:5000
     steps:
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
         with:
           driver-opts: network=host
       - name: Cache Docker layers
@@ -122,17 +116,18 @@ jobs:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx
       - name: Build Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           push: true
+          provenance: false
           tags: localhost:5000/name/app:latest
       - name: Set up Git repository
         uses: actions/checkout@v2
       - run: |
-          cp paper-en-default-listings-cleveref.tex paper.tex
-          cp paper-en-default-minted-cleveref.tex paper-minted.tex
-          cp paper-en-times-listings-cleveref.tex paper-newtx.tex
-          cp paper-en-times-minted-cleveref.tex paper-minted-newtx.tex
+          cp paper-en-default-listings.tex paper.tex
+          cp paper-en-default-minted.tex paper-minted.tex
+          cp paper-en-times-listings.tex paper-newtx.tex
+          cp paper-en-times-minted.tex paper-minted-newtx.tex
           mkdir /tmp/out
           # use latexmkrc (which is disabled due to easy overleaf usage)
           cp _latexmkrc latexmkrc
