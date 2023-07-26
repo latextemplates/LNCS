@@ -7,14 +7,27 @@
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
 
-% Neue deutsche Trennmuster
-% Siehe http://www.ctan.org/pkg/dehyph-exptl und http://projekte.dante.de/Trennmuster/WebHome
-% Nur für pdflatex, nicht für lualatex
-\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
-
-% "runningheads" zeigt Author + Titel auf jeder Seite.
+% "a4paper" enables:
+%
+%  - easy print out on DIN A4 paper size
+%
+% One can configure a4 vs. letter in the LaTeX installation. So it is configuration dependend, what the paper size will be.
+% This option  present, because the current word template offered by Springer is DIN A4.
+% We accept that DIN A4 cause WTFs at persons not used to A4 in USA.
+%
+% "runningheads":
+%
+%  - zeigt Author + Titel auf jeder Seite.
+%  - Während des Schreibens und das Review des Papers hilft das, um z.B. auf konkrete Seitenzahlen einfach verweisen zu können.
+%
+% This is good for other readers to enable proper archiving among other papers and pointing to
+% content. Even if the title page states the title, when printed and stored in a folder, when
+% blindly opening the folder, one could hit not the title page, but an arbitrary page. Therefore,
+% it is good to have title printed on the pages, too.
+%
 % Diese Option nach Aufforderung durch die Herausgeber entfernen.
-% Während des Schreibens und das Review des Papers hilft das, um z.B. auf konkrete Seitenzahlen einfach verweisen zu können.
+%
+% To disable outputting page headers and footers, remove "runningheads"
 \documentclass[runningheads,a4paper,ngerman]{llncs}[2022/01/12]
 
 % backticks (`) werden als solches in verbatim-Umgebungen dargestellt
@@ -26,6 +39,8 @@
 
 % Setze Deutsch als Sprache
 \usepackage[english,main=ngerman]{babel}
+% Neue deutsche Trennmuster
+\babelprovide[hyphenrules=ngerman-x-latest]{german}
 %
 % Hinweis von http://tex.stackexchange.com/a/321066/9075
 % Ermögliche die Benutzung von "= als Trennstriche
@@ -50,6 +65,7 @@
 \xpatchcmd*{\switcht@francais}{ \def}{\def}{}{}
 \xpatchcmd{\switcht@francais}{\relax}{}{}{}
 \makeatother
+
 
 % Links verhalten sich so, wie sie sollen
 % Zeilenumbrüche bei URLs auch bei Bindestrichen erlauben, auch wenn es verwirrend sein könnte: Gehört der Bindestrich zur URL oder ist es ein Trennstrich?
@@ -199,7 +215,6 @@
   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
 }
 
-
 % For easy quotations: \enquote{text}
 % This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
 \usepackage[autostyle=true]{csquotes}
@@ -214,9 +229,6 @@
 % Extended enumerate, such as \begin{compactenum}
 \usepackage{paralist}
 
-% Put figures aside a text
-\usepackage[rflt]{floatflt}
-
 % Bibliopgraphy enhancements
 %  - enable \cite[prenote][]{ref}
 %  - enable \cite{ref1,ref2}
@@ -227,12 +239,20 @@
   square,        % for square brackets
   comma,         % use commas as separators
   numbers,       % for numerical citations;
-%  sort,          % orders multiple citations into the sequence in which they appear in the list of references;
-  sort&compress, % as sort but in addition multiple numerical citations
-                 % are compressed if possible (as 3-6, 15);
+  %sort           % orders multiple citations into the sequence in which they appear in the list of references;
+  sort&compress % as sort but in addition multiple numerical citations
+                  % are compressed if possible (as 3-6, 15);
 ]{natbib}
+
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
 \renewcommand{\bibnumfmt}[1]{#1.}
+
+% Enable hyperlinked author names in the case of \citet
+% Source: https://tex.stackexchange.com/a/76075/9075
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\NAT@test}{\else \NAT@nm}{\else \NAT@hyper@{\NAT@nm}}{}{}
+\makeatother
 
 % Prepare more space-saving rendering of the bibliography
 % Source: https://tex.stackexchange.com/a/280936/9075
@@ -243,6 +263,9 @@
   step = 5 ]
 { encoding = {OT1,T1,TS1} }
 { }
+
+% Put figures aside a text
+\usepackage[rflt]{floatflt}
 
 % Enable nice comments
 \usepackage{pdfcomment}
@@ -255,7 +278,6 @@
 
 % Compatiblity with package fixmetodonotes
 \newcommand{\TODO}[1]{\commentatside{#1}}
-
 
 % Fußnoten unter Gleitumgebungen ("floats") platzieren
 % Quelle: https://tex.stackexchange.com/a/32993/9075
@@ -287,7 +309,10 @@
 \patchcmd{\@decl@short}{\bbl@info}{\@gobble}{}{}
 \makeatother
 
+\usepackage[caption=false,font=footnotesize]{subfig}
+
 \usepackage{mindflow}
+
 % cleveref für cref statt autoref, da cleveref auch bei Definitionen funktioniert
 \usepackage[capitalise,nameinlink]{cleveref}
 
@@ -332,6 +357,11 @@
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
+\usepackage{xspace}
+%\newcommand{\eg}{e.\,g.\xspace}
+%\newcommand{\ie}{i.\,e.\xspace}
+\newcommand{\eg}{e.\,g.,\ }
+\newcommand{\ie}{i.\,e.,\ }
 
 % Enable hyphenation at other places as the dash.
 % Example: applicaiton\hydash specific
@@ -344,17 +374,20 @@
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 % Add copyright
-% Do that for the final version or if you send it to colleagues
+%
+% This is recommended if you intend to send the version to colleagues
+% See https://ctan.org/pkg/llncsconf for details
 \iffalse
-  %state: intended|submitted|llncs
-  %you can add "crop" if the paper should be cropped to the format Springer is publishing
+  % state: intended | submitted | llncs
+  % you can add "crop" if the paper should be cropped to the format Springer is publishing
   \usepackage[intended]{llncsconf}
 
   \conference{name of the conference}
 
-  %in case of "llncs" (final version!)
-  %example: llncs{Anonymous et al. (eds). \emph{Proceedings of the International Conference on \LaTeX-Hacks}, LNCS~42. Some Publisher, 2016.}{0042}
-  \llncs{book editors and title}{0042} %% 0042 is the start page
+  % in case of "proceedings" (final version!)
+  % example: \llncs{Anonymous et al. (eds). \emph{Proceedings of the International Conference on \LaTeX-Hacks}, LNCS~42. Some Publisher, 2016.}{0042}
+  % 0042 denotes an example start page
+  \llncs{book editors and title}{0042}
 \fi
 
 % Enable copy and paste of text from the PDF
@@ -402,38 +435,42 @@
 \maketitle
 
 \begin{abstract}
-  \lipsum[1]
+<Kurzfassung der Arbeit>
+
+\keywords{First keyword \and Second keyword \and Third keyword}
 \end{abstract}
 
-\begin{keywords}
-  keyword1, keyword2
-\end{keywords}
 
-\section{Introduction}
-\label{sec:intro}
-\lipsum[1-3]\todo{Refine me}
+\section{Einleitung}
+\label{sec:introduction}
+Hier steht die Einleitung zu dieser Ausarbeitung.
+Sie soll nur als Beispiel dienen.
+Nun viel Erfolg bei der Arbeit!
 
-The remainder of the paper starts with a presentation of related work (\cref{sec:relatedwork}).
+Die Arbeit ist in folgender Weise gegliedert:
+Zuerst werden Grundlagen und verwandte Arbeiten vorgestellt (\cref{sec:relatedwork}).
 It is followed by a presentation of hints on \LaTeX{} (\cref{sec:latexhints}).
-Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:outlook}).
+Schließlich fasst \cref{sec:outlook} die Ergebnisse der Arbeit zusammen und stellt Anknüpfungspunkte vor.
 
-\section{Related Work}
+\section{Verwandte Arbeiten}
 \label{sec:relatedwork}
+
+Eine Beschreibung relevanter wissenschaftlicher Arbeiten mit Bezug zur eigenen Arbeit.
+Der Abschnitt kann je nach Kontext auch an anderer Stelle stehen.
 
 Winery~\cite{Winery} is a graphical \commentontext{modeling}{modeling with one ``l'', because of AE} tool.
 The whole idea of TOSCA is explained by \citet{Binz2009}.
 
 \section{LaTeX Hinweise}
-\label{chap:latexhints}
+\label{sec:latexhints}
 
 % Benötigt für eine korrekte Darstellung der Hinweise im erzeugten PDF
 \newcount\LTGbeginlineexample
 \newcount\LTGendlineexample
 \newenvironment{ltgexample}%
 {\LTGbeginlineexample=\numexpr\inputlineno+1\relax}%
-{%
-\LTGendlineexample=\numexpr\inputlineno-1\relax%
-
+{\LTGendlineexample=\numexpr\inputlineno-1\relax%
+%
 \tcbinputlisting{%
   listing only,
   listing file=\currfilepath,
@@ -494,6 +531,7 @@ The package mindflow enables writing down notes and annotations in a way so that
 This is a small note.
 \end{mindflow}
 \end{ltgexample}
+
 \subsection{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.
@@ -513,7 +551,7 @@ This is enabled by an additional configuration of the babel package.
 \subsection{Typesetting Units}
 
 \begin{ltgexample}
-Numbers can written plain text (such as 100), by using the siunitx package like that:
+Numbers can be written plain text (such as 100), by using the siunitx package as follows:
 \SI{100}{\km\per\hour},
 or by using plain \LaTeX{} (and math mode):
 $100 \frac{\mathit{km}}{h}$.
@@ -534,6 +572,7 @@ Please use the \enquote{enquote command} to quote something.
 Quoting with "`quote"' or ``quote'' also works.
 
 \end{ltgexample}
+
 \subsection{Cleveref examples}
 \label{sec:ex:cref}
 
@@ -592,6 +631,23 @@ One can also have pictures floating inside text:
 \blindtext[2]
 \end{ltgexample}
 
+
+\subsection{Sub Figures}
+
+An example of two sub figures is shown in \cref{fig:two_sub_figures}.
+
+\begin{ltgexample}
+\begin{figure}[!b]
+    \centering
+    \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
+    \label{fig:first_case}}
+  \hfil
+    \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
+    \label{fig:second_case}}
+  \caption{Example figure with two sub figures.}
+  \label{fig:two_sub_figures}
+\end{figure}
+\end{ltgexample}
 
 \subsection{Tables}
 
@@ -747,10 +803,19 @@ One can also input backquotes in verbatim text: \verb|`test`|.
 
 \section{Zusammenfassung und Ausblick}
 \label{sec:outlook}
+Hier bitte einen kurzen Durchgang durch die Arbeit.
+
 \lipsum[1-2]
 
+...und anschließend einen Ausblick.
+
 \subsubsection*{Danksagungen}
-\ldots
+
+Identification of funding sources and other support, and thanks to individuals and groups that assisted in the research and the preparation of the work should be included in an acknowledgment section, which is placed just before the reference section in your document \cite{acmart}.
+
+%%% ===============================================================================
+%%% Bibliography
+%%% ===============================================================================
 
 In the bibliography, use \texttt{\textbackslash textsuperscript} for \enquote{st}, \enquote{nd}, \ldots:
 E.g., \enquote{The 2\textsuperscript{nd} conference on examples}.
@@ -772,4 +837,16 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 \ \\
 %
 Alle Links wurden zuletzt am 29.03.2021 geprüft.
+
+%%% ===============================================================================
+%\appendix
+%\addcontentsline{toc}{chapter}{APPENDICES}
+
+%\listoffigures
+%\listoftables
+%%% ===============================================================================
+
+%%% ===============================================================================
+%\section{My first appendix}\label{sec:appendix1}
+%%% ===============================================================================
 \end{document}
