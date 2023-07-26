@@ -46,8 +46,8 @@ jobs:
            --latexcompiler=pdflatex\
            --bibtextool=bibtex\
            --overleaf=true\
-           --texlive=2021\
-           --language=${{ matrix.language }}\
+           --texlive=2022\
+           --lang=${{ matrix.language }}\
            --font=${{ matrix.font }}\
            --listings=${{ matrix.listings }}\
            --enquotes=${{ matrix.enquotes }}\
