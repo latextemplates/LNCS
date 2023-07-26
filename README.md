@@ -50,7 +50,6 @@ Hints on writing an abstract and thesis by Dirk Fahland.
 ## Background
 
 The official template is available at <https://www.springer.com/gp/computer-science/lncs/conference-proceedings-guidelines> --> "Templates, samples files & useful links" --> "LaTeX2e Proceedings Templates (zip)"
-Deep link: <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
 
 ## Quick start
 
@@ -59,12 +58,7 @@ Deep link: <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>.
 - Edit [paper.tex](paper.tex).
 - `latexmk paper`.
 
-When using on overleaf, you have to add the file `llncs.cls` manually:
-
-1. Navigate to "Add Files"
-2. Select "From External URL"
-3. Paste <https://latextemplates.github.io/stys-for-overleaf/llncs.cls> into the field "URL to fetch the file from"
-4. Click "Create"
+When using on overleaf, you have to switch Overleaf to use TeXLive 2022 (or later).
 
 As you see on GitHub actions, the paper compiles out of the box.
 There is no need to adjust the packages or to remove some of them.
@@ -113,8 +107,8 @@ ShareLaTeX might output following warning:
 > LaTeX document class for Lecture Notes in Computer Science'
 > is available.
 
-The reason is that you did not use `llncs.cls` from a recent llncs2e.zip (which can be downloaded from <ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip>), but a copy from somewhere else.
-Please use the latest version offered by Springer.
+The reason is that you did not use `llncs.cls` (included in your LaTeX distribution).
+Please remove the file and update your LaTeX distribution.
 
 ### Q: How can I synchronize updates from the template to my repository?
 
@@ -135,7 +129,7 @@ A: You have activated `\MakeOuterQuote{"}` and used some special babel command t
 Now, you have to decide whether you want keep using plain quotes to enquote a word or use the special hyphenation command.
 In other words: Do you want `"quote"` and `app\-lication\-specific` or `\enquote{quote} and  application"=specific`?
 
-Note that this should not happen when the template is generated as the setting `tweak_outerquote` ensures that these two options are mutually exclusive.
+Note that this should not happen when the template is generated as the setting `tweakouterquote` ensures that these two options are mutually exclusive.
 
 ### Q: I need more space. What can I do?
 
