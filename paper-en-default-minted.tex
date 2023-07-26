@@ -236,7 +236,6 @@
 \fnbelowfloat
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
-\addto\extrasgerman{\sisetup{locale = DE}}
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
@@ -486,7 +485,7 @@ This is enabled by an additional configuration of the babel package.
 \subsection{Typesetting Units}
 
 \begin{ltgexample}
-Numbers can written plain text (such as 100), by using the siunitx package like that:
+Numbers can be written plain text (such as 100), by using the siunitx package as follows:
 \SI{100}{\km\per\hour},
 or by using plain \LaTeX{} (and math mode):
 $100 \frac{\mathit{km}}{h}$.
