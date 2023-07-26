@@ -51,7 +51,7 @@ jobs:
            --font=${{ matrix.font }}\
            --listings=${{ matrix.listings }}\
            --enquotes=${{ matrix.enquotes }}\
-           --tweak_outerquote=${{ matrix.tweak_outerquote }}\
+           --tweakouterquote=${{ matrix.tweak_outerquote }}\
            --todo=${{ matrix.todo }}\
            --examples=${{ matrix.examples }}\
            --howtotext=false
