@@ -6,6 +6,8 @@ auxhook
 babel
 babel-english
 babel-german
+biblatex
+biber
 bigintcalc
 bitset
 blindtext
@@ -21,6 +23,7 @@ currfile
 datetime2
 datetime2-german
 datetime2-english
+datatool
 dehyph-exptl
 diagbox
 environ
@@ -28,6 +31,7 @@ etexcmds
 etoolbox
 filehook
 floatflt
+fontspec
 framed
 fvextra
 gettitlestring
@@ -45,6 +49,7 @@ ieeetran
 ifmtarg
 infwarerr
 intcalc
+koma-script
 kvdefinekeys
 kvoptions
 kvsetkeys
@@ -56,7 +61,11 @@ lipsum
 listings
 llncs
 ltxcmds
+luatexbase
+luacode
+lualatex-math
 marginnote
+mfirstuc
 microtype
 mindflow
 minted
@@ -82,6 +91,9 @@ preprint
 refcount
 regexpatch
 rerunfilecheck
+scientific-thesis-cover
+selnolig
+setspace
 siunitx
 snapshot
 soul
@@ -93,6 +105,8 @@ svn-prov
 tcolorbox
 texlogsieve
 textcase
+tex-gyre
+times
 totpages
 tracklang
 translator
@@ -102,6 +116,7 @@ uniquecounter
 upquote
 url
 xcolor
+xfor
 xkeyval
 xstring
 zref
