@@ -245,8 +245,8 @@
   comma,         % use commas as separators
   numbers,       % for numerical citations;
   %sort           % orders multiple citations into the sequence in which they appear in the list of references;
-  sort&compress % as sort but in addition multiple numerical citations
-                  % are compressed if possible (as 3-6, 15);
+  sort&compress  % as sort but in addition multiple numerical citations
+                 % are compressed if possible (as 3-6, 15);
 ]{natbib}
 
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
@@ -290,7 +290,6 @@
 \fnbelowfloat
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
-\addto\extrasgerman{\sisetup{locale = DE}}
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
@@ -349,10 +348,8 @@
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
 \usepackage{xspace}
-%\newcommand{\eg}{e.\,g.\xspace}
-%\newcommand{\ie}{i.\,e.\xspace}
-\newcommand{\eg}{e.\,g.,\ }
-\newcommand{\ie}{i.\,e.,\ }
+\newcommand{\eg}{e.g.,\ }
+\newcommand{\ie}{i.e.,\ }
 
 % Enable hyphenation at other places as the dash.
 % Example: applicaiton\hydash specific
@@ -542,7 +539,7 @@ This is enabled by an additional configuration of the babel package.
 \subsection{Typesetting Units}
 
 \begin{ltgexample}
-Numbers can written plain text (such as 100), by using the siunitx package like that:
+Numbers can be written plain text (such as 100), by using the siunitx package as follows:
 \SI{100}{\km\per\hour},
 or by using plain \LaTeX{} (and math mode):
 $100 \frac{\mathit{km}}{h}$.
@@ -621,7 +618,6 @@ One can also have pictures floating inside text:
 \end{floatingfigure}
 \blindtext[2]
 \end{ltgexample}
-
 
 \subsection{Sub Figures}
 
