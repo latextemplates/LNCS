@@ -1,6 +1,8 @@
 name: Update Files
 on:
   push:
+    branches:
+      - update-ltg
   workflow_dispatch:
 concurrency:
   group: update-files
