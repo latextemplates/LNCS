@@ -95,6 +95,7 @@ jobs:
           parallel --retries 10 --delay 9 ::: "git status && git pull --rebase && git push"
   publish:
     runs-on: ubuntu-latest
+    needs: [generatetex]
     steps:
       - name: Set up Git repositor4
         uses: actions/checkout@v4
