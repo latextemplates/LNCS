@@ -95,7 +95,6 @@ jobs:
       - name: Push changes
         run: |
           cd code
-          git status
           parallel --retries 10 --delay 9 ::: "git status && git pull --rebase && git push"
   publish:
     runs-on: ubuntu-latest
