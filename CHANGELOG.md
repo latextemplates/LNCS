@@ -222,3 +222,5 @@ First release using semantic versioning.
 [1.1.1]: https://github.com/latextemplates/LNCS/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/latextemplates/LNCS/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/latextemplates/LNCS/releases/tag/1.0.0
+
+<!-- markdownlint-disable-file MD013 MD024 CHANGELOG-RULE-003 -->
