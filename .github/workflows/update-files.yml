@@ -25,13 +25,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-          path: 'code'
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
       - name: Make generator available globally
-        working-directory: ${{ github.workspace }}/code/generator-latex-template
+        working-directory: ${{ github.workspace }}/generator-latex-template
         run: |
           npm install
           npm link
@@ -41,7 +40,7 @@ jobs:
         shell: bash
         working-directory: /tmp/ltg
         run: |
-          yo latex-template\
+          yo $GITHUB_WORKSPACE/generator-latex-template/generators/app/index.js \
            --githubpublish\
            --docker=reitzig\
            --documentclass=lncs\
@@ -59,7 +58,7 @@ jobs:
            --examples=${{ matrix.examples }}\
            --howtotext=false
         env:
-          yeoman_test: true
+          yeoman_test: false
       - name: Prepare files
         working-directory: /tmp/ltg
         run: |
@@ -79,10 +78,10 @@ jobs:
           rm _latexmkrc
 
           # copy everything
-          cp -r * ${{ github.workspace }}/code/
+          cp -r * ${{ github.workspace }}
 
           # output current status
-          cd ${{ github.workspace }}/code/
+          cd ${{ github.workspace }}
           git status
           git diff
       - name: Commit changes
@@ -91,10 +90,8 @@ jobs:
           message: 'Update files based on generated files by template generator'
           committer_email: actions@github.com
           push: false
-          cwd: 'code'
       - name: Push changes
         run: |
-          cd code
           parallel --retries 10 --delay 9 ::: "git status && git pull --rebase && git push"
   publish:
     runs-on: ubuntu-latest
