@@ -88,6 +88,17 @@ To have minted running properly, you have to do following steps on Windows:
 2. Install [pygments]: `pip instal pygments` - that uses the Pyhton package manager to install the pygments library
 3. When latexing, use `-shell-escape`: `pdflatex -shell-escape paper`.
    You can also just execute `latexmk paper`.
+
+## Usage with docker
+
+The generated `Dockerfile` is based on the [Dockerfile by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image).
+
+    docker run --rm -v "c:\users\example\latex-document:/workdir" latexmk
+
+Following one-time setup is required:
+
+    docker build -t ltg .
+
 ## FAQs
 
 ### Q: ShareLaTeX outputs a warning regarding the llncs class
