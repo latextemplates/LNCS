@@ -73,11 +73,13 @@ jobs:
 
           # remove files which should not be overwritten
 
+          # _latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep the minted + en version of it
+          if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.lang }}" != "en" ]; then
+            rm _latexmkrc
+          fi
+
           # the LICENSE of the repository should be kept
           rm LICENSE
-
-          # _latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep one version of it
-          rm _latexmkrc
 
           # copy everything
           cp -r * ${{ github.workspace }}
