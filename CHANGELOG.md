@@ -9,7 +9,7 @@ From 2022-03-01 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
-- Defaults to lualatex instead of pdflatex.
+- Compilation with both lualatex and pdflatex is possible. Defaults to lualatex.
 - `Dockerfile` switched to [Island of TeX's docker image](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image) to enable easy addition of new LaTeX packages.
 
 ## [2022-06-06]
