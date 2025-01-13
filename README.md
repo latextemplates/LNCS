@@ -17,6 +17,9 @@ Following features are enabled in this template:
 
 - Provides a skeletal [paper.tex](https://latextemplates.github.io/LNCS/paper.tex) file
 - Example to have an image being placed right to a text
+- Support for German documents (without broken headers):
+  Contains a fix to increase compatibility with Babel.
+  See <https://tex.stackexchange.com/a/441701/9075> for details.
 - Automatic setting of "Fig." and "Section"/"Sect." according to the LNCS style.
   Just use `\Cref{sec:xy}` at the beginning of a sentence and `\cref{sec:xy}` in the middle of a sentence.
   Thanx to [cleveref].
@@ -146,6 +149,10 @@ The possible options are listed in `paper.tex`.
 ### Q: Can I also write in German?
 
 Yes. You can regenerate the template and choose "German" as language.
+
+### Q: `ngerman-x-latest` is reported missing
+
+Install the package `dehyph-exptl`.
 
 ## Further information
 
