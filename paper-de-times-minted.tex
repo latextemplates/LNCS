@@ -60,7 +60,6 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
 
-
 \ifluatex
 \usepackage[no-math]{fontspec}
 \usepackage{unicode-math}
@@ -126,8 +125,6 @@
 \usepackage{diagbox}
 
 \usepackage[dvipsnames, table]{xcolor}
-% Für die finale Fassung empfohlen:
-%\usepackage[dvipsnames, table, gray]{xcolor}
 
 % See https://github.com/gpoore/minted
 \usepackage[newfloat]{minted}
@@ -223,7 +220,7 @@
 { }
 
 % Put figures aside a text
-% Even thought he package is from 1998, it works well
+% Even though the package is from 1998, it works well
 \usepackage[rflt]{floatflt}
 
 % Farbige Tabellen
@@ -325,15 +322,16 @@
 \newcommand{\modified}[1]{{\color{blue!60!black} #1}\xspace}
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
+\addto\extrasgerman{\sisetup{locale = DE}}
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 \usepackage{hyperref}
 
 % Enable hyperref without colors and without bookmarks
 \hypersetup{
-    hidelinks,
-    colorlinks=true, % Links erhalten Farben statt Kaeten
-  raiselinks=true,			 % calculate real height of the link
+  hidelinks,
+  colorlinks=true,       % Links erhalten Farben statt Kaeten
+  raiselinks=true,       % calculate real height of the link
   allcolors=black,
   pdfstartview=Fit,
   breaklinks=true,       % Links ueberstehen Zeilenumbruch
@@ -349,7 +347,6 @@
 \makeatletter
 \patchcmd{\@decl@short}{\bbl@info}{\@gobble}{}{}
 \makeatother
-
 
 \usepackage[caption=false,font=footnotesize]{subfig}
 
@@ -479,7 +476,6 @@
 % See ADR-0008 for alternatives
 \autotypelangoptions{ngerman}{ligbreak}
 \fi
-
 
 \title{Paper Title}
 % If Title is too long, use \titlerunning
