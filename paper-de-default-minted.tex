@@ -3,8 +3,7 @@
 % !TeX spellcheck = de-DE
 % LTeX: language=de-DE
 % !TeX encoding = utf8
-% !TeX program = pdflatex
-% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+% !TeX program = lualatex
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
 
@@ -12,11 +11,12 @@
 %
 %  - easy print out on DIN A4 paper size
 %
-% One can configure a4 vs. letter in the LaTeX installation. So it is configuration dependend, what the paper size will be.
-% This option  present, because the current word template offered by Springer is DIN A4.
-% We accept that DIN A4 cause WTFs at persons not used to A4 in USA.
+% One can configure default page size (a4 vs. letter) in the LaTeX installation.
+% Thus, it is configuration dependend, what the paper size will be.
+% Having "a4paper" option present, the page size is set to A4.
+% Note that the current word template offered by Springer is DIN A4.
 %
-% "runningheads":
+% "runningheads" führt zu folgendem:
 %
 %  - zeigt Author + Titel auf jeder Seite.
 %  - Während des Schreibens und das Review des Papers hilft das, um z.B. auf konkrete Seitenzahlen einfach verweisen zu können.
@@ -26,10 +26,12 @@
 % blindly opening the folder, one could hit not the title page, but an arbitrary page. Therefore,
 % it is good to have title printed on the pages, too.
 %
-% Diese Option nach Aufforderung durch die Herausgeber entfernen.
+% Die Option "runningheads" ist nach Aufforderung durch die Herausgeber entfernen.
 %
 % To disable outputting page headers and footers, remove "runningheads"
 \documentclass[runningheads,a4paper,ngerman]{llncs}[2022/01/12]
+
+\usepackage{iftex}
 
 % backticks (`) werden als solches in verbatim-Umgebungen dargestellt
 % Details unter:
@@ -46,26 +48,6 @@
 % Hinweis von http://tex.stackexchange.com/a/321066/9075
 % Ermögliche die Benutzung von "= als Trennstriche
 \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
-%
-% Fix von https://tex.stackexchange.com/a/441701/9075
-\usepackage{regexpatch}
-\makeatletter
-\edef\switcht@albion{%
-  \relax\unexpanded\expandafter{\switcht@albion}%
-}
-\xpatchcmd*{\switcht@albion}{ \def}{\def}{}{}
-\xpatchcmd{\switcht@albion}{\relax}{}{}{}
-\edef\switcht@deutsch{%
-  \relax\unexpanded\expandafter{\switcht@deutsch}%
-}
-\xpatchcmd*{\switcht@deutsch}{ \def}{\def}{}{}
-\xpatchcmd{\switcht@deutsch}{\relax}{}{}{}
-\edef\switcht@francais{%
-  \relax\unexpanded\expandafter{\switcht@francais}%
-}
-\xpatchcmd*{\switcht@francais}{ \def}{\def}{}{}
-\xpatchcmd{\switcht@francais}{\relax}{}{}{}
-\makeatother
 
 % Links verhalten sich so, wie sie sollen
 % Zeilenumbrüche bei URLs auch bei Bindestrichen erlauben, auch wenn es verwirrend sein könnte: Gehört der Bindestrich zur URL oder ist es ein Trennstrich?
@@ -78,6 +60,38 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
 
+\ifluatex
+\usepackage[no-math]{fontspec}
+\usepackage{unicode-math}
+
+% Typewriter font (for source code etc)
+% Use New Computer Modern font (Computer Modern is the default LaTeX font; this is the implemented modern variant)
+% Source: https://tug.org/FontCatalogue/newcomputermoderntypewriter/
+
+\setmainfont[%
+ItalicFont=NewCM10-Italic.otf,%
+BoldFont=NewCM10-Bold.otf,%
+BoldItalicFont=NewCM10-BoldItalic.otf,%
+SmallCapsFeatures={Numbers=OldStyle}]{NewCM10-Regular.otf}
+
+\setsansfont[%
+ItalicFont=NewCMSans10-Oblique.otf,%
+BoldFont=NewCMSans10-Bold.otf,%
+BoldItalicFont=NewCMSans10-BoldOblique.otf,%
+SmallCapsFeatures={Numbers=OldStyle}]{NewCMSans10-Regular.otf}
+
+\setmonofont[ItalicFont=NewCMMono10-Italic.otf,%
+BoldFont=NewCMMono10-Bold.otf,%
+BoldItalicFont=NewCMMono10-BoldOblique.otf,%
+SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
+
+\setmathfont{NewCMMath-Regular.otf}
+
+% Enable proper ligatures
+% For more information see https://ctan.org/pkg/selnolig
+% language "english" or "ngerman" is passed to selnolig by the document class
+\usepackage{selnolig}
+\else
 % This is the modern package for "Computer Modern".
 % In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
 \usepackage[%
@@ -91,6 +105,7 @@
 
 % Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
 \usepackage[T1]{fontenc}
+\fi
 
 % Optischer Randausgleich und Grauwertkorrektur. Siehe See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
 
@@ -121,8 +136,9 @@
 % Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
 \usepackage{diagbox}
 
-\usepackage{xcolor}
+\usepackage[dvipsnames, table]{xcolor}
 
+% See https://github.com/gpoore/minted
 \usepackage[newfloat]{minted}
 
 \setminted{
@@ -139,9 +155,9 @@
     % breakbytokenanywhere=true
 }
 
-\usemintedstyle{bw} %black and white style
+%\usemintedstyle{bw} %black and white style
 %\usemintedstyle{vs} %visual studio
-%\usemintedstyle{friendlygrayscale} % custom style - submitted as pull request https://bitbucket.org/birkenfeld/pygments-main/pull-requests/748/add-style-friendly-grayscale/diff
+\usemintedstyle{friendly_grayscale}
 %\usemintedstyle{friendly}
 %\usemintedstyle{eclipse} %http://www.jevon.org/wiki/Eclipse_Pygments_Style
 %\usemintedstyle{autumn}
@@ -171,7 +187,10 @@
 \defineshorthand{"`}{\openautoquote}
 \defineshorthand{"'}{\closeautoquote}
 
-% Nicer tables (\toprule, \midrule, \bottomrule)
+% bessere Abstaende innerhalb der Tabelle (Layout))
+% -------------------------------------------------
+% \toprule, \midrule, \bottomrule
+% Doc: https://texdoc.org/serve/booktabs/0
 \usepackage{booktabs}
 
 % Extended enumerate, such as \begin{compactenum}
@@ -213,24 +232,106 @@
 { }
 
 % Put figures aside a text
+% Even though the package is from 1998, it works well
 \usepackage[rflt]{floatflt}
+
+% Farbige Tabellen
+% ----------------
+% Das Paket colortbl wird inzwischen automatisch durch xcolor geladen
+%
+% Erweiterte Funktionen innerhalb von Tabellen
+% --------------------------------------------
+%%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/multirow/multirow.sty
+\usepackage{multirow} % Mehrfachspalten
+%
+%%% Doc: Documentation inside dtx Package
+\usepackage{dcolumn}  % Ausrichtung an Komma oder Punkt
+
+%%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/supertabular/supertabular.pdf
+%\usepackage{supertabular}
+
+%%% Fussnoten/Endnoten ===================================================
+
+% EN: Put footnotes below floats
+% DE: Fußnoten unter Gleitumgebungen ("floats") platzieren
+% Source: https://tex.stackexchange.com/a/32993/9075
+\usepackage{stfloats}
+\fnbelowfloat
+
+% EN: Extended support for footnotes
+% DE: Fußnoten
+%
+%\usepackage{dblfnote}  %Zweispaltige Fußnoten
+%
+% Keine hochgestellten Ziffern in der Fußnote (KOMA-Script-spezifisch):
+%\deffootnote[1.5em]{0pt}{1em}{\makebox[1.5em][l]{\bfseries\thefootnotemark}}
+%
+% Abstand zwischen Fußnoten vergrößern:
+%\setlength{\footnotesep}{.85\baselineskip}
+%
+% EN: Following command disables the separting line of the footnote
+% DE: Folgendes Kommando deaktiviert die Trennlinie zur Fußnote
+%\renewcommand{\footnoterule}{}
+%
+%\addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fußnote
+
+% DE: Fußnoten immer ganz unten auf einer \raggedbottom-Seite
+% DE: fnpos kommt aus dem yafoot package
+%\usepackage{fnpos}
+%\makeFNbelow
+%\makeFNbottom
+
+% TODO (and comment) configuration
+%
+% - \todo (from todo, easy-todo, todonotes) / \TODO (from fixmetodonotes) - for "normal" TODOs
+% - \todofix - "important" TODOs
+%
+% - \textcomment - highlights text and has a hover comment
+% - \sidecomment - just puts a comment to the side. Note: \comment MUST NOT be used as command name, it is already defined by much packages (mathdesign, mindflow, verbatim, and others)
+%
+% - \missingfigure
+%
+% - \textmarker
+% - \modified
+% - \change      - adresses a review comment
 
 % Enable nice comments
 \usepackage{pdfcomment}
 
-\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
-\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+\newcommand{\textcomment}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
 
-% Compatibality with packages todo, easy-todo, todonotes
-\newcommand{\todo}[1]{\commentatside{#1}}
+% Small PDF comment
+% 1. Parameter: Comment
+\newcommand{\sidecomment}[1]{\pdfcomment[color={0.045 0.278 0.643},voffset=4pt,icon=Note]{#1}}
+% Disabled variant - for the final PDF
+%\newcommand{\sidecomment}[1]{}
 
-% Compatiblity with package fixmetodonotes
-\newcommand{\TODO}[1]{\commentatside{#1}}
+\newcommand{\todo}[1]{TODO!\sidecomment{#1}}
 
-% Fußnoten unter Gleitumgebungen ("floats") platzieren
-% Quelle: https://tex.stackexchange.com/a/32993/9075
-\usepackage{stfloats}
-\fnbelowfloat
+% Änderungen
+%
+% 1. Parameter: Review-Kommentar
+% 2. Parameter: Neuer Text
+\newcommand{\change}[2]{{\color{red}#2}\pdfcomment[color={0.234 0.867 0.211},voffset=8pt,opacity=0.5]{#1}}
+% Disabled variant - for the final PDF
+%\newcommand{\change}[2]{#2}
+
+% Define default commands
+\makeatletter
+\@ifundefined{missingfigure}{\newcommand{\missingfigure}{... missing figure ...}}{}
+\@ifundefined{textcomment}{\newcommand{\textcomment}[2]{#1 \todo{#2}}}{}
+\@ifundefined{sidecomment}{\newcommand{\sidecomment}[1]{\marginpar{#1}}}{}
+\@ifundefined{todo}{\newcommand{\todo}[1]{\sidecomment{#1}}}{}
+\@ifundefined{TODO}{\newcommand{\TODO}[1]{\todo{#1}}}{}
+\@ifundefined{todofix}{\newcommand{\todofix}[1]{\todo{#1}}}{}
+\@ifundefined{change}{\newcommand{\change}[2]{#1 $\rightarrow$ #2}}{}
+\makeatother
+
+% Textmarker (Textfarbe rot)
+\newcommand{\textmarker}[1]{{\color{red} #1}\xspace}
+
+% Modified (Text blau)
+\newcommand{\modified}[1]{{\color{blue!60!black} #1}\xspace}
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
 \addto\extrasgerman{\sisetup{locale = DE}}
@@ -241,10 +342,12 @@
 % Enable hyperref without colors and without bookmarks
 \hypersetup{
   hidelinks,
-  colorlinks=true,
+  colorlinks=true,       % Links erhalten Farben statt Kaeten
+  raiselinks=true,       % calculate real height of the link
   allcolors=black,
   pdfstartview=Fit,
-  breaklinks=true
+  breaklinks=true,       % Links ueberstehen Zeilenumbruch
+  hypertexnames=false,   % Fix jumping to algorithm line - http://tex.stackexchange.com/a/156404/9075
 }
 
 % Enable correct jumping to figures when referencing
@@ -258,6 +361,14 @@
 \makeatother
 
 \usepackage[caption=false,font=footnotesize]{subfig}
+
+% Alternative for making subfigures:
+% Part of the caption package. See http://www.ctan.org/pkg/caption
+% Ersetzt die Pakete subfigure und subfig - siehe https://tex.stackexchange.com/a/13778/9075
+%
+% (subfigure is outdated. subfig is maintained, but subcaption is better)
+% See: http://tex.stackexchange.com/questions/13625/subcaption-vs-subfig-best-package-for-referencing-a-subfigure
+%\usepackage[hypcap=true]{subcaption}
 
 \usepackage{mindflow}
 
@@ -310,6 +421,10 @@
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
 \usepackage{xspace}
+% Macht \xspace und \enquote kompatibel
+\makeatletter
+\xspaceaddexceptions{\grqq \grq \csq@qclose@i \} }
+\makeatother
 
 % Enable hyphenation at other places as the dash.
 % Example: applicaiton\hydash specific
@@ -318,8 +433,24 @@
 % Definition of "= taken from http://mirror.ctan.org/macros/latex/contrib/babel-contrib/german/ngermanb.dtx
 \makeatother
 
+\ifluatex
+% Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
+% See ADR-0008 for alternatives
+\usepackage{autotype}
+\fi
+
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
+\hyphenation{
+  Spe-zi-fi-ka-tion
+  In-te-gra-tion
+  An-for-de-rung An-for-de-run-gen
+  Be-nut-zer-ober-flä-che
+  Mes-sung-en
+  aus-zu-tau-schen
+  Lauf-zeit-in-for-ma-tionen
+  % May not be hypphenated
+  AROMA TOSCA BPMN OASIS OMG DMTF IT DevOps
+}
 
 % Add copyright
 %
@@ -338,6 +469,7 @@
   \llncs{book editors and title}{0042}
 \fi
 
+\ifpdftex
 % Enable copy and paste of text from the PDF
 % Only required for pdflatex. It "just works" in the case of lualatex.
 % Alternative: cmap or mmap package
@@ -349,8 +481,13 @@
 % According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
 \input glyphtounicode
 \pdfgentounicode=1
-
+\fi
 \begin{document}
+\ifluatex
+% Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
+% See ADR-0008 for alternatives
+\autotypelangoptions{ngerman}{ligbreak}
+\fi
 
 \title{Paper Title}
 % If Title is too long, use \titlerunning
@@ -383,7 +520,7 @@
 \maketitle
 
 \begin{abstract}
-<Kurzfassung der Arbeit>
+\lipsum[1]
 
 \keywords{First keyword \and Second keyword \and Third keyword}
 \end{abstract}
@@ -406,7 +543,7 @@ Schließlich fasst \cref{sec:outlook} die Ergebnisse der Arbeit zusammen und ste
 Eine Beschreibung relevanter wissenschaftlicher Arbeiten mit Bezug zur eigenen Arbeit.
 Der Abschnitt kann je nach Kontext auch an anderer Stelle stehen.
 
-Winery~\cite{Winery} is a graphical \commentontext{modeling}{modeling with one ``l'', because of AE} tool.
+Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of AE} tool.
 The whole idea of TOSCA is explained by \citet{Binz2009}.
 
 \section{LaTeX Hinweise}
@@ -474,6 +611,35 @@ The package mindflow enables writing down notes and annotations in a way so that
 \begin{mindflow}
 This is a small note.
 \end{mindflow}
+\end{ltgexample}
+
+\subsection{Handling TODOs}
+
+\begin{ltgexample}
+\textmarker{Markierter Text.}
+\end{ltgexample}
+
+Bei \verb1\textmarker1 wird nur die Textfarbe geändert, da dies auch bei einigen Worten gut funktioniert.
+
+\begin{ltgexample}
+\textcomment{Markierter Text.}{Kommentar dazu.}
+\end{ltgexample}
+
+\begin{ltgexample}
+\modified{Manuelle Markierung für Text, der seit der letzten Version geändert wurde.}
+\end{ltgexample}
+
+\begin{ltgexample}
+Das ist ein Text.
+\change{FL1: Text angepasst}{Geänderter Text}.
+\end{ltgexample}
+
+\begin{ltgexample}
+Hier nur ein Kommentar\sidecomment{Kommentar}.
+\end{ltgexample}
+
+\begin{ltgexample}
+\todo{Hier muss noch kräftig Text produziert werden}
 \end{ltgexample}
 
 \subsection{Hyphenation}
@@ -572,8 +738,9 @@ One can also have pictures floating inside text:
 \includegraphics[width=.29\linewidth]{example-image-a}
 \caption{A floating figure}
 \end{floatingfigure}
-\blindtext[2]
+\lipsum[2]
 \end{ltgexample}
+
 \subsection{Sub Figures}
 
 An example of two sub figures is shown in \cref{fig:two_sub_figures}.
@@ -753,7 +920,7 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 \renewcommand{\bibsection}{\section*{Literatur}} % requried for natbib to have "References" printed and as section*, not chapter*
 % Use natbib compatbile splncs04nat style.
 % It does provide all features of splncs03, but is developed in a clean way.
-% Source: http://phaseportrait.blogspot.de/2011/02/natbib-compatible-bibtex-style-bst-file.html
+% Source: https://github.com/tpavlic/splncs04nat
 \bibliographystyle{splncs04nat}
 \begingroup
   \microtypecontext{expansion=sloppy}
@@ -764,6 +931,7 @@ See \url{https://help.jabref.org/en/CleanupEntries} for an overview of the clean
 % Enfore empty line after bibliography
 \ \\
 %
+\noindent
 Alle Links wurden zuletzt am 29.03.2021 geprüft.
 
 %%% ===============================================================================
