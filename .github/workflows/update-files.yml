@@ -76,13 +76,11 @@ jobs:
           # _latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep the minted + en version of it
           if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.lang }}" != "en" ]; then
             rm _latexmkrc
+            rm -r .github/workflows
           fi
 
           # the LICENSE of the repository should be kept
           rm LICENSE
-
-          # We do not want to update GitHub workflows
-          rm -rf .github/workflows
 
           # Files are ready
           # Overwrite old versions in $GITHUB_WORKSPACE
