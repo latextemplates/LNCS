@@ -43,7 +43,7 @@ jobs:
         run: |
           yo $GITHUB_WORKSPACE/generator-latex-template/generators/app/index.js \
            --githubpublish\
-           --docker=reitzig\
+           --docker=no\
            --documentclass=lncs\
            --papersize=a4\
            --latexcompiler=both\
