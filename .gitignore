@@ -1,55 +1,90 @@
+paper.pdf
+paper-*.pdf
+graphics/*.pdf_tex
+democode.tex
+
+# plantuml
+*-plantuml.latex
+*-plantuml.txt
+
+# latexindent
 *.bak
 *.bak?
+*.bak??
 
-# downloaded from springer - must not be distributed anywhere else
-llncs2e.zip
+# tex4ht
+*.4ct
+*.4tc
 
-# contents of llncs2e.zip
-aliascnt.sty
-history.txt
-llncs.cls
-llncs.dem
-llncs.doc
-llncs.dvi
-llncs.ind
-llncsdoc.pdf
-llncsdoc.sty
-readme.txt
-remreset.sty
-splncs.bst
-splncs03.bst
-splncs_srt.bst
-sprmindx.sty
-subjidx.ind
+# configured in packages_and_options.tex
+*.code
 
-# more contents of llncs2e.zip as of 2020-01-14
-fig1.eps
-samplepaper.tex
-splncs04.bst
-
-#The output should not be versioned
-paper.pdf
-paper-minted.pdf
-
-#temporary files by gradle
-.gradle
-
-#temporary file produced by lncs_as branch
-latex.zip
+# IntelliJ
+.idea/
 
 
 
 
+# Created by https://www.toptal.com/developers/gitignore/api/emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice,visualstudiocode
+
+### Emacs ###
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+dist/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
+# projectiles files
+.projectile
+
+# directory configuration
+.dir-locals.el
+
+# network security
+/network-security.data
 
 
+### JabRef ###
+# JabRef - https://www.jabref.org/
+*.bak
+*.sav
 
-
-
-
-
-# Created by https://www.gitignore.io/api/tex,windows,linux,macos,jabref,microsoftoffice
-
-### TeX ###
+### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -62,9 +97,11 @@ latex.zip
 *.fot
 *.cb
 *.cb2
+.*.lb
 
 ## Intermediate documents:
 *.dvi
+*.xdv
 *-converted-to.*
 # these rules might exclude image files for figures etc.
 # *.ps
@@ -80,7 +117,6 @@ latex.zip
 *.blg
 *-blx.aux
 *-blx.bib
-*.brf
 *.run.xml
 
 ## Build tool auxiliary files:
@@ -90,6 +126,10 @@ latex.zip
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
+
+## Build tool directories for auxiliary files
+# latexrun
+latex.out/
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
@@ -108,8 +148,17 @@ acs-*.bib
 *.snm
 *.vrb
 
+# changes
+*.soc
+
+# comment
+*.cut
+
 # cprotect
 *.cpt
+
+# elsarticle (documentclass of Elsevier journals)
+*.spl
 
 # endnotes
 *.ent
@@ -123,12 +172,12 @@ acs-*.bib
 *.t[1-9]
 *.t[1-9][0-9]
 *.tfm
-*.[1-9]
-*.[1-9][0-9]
 
 #(r)(e)ledmac/(r)(e)ledpar
 *.end
 *.?end
+*.[1-9]
+*.[1-9][0-9]
 *.[1-9][0-9][0-9]
 *.[1-9]R
 *.[1-9][0-9]R
@@ -147,36 +196,63 @@ acs-*.bib
 *.glo
 *.gls
 *.glsdefs
+*.lzo
+*.lzs
+*.slg
+*.slo
+*.sls
+
+# uncomment this for glossaries-extra (will ignore makeindex's style files!)
+# *.ist
+
+# gnuplot
+*.gnuplot
+*.table
 
 # gnuplottex
 *-gnuplottex-*
 
 # gregoriotex
 *.gaux
+*.glog
 *.gtex
 
+# htlatex
+*.4ct
+*.4tc
+*.idv
+*.lg
+*.trc
+*.xref
+
 # hyperref
+*.brf
 
 # knitr
 *-concordance.tex
-# TODO Comment the next line if you want to keep your tikz graphics files
-*.tikz
+# TODO Uncomment the next line if you use knitr and want to ignore its generated tikz files
+# *.tikz
 *-tikzDictionary
 
 # listings
 *.lol
 
+# luatexja-ruby
+*.ltjruby
+
 # makeidx
 *.idx
 *.ilg
 *.ind
-*.ist
 
 # minitoc
 *.maf
 *.mlf
 *.mlt
 *.mtc[0-9]*
+*.slf[0-9]*
+*.slt[0-9]*
+*.stc[0-9]*
 
 # minted
 _minted*
@@ -185,10 +261,19 @@ _minted*
 # morewrites
 *.mw
 
-# mylatexformat
+# newpax
+*.newpax
 
 # nomencl
+*.nlg
 *.nlo
+*.nls
+
+# pax
+*.pax
+
+# pdfpcnotes
+*.pdfpc
 
 # sagetex
 *.sagetex.sage
@@ -197,6 +282,9 @@ _minted*
 
 # scrwfile
 *.wrt
+
+# svg
+svg-inkscape/
 
 # sympy
 *.sout
@@ -211,6 +299,9 @@ sympy-plots-for-*.tex/
 *.pytxcode
 pythontex-files-*/
 
+# tcolorbox
+*.listing
+
 # thmtools
 *.loe
 
@@ -219,17 +310,31 @@ pythontex-files-*/
 *.md5
 *.auxlock
 
+# titletoc
+*.ptc
+
 # todonotes
 *.tdo
+
+# vhistory
+*.hst
+*.ver
 
 # easy-todo
 *.lod
 
+# xcolor
+*.xcp
+
+# xmpincl
+*.xmpi
+
 # xindy
 *.xdy
 
-# xypic precompiled matrices
+# xypic precompiled matrices and outlines
 *.xyc
+*.xyd
 
 # endfloat
 *.ttt
@@ -240,48 +345,58 @@ TSWLatexianTemp*
 
 ## Editors:
 # WinEdt
-*.bak
-*.sav
 
 # Texpad
 .texpadtmp
 
+# LyX
+*.lyx~
+
 # Kile
 *.backup
+
+# gummi
+.*.swp
 
 # KBibTeX
 *~[0-9]*
 
-# auto folder when using emacs and auctex 
-/auto/*
+# TeXnicCenter
+*.tps
+
+# auto folder when using emacs and auctex
+./auto/*
+*.el
 
 # expex forward references with \gathertags
 *-tags.tex
 
-### Windows ###
-# Windows thumbnail cache files
-Thumbs.db
-ehthumbs.db
-ehthumbs_vista.db
+# standalone packages
+*.sta
 
-# Folder config file
-Desktop.ini
+# Makeindex log files
+*.lpz
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# xwatermark package
+*.xwm
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# REVTeX puts footnotes in the bibliography by default, unless the nofootinbib
+# option is specified. Footnotes are the stored in a file with suffix Notes.bib.
+# Uncomment the next line to have this generated file ignored.
+#*Notes.bib
 
-# Windows shortcuts
-*.lnk
+### LaTeX Patch ###
+# LIPIcs / OASIcs
+*.vtc
 
+# glossaries
+*.glstex
+
+### LibreOffice ###
+# LibreOffice locks
+.~lock.*#
 
 ### Linux ###
-*~
 
 # temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
@@ -295,16 +410,19 @@ $RECYCLE.BIN/
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-
 ### macOS ###
-*.DS_Store
+# General
+.DS_Store
 .AppleDouble
 .LSOverride
 
 # Icon must end with two \r
 Icon
+
+
 # Thumbnails
 ._*
+
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
 .fseventsd
@@ -313,6 +431,7 @@ Icon
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
@@ -320,16 +439,18 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
-### JabRef ###
-# JabRef - https://www.jabref.org/
-
+### macOS Patch ###
+# iCloud generated files
+*.icloud
 
 ### MicrosoftOffice ###
 *.tmp
 
 # Word temporary
 ~$*.doc*
+
+# Word Auto Backup File
+Backup of *.doc*
 
 # Excel temporary
 ~$*.xls*
@@ -341,6 +462,51 @@ Temporary Items
 ~$*.ppt*
 
 # Visio autosave temporary files
-*.~vsdx
+*.~vsd*
 
-# End of https://www.gitignore.io/api/tex,windows,linux,macos,jabref,microsoftoffice
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.toptal.com/developers/gitignore/api/emacs,latex,linux,macos,jabref,windows,libreoffice,microsoftoffice,visualstudiocode
