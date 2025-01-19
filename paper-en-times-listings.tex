@@ -526,7 +526,7 @@
 % Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
 %
 % According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
-\input glyphtounicode
+\input{glyphtounicode}
 \pdfgentounicode=1
 \fi
 \begin{document}
@@ -579,7 +579,7 @@ Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:out
 \section{Related Work}
 \label{sec:relatedwork}
 
-Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of AE} tool.
+Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of American English} tool.
 The whole idea of TOSCA is explained by \citet{Binz2009}.
 
 \section{LaTeX Hints}
@@ -686,7 +686,7 @@ Hier nur ein Kommentar\sidecomment{Kommentar}.
 \subsection{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.
-When using microtype, there should be less hypnetations than in other settings.
+When using \href{https://ctan.org/pkg/microtype}{microtype}, there should be fewer hyphenations than in other settings.
 It might be necessary to tweak the hyphenations nevertheless.
 Here are some hints:
 
@@ -702,7 +702,7 @@ This is enabled by an additional configuration of the babel package.
 \subsection{Typesetting Units}
 
 \begin{ltgexample}
-Numbers can be written plain text (such as 100), by using the siunitx package as follows:
+Numbers can be written plain text (such as 100), by using the \href{https://ctan.org/pkg/siunitx}{siunitx} package as follows:
 \SI{100}{\km\per\hour},
 or by using plain \LaTeX{} (and math mode):
 $100 \frac{\mathit{km}}{h}$.
@@ -922,7 +922,7 @@ One can enumerate items as follows:
 \end{ltgexample}
 
 
-With paralist, one can even have all items typset after each other and have them clean in the tex document:
+With paralist, one can even have all items typeset after each other and have them clean in the TeX document:
 
 \begin{ltgexample}
 \begin{inparaenum}
@@ -947,7 +947,7 @@ $\powerset({1,2,3})$
 \begin{ltgexample}
 Brackets work as designed:
 <test>
-One can also input backquotes in verbatim text: \verb|`test`|.
+One can also input backticks in verbatim text: \verb|`test`|.
 \end{ltgexample}
 
 
