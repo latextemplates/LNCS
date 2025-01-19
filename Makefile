@@ -79,17 +79,18 @@ edit:
 
 ## Rechtschreibung
 ##
-## Das ganze am Besten vor der final und als eigene Version ala make spellcheck
-## aspell line: aspell -t -l de_DE -d german -c --per-conf= "Dateiname" *.tex -T utf-8 --encoding=utf-8
-## Schreiben der LaTeX-Befehle in eine config Dateiname. Sieht so aus
-## add-tex-command begin PO // PO := prüfe []{} ;; po := ignoriere []{}
-## Leerzeichen ungleich Tabs !!!
-## Config File nicht vergessen
+## Das Ganze am Besten vor der final und als eigene Version ala "make aspell"
+##
+## .aspell.conf - zu ignorierende LaTeX-Befehle
+##   Schreiben der LaTeX-Befehle in eine config Dateiname. Sieht so aus:
+##   add-tex-command democommand PO // PO := prüfe []{} ;; po := ignoriere []{}
+##
+## .aspell.en.pws - persönliches Wörterbuch
 aspell:
 	for tex in $(TEX_FILES);
 		do
 			# One could add a personal dictionary using --personal=.aspell.en.pws
-			aspell --mode=tex -l en_US --encoding=utf-8 -c $$tex;
+			aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws -c $$tex;
 		done
 
 showundef:
