@@ -3,6 +3,10 @@ paper-*.pdf
 graphics/*.pdf_tex
 democode.tex
 
+# spelling
+*.spell.bad
+*.spell.txt
+
 # plantuml
 *-plantuml.latex
 *-plantuml.txt
