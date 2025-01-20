@@ -78,7 +78,7 @@ jobs:
           done
           if [[ "$failure" -eq 1 ]]; then
              echo "" >> $GITHUB_STEP_SUMMARY
-             echo "If you want to ignore words, add them to paper.spell.good"
+             echo "If you want to ignore words, add them to `.aspell.en.pws` (your personal aspell dictionary)"
             exit 1
           fi
   indent:
