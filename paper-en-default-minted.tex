@@ -114,12 +114,12 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 % This is the modern package for "Computer Modern".
 % In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
 \usepackage[%
-    rm={oldstyle=false,proportional=true},%
-    sf={oldstyle=false,proportional=true},%
-    % By using 'variable=true' the monospaced font can be used as variable font (with differents widths per letter)
-    % However, this makes listings look ugly.
-    tt={oldstyle=false,proportional=true,variable=false},%
-    qt=false%
+  rm={oldstyle=false,proportional=true},%
+  sf={oldstyle=false,proportional=true},%
+  % By using 'variable=true' the monospaced font can be used as variable font (with differents widths per letter)
+  % However, this makes listings look ugly.
+  tt={oldstyle=false,proportional=true,variable=false},%
+  qt=false%
 ]{cfr-lm}
 
 % Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
@@ -132,8 +132,8 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
   babel=true, % Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
   expansion=alltext,
   protrusion=alltext-nott, % Ensure that at listings, there is no change at the margin of the listing
+  % In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
   final % Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
-        % In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
 ]{microtype}
 
 % \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
@@ -158,17 +158,17 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 \usepackage[newfloat]{minted}
 
 \setminted{
-    % Line numbers not flowing out of the margin
-    numbersep=5pt,
-    xleftmargin=12pt,
-    %
-    % Better listing breaking
-    breakafter=-/\{,
-    breakbefore=\\
-    %
-    % Alternative: Rely on pygment's tokenizer. Does not work well with LaTeX and comments
-    % breakbytoken=true,
-    % breakbytokenanywhere=true
+  % Line numbers not flowing out of the margin
+  numbersep=5pt,
+  xleftmargin=12pt,
+  %
+  % Better listing breaking
+  breakafter=-/\{,
+  breakbefore=\\
+  %
+  % Alternative: Rely on pygment's tokenizer. Does not work well with LaTeX and comments
+  % breakbytoken=true,
+  % breakbytokenanywhere=true
 }
 
 %\usemintedstyle{bw} %black and white style
@@ -220,8 +220,7 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
   comma,         % use commas as separators
   numbers,       % for numerical citations;
   %sort           % orders multiple citations into the sequence in which they appear in the list of references;
-  sort&compress  % as sort but in addition multiple numerical citations
-                 % are compressed if possible (as 3-6, 15);
+  sort&compress  % as sort but in addition multiple numerical citations are compressed if possible (as 3-6, 15);
 ]{natbib}
 
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
