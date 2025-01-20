@@ -71,7 +71,7 @@ jobs:
               echo "| $tex | ✅ |" >> $GITHUB_STEP_SUMMARY
             else
               echo "| $tex | ❌ $words |" >> $GITHUB_STEP_SUMMARY
-              if [[ "$filename" == "paper.tex" ]]; then
+              if [[ "$tex" == "paper.tex" ]]; then
                 failure=1
               fi
             fi
