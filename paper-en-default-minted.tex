@@ -71,51 +71,59 @@
 %\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
 %\makeatother
 
+%% !!! If you change the font, be sure that words such as "workflow" can
+%% !!! still be copied from the PDF. If this is not the case, you have
+%% !!! to use glyphtounicode. See comment at cmap package.
+%%
+%% Background: "workflow" contains "fl" which is a ligature, which in turn
+%%             is rendered as one character in the PDF and needs to be split
+%%             whily copying.
+
 \ifluatex
-\usepackage[no-math]{fontspec}
-\usepackage{unicode-math}
+  \usepackage[no-math]{fontspec}
+  \usepackage{unicode-math}
 
-% Typewriter font (for source code etc)
-% Use New Computer Modern font (Computer Modern is the default LaTeX font; this is the implemented modern variant)
-% Source: https://tug.org/FontCatalogue/newcomputermoderntypewriter/
+  % Typewriter font (for source code etc)
+  % Use New Computer Modern font (Computer Modern is the default LaTeX font; this is the implemented modern variant)
+  % Source: https://tug.org/FontCatalogue/newcomputermoderntypewriter/
 
-\setmainfont[%
-ItalicFont=NewCM10-Italic.otf,%
-BoldFont=NewCM10-Bold.otf,%
-BoldItalicFont=NewCM10-BoldItalic.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCM10-Regular.otf}
+  \setmainfont[
+    ItalicFont=NewCM10-Italic.otf,
+    BoldFont=NewCM10-Bold.otf,
+    BoldItalicFont=NewCM10-BoldItalic.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCM10-Regular.otf}
 
-\setsansfont[%
-ItalicFont=NewCMSans10-Oblique.otf,%
-BoldFont=NewCMSans10-Bold.otf,%
-BoldItalicFont=NewCMSans10-BoldOblique.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCMSans10-Regular.otf}
+  \setsansfont[
+    ItalicFont=NewCMSans10-Oblique.otf,
+    BoldFont=NewCMSans10-Bold.otf,
+    BoldItalicFont=NewCMSans10-BoldOblique.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCMSans10-Regular.otf}
 
-\setmonofont[ItalicFont=NewCMMono10-Italic.otf,%
-BoldFont=NewCMMono10-Bold.otf,%
-BoldItalicFont=NewCMMono10-BoldOblique.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
+  \setmonofont[ItalicFont=NewCMMono10-Italic.otf,
+    BoldFont=NewCMMono10-Bold.otf,
+    BoldItalicFont=NewCMMono10-BoldOblique.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 
-\setmathfont{NewCMMath-Regular.otf}
+  \setmathfont{NewCMMath-Regular.otf}
 
-% Enable proper ligatures
-% For more information see https://ctan.org/pkg/selnolig
-% language "english" or "ngerman" is passed to selnolig by the document class
-\usepackage{selnolig}
+  % Enable proper ligatures
+  % For more information see https://ctan.org/pkg/selnolig
+  % language "english" or "ngerman" is passed to selnolig by the document class
+  \usepackage{selnolig}
 \else
-% This is the modern package for "Computer Modern".
-% In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
-\usepackage[%
+  % This is the modern package for "Computer Modern".
+  % In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
+  \usepackage[%
     rm={oldstyle=false,proportional=true},%
     sf={oldstyle=false,proportional=true},%
     % By using 'variable=true' the monospaced font can be used as variable font (with differents widths per letter)
     % However, this makes listings look ugly.
     tt={oldstyle=false,proportional=true,variable=false},%
     qt=false%
-]{cfr-lm}
+  ]{cfr-lm}
 
-% Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
-\usepackage[T1]{fontenc}
+  % Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
+  \usepackage[T1]{fontenc}
 \fi
 
 % Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
@@ -124,8 +132,8 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
   babel=true, % Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
   expansion=alltext,
   protrusion=alltext-nott, % Ensure that at listings, there is no change at the margin of the listing
+  % In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
   final % Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
-        % In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
 ]{microtype}
 
 % \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
@@ -142,22 +150,27 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 % Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
 \usepackage{diagbox}
 
+\ifluatex
+  \usepackage{spelling}
+  \spellingoutput{off}
+\fi
+
 \usepackage[dvipsnames, table]{xcolor}
 % See https://github.com/gpoore/minted
 \usepackage[newfloat]{minted}
 
 \setminted{
-    % Line numbers not flowing out of the margin
-    numbersep=5pt,
-    xleftmargin=12pt,
-    %
-    % Better listing breaking
-    breakafter=-/\{,
-    breakbefore=\\
-    %
-    % Alternative: Rely on pygment's tokenizer. Does not work well with LaTeX and comments
-    % breakbytoken=true,
-    % breakbytokenanywhere=true
+  % Line numbers not flowing out of the margin
+  numbersep=5pt,
+  xleftmargin=12pt,
+  %
+  % Better listing breaking
+  breakafter=-/\{,
+  breakbefore=\\
+  %
+  % Alternative: Rely on pygment's tokenizer. Does not work well with LaTeX and comments
+  % breakbytoken=true,
+  % breakbytokenanywhere=true
 }
 
 %\usemintedstyle{bw} %black and white style
@@ -209,8 +222,7 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
   comma,         % use commas as separators
   numbers,       % for numerical citations;
   %sort           % orders multiple citations into the sequence in which they appear in the list of references;
-  sort&compress  % as sort but in addition multiple numerical citations
-                 % are compressed if possible (as 3-6, 15);
+  sort&compress  % as sort but in addition multiple numerical citations are compressed if possible (as 3-6, 15);
 ]{natbib}
 
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
@@ -427,9 +439,9 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 \input{ushyphex}
 
 \ifluatex
-% Enable correct rendering of ligatures - provided by https://ctan.org/pkg/selnolig
-% See ADR-0009 for alternatives
-\usepackage{selnolig}
+  % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/selnolig
+  % See ADR-0009 for alternatives
+  \usepackage{selnolig}
 \fi
 
 % correct bad hyphenation here
@@ -457,17 +469,17 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 \fi
 
 \ifpdftex
-% Enable copy and paste of text from the PDF
-% Only required for pdflatex. It "just works" in the case of lualatex.
-% Alternative: cmap or mmap package
-% mmap enables mathematical symbols, but does not work with the newtx font set
-% See: https://tex.stackexchange.com/a/64457/9075
-% Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
-% Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
-%
-% According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
-\input glyphtounicode
-\pdfgentounicode=1
+  % Enable copy and paste of text from the PDF
+  % Only required for pdflatex. It "just works" in the case of lualatex.
+  % Alternative: cmap or mmap package
+  % mmap enables mathematical symbols, but does not work with the newtx font set
+  % See: https://tex.stackexchange.com/a/64457/9075
+  % Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
+  % Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+  %
+  % According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
+  \input{glyphtounicode}
+  \pdfgentounicode=1
 \fi
 \begin{document}
 
@@ -519,7 +531,7 @@ Finally, a conclusion is drawn and outlook on future work is made (\cref{sec:out
 \section{Related Work}
 \label{sec:relatedwork}
 
-Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of AE} tool.
+Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of American English} tool.
 The whole idea of TOSCA is explained by \citet{Binz2009}.
 
 \section{LaTeX Hints}
@@ -531,28 +543,27 @@ The whole idea of TOSCA is explained by \citet{Binz2009}.
 \newenvironment{ltgexample}%
 {\LTGbeginlineexample=\numexpr\inputlineno+1\relax}%
 {\LTGendlineexample=\numexpr\inputlineno-1\relax%
-%
-\tcbinputlisting{%
-  listing only,
-  listing file=\currfilepath,
-  colback=green!5!white,
-  colframe=green!25,
-  coltitle=black!90,
-  coltext=black!90,
-  left=8mm,
-  title=Corresponding \LaTeX{} code of \texttt{\currfilepath},
+  \tcbinputlisting{%
+    listing only,
+    listing file=\currfilepath,
+    colback=green!5!white,
+    colframe=green!25,
+    coltitle=black!90,
+    coltext=black!90,
+    left=8mm,
+    title=Corresponding \LaTeX{} code of \texttt{\currfilepath},
     minted language=TeX,
     minted style=vs,
     minted options={
-      fontsize=\footnotesize,
-      firstline=\the\LTGbeginlineexample,
-      lastline=\the\LTGendlineexample,
-      firstnumber=\the\LTGbeginlineexample,
-      breaklines,
-      linenos,
-      numbersep=8pt
-    }
-}
+        fontsize=\footnotesize,
+        firstline=\the\LTGbeginlineexample,
+        lastline=\the\LTGendlineexample,
+        firstnumber=\the\LTGbeginlineexample,
+        breaklines,
+        linenos,
+        numbersep=8pt
+      }
+  }
 }%
 
 This section contains hints on writing LaTeX.
@@ -567,12 +578,13 @@ A new line is generated with a blank line.
 As you would do in Word:
 New paragraphs are generated by pressing enter.
 In LaTeX, this does not lead to a new paragraph as LaTeX joins subsequent lines.
-In case you want a new paragraph, just press enter twice (!).
+In case you want a new paragraph, just press enter twice!
 This leads to an empty line.
 In word, there is the functionality to press shift and enter.
 This leads to a hard line break.
 The text starts at the beginning of a new line.
-In LaTeX, you can do that by using two backslashes (\textbackslash\textbackslash).\\
+In LaTeX, you can do that by using two backslashes (\textbackslash\textbackslash).
+\\
 This is rarely used.
 
 Please do \textit{not} use two backslashes for new paragraphs.
@@ -622,7 +634,7 @@ Hier nur ein Kommentar\sidecomment{Kommentar}.
 \subsection{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.
-When using microtype, there should be less hypnetations than in other settings.
+When using \href{https://ctan.org/pkg/microtype}{microtype}, there should be fewer hyphenations than in other settings.
 It might be necessary to tweak the hyphenations nevertheless.
 Here are some hints:
 
@@ -638,7 +650,7 @@ This is enabled by an additional configuration of the babel package.
 \subsection{Typesetting Units}
 
 \begin{ltgexample}
-Numbers can be written plain text (such as 100), by using the siunitx package as follows:
+Numbers can be written plain text (such as 100), by using the \href{https://ctan.org/pkg/siunitx}{siunitx} package as follows:
 \SI{100}{\km\per\hour},
 or by using plain \LaTeX{} (and math mode):
 $100 \frac{\mathit{km}}{h}$.
@@ -666,24 +678,24 @@ Quoting with "`quote"' or ``quote'' also works.
 Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 
 \begin{figure}
-    \centering
-    \includegraphics[width=.75\linewidth]{example-image-a}
-    \caption{Example figure for cref demo}
-    \label{fig:ex:cref}
+  \centering
+  \includegraphics[width=.75\linewidth]{example-image-a}
+  \caption{Example figure for cref demo}
+  \label{fig:ex:cref}
 \end{figure}
 
 \begin{table}
-    \centering
-    \begin{tabular}{ll}
-      \toprule
-      Heading1 & Heading2 \\
-      \midrule
-      One      & Two      \\
-      Thee     & Four     \\
-      \bottomrule
-    \end{tabular}
-    \caption{Example table for cref demo}
-    \label{tab:ex:cref}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Heading1 & Heading2 \\
+    \midrule
+    One      & Two      \\
+    Thee     & Four     \\
+    \bottomrule
+  \end{tabular}
+  \caption{Example table for cref demo}
+  \label{tab:ex:cref}
 \end{table}
 
 \begin{ltgexample}
@@ -702,7 +714,10 @@ Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 \begin{figure}
   \centering
   \includegraphics[width=.8\linewidth]{example-image-golden}
-  \caption[Simple Figure]{Simple Figure. Based on \citet{mwe}.}
+  \caption[Simple Figure]{
+    Simple Figure.
+    Based on \citet{mwe}.
+  }
   \label{fig:label}
 \end{figure}
 \end{ltgexample}
@@ -712,8 +727,8 @@ One can also have pictures floating inside text:
 
 \begin{ltgexample}
 \begin{floatingfigure}{.33\linewidth}
-\includegraphics[width=.29\linewidth]{example-image-a}
-\caption{A floating figure}
+  \includegraphics[width=.29\linewidth]{example-image-a}
+  \caption{A floating figure}
 \end{floatingfigure}
 \lipsum[2]
 \end{ltgexample}
@@ -724,11 +739,11 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 
 \begin{ltgexample}
 \begin{figure}[!b]
-    \centering
-    \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
+  \centering
+  \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
     \label{fig:first_case}}
   \hfil
-    \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
+  \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
     \label{fig:second_case}}
   \caption{Example figure with two sub figures.}
   \label{fig:two_sub_figures}
@@ -756,17 +771,17 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 \begin{ltgexample}
 % Source: https://tex.stackexchange.com/a/468994/9075
 \begin{table}
-\caption{Table with diagonal line}
-\label{tab:diag}
-\begin{center}
-\begin{tabular}{|l|c|c|}
-\hline
-\diagbox[width=10em]{Diag\\Column Head I}{Diag Column\\Head II} & Second & Third \\
-\hline
-& foo & bar \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Table with diagonal line}
+  \label{tab:diag}
+  \begin{center}
+    \begin{tabular}{|l|c|c|}
+      \hline
+      \diagbox[width=10em]{Diag \\Column Head I}{Diag Column\\Head II} & Second & Third \\
+      \hline
+       & foo & bar              \\
+      \hline
+    \end{tabular}
+  \end{center}
 \end{table}
 \end{ltgexample}
 
@@ -781,7 +796,7 @@ It uses the \href{http://pygments.org/}{pygments} library, which in turn require
 \refline{line:comment} contains a comment.
 
 \begin{listing}[htbp]
-    \begin{minted}[linenos=true,escapeinside=||]{xml}
+  \begin{minted}[linenos=true,escapeinside=||]{xml}
 <listing name="example">
   <!-- comment --> |\labelline{line:comment}|
   <content>not interesting</content>
@@ -796,7 +811,7 @@ One can also typeset JSON as shown in \cref{lst:flJSON}.
 
 \begin{ltgexample}
 \begin{listing}[htbp]
-    \begin{minted}[linenos=true,escapeinside=||]{json}
+  \begin{minted}[linenos=true,escapeinside=||]{json}
 {
   key: "value"
 }
@@ -810,7 +825,7 @@ Java is also possible as shown in \cref{lst:flJava}.
 
 \begin{ltgexample}
 \begin{listing}[htbp]
-    \begin{minted}[linenos=true,escapeinside=||]{java}
+  \begin{minted}[linenos=true,escapeinside=||]{java}
 public class Hello {
     public static void main (String[] args) {
         System.out.println("Hello World!");
@@ -828,8 +843,8 @@ One can list items as follows:
 
 \begin{ltgexample}
 \begin{itemize}
-\item Item One
-\item Item Two
+  \item Item One
+  \item Item Two
 \end{itemize}
 \end{ltgexample}
 
@@ -844,7 +859,7 @@ One can enumerate items as follows:
 \end{ltgexample}
 
 
-With paralist, one can even have all items typset after each other and have them clean in the tex document:
+With paralist, one can even have all items typeset after each other and have them clean in the TeX document:
 
 \begin{ltgexample}
 \begin{inparaenum}
@@ -869,7 +884,7 @@ $\powerset({1,2,3})$
 \begin{ltgexample}
 Brackets work as designed:
 <test>
-One can also input backquotes in verbatim text: \verb|`test`|.
+One can also input backticks in verbatim text: \verb|`test`|.
 \end{ltgexample}
 
 

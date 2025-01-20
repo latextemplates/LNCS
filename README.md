@@ -36,6 +36,7 @@ Following features are enabled in this template:
 - [microtypographic extensions](https://www.ctan.org/pkg/microtype) for a better look of the paper.
 - Modern packages such as [microtype], [cleveref], [csquotes], [hyperref], [hypcap], [upquote], [natbib], [booktabs].
 - (Optional) LaTeX compilation using the modern lualatex compiler.
+- [latexmk] for easy compilation of the LaTeX document.
 - Ready-to-go configuration for [latexindent].
 - Proper hyphenation and microtype for English texts.
 
@@ -95,7 +96,7 @@ To have minted running properly, you have to do following steps on Windows:
 
 The generated `Dockerfile` is based on the [Dockerfile by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image).
 
-    docker run --rm -v "c:\users\example\latex-document:/workdir" latexmk
+    docker run --rm -v "c:\users\example\latex-document:/workdir" ltg latexmk
 
 Following one-time setup is required:
 
@@ -180,12 +181,16 @@ If you don't do this, `latexmk` tries to execute `latex`, which tries to produce
 - Original LNCS documentation (without the improvements): [llncs-doc.pdf](llncs-doc.pdf)
 - Other templates: <https://latextemplates.github.io/>
 
+[biber]: https://www.ctan.org/pkg/biber
+[biblatex]: http://tex.stackexchange.com/tags/biblatex/info
+[bibtex]: https://www.ctan.org/pkg/bibtex
 [booktabs]: https://ctan.org/pkg/booktabs
 [cleveref]: https://ctan.org/pkg/cleveref
 [csquotes]: https://www.ctan.org/pkg/csquotes
 [hypcap]: https://www.ctan.org/pkg/hypcap
 [hyperref]: https://ctan.org/pkg/hyperref
 [latexindent]: https://ctan.org/pkg/latexindent
+[latexmk]: http://tex.stackexchange.com/tags/latexmk/info
 [microtype]: https://ctan.org/pkg/microtype
 [minted]: https://ctan.org/pkg/minted
 [natbib]: https://ctan.org/pkg/natbib

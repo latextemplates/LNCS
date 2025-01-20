@@ -1,4 +1,5 @@
 scheme-basic
+latexindent
 latexmk
 texlogsieve
 
@@ -90,6 +91,7 @@ luacode
 lualatex-math
 luatex85
 luatexbase
+luaxml
 ly1
 marginnote
 mathdesign
@@ -133,6 +135,7 @@ siunitx
 snapshot
 soul
 soulpos
+spelling
 stringenc
 sttools
 subfig

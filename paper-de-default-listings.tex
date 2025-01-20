@@ -60,51 +60,59 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
 
+%% !!! If you change the font, be sure that words such as "workflow" can
+%% !!! still be copied from the PDF. If this is not the case, you have
+%% !!! to use glyphtounicode. See comment at cmap package.
+%%
+%% Background: "workflow" contains "fl" which is a ligature, which in turn
+%%             is rendered as one character in the PDF and needs to be split
+%%             whily copying.
+
 \ifluatex
-\usepackage[no-math]{fontspec}
-\usepackage{unicode-math}
+  \usepackage[no-math]{fontspec}
+  \usepackage{unicode-math}
 
-% Typewriter font (for source code etc)
-% Use New Computer Modern font (Computer Modern is the default LaTeX font; this is the implemented modern variant)
-% Source: https://tug.org/FontCatalogue/newcomputermoderntypewriter/
+  % Typewriter font (for source code etc)
+  % Use New Computer Modern font (Computer Modern is the default LaTeX font; this is the implemented modern variant)
+  % Source: https://tug.org/FontCatalogue/newcomputermoderntypewriter/
 
-\setmainfont[%
-ItalicFont=NewCM10-Italic.otf,%
-BoldFont=NewCM10-Bold.otf,%
-BoldItalicFont=NewCM10-BoldItalic.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCM10-Regular.otf}
+  \setmainfont[
+    ItalicFont=NewCM10-Italic.otf,
+    BoldFont=NewCM10-Bold.otf,
+    BoldItalicFont=NewCM10-BoldItalic.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCM10-Regular.otf}
 
-\setsansfont[%
-ItalicFont=NewCMSans10-Oblique.otf,%
-BoldFont=NewCMSans10-Bold.otf,%
-BoldItalicFont=NewCMSans10-BoldOblique.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCMSans10-Regular.otf}
+  \setsansfont[
+    ItalicFont=NewCMSans10-Oblique.otf,
+    BoldFont=NewCMSans10-Bold.otf,
+    BoldItalicFont=NewCMSans10-BoldOblique.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCMSans10-Regular.otf}
 
-\setmonofont[ItalicFont=NewCMMono10-Italic.otf,%
-BoldFont=NewCMMono10-Bold.otf,%
-BoldItalicFont=NewCMMono10-BoldOblique.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
+  \setmonofont[ItalicFont=NewCMMono10-Italic.otf,
+    BoldFont=NewCMMono10-Bold.otf,
+    BoldItalicFont=NewCMMono10-BoldOblique.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 
-\setmathfont{NewCMMath-Regular.otf}
+  \setmathfont{NewCMMath-Regular.otf}
 
-% Enable proper ligatures
-% For more information see https://ctan.org/pkg/selnolig
-% language "english" or "ngerman" is passed to selnolig by the document class
-\usepackage{selnolig}
+  % Enable proper ligatures
+  % For more information see https://ctan.org/pkg/selnolig
+  % language "english" or "ngerman" is passed to selnolig by the document class
+  \usepackage{selnolig}
 \else
-% This is the modern package for "Computer Modern".
-% In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
-\usepackage[%
+  % This is the modern package for "Computer Modern".
+  % In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
+  \usepackage[%
     rm={oldstyle=false,proportional=true},%
     sf={oldstyle=false,proportional=true},%
     % By using 'variable=true' the monospaced font can be used as variable font (with differents widths per letter)
     % However, this makes listings look ugly.
     tt={oldstyle=false,proportional=true,variable=false},%
     qt=false%
-]{cfr-lm}
+  ]{cfr-lm}
 
-% Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
-\usepackage[T1]{fontenc}
+  % Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
+  \usepackage[T1]{fontenc}
 \fi
 
 % Optischer Randausgleich und Grauwertkorrektur. Siehe See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
@@ -136,6 +144,11 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 % Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
 \usepackage{diagbox}
 
+\ifluatex
+  \usepackage{spelling}
+  \spellingoutput{off}
+\fi
+
 \usepackage[dvipsnames, table]{xcolor}
 
 % Code Listings
@@ -149,31 +162,31 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 % Source: https://tex.stackexchange.com/a/433961/9075
 
 \lstdefinelanguage{json}{
-    basicstyle=\normalfont\ttfamily,
-    commentstyle=\color{eclipseStrings}, % style of comment
-    stringstyle=\color{eclipseKeywords}, % style of strings
-    numbers=left,
-    numberstyle=\scriptsize,
-    stepnumber=1,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    % backgroundcolor=\color{gray}, %only if you like
-    string=[s]{"}{"},
-    comment=[l]{:\ "},
-    morecomment=[l]{:"},
-    literate=
-        *{0}{{{\color{numb}0}}}{1}
-         {1}{{{\color{numb}1}}}{1}
-         {2}{{{\color{numb}2}}}{1}
-         {3}{{{\color{numb}3}}}{1}
-         {4}{{{\color{numb}4}}}{1}
-         {5}{{{\color{numb}5}}}{1}
-         {6}{{{\color{numb}6}}}{1}
-         {7}{{{\color{numb}7}}}{1}
-         {8}{{{\color{numb}8}}}{1}
-         {9}{{{\color{numb}9}}}{1}
+  basicstyle=\normalfont\ttfamily,
+  commentstyle=\color{eclipseStrings}, % style of comment
+  stringstyle=\color{eclipseKeywords}, % style of strings
+  numbers=left,
+  numberstyle=\scriptsize,
+  stepnumber=1,
+  numbersep=8pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=lines,
+  % backgroundcolor=\color{gray}, %only if you like
+  string=[s]{"}{"},
+  comment=[l]{:\ "},
+  morecomment=[l]{:"},
+  literate=
+    *{0}{{{\color{numb}0}}}{1}
+    {1}{{{\color{numb}1}}}{1}
+    {2}{{{\color{numb}2}}}{1}
+    {3}{{{\color{numb}3}}}{1}
+    {4}{{{\color{numb}4}}}{1}
+    {5}{{{\color{numb}5}}}{1}
+    {6}{{{\color{numb}6}}}{1}
+    {7}{{{\color{numb}7}}}{1}
+    {8}{{{\color{numb}8}}}{1}
+    {9}{{{\color{numb}9}}}{1}
 }
 
 \lstset{
@@ -216,13 +229,13 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
   %
   captionpos=b
 }
-\ifluatex\else
+\ifpdftex
 
-% Ermögliche Umlaute when using \lstinputputlisting.
-% Siehe https://stackoverflow.com/a/29260603/873282 für Details.
-% listingsutf8 hat im Juni 2020 nicht funktioniert.
-\lstset{literate=
-  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  % Ermögliche Umlaute when using \lstinputputlisting.
+  % Siehe https://stackoverflow.com/a/29260603/873282 für Details.
+  % listingsutf8 hat im Juni 2020 nicht funktioniert.
+  \lstset{literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
   {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
   {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
   {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
@@ -234,16 +247,16 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
   {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
   {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
-}
+  }
 \fi
 
 \lstloadlanguages{% Check dokumentation for further languages...
-        %[Visual]Basic
-        %Pascal
-        %C
-        %C++
-        %XML
-        %HTML
+  %[Visual]Basic
+  %Pascal
+  %C
+  %C++
+  %XML
+  %HTML
 }
 
 % For easy quotations: \enquote{text}
@@ -274,8 +287,7 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
   comma,         % use commas as separators
   numbers,       % for numerical citations;
   %sort           % orders multiple citations into the sequence in which they appear in the list of references;
-  sort&compress  % as sort but in addition multiple numerical citations
-                 % are compressed if possible (as 3-6, 15);
+  sort&compress  % as sort but in addition multiple numerical citations are compressed if possible (as 3-6, 15);
 ]{natbib}
 
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
@@ -497,9 +509,9 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 \makeatother
 
 \ifluatex
-% Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
-% See ADR-0008 for alternatives
-\usepackage{autotype}
+  % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
+  % See ADR-0008 for alternatives
+  \usepackage{autotype}
 \fi
 
 % correct bad hyphenation here
@@ -533,23 +545,23 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 \fi
 
 \ifpdftex
-% Enable copy and paste of text from the PDF
-% Only required for pdflatex. It "just works" in the case of lualatex.
-% Alternative: cmap or mmap package
-% mmap enables mathematical symbols, but does not work with the newtx font set
-% See: https://tex.stackexchange.com/a/64457/9075
-% Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
-% Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
-%
-% According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
-\input glyphtounicode
-\pdfgentounicode=1
+  % Enable copy and paste of text from the PDF
+  % Only required for pdflatex. It "just works" in the case of lualatex.
+  % Alternative: cmap or mmap package
+  % mmap enables mathematical symbols, but does not work with the newtx font set
+  % See: https://tex.stackexchange.com/a/64457/9075
+  % Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
+  % Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+  %
+  % According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
+  \input{glyphtounicode}
+  \pdfgentounicode=1
 \fi
 \begin{document}
 \ifluatex
-% Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
-% See ADR-0008 for alternatives
-\autotypelangoptions{ngerman}{ligbreak}
+  % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
+  % See ADR-0008 for alternatives
+  \autotypelangoptions{ngerman}{ligbreak}
 \fi
 
 \title{Paper Title}
@@ -606,7 +618,7 @@ Schließlich fasst \cref{sec:outlook} die Ergebnisse der Arbeit zusammen und ste
 Eine Beschreibung relevanter wissenschaftlicher Arbeiten mit Bezug zur eigenen Arbeit.
 Der Abschnitt kann je nach Kontext auch an anderer Stelle stehen.
 
-Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of AE} tool.
+Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of American English} tool.
 The whole idea of TOSCA is explained by \citet{Binz2009}.
 
 \section{LaTeX Hinweise}
@@ -618,32 +630,31 @@ The whole idea of TOSCA is explained by \citet{Binz2009}.
 \newenvironment{ltgexample}%
 {\LTGbeginlineexample=\numexpr\inputlineno+1\relax}%
 {\LTGendlineexample=\numexpr\inputlineno-1\relax%
-%
-\tcbinputlisting{%
-  listing only,
-  listing file=\currfilepath,
-  colback=green!5!white,
-  colframe=green!25,
-  coltitle=black!90,
-  coltext=black!90,
-  left=8mm,
-  title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilepath},
-  listing options={%
-    frame=none,
-    language={[LaTeX]TeX},
-    escapeinside={},
-    firstline=\the\LTGbeginlineexample,
-    lastline=\the\LTGendlineexample,
-    firstnumber=\the\LTGbeginlineexample,
-    basewidth=.5em,
-    aboveskip=0mm,
-    belowskip=0mm,
-    numbers=left,
-    xleftmargin=0mm,
-    numberstyle=\tiny,
-    numbersep=8pt%
+  \tcbinputlisting{%
+    listing only,
+    listing file=\currfilepath,
+    colback=green!5!white,
+    colframe=green!25,
+    coltitle=black!90,
+    coltext=black!90,
+    left=8mm,
+    title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilepath},
+    listing options={
+        frame=none,
+        language={[LaTeX]TeX},
+        escapeinside={},
+        firstline=\the\LTGbeginlineexample,
+        lastline=\the\LTGendlineexample,
+        firstnumber=\the\LTGbeginlineexample,
+        basewidth=.5em,
+        aboveskip=0mm,
+        belowskip=0mm,
+        numbers=left,
+        xleftmargin=0mm,
+        numberstyle=\tiny,
+        numbersep=8pt%
+      }
   }
-}
 }%
 
 Hier sollen allgemeine \LaTeX-Hinweise gegeben werden, damit man Minimalbeispiele vorliegen hat, um sofort loszulegen.
@@ -712,7 +723,7 @@ Hier nur ein Kommentar\sidecomment{Kommentar}.
 \subsection{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.
-When using microtype, there should be less hypnetations than in other settings.
+When using \href{https://ctan.org/pkg/microtype}{microtype}, there should be fewer hyphenations than in other settings.
 It might be necessary to tweak the hyphenations nevertheless.
 Here are some hints:
 
@@ -728,7 +739,7 @@ This is enabled by an additional configuration of the babel package.
 \subsection{Typesetting Units}
 
 \begin{ltgexample}
-Numbers can be written plain text (such as 100), by using the siunitx package as follows:
+Numbers can be written plain text (such as 100), by using the \href{https://ctan.org/pkg/siunitx}{siunitx} package as follows:
 \SI{100}{\km\per\hour},
 or by using plain \LaTeX{} (and math mode):
 $100 \frac{\mathit{km}}{h}$.
@@ -756,24 +767,24 @@ Quoting with "`quote"' or ``quote'' also works.
 Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 
 \begin{figure}
-    \centering
-    \includegraphics[width=.75\linewidth]{example-image-a}
-    \caption{Example figure for cref demo}
-    \label{fig:ex:cref}
+  \centering
+  \includegraphics[width=.75\linewidth]{example-image-a}
+  \caption{Example figure for cref demo}
+  \label{fig:ex:cref}
 \end{figure}
 
 \begin{table}
-    \centering
-    \begin{tabular}{ll}
-      \toprule
-      Heading1 & Heading2 \\
-      \midrule
-      One      & Two      \\
-      Thee     & Four     \\
-      \bottomrule
-    \end{tabular}
-    \caption{Example table for cref demo}
-    \label{tab:ex:cref}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Heading1 & Heading2 \\
+    \midrule
+    One      & Two      \\
+    Thee     & Four     \\
+    \bottomrule
+  \end{tabular}
+  \caption{Example table for cref demo}
+  \label{tab:ex:cref}
 \end{table}
 
 \begin{ltgexample}
@@ -802,8 +813,8 @@ One can also have pictures floating inside text:
 
 \begin{ltgexample}
 \begin{floatingfigure}{.33\linewidth}
-\includegraphics[width=.29\linewidth]{example-image-a}
-\caption{A floating figure}
+  \includegraphics[width=.29\linewidth]{example-image-a}
+  \caption{A floating figure}
 \end{floatingfigure}
 \lipsum[2]
 \end{ltgexample}
@@ -814,11 +825,11 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 
 \begin{ltgexample}
 \begin{figure}[!b]
-    \centering
-    \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
+  \centering
+  \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
     \label{fig:first_case}}
   \hfil
-    \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
+  \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
     \label{fig:second_case}}
   \caption{Example figure with two sub figures.}
   \label{fig:two_sub_figures}
@@ -846,17 +857,17 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 \begin{ltgexample}
 % Source: https://tex.stackexchange.com/a/468994/9075
 \begin{table}
-\caption{Table with diagonal line}
-\label{tab:diag}
-\begin{center}
-\begin{tabular}{|l|c|c|}
-\hline
-\diagbox[width=10em]{Diag\\Column Head I}{Diag Column\\Head II} & Second & Third \\
-\hline
-& foo & bar \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Table with diagonal line}
+  \label{tab:diag}
+  \begin{center}
+    \begin{tabular}{|l|c|c|}
+      \hline
+      \diagbox[width=10em]{Diag \\Column Head I}{Diag Column\\Head II} & Second & Third \\
+      \hline
+       & foo & bar              \\
+      \hline
+    \end{tabular}
+  \end{center}
 \end{table}
 \end{ltgexample}
 
@@ -932,8 +943,8 @@ One can list items as follows:
 
 \begin{ltgexample}
 \begin{itemize}
-\item Item One
-\item Item Two
+  \item Item One
+  \item Item Two
 \end{itemize}
 \end{ltgexample}
 
@@ -948,7 +959,7 @@ One can enumerate items as follows:
 \end{ltgexample}
 
 
-With paralist, one can even have all items typset after each other and have them clean in the tex document:
+With paralist, one can even have all items typeset after each other and have them clean in the TeX document:
 
 \begin{ltgexample}
 \begin{inparaenum}
@@ -973,7 +984,7 @@ $\powerset({1,2,3})$
 \begin{ltgexample}
 Brackets work as designed:
 <test>
-One can also input backquotes in verbatim text: \verb|`test`|.
+One can also input backticks in verbatim text: \verb|`test`|.
 \end{ltgexample}
 
 

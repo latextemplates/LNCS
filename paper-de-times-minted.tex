@@ -61,39 +61,47 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
 
+%% !!! If you change the font, be sure that words such as "workflow" can
+%% !!! still be copied from the PDF. If this is not the case, you have
+%% !!! to use glyphtounicode. See comment at cmap package.
+%%
+%% Background: "workflow" contains "fl" which is a ligature, which in turn
+%%             is rendered as one character in the PDF and needs to be split
+%%             whily copying.
+
 \ifluatex
-\usepackage[no-math]{fontspec}
-\usepackage{unicode-math}
+  \usepackage[no-math]{fontspec}
+  \usepackage{unicode-math}
 
-% See https://tug.org/FontCatalogue/texgyretermes/ for more information
-\setmainfont{texgyretermes}[
-  Extension = .otf,
-  UprightFont = *-regular,
-  BoldFont = *-bold,
-  ItalicFont = *-italic,
-  BoldItalicFont = *-bolditalic,
-  Ligatures=TeX
-]
-% See https://tug.org/FontCatalogue/texgyreheros/ for more information
-\setsansfont[Scale=.9]{TeX Gyre Heros Regular}
-% newtxtt looks good with times, but no equivalent for lualatex found,
-% therefore tried to replace with inconsolata.
-% However, inconsolata does not look good in the context of LNCS ...
-%\setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
-% ... thus, we use the good old Latin Modern Mono font for source code.
-\setmonofont{Latin Modern Mono} % "variable=false"
+  % See https://tug.org/FontCatalogue/texgyretermes/ for more information
+  \setmainfont{texgyretermes}[
+    Extension = .otf,
+    UprightFont = *-regular,
+    BoldFont = *-bold,
+    ItalicFont = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Ligatures=TeX
+  ]
+  % See https://tug.org/FontCatalogue/texgyreheros/ for more information
+  \setsansfont[Scale=.9]{TeX Gyre Heros Regular}
+  % newtxtt looks good with times, but no equivalent for lualatex found,
+  % therefore tried to replace with inconsolata.
+  % However, inconsolata does not look good in the context of LNCS ...
+  %\setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
+  % ... thus, we use the good old Latin Modern Mono font for source code.
+  \setmonofont{Latin Modern Mono} % "variable=false"
 
-% Enable proper ligatures
-% For more information see https://ctan.org/pkg/selnolig
-% language "english" or "ngerman" is passed to selnolig by the document class
-\usepackage{selnolig}
+  % Enable proper ligatures
+  % For more information see https://ctan.org/pkg/selnolig
+  % language "english" or "ngerman" is passed to selnolig by the document class
+  \usepackage{selnolig}
 \else
-\RequirePackage{newtxtext}
-\RequirePackage{newtxmath}
-\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+  \RequirePackage{newtxtext}
+  \RequirePackage{newtxmath}
+  \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
 
-% Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
-\usepackage[T1]{fontenc}
+  % Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
+  \usepackage[T1]{fontenc}
 \fi
 
 % Optischer Randausgleich und Grauwertkorrektur. Siehe See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
@@ -125,23 +133,28 @@
 % Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
 \usepackage{diagbox}
 
+\ifluatex
+  \usepackage{spelling}
+  \spellingoutput{off}
+\fi
+
 \usepackage[dvipsnames, table]{xcolor}
 
 % See https://github.com/gpoore/minted
 \usepackage[newfloat]{minted}
 
 \setminted{
-    % Line numbers not flowing out of the margin
-    numbersep=5pt,
-    xleftmargin=12pt,
-    %
-    % Better listing breaking
-    breakafter=-/\{,
-    breakbefore=\\
-    %
-    % Alternative: Rely on pygment's tokenizer. Does not work well with LaTeX and comments
-    % breakbytoken=true,
-    % breakbytokenanywhere=true
+  % Line numbers not flowing out of the margin
+  numbersep=5pt,
+  xleftmargin=12pt,
+  %
+  % Better listing breaking
+  breakafter=-/\{,
+  breakbefore=\\
+  %
+  % Alternative: Rely on pygment's tokenizer. Does not work well with LaTeX and comments
+  % breakbytoken=true,
+  % breakbytokenanywhere=true
 }
 
 %\usemintedstyle{bw} %black and white style
@@ -196,8 +209,7 @@
   comma,         % use commas as separators
   numbers,       % for numerical citations;
   %sort           % orders multiple citations into the sequence in which they appear in the list of references;
-  sort&compress  % as sort but in addition multiple numerical citations
-                 % are compressed if possible (as 3-6, 15);
+  sort&compress  % as sort but in addition multiple numerical citations are compressed if possible (as 3-6, 15);
 ]{natbib}
 
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...
@@ -423,9 +435,9 @@
 \makeatother
 
 \ifluatex
-% Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
-% See ADR-0008 for alternatives
-\usepackage{autotype}
+  % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
+  % See ADR-0008 for alternatives
+  \usepackage{autotype}
 \fi
 
 % correct bad hyphenation here
@@ -459,23 +471,23 @@
 \fi
 
 \ifpdftex
-% Enable copy and paste of text from the PDF
-% Only required for pdflatex. It "just works" in the case of lualatex.
-% Alternative: cmap or mmap package
-% mmap enables mathematical symbols, but does not work with the newtx font set
-% See: https://tex.stackexchange.com/a/64457/9075
-% Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
-% Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
-%
-% According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
-\input glyphtounicode
-\pdfgentounicode=1
+  % Enable copy and paste of text from the PDF
+  % Only required for pdflatex. It "just works" in the case of lualatex.
+  % Alternative: cmap or mmap package
+  % mmap enables mathematical symbols, but does not work with the newtx font set
+  % See: https://tex.stackexchange.com/a/64457/9075
+  % Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
+  % Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+  %
+  % According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
+  \input{glyphtounicode}
+  \pdfgentounicode=1
 \fi
 \begin{document}
 \ifluatex
-% Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
-% See ADR-0008 for alternatives
-\autotypelangoptions{ngerman}{ligbreak}
+  % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/autotype
+  % See ADR-0008 for alternatives
+  \autotypelangoptions{ngerman}{ligbreak}
 \fi
 
 \title{Paper Title}
@@ -532,7 +544,7 @@ Schließlich fasst \cref{sec:outlook} die Ergebnisse der Arbeit zusammen und ste
 Eine Beschreibung relevanter wissenschaftlicher Arbeiten mit Bezug zur eigenen Arbeit.
 Der Abschnitt kann je nach Kontext auch an anderer Stelle stehen.
 
-Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of AE} tool.
+Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of American English} tool.
 The whole idea of TOSCA is explained by \citet{Binz2009}.
 
 \section{LaTeX Hinweise}
@@ -544,28 +556,27 @@ The whole idea of TOSCA is explained by \citet{Binz2009}.
 \newenvironment{ltgexample}%
 {\LTGbeginlineexample=\numexpr\inputlineno+1\relax}%
 {\LTGendlineexample=\numexpr\inputlineno-1\relax%
-%
-\tcbinputlisting{%
-  listing only,
-  listing file=\currfilepath,
-  colback=green!5!white,
-  colframe=green!25,
-  coltitle=black!90,
-  coltext=black!90,
-  left=8mm,
-  title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilepath},
+  \tcbinputlisting{%
+    listing only,
+    listing file=\currfilepath,
+    colback=green!5!white,
+    colframe=green!25,
+    coltitle=black!90,
+    coltext=black!90,
+    left=8mm,
+    title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilepath},
     minted language=TeX,
     minted style=vs,
     minted options={
-      fontsize=\footnotesize,
-      firstline=\the\LTGbeginlineexample,
-      lastline=\the\LTGendlineexample,
-      firstnumber=\the\LTGbeginlineexample,
-      breaklines,
-      linenos,
-      numbersep=8pt
-    }
-}
+        fontsize=\footnotesize,
+        firstline=\the\LTGbeginlineexample,
+        lastline=\the\LTGendlineexample,
+        firstnumber=\the\LTGbeginlineexample,
+        breaklines,
+        linenos,
+        numbersep=8pt
+      }
+  }
 }%
 
 Hier sollen allgemeine \LaTeX-Hinweise gegeben werden, damit man Minimalbeispiele vorliegen hat, um sofort loszulegen.
@@ -634,7 +645,7 @@ Hier nur ein Kommentar\sidecomment{Kommentar}.
 \subsection{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.
-When using microtype, there should be less hypnetations than in other settings.
+When using \href{https://ctan.org/pkg/microtype}{microtype}, there should be fewer hyphenations than in other settings.
 It might be necessary to tweak the hyphenations nevertheless.
 Here are some hints:
 
@@ -650,7 +661,7 @@ This is enabled by an additional configuration of the babel package.
 \subsection{Typesetting Units}
 
 \begin{ltgexample}
-Numbers can be written plain text (such as 100), by using the siunitx package as follows:
+Numbers can be written plain text (such as 100), by using the \href{https://ctan.org/pkg/siunitx}{siunitx} package as follows:
 \SI{100}{\km\per\hour},
 or by using plain \LaTeX{} (and math mode):
 $100 \frac{\mathit{km}}{h}$.
@@ -678,24 +689,24 @@ Quoting with "`quote"' or ``quote'' also works.
 Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 
 \begin{figure}
-    \centering
-    \includegraphics[width=.75\linewidth]{example-image-a}
-    \caption{Example figure for cref demo}
-    \label{fig:ex:cref}
+  \centering
+  \includegraphics[width=.75\linewidth]{example-image-a}
+  \caption{Example figure for cref demo}
+  \label{fig:ex:cref}
 \end{figure}
 
 \begin{table}
-    \centering
-    \begin{tabular}{ll}
-      \toprule
-      Heading1 & Heading2 \\
-      \midrule
-      One      & Two      \\
-      Thee     & Four     \\
-      \bottomrule
-    \end{tabular}
-    \caption{Example table for cref demo}
-    \label{tab:ex:cref}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Heading1 & Heading2 \\
+    \midrule
+    One      & Two      \\
+    Thee     & Four     \\
+    \bottomrule
+  \end{tabular}
+  \caption{Example table for cref demo}
+  \label{tab:ex:cref}
 \end{table}
 
 \begin{ltgexample}
@@ -724,8 +735,8 @@ One can also have pictures floating inside text:
 
 \begin{ltgexample}
 \begin{floatingfigure}{.33\linewidth}
-\includegraphics[width=.29\linewidth]{example-image-a}
-\caption{A floating figure}
+  \includegraphics[width=.29\linewidth]{example-image-a}
+  \caption{A floating figure}
 \end{floatingfigure}
 \lipsum[2]
 \end{ltgexample}
@@ -736,11 +747,11 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 
 \begin{ltgexample}
 \begin{figure}[!b]
-    \centering
-    \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
+  \centering
+  \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
     \label{fig:first_case}}
   \hfil
-    \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
+  \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
     \label{fig:second_case}}
   \caption{Example figure with two sub figures.}
   \label{fig:two_sub_figures}
@@ -768,17 +779,17 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 \begin{ltgexample}
 % Source: https://tex.stackexchange.com/a/468994/9075
 \begin{table}
-\caption{Table with diagonal line}
-\label{tab:diag}
-\begin{center}
-\begin{tabular}{|l|c|c|}
-\hline
-\diagbox[width=10em]{Diag\\Column Head I}{Diag Column\\Head II} & Second & Third \\
-\hline
-& foo & bar \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Table with diagonal line}
+  \label{tab:diag}
+  \begin{center}
+    \begin{tabular}{|l|c|c|}
+      \hline
+      \diagbox[width=10em]{Diag \\Column Head I}{Diag Column\\Head II} & Second & Third \\
+      \hline
+       & foo & bar              \\
+      \hline
+    \end{tabular}
+  \end{center}
 \end{table}
 \end{ltgexample}
 
@@ -793,7 +804,7 @@ It uses the \href{http://pygments.org/}{pygments} library, which in turn require
 \refline{line:comment} contains a comment.
 
 \begin{listing}[htbp]
-    \begin{minted}[linenos=true,escapeinside=||]{xml}
+  \begin{minted}[linenos=true,escapeinside=||]{xml}
 <listing name="example">
   <!-- comment --> |\labelline{line:comment}|
   <content>not interesting</content>
@@ -808,7 +819,7 @@ One can also typeset JSON as shown in \cref{lst:flJSON}.
 
 \begin{ltgexample}
 \begin{listing}[htbp]
-    \begin{minted}[linenos=true,escapeinside=||]{json}
+  \begin{minted}[linenos=true,escapeinside=||]{json}
 {
   key: "value"
 }
@@ -822,7 +833,7 @@ Java is also possible as shown in \cref{lst:flJava}.
 
 \begin{ltgexample}
 \begin{listing}[htbp]
-    \begin{minted}[linenos=true,escapeinside=||]{java}
+  \begin{minted}[linenos=true,escapeinside=||]{java}
 public class Hello {
     public static void main (String[] args) {
         System.out.println("Hello World!");
@@ -840,8 +851,8 @@ One can list items as follows:
 
 \begin{ltgexample}
 \begin{itemize}
-\item Item One
-\item Item Two
+  \item Item One
+  \item Item Two
 \end{itemize}
 \end{ltgexample}
 
@@ -856,7 +867,7 @@ One can enumerate items as follows:
 \end{ltgexample}
 
 
-With paralist, one can even have all items typset after each other and have them clean in the tex document:
+With paralist, one can even have all items typeset after each other and have them clean in the TeX document:
 
 \begin{ltgexample}
 \begin{inparaenum}
@@ -881,7 +892,7 @@ $\powerset({1,2,3})$
 \begin{ltgexample}
 Brackets work as designed:
 <test>
-One can also input backquotes in verbatim text: \verb|`test`|.
+One can also input backticks in verbatim text: \verb|`test`|.
 \end{ltgexample}
 
 

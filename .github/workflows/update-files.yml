@@ -67,8 +67,9 @@ jobs:
           ls -la
           cp paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
           if [ "paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex" != "paper-en-default-listings.tex" ]; then
-            # keep paper.tex only for English, default font, listings, cleveref
+            # keep following files only for English, default font, listings, cleveref
             rm paper.tex
+            rm Makefile
           fi
 
           # remove files which should not be overwritten
