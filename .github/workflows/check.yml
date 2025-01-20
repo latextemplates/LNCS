@@ -62,6 +62,7 @@ jobs:
         run: |
           echo "| file | status |" >> $GITHUB_STEP_SUMMARY
           echo "| -- | -- |" >> $GITHUB_STEP_SUMMARY
+          failure=0
           for tex in $(ls *.tex content/*.tex 2>/dev/null); do
             # One could add a personal dictionary using --personal=.aspell.en.pws
             # Words are output in the order they appear in the document
@@ -70,8 +71,16 @@ jobs:
               echo "| $tex | ✅ |" >> $GITHUB_STEP_SUMMARY
             else
               echo "| $tex | ❌ $words |" >> $GITHUB_STEP_SUMMARY
+              if [[ "$filename" == "paper.tex" ]]; then
+                failure=1
+              fi
             fi
           done
+          if [[ "$failure" -eq 1 ]]; then
+             echo "" >> $GITHUB_STEP_SUMMARY
+             echo "If you want to ignore words, add them to paper.spell.good"
+            exit 1
+          fi
   indent:
     runs-on: ubuntu-latest
     steps:
