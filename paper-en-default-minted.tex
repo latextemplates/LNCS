@@ -150,8 +150,10 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 % Slashbox is not available in texlive (due to licensing) and also gives bad results. Thus, we use diagbox
 \usepackage{diagbox}
 
+\ifluatex
 \usepackage{spelling}
 \spellingoutput{off}
+\fi
 
 \usepackage[dvipsnames, table]{xcolor}
 % See https://github.com/gpoore/minted
