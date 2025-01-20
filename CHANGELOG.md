@@ -10,6 +10,7 @@ From 2022-03-01 onwards, versioning is done using [Calendar Versioning](https://
 ### Added
 
 - Added `.aspell.en.pws` and `.aspell.conf` to ignore some LaTeX commands at aspell.
+- Added `latexindent` to GitHub actions (`check.yml`).
 - When using lualatex: Added support for [spelling](https://www.ctan.org/pkg/spelling) package (which highlights bad spellings in red - if `.spell.bad` containing misspelled words exists)
 
 ### Fixed
