@@ -79,50 +79,50 @@
 %%             whily copying.
 
 \ifluatex
-\usepackage[no-math]{fontspec}
-\usepackage{unicode-math}
+  \usepackage[no-math]{fontspec}
+  \usepackage{unicode-math}
 
-% Typewriter font (for source code etc)
-% Use New Computer Modern font (Computer Modern is the default LaTeX font; this is the implemented modern variant)
-% Source: https://tug.org/FontCatalogue/newcomputermoderntypewriter/
+  % Typewriter font (for source code etc)
+  % Use New Computer Modern font (Computer Modern is the default LaTeX font; this is the implemented modern variant)
+  % Source: https://tug.org/FontCatalogue/newcomputermoderntypewriter/
 
-\setmainfont[%
-ItalicFont=NewCM10-Italic.otf,%
-BoldFont=NewCM10-Bold.otf,%
-BoldItalicFont=NewCM10-BoldItalic.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCM10-Regular.otf}
+  \setmainfont[
+    ItalicFont=NewCM10-Italic.otf,
+    BoldFont=NewCM10-Bold.otf,
+    BoldItalicFont=NewCM10-BoldItalic.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCM10-Regular.otf}
 
-\setsansfont[%
-ItalicFont=NewCMSans10-Oblique.otf,%
-BoldFont=NewCMSans10-Bold.otf,%
-BoldItalicFont=NewCMSans10-BoldOblique.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCMSans10-Regular.otf}
+  \setsansfont[
+    ItalicFont=NewCMSans10-Oblique.otf,
+    BoldFont=NewCMSans10-Bold.otf,
+    BoldItalicFont=NewCMSans10-BoldOblique.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCMSans10-Regular.otf}
 
-\setmonofont[ItalicFont=NewCMMono10-Italic.otf,%
-BoldFont=NewCMMono10-Bold.otf,%
-BoldItalicFont=NewCMMono10-BoldOblique.otf,%
-SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
+  \setmonofont[ItalicFont=NewCMMono10-Italic.otf,
+    BoldFont=NewCMMono10-Bold.otf,
+    BoldItalicFont=NewCMMono10-BoldOblique.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 
-\setmathfont{NewCMMath-Regular.otf}
+  \setmathfont{NewCMMath-Regular.otf}
 
-% Enable proper ligatures
-% For more information see https://ctan.org/pkg/selnolig
-% language "english" or "ngerman" is passed to selnolig by the document class
-\usepackage{selnolig}
+  % Enable proper ligatures
+  % For more information see https://ctan.org/pkg/selnolig
+  % language "english" or "ngerman" is passed to selnolig by the document class
+  \usepackage{selnolig}
 \else
-% This is the modern package for "Computer Modern".
-% In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
-\usepackage[%
-  rm={oldstyle=false,proportional=true},%
-  sf={oldstyle=false,proportional=true},%
-  % By using 'variable=true' the monospaced font can be used as variable font (with differents widths per letter)
-  % However, this makes listings look ugly.
-  tt={oldstyle=false,proportional=true,variable=false},%
-  qt=false%
-]{cfr-lm}
+  % This is the modern package for "Computer Modern".
+  % In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
+  \usepackage[%
+    rm={oldstyle=false,proportional=true},%
+    sf={oldstyle=false,proportional=true},%
+    % By using 'variable=true' the monospaced font can be used as variable font (with differents widths per letter)
+    % However, this makes listings look ugly.
+    tt={oldstyle=false,proportional=true,variable=false},%
+    qt=false%
+  ]{cfr-lm}
 
-% Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
-\usepackage[T1]{fontenc}
+  % Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
+  \usepackage[T1]{fontenc}
 \fi
 
 % Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
@@ -150,8 +150,8 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 \usepackage{diagbox}
 
 \ifluatex
-\usepackage{spelling}
-\spellingoutput{off}
+  \usepackage{spelling}
+  \spellingoutput{off}
 \fi
 
 \usepackage[dvipsnames, table]{xcolor}
@@ -233,25 +233,25 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
   %
   captionpos=b
 }
-\ifluatex\else
+\ifpdftex
 
-% Enable Umlauts when using \lstinputputlisting.
-% See https://stackoverflow.com/a/29260603/873282 für details.
-% listingsutf8 did not work in June 2020.
-\lstset{literate=
-  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
-  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
-  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
-  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
-  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
-  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
-  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
-  {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
-  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
-  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
-  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
-}
+  % Enable Umlauts when using \lstinputputlisting.
+  % See https://stackoverflow.com/a/29260603/873282 für details.
+  % listingsutf8 did not work in June 2020.
+  \lstset{literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+    {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+    {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+    {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+    {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+    {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
+    {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+    {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+    {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  }
 \fi
 
 \lstloadlanguages{% Check dokumentation for further languages...
@@ -503,9 +503,9 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 \input{ushyphex}
 
 \ifluatex
-% Enable correct rendering of ligatures - provided by https://ctan.org/pkg/selnolig
-% See ADR-0009 for alternatives
-\usepackage{selnolig}
+  % Enable correct rendering of ligatures - provided by https://ctan.org/pkg/selnolig
+  % See ADR-0009 for alternatives
+  \usepackage{selnolig}
 \fi
 
 % correct bad hyphenation here
@@ -533,17 +533,17 @@ SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
 \fi
 
 \ifpdftex
-% Enable copy and paste of text from the PDF
-% Only required for pdflatex. It "just works" in the case of lualatex.
-% Alternative: cmap or mmap package
-% mmap enables mathematical symbols, but does not work with the newtx font set
-% See: https://tex.stackexchange.com/a/64457/9075
-% Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
-% Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
-%
-% According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
-\input{glyphtounicode}
-\pdfgentounicode=1
+  % Enable copy and paste of text from the PDF
+  % Only required for pdflatex. It "just works" in the case of lualatex.
+  % Alternative: cmap or mmap package
+  % mmap enables mathematical symbols, but does not work with the newtx font set
+  % See: https://tex.stackexchange.com/a/64457/9075
+  % Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
+  % Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+  %
+  % According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
+  \input{glyphtounicode}
+  \pdfgentounicode=1
 \fi
 \begin{document}
 
@@ -607,32 +607,31 @@ The whole idea of TOSCA is explained by \citet{Binz2009}.
 \newenvironment{ltgexample}%
 {\LTGbeginlineexample=\numexpr\inputlineno+1\relax}%
 {\LTGendlineexample=\numexpr\inputlineno-1\relax%
-%
-\tcbinputlisting{%
-  listing only,
-  listing file=\currfilepath,
-  colback=green!5!white,
-  colframe=green!25,
-  coltitle=black!90,
-  coltext=black!90,
-  left=8mm,
-  title=Corresponding \LaTeX{} code of \texttt{\currfilepath},
-  listing options={%
-    frame=none,
-    language={[LaTeX]TeX},
-    escapeinside={},
-    firstline=\the\LTGbeginlineexample,
-    lastline=\the\LTGendlineexample,
-    firstnumber=\the\LTGbeginlineexample,
-    basewidth=.5em,
-    aboveskip=0mm,
-    belowskip=0mm,
-    numbers=left,
-    xleftmargin=0mm,
-    numberstyle=\tiny,
-    numbersep=8pt%
+  \tcbinputlisting{%
+    listing only,
+    listing file=\currfilepath,
+    colback=green!5!white,
+    colframe=green!25,
+    coltitle=black!90,
+    coltext=black!90,
+    left=8mm,
+    title=Corresponding \LaTeX{} code of \texttt{\currfilepath},
+    listing options={%
+      frame=none,
+      language={[LaTeX]TeX},
+      escapeinside={},
+      firstline=\the\LTGbeginlineexample,
+      lastline=\the\LTGendlineexample,
+      firstnumber=\the\LTGbeginlineexample,
+      basewidth=.5em,
+      aboveskip=0mm,
+      belowskip=0mm,
+      numbers=left,
+      xleftmargin=0mm,
+      numberstyle=\tiny,
+      numbersep=8pt%
+    }
   }
-}
 }%
 
 This section contains hints on writing LaTeX.
@@ -647,12 +646,13 @@ A new line is generated with a blank line.
 As you would do in Word:
 New paragraphs are generated by pressing enter.
 In LaTeX, this does not lead to a new paragraph as LaTeX joins subsequent lines.
-In case you want a new paragraph, just press enter twice (!).
+In case you want a new paragraph, just press enter twice!
 This leads to an empty line.
 In word, there is the functionality to press shift and enter.
 This leads to a hard line break.
 The text starts at the beginning of a new line.
-In LaTeX, you can do that by using two backslashes (\textbackslash\textbackslash).\\
+In LaTeX, you can do that by using two backslashes (\textbackslash\textbackslash).
+\\
 This is rarely used.
 
 Please do \textit{not} use two backslashes for new paragraphs.
@@ -746,24 +746,24 @@ Quoting with "`quote"' or ``quote'' also works.
 Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 
 \begin{figure}
-    \centering
-    \includegraphics[width=.75\linewidth]{example-image-a}
-    \caption{Example figure for cref demo}
-    \label{fig:ex:cref}
+  \centering
+  \includegraphics[width=.75\linewidth]{example-image-a}
+  \caption{Example figure for cref demo}
+  \label{fig:ex:cref}
 \end{figure}
 
 \begin{table}
-    \centering
-    \begin{tabular}{ll}
-      \toprule
-      Heading1 & Heading2 \\
-      \midrule
-      One      & Two      \\
-      Thee     & Four     \\
-      \bottomrule
-    \end{tabular}
-    \caption{Example table for cref demo}
-    \label{tab:ex:cref}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    Heading1 & Heading2 \\
+    \midrule
+    One      & Two      \\
+    Thee     & Four     \\
+    \bottomrule
+  \end{tabular}
+  \caption{Example table for cref demo}
+  \label{tab:ex:cref}
 \end{table}
 
 \begin{ltgexample}
@@ -782,7 +782,10 @@ Cleveref demonstration: Cref at beginning of sentence, cref in all other cases.
 \begin{figure}
   \centering
   \includegraphics[width=.8\linewidth]{example-image-golden}
-  \caption[Simple Figure]{Simple Figure. Based on \citet{mwe}.}
+  \caption[Simple Figure]{
+    Simple Figure.
+    Based on \citet{mwe}.
+  }
   \label{fig:label}
 \end{figure}
 \end{ltgexample}
@@ -792,8 +795,8 @@ One can also have pictures floating inside text:
 
 \begin{ltgexample}
 \begin{floatingfigure}{.33\linewidth}
-\includegraphics[width=.29\linewidth]{example-image-a}
-\caption{A floating figure}
+  \includegraphics[width=.29\linewidth]{example-image-a}
+  \caption{A floating figure}
 \end{floatingfigure}
 \lipsum[2]
 \end{ltgexample}
@@ -804,11 +807,11 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 
 \begin{ltgexample}
 \begin{figure}[!b]
-    \centering
-    \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
+  \centering
+  \subfloat[Case I]{\includegraphics[width=.4\linewidth]{example-image-a}%
     \label{fig:first_case}}
   \hfil
-    \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
+  \subfloat[Case II]{\includegraphics[width=.4\linewidth]{example-image-b}%
     \label{fig:second_case}}
   \caption{Example figure with two sub figures.}
   \label{fig:two_sub_figures}
@@ -836,17 +839,17 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 \begin{ltgexample}
 % Source: https://tex.stackexchange.com/a/468994/9075
 \begin{table}
-\caption{Table with diagonal line}
-\label{tab:diag}
-\begin{center}
-\begin{tabular}{|l|c|c|}
-\hline
-\diagbox[width=10em]{Diag\\Column Head I}{Diag Column\\Head II} & Second & Third \\
-\hline
-& foo & bar \\
-\hline
-\end{tabular}
-\end{center}
+  \caption{Table with diagonal line}
+  \label{tab:diag}
+  \begin{center}
+    \begin{tabular}{|l|c|c|}
+      \hline
+      \diagbox[width=10em]{Diag \\Column Head I}{Diag Column\\Head II} & Second & Third \\
+      \hline
+       & foo & bar              \\
+      \hline
+    \end{tabular}
+  \end{center}
 \end{table}
 \end{ltgexample}
 
@@ -922,8 +925,8 @@ One can list items as follows:
 
 \begin{ltgexample}
 \begin{itemize}
-\item Item One
-\item Item Two
+  \item Item One
+  \item Item Two
 \end{itemize}
 \end{ltgexample}
 
