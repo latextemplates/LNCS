@@ -71,3 +71,20 @@ jobs:
               echo "| $tex | ❌ $words |" >> $GITHUB_STEP_SUMMARY
             fi
           done
+  indent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - uses: bscott-zebra/cache-apt-pkgs-action@bdb5bbaae8f11b3e4e63cf78e303ac1519dcff7f
+        with:
+          packages: libyaml-tiny-perl libfile-homedir-perl
+          version: 1.0
+          execute_install_scripts: true
+      - name: Install latexindent
+        uses: zauguin/install-texlive@v3
+        with:
+          packages: latexindent
+      - run: make format
+      - name: No changes made by latexindent
+        run: git diff --exit-code
