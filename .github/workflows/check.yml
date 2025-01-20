@@ -24,6 +24,18 @@ jobs:
             cp "_latexmkrc" "latexmkrc"
           fi
       - run: latexmk paper
+      - uses: bscott-zebra/cache-apt-pkgs-action@bdb5bbaae8f11b3e4e63cf78e303ac1519dcff7f
+        with:
+          packages: aspell aspell-en
+          version: 1.0
+          execute_install_scripts: true
+      - name: aspell
+        run: |
+          for tex in $(ls *.tex content/*.tex 2>/dev/null); do
+            # The lualatex package "spelling" requires the content to be in a file ending with ".spell.bad"
+            aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | sort | uniq >> paper.spell.bad
+          done
+      - run: latexmk paper
       - uses: actions/upload-artifact@v4
         with:
           name: test-result
