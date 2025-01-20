@@ -61,6 +61,14 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
 
+%% !!! If you change the font, be sure that words such as "workflow" can
+%% !!! still be copied from the PDF. If this is not the case, you have
+%% !!! to use glyphtounicode. See comment at cmap package.
+%%
+%% Background: "workflow" contains "fl" which is a ligature, which in turn
+%%             is rendered as one character in the PDF and needs to be split
+%%             whily copying.
+
 \ifluatex
 \usepackage[no-math]{fontspec}
 \usepackage{unicode-math}
@@ -468,7 +476,7 @@
 % Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
 %
 % According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
-\input glyphtounicode
+\input{glyphtounicode}
 \pdfgentounicode=1
 \fi
 \begin{document}
@@ -532,7 +540,7 @@ Schließlich fasst \cref{sec:outlook} die Ergebnisse der Arbeit zusammen und ste
 Eine Beschreibung relevanter wissenschaftlicher Arbeiten mit Bezug zur eigenen Arbeit.
 Der Abschnitt kann je nach Kontext auch an anderer Stelle stehen.
 
-Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of AE} tool.
+Winery~\cite{Winery} is a graphical \textcomment{modeling}{modeling with one ``l'', because of American English} tool.
 The whole idea of TOSCA is explained by \citet{Binz2009}.
 
 \section{LaTeX Hinweise}
@@ -554,17 +562,17 @@ The whole idea of TOSCA is explained by \citet{Binz2009}.
   coltext=black!90,
   left=8mm,
   title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilepath},
-    minted language=TeX,
-    minted style=vs,
-    minted options={
-      fontsize=\footnotesize,
-      firstline=\the\LTGbeginlineexample,
-      lastline=\the\LTGendlineexample,
-      firstnumber=\the\LTGbeginlineexample,
-      breaklines,
-      linenos,
-      numbersep=8pt
-    }
+  minted language=TeX,
+  minted style=vs,
+  minted options={
+    fontsize=\footnotesize,
+    firstline=\the\LTGbeginlineexample,
+    lastline=\the\LTGendlineexample,
+    firstnumber=\the\LTGbeginlineexample,
+    breaklines,
+    linenos,
+    numbersep=8pt
+  }
 }
 }%
 
@@ -634,7 +642,7 @@ Hier nur ein Kommentar\sidecomment{Kommentar}.
 \subsection{Hyphenation}
 
 \LaTeX{} automatically hyphenates words.
-When using microtype, there should be less hypnetations than in other settings.
+When using \href{https://ctan.org/pkg/microtype}{microtype}, there should be fewer hyphenations than in other settings.
 It might be necessary to tweak the hyphenations nevertheless.
 Here are some hints:
 
@@ -650,7 +658,7 @@ This is enabled by an additional configuration of the babel package.
 \subsection{Typesetting Units}
 
 \begin{ltgexample}
-Numbers can be written plain text (such as 100), by using the siunitx package as follows:
+Numbers can be written plain text (such as 100), by using the \href{https://ctan.org/pkg/siunitx}{siunitx} package as follows:
 \SI{100}{\km\per\hour},
 or by using plain \LaTeX{} (and math mode):
 $100 \frac{\mathit{km}}{h}$.
@@ -856,7 +864,7 @@ One can enumerate items as follows:
 \end{ltgexample}
 
 
-With paralist, one can even have all items typset after each other and have them clean in the tex document:
+With paralist, one can even have all items typeset after each other and have them clean in the TeX document:
 
 \begin{ltgexample}
 \begin{inparaenum}
@@ -881,7 +889,7 @@ $\powerset({1,2,3})$
 \begin{ltgexample}
 Brackets work as designed:
 <test>
-One can also input backquotes in verbatim text: \verb|`test`|.
+One can also input backticks in verbatim text: \verb|`test`|.
 \end{ltgexample}
 
 

@@ -90,7 +90,7 @@ aspell:
 	for tex in $(TEX_FILES);
 		do
 			# One could add a personal dictionary using --personal=.aspell.en.pws
-			aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws -c $$tex;
+			aspell --mode=tex -l de_DE --run-together --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws -c $$tex;
 		done
 
 showundef:
