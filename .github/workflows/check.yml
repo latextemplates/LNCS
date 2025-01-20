@@ -39,7 +39,6 @@ jobs:
 
       # Original action does not work well - see https://github.com/awalsh128/cache-apt-pkgs-action/pull/136
       # The action is not updated - and thus the dictionaries are not updated
-
       - uses: bscott-zebra/cache-apt-pkgs-action@bdb5bbaae8f11b3e4e63cf78e303ac1519dcff7f
         with:
           packages: aspell aspell-en
@@ -52,10 +51,10 @@ jobs:
           echo "| -- | -- |" >> $GITHUB_STEP_SUMMARY
           for tex in $(ls *.tex content/*.tex 2>/dev/null); do
             # One could add a personal dictionary using --personal=.aspell.en.pws
-            words=$(aspell --mode=tex -l en_US --encoding=utf-8 list < $tex | sort | uniq | tr '\n' ' ')
+            words=$(aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | sort | uniq | tr '\n' ' ')
             if [ -z "$words" ]; then
               echo "| $tex | ✅ |" >> $GITHUB_STEP_SUMMARY
             else
-              echo "| $tex | $words |" >> $GITHUB_STEP_SUMMARY
+              echo "| $tex | ❌ $words |" >> $GITHUB_STEP_SUMMARY
             fi
           done
