@@ -119,8 +119,8 @@
   babel=true, % Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
   expansion=alltext,
   protrusion=alltext-nott, % Ensure that at listings, there is no change at the margin of the listing
+  % In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
   final % Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
-        % In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
 ]{microtype}
 
 % \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
@@ -274,8 +274,7 @@
   comma,         % use commas as separators
   numbers,       % for numerical citations;
   %sort           % orders multiple citations into the sequence in which they appear in the list of references;
-  sort&compress  % as sort but in addition multiple numerical citations
-                 % are compressed if possible (as 3-6, 15);
+  sort&compress  % as sort but in addition multiple numerical citations are compressed if possible (as 3-6, 15);
 ]{natbib}
 
 % In the bibliography, references have to be formatted as 1., 2., ... not [1], [2], ...

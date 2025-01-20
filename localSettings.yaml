@@ -26,3 +26,8 @@ modifyLineBreaks:
             exclamationMark: 1
             questionMark: 1
             other: '(?:\.\)(?!\h*[a-z]))|(?:(?<!(?:(?:e\.g)|(?:i\.e)|(?:etc))))\.(?!(?:[a-z]|[A-Z]|\-|\,|\.|[0-9]))'
+noIndentBlock:
+    ltgexample:
+        name: '\w+ltgexample'
+    abstract:
+        name: '\w+abstract'
