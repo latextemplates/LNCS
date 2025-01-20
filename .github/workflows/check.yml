@@ -1,4 +1,4 @@
-name: latexmk paper
+name: Check
 on:
   push:
   workflow_dispatch:
@@ -7,6 +7,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   pdf:
+    name: latexmk paper
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
