@@ -2,16 +2,38 @@
 
 > Quick start for modern LaTeXing with [LNCS](http://www.springer.com/computer/lncs).
 
+## Usage
+
+- `thesis-example.tex` is the main document
+- Use "lualatex + bibtex" in your TeX editor or `latexmk  paper` / `make` in the command line
+
+### Using `latexmk`
+
+[latexmk] is a very smart tool for latex compilation.
+It executes the latex tools as often as needed to get the final PDF.
+
 To build the whole document, execute following command.
 Note that this requires a working perl installation.
 
-    latexmk paper
+```bash
+latexmk paper
+```
 
-To enable this, please move `_latexmkrc` to `latexmkrc`.
+To enable latexmk, please move `_latexmkrc` to `latexmkrc`.
 
 In case something goes wrong, you can instruct the LaTeX compiler to stop at the first error:
 
-    lualatex paper
+```bash
+lualatex paper
+```
+
+### Advanced usage
+
+On the command line, there are additional features:
+
+- `latexmk -C` or `make clean` for cleaning up
+- `make format` to reformat the `.tex` files (one sentence per line and indent)
+- `make aspell` for interactive spell checking
 
 ## Benefits
 
@@ -47,6 +69,9 @@ You can run the [latex template generator] to enable the features.
 
 Hints on writing an abstract and thesis by Dirk Fahland.
 
+There is currently no official biblatex support.
+A first step towards that is done at [biblatex-lncs](https://ctan.org/pkg/biblatex-lncs).
+
 ## Examples
 
 - [paper.pdf](https://latextemplates.github.io/LNCS/paper.pdf) - normal paper.
@@ -65,25 +90,22 @@ The official template is available at <https://www.springer.com/gp/computer-scie
 - Edit [paper.tex](paper.tex).
 - `latexmk paper`.
 
-When using on overleaf, you have to switch Overleaf to use TeXLive 2022 (or later).
+When using on overleaf, you have to switch Overleaf to use TeXLive 2024 (or later).
 
 As you see on GitHub actions, the paper compiles out of the box.
 There is no need to adjust the packages or to remove some of them.
-This might lead to undesiered results such as hyperlinks not working any more or no good microtypographic features.
+This might lead to undesired results such as hyperlinks not working any more or no good microtypographic features.
 In case you think, a package needs to be altered or added, feel free to open an issue.
 
 ## Tool hints
 
-There is currently no official biblatex support.
-A first step towards that is done at [biblatex-lncs](https://ctan.org/pkg/biblatex-lncs).
+### Prerequisites
 
-MiKTeX installation hints are given at <http://latextemplates.github.io/scientific-thesis-template/#installation-hints-for-windows>.
+- Windows: Recent [MiKTeX](http://miktex.org/). MiKTeX installation hints are given at <http://latextemplates.github.io/scientific-thesis-template/#installation-hints-for-windows>.
+- Mac OS X: Recent [TeX Live](https://www.tug.org/texlive/) (e.g. through [MacTeX](https://tug.org/mactex/)) - Try `sudo tlmgr update --all` if you encounter issues with biblatex
+- Linux: Recent TeX Live distribution
 
-- Grammar and spell checking is available at [TeXstudio].
-  Please download [LanguageTool] (Windows: `choco install languagetool`) and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
-  Note that it is enough to point to `languagetool.jar`.
-  **If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).**
-- Use [JabRef] to manage your bibliography (Windows: `choco install jabref`).
+### Usage of `minted`
 
 To have minted running properly, you have to do following steps on Windows:
 
@@ -92,15 +114,96 @@ To have minted running properly, you have to do following steps on Windows:
 3. When latexing, use `-shell-escape`: `pdflatex -shell-escape paper`.
    You can also just execute `latexmk paper`.
 
+### VSCode configuration
+
+Currently, following extensionsa re recommended:
+
+- [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) to support LaTeX in VSCode and
+- [LaTeX Utilities](https://marketplace.visualstudio.com/items?itemName=tecosaur.latex-utilities) to enhance LaTeX Workshop
+- [LTeX+] to have a nice spell checker that also identifies grammar issues
+
+Then, change the setting of LaTeX Workshop to use biber:
+Update the following lines in the VSCode `settings.json` to contain:
+
+```json
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "lualatex ➞ bibtex ➞ lualatex × 2 🔃",
+            "tools": [
+                "lualatex",
+                "bibtex",
+                "lualatex",
+                "lualatex"
+            ]
+        },
+    ],
+    "latex-workshop.latex.tools": [
+        ...
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        ...
+    ],
+```
+
+The following settings are additionally recommended:
+
+```json
+{
+    "editor.wordWrap": "on",                              # enable soft line breaks
+    "latex-workshop.view.pdf.viewer": "tab",              # display the generaded PDF in a separate tab
+    "latex-workshop.view.pdf.backgroundColor": "#cccccc", # use a darker background in de PDF viewer to lift of the pages from it
+    "latex-workshop.latex.autoBuild.run": "onSave",       # automatically build on saving .tex files
+    "editor.renderWhitespace": "all",                     # display all whitespaces
+}
+```
+
+Alternatively, just copy and paste the contents of the [vscode.settings.json](./vscode.settings.json) file to your VSCode settings file.
+
+### LTeX+ tips and tricks
+
+[LTeX+] is an offline grammar and spell checker with support for LaTeX and Markdown.
+
+Add a magic comment to your files to tell LTeX+ which language to use:
+
+```latex
+% LTeX: language=de-DE
+```
+
+If you want to use different languages in the text, use the `\foreignlanguage{language}{text}` command.
+LTeX+ will detect these elements and automatically switch the spell checker's language.
+For example:
+
+```latex
+\foreignlanguage{english}{Therefore, our proposed approach will change the world.}
+```
+
+### Other hints
+
+- Grammar and spell checking is available at [TeXstudio].
+  Please download [LanguageTool] (Windows: `choco install languagetool`) and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
+  Note that it is enough to point to `languagetool.jar`.
+  **If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).**
+- Use [JabRef] to manage your bibliography (Windows: `choco install jabref`).
+
 ## Usage with docker
 
 The generated `Dockerfile` is based on the [Dockerfile by the Island of TeX](https://gitlab.com/islandoftex/images/texlive#tex-live-docker-image).
 
-    docker run --rm -v "c:\users\example\latex-document:/workdir" ltg latexmk
+```cmd
+docker run --rm -v "c:\users\example\latex-document:/workdir" ltg latexmk
+```
 
 Following one-time setup is required:
 
-    docker build -t ltg .
+```cmd
+docker build -t ltg .
+```
 
 ## FAQs
 
@@ -119,7 +222,7 @@ Please remove the file and update your LaTeX distribution.
 ### Q: How can I synchronize updates from the template to my repository?
 
 1. Initialize your git repository as usual
-2. Add this repository as upstream: `git remote add upstream https://github.com/latextemplates/LNCS.git`
+2. Add this repository as upstream: `git remote add upstream https://github.com/latextemplates/{template}.git`
 3. Merge the branch `upstream/main` into your `main` branch: `git merge upstream/main`.
 
 After that you can use and push the `main` branch as usual.
@@ -201,6 +304,7 @@ If you don't do this, `latexmk` tries to execute `latex`, which tries to produce
 [JabRef]: https://www.jabref.org
 [LanguageTool]: https://languagetool.org/
 [latex template generator]: https://www.npmjs.com/package/generator-latex-template
+[LTeX+]: https://marketplace.visualstudio.com/items?itemName=ltex-plus.vscode-ltex-plus
 [pygments]: http://pygments.org/
 [TeXstudio]: http://texstudio.sourceforge.net/
 

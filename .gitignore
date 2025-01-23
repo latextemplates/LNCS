@@ -1,7 +1,6 @@
 paper.pdf
 paper-*.pdf
-graphics/*.pdf_tex
-democode.tex
+figures/*.pdf_tex
 
 # spelling
 *.spell.bad
@@ -20,7 +19,8 @@ democode.tex
 *.4ct
 *.4tc
 
-# configured in packages_and_options.tex
+# Generated when using Listing environment
+# \newfloat{Listing}{tbp}{code}[chapter]
 *.code
 
 # IntelliJ

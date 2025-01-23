@@ -19,6 +19,7 @@ bigfoot
 bigintcalc
 bitset
 blindtext
+bookcover
 booktabs
 caption
 catchfile
@@ -43,6 +44,7 @@ epstopdf
 etexcmds
 etoolbox
 everyshi
+fgruler
 fifo-stack
 filehook
 fixmath
