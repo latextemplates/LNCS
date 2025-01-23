@@ -229,9 +229,9 @@
   %
   captionpos=b
 }
-\ifpdftex
 
-  % Ermögliche Umlaute when using \lstinputputlisting.
+\ifpdftex
+  % Ermögliche Umlaute falls \lstinputputlisting genutzt wird
   % Siehe https://stackoverflow.com/a/29260603/873282 für Details.
   % listingsutf8 hat im Juni 2020 nicht funktioniert.
   \lstset{literate=
@@ -672,7 +672,8 @@ Dies führt zu einer leeren Zeile.
 In Word gibt es die Funktion Großschreibetaste und Eingabetaste gleichzeitig.
 Wenn man dies drückt, wird einer harter Umbruch erzwungen.
 Der Text fängt am Anfang der neuen Zeile an.
-In LaTeX erreicht man dies durch Doppelbackslashes (\textbackslash\textbackslash) erzeugt.\\
+In LaTeX erreicht man dies durch Doppelbackslashes (\textbackslash\textbackslash) erzeugt.
+\\
 Dies verwendet man quasi nie.
 
 Folglich werden neue Abstäze insbesondere \emph{nicht} durch Doppelbackslashes erzeugt.
