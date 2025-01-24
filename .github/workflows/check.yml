@@ -27,9 +27,11 @@ jobs:
             cp "_latexmkrc" "latexmkrc"
           fi
       - run: latexmk paper
+
+      # Highlight mis-spelled words in the PDF
       - uses: bscott-zebra/cache-apt-pkgs-action@avoid_using_xargs
         with:
-          packages: aspell aspell-en
+          packages: aspell aspell-en aspell-de
           version: 1.0
           execute_install_scripts: true
       - name: aspell
@@ -39,12 +41,51 @@ jobs:
             aspell --mode=tex -l en_US --encoding=utf-8 --conf=./.aspell.conf -p ./.aspell.en.pws list < $tex | sort | uniq >> paper.spell.bad
           done
       - run: latexmk paper
+
+      - name: Job summary using texlogsieve
+        run: |
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          texlogsieve < paper.log >> $GITHUB_STEP_SUMMARY || true
+          echo '```' >> $GITHUB_STEP_SUMMARY
       - uses: actions/upload-artifact@v4
         with:
           name: test-result
           path: |
             paper.pdf
-  spell-checking:
+            paper.log
+  word-count:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v3
+        with:
+          package_file: '${{ github.workspace }}/Texlivefile'
+      - name: Count words
+        run: |
+          texcount -utf8 -inc paper.tex > texcount.txt
+          echo "## TeXcount word count" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          cat "texcount.txt" >> $GITHUB_STEP_SUMMARY
+
+          texcount -utf8 -inc -v -html paper.tex > texcount.html
+
+          # output for summary
+          # too verbose - therefore disabled
+          #
+          # texcount -utf8 -inc -v -htmlcore paper.tex > texcount.html-body
+          # echo "" >> $GITHUB_STEP_SUMMARY
+          # echo "## TeXcount LaTeX interpretation" >> $GITHUB_STEP_SUMMARY
+          # echo "" >> $GITHUB_STEP_SUMMARY
+          # cat "texcount.html-body" >> $GITHUB_STEP_SUMMARY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: word-count
+          path: |
+            texcount.txt
+            texcount.html
+  spell-check:
     # This is based on https://github.com/mh61503891/action-paper-aspell/tree/master
     #
     runs-on: ubuntu-latest
