@@ -79,7 +79,7 @@ jobs:
             if [ "${{ matrix.font }}" = "default" ]; then
               FONT_PART=""
             else
-              FONT_PART="newtx"
+              FONT_PART="-newtx"
             fi
 
             if [ "${{ matrix.listings }}" = "listings" ]; then
