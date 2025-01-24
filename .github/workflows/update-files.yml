@@ -150,7 +150,7 @@ jobs:
 
       - name: Build all examples
         run: |
-          for doc in "paper" "paper-minted" "paper-newtx" "paper-minted-newtx" "paper-de" "paper-de-minted" "paper-de-newtx" "paper-de-minted-newtx"; do
+          for doc in paper*.tex; do
             latexmk "$doc"
 
             echo "" >> "$GITHUB_STEP_SUMMARY"
