@@ -9,6 +9,7 @@ From 2022-03-01 onwards, versioning is done using [Calendar Versioning](https://
 
 ### Changed
 
+- Renamed `.tex` files in repository to match `.pdf` filenames linked in `README.md`
 - Refined `README.md`
 - Refined `.gitignore`
 - Formatting improvements in German examples
