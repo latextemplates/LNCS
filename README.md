@@ -39,7 +39,7 @@ On the command line, there are additional features:
 
 Following features are enabled in this template:
 
-- Provides a skeletal [paper.tex](paper.tex) file
+- Provides a skeletal [paper.tex](https://latextemplates.github.io/LNCS/paper.tex) file
 - Example to have an image being placed right to a text
 - Support for German documents (without broken headers):
   Contains a fix to increase compatibility with Babel.
