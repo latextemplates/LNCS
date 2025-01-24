@@ -154,7 +154,7 @@ jobs:
             echo "## $doc" >> "$GITHUB_STEP_SUMMARY"
             echo "" >> "$GITHUB_STEP_SUMMARY"
             echo '```' >> "$GITHUB_STEP_SUMMARY"
-            texlogsieve < "${file%.tex}.log" >> "$GITHUB_STEP_SUMMARY" || true
+            texlogsieve < "${doc%.tex}.log" >> "$GITHUB_STEP_SUMMARY" || true
             echo '```' >> "$GITHUB_STEP_SUMMARY"
           done
 
