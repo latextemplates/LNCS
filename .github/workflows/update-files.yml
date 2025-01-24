@@ -131,11 +131,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: '${{ github.event.pull_request.head.ref }}'
-      - name: Update to latest version
+      - name: Create latexmkrc
         run: |
-          # ensure latest updates
-          git pull
-
           # use latexmkrc (which is disabled due to easy overleaf usage)
           cp _latexmkrc latexmkrc
       - name: Install TeX Live
