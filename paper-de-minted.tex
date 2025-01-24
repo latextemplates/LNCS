@@ -4,6 +4,7 @@
 % LTeX: language=de-DE
 % !TeX encoding = utf8
 % !TeX program = lualatex
+% !TeX TXS-program:compile = txs:///lualatex/[--shell-escape]
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
 
@@ -72,32 +73,44 @@
   \usepackage[no-math]{fontspec}
   \usepackage{unicode-math}
 
-  % See https://tug.org/FontCatalogue/texgyretermes/ for more information
-  \setmainfont{texgyretermes}[
-    Extension = .otf,
-    UprightFont = *-regular,
-    BoldFont = *-bold,
-    ItalicFont = *-italic,
-    BoldItalicFont = *-bolditalic,
-    Ligatures=TeX
-  ]
-  % See https://tug.org/FontCatalogue/texgyreheros/ for more information
-  \setsansfont[Scale=.9]{TeX Gyre Heros Regular}
-  % newtxtt looks good with times, but no equivalent for lualatex found,
-  % therefore tried to replace with inconsolata.
-  % However, inconsolata does not look good in the context of LNCS ...
-  %\setmonofont[StylisticSet={1,3},Scale=.9]{inconsolata}
-  % ... thus, we use the good old Latin Modern Mono font for source code.
-  \setmonofont{Latin Modern Mono} % "variable=false"
+  % Typewriter font (for source code etc)
+  % Use New Computer Modern font (Computer Modern is the default LaTeX font; this is the implemented modern variant)
+  % Source: https://tug.org/FontCatalogue/newcomputermoderntypewriter/
+
+  \setmainfont[
+    ItalicFont=NewCM10-Italic.otf,
+    BoldFont=NewCM10-Bold.otf,
+    BoldItalicFont=NewCM10-BoldItalic.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCM10-Regular.otf}
+
+  \setsansfont[
+    ItalicFont=NewCMSans10-Oblique.otf,
+    BoldFont=NewCMSans10-Bold.otf,
+    BoldItalicFont=NewCMSans10-BoldOblique.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCMSans10-Regular.otf}
+
+  \setmonofont[ItalicFont=NewCMMono10-Italic.otf,
+    BoldFont=NewCMMono10-Bold.otf,
+    BoldItalicFont=NewCMMono10-BoldOblique.otf,
+    SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
+
+  \setmathfont{NewCMMath-Regular.otf}
 
   % Enable proper ligatures
   % For more information see https://ctan.org/pkg/selnolig
   % language "english" or "ngerman" is passed to selnolig by the document class
   \usepackage{selnolig}
 \else
-  \RequirePackage{newtxtext}
-  \RequirePackage{newtxmath}
-  \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+  % This is the modern package for "Computer Modern".
+  % In case this gets activated, one has to switch from cmap package to glyphtounicode (in the case of pdflatex)
+  \usepackage[%
+    rm={oldstyle=false,proportional=true},%
+    sf={oldstyle=false,proportional=true},%
+    % By using 'variable=true' the monospaced font can be used as variable font (with differents widths per letter)
+    % However, this makes listings look ugly.
+    tt={oldstyle=false,proportional=true,variable=false},%
+    qt=false%
+  ]{cfr-lm}
 
   % Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
   \usepackage[T1]{fontenc}
@@ -139,113 +152,46 @@
 
 \usepackage[dvipsnames, table]{xcolor}
 
-% Code Listings
-\usepackage{listings}
+% See https://github.com/gpoore/minted
+\usepackage[newfloat]{minted}
 
-\definecolor{eclipseStrings}{RGB}{42,0.0,255}
-\definecolor{eclipseKeywords}{RGB}{127,0,85}
-\colorlet{numb}{magenta!60!black}
-
-% JSON definition
-% Source: https://tex.stackexchange.com/a/433961/9075
-
-\lstdefinelanguage{json}{
-  basicstyle=\normalfont\ttfamily,
-  commentstyle=\color{eclipseStrings}, % style of comment
-  stringstyle=\color{eclipseKeywords}, % style of strings
-  numbers=left,
-  numberstyle=\scriptsize,
-  stepnumber=1,
-  numbersep=8pt,
-  showstringspaces=false,
-  breaklines=true,
-  frame=lines,
-  % backgroundcolor=\color{gray}, %only if you like
-  string=[s]{"}{"},
-  comment=[l]{:\ "},
-  morecomment=[l]{:"},
-  literate=
-    *{0}{{{\color{numb}0}}}{1}
-    {1}{{{\color{numb}1}}}{1}
-    {2}{{{\color{numb}2}}}{1}
-    {3}{{{\color{numb}3}}}{1}
-    {4}{{{\color{numb}4}}}{1}
-    {5}{{{\color{numb}5}}}{1}
-    {6}{{{\color{numb}6}}}{1}
-    {7}{{{\color{numb}7}}}{1}
-    {8}{{{\color{numb}8}}}{1}
-    {9}{{{\color{numb}9}}}{1}
+\setminted{
+  % Line numbers not flowing out of the margin
+  numbersep=5pt,
+  xleftmargin=12pt,
+  %
+  % Better listing breaking
+  breakafter=-/\{,
+  breakbefore=\\
+  %
+  % Alternative: Rely on pygment's tokenizer. Does not work well with LaTeX and comments
+  % breakbytoken=true,
+  % breakbytokenanywhere=true
 }
 
-\lstset{
-  % everything between (* *) is a latex command
-  escapeinside={(*}{*)},
-  %
-  language=json,
-  %
-  showstringspaces=false,
-  %
-  extendedchars=true,
-  %
-  basicstyle=\footnotesize\ttfamily,
-  %
-  commentstyle=\slshape,
-  %
-  % Default: \rmfamily, damit werden die Strings im Quellcode hervorgehoben. Zusaetzlich evtl.: \scshape oder \rmfamily durch \ttfamily ersetzen. Dann sieht's aus, wie bei fancyvrb
-  stringstyle=\ttfamily,
-  %
-  breaklines=true,            % Zeilen werden umbrochen
-  %
-  breakatwhitespace=true,
-  %
-  % Alternative: fixed
-  columns=flexible,
-  %
-  tabsize=2,                  % Groesse von Tabs
-  %
-  numbers=left,
-  %
-  numberstyle=\tiny,
-  %
-  basewidth=.5em,
-  %
-  xleftmargin=.5cm,
-  %
-  % aboveskip=0mm,
-  %
-  % belowskip=0mm,
-  %
-  captionpos=b
-}
-\ifpdftex
+%\usemintedstyle{bw} %black and white style
+%\usemintedstyle{vs} %visual studio
+\usemintedstyle{friendly_grayscale}
+%\usemintedstyle{friendly}
+%\usemintedstyle{eclipse} %http://www.jevon.org/wiki/Eclipse_Pygments_Style
+%\usemintedstyle{autumn}
+%\usemintedstyle{rrt}
+%\usemintedstyle{borland}
 
-  % Ermögliche Umlaute when using \lstinputputlisting.
-  % Siehe https://stackoverflow.com/a/29260603/873282 für Details.
-  % listingsutf8 hat im Juni 2020 nicht funktioniert.
-  \lstset{literate=
-    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
-  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
-  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
-  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
-  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
-  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
-  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
-  {Ã}{{\~A}}1 {ã}{{\~a}}1 {Õ}{{\~O}}1 {õ}{{\~o}}1
-  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
-  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
-  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
-  }
-\fi
+% We need to load caption to have a bold font on the label
+% The other parameters mimic the layout of the LNCS class
+\usepackage[labelfont=bf,font=small,skip=4pt]{caption}
+\SetupFloatingEnvironment{listing}{name=List.,within=none}
 
-\lstloadlanguages{% Check dokumentation for further languages...
-  %[Visual]Basic
-  %Pascal
-  %C
-  %C++
-  %XML
-  %HTML
-}
+% When using both minted and listings
+% Compatibility of packages minted and listings with respect to the numbering of "List." caption
+% Source: https://tex.stackexchange.com/a/269510/9075
+% \AtBeginEnvironment{listing}{\setcounter{listing}{\value{lstlisting}}}
+% \AtEndEnvironment{listing}{\stepcounter{lstlisting}}
+
+% Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\labelline}[1]{\label[line]{#1}\hypertarget{#1}{}}
+\newcommand{\refline}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
 
 % For easy quotations: \enquote{text}
 % This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
@@ -459,6 +405,10 @@
 \crefname{subparagraph}{Abschnitt}{Abschnitte}
 \Crefname{subparagraph}{Abschnitt}{Abschnitte}
 
+% Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\llabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
+\newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
+
 \usepackage{lipsum}
 
 % For demonstration purposes only
@@ -467,7 +417,7 @@
 \usepackage{mwe}
 \usepackage[realmainfile]{currfile}
 \usepackage{tcolorbox}
-\tcbuselibrary{listings}
+\tcbuselibrary{minted}
 
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}
@@ -627,20 +577,16 @@ The whole idea of TOSCA is explained by \citet{Binz2009}.
     coltext=black!90,
     left=8mm,
     title=Zugehöriger \LaTeX{}-Quelltext aus \texttt{\currfilepath},
-    listing options={
-        frame=none,
-        language={[LaTeX]TeX},
-        escapeinside={},
+    minted language=TeX,
+    minted style=vs,
+    minted options={
+        fontsize=\footnotesize,
         firstline=\the\LTGbeginlineexample,
         lastline=\the\LTGendlineexample,
         firstnumber=\the\LTGbeginlineexample,
-        basewidth=.5em,
-        aboveskip=0mm,
-        belowskip=0mm,
-        numbers=left,
-        xleftmargin=0mm,
-        numberstyle=\tiny,
-        numbersep=8pt%
+        breaklines,
+        linenos,
+        numbersep=8pt
       }
   }
 }%
@@ -660,7 +606,8 @@ Dies führt zu einer leeren Zeile.
 In Word gibt es die Funktion Großschreibetaste und Eingabetaste gleichzeitig.
 Wenn man dies drückt, wird einer harter Umbruch erzwungen.
 Der Text fängt am Anfang der neuen Zeile an.
-In LaTeX erreicht man dies durch Doppelbackslashes (\textbackslash\textbackslash) erzeugt.\\
+In LaTeX erreicht man dies durch Doppelbackslashes (\textbackslash\textbackslash) erzeugt.
+\\
 Dies verwendet man quasi nie.
 
 Folglich werden neue Abstäze insbesondere \emph{nicht} durch Doppelbackslashes erzeugt.
@@ -860,69 +807,55 @@ An example of two sub figures is shown in \cref{fig:two_sub_figures}.
 \end{ltgexample}
 
 
-\subsection{Quellcode}
+\subsection{Source Code}
+
+\href{https://github.com/gpoore/minted}{minted} is a sophisticated package to enable properly highlighted listings.
+It uses the \href{http://pygments.org/}{pygments} library, which in turn requires Python.
 
 \begin{ltgexample}
-\Cref{lst:XML} zeigt XML-Quelltext.
-\Cref{line:comment} enthält einen Kommentar.
+\Cref{lst:XML} shows source code written in XML.
+\refline{line:comment} contains a comment.
 
-\begin{lstlisting}[
-  language=XML,
-  caption={Beispiel-XML-Listing},
-  label={lst:XML}]
+\begin{listing}[htbp]
+  \begin{minted}[linenos=true,escapeinside=||]{xml}
 <listing name="example">
-  <!-- comment --> (* \label{line:comment} *)
+  <!-- comment --> |\labelline{line:comment}|
   <content>not interesting</content>
 </listing>
-\end{lstlisting}
+\end{minted}
+  \caption{Example XML listing using minted}
+  \label{lst:XML}
+\end{listing}
 \end{ltgexample}
 
-Der zusätzliche Paramter \verb+float+ führt dazu, dass das Listing auch floated.
-\Cref{lst:flXML} zeigt das gleitendede Listing.
+One can also typeset JSON as shown in \cref{lst:flJSON}.
 
 \begin{ltgexample}
-\begin{lstlisting}[
-  % Es ist möglcih, die Abstände bei Bedarf einzustellen
-  % aboveskip=2.5\baselineskip,
-  % belowskip=-.8\baselineskip,
-  float,
-  language=XML,
-  caption={Beispiel-XML-Listing -- gleitend},
-  label={lst:flXML}]
-<listing name="example">
-  Floating
-</listing>
-\end{lstlisting}
-\end{ltgexample}
-
-Es ist möglich auch JSON zu setzen, wie in \cref{lst:json} gezeigt.
-
-\begin{ltgexample}
-\begin{lstlisting}[
-  float,
-  language=json,
-  caption={Beispiel-JSON-listing},
-  label={lst:json}]
+\begin{listing}[htbp]
+  \begin{minted}[linenos=true,escapeinside=||]{json}
 {
   key: "value"
 }
-\end{lstlisting}
+\end{minted}
+  \caption{Example JSON listing using minted}
+  \label{lst:flJSON}
+\end{listing}
 \end{ltgexample}
 
-Java ist auch möglich -- \cref{lst:java}.
+Java is also possible as shown in \cref{lst:flJava}.
 
 \begin{ltgexample}
-\begin{lstlisting}[
-  caption={Example Java listing},
-  label=lst:java,
-  language=Java,
-  float]
+\begin{listing}[htbp]
+  \begin{minted}[linenos=true,escapeinside=||]{java}
 public class Hello {
     public static void main (String[] args) {
         System.out.println("Hello World!");
     }
 }
-\end{lstlisting}
+\end{minted}
+  \caption{Java code rendered using minted}
+  \label{lst:flJava}
+\end{listing}
 \end{ltgexample}
 
 \subsection{Itemization}

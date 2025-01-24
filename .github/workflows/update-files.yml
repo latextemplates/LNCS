@@ -65,17 +65,39 @@ jobs:
         working-directory: /tmp/ltg
         run: |
           ls -la
-          cp paper.tex paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex
-          if [ "paper-${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}.tex" != "paper-en-default-listings.tex" ]; then
-            # keep following files only for English, default font, listings, cleveref
-            rm paper.tex
+
+          if [ "${{ matrix.language }}-${{ matrix.font }}-${{ matrix.listings }}" = "en-default-listings" ]; then
+            # paper.tex + Makefile should be English, default font, listings, cleveref
+            echo "Keeping default paper.tex"
+          else
+            if [ "${{ matrix.language }}" = "en" ]; then
+              LANG_PART=""
+            else
+              LANG_PART="-${{ matrix.language }}"
+            fi
+
+            if [ "${{ matrix.font }}" = "default" ]; then
+              FONT_PART=""
+            else
+              FONT_PART="-newtx"
+            fi
+
+            if [ "${{ matrix.listings }}" = "listings" ]; then
+              LISTINGS_PART=""
+            else
+              LISTINGS_PART="-${{ matrix.listings }}"
+            fi
+
+            mv paper.tex "paper${LANG_PART}${LISTINGS_PART}${FONT_PART}.tex"
             rm Makefile
           fi
+
+          ls -la
 
           # remove files which should not be overwritten
 
           # _latexmkrc alternates between including and excluding "--shell-escape"; we just want to keep the minted + en version of it
-          if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.lang }}" != "en" ]; then
+          if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.language }}" != "en" ]; then
             rm _latexmkrc
             rm -r .github/workflows
           fi
@@ -109,15 +131,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: '${{ github.event.pull_request.head.ref }}'
-      - run: |
-          # ensure latest updates
-          git pull
-
-          cp paper-en-default-listings.tex paper.tex
-          cp paper-en-default-minted.tex paper-minted.tex
-          cp paper-en-times-listings.tex paper-newtx.tex
-          cp paper-en-times-minted.tex paper-minted-newtx.tex
-
+      - name: Create latexmkrc
+        run: |
           # use latexmkrc (which is disabled due to easy overleaf usage)
           cp _latexmkrc latexmkrc
       - name: Install TeX Live
@@ -129,10 +144,20 @@ jobs:
           updmap -sys
           texhash
           tlmgr generate language --rebuild-sys
-      - run: latexmk paper.tex
-      - run: latexmk paper-minted.tex
-      - run: latexmk paper-newtx.tex
-      - run: latexmk paper-minted-newtx.tex
+
+      - name: Build all examples
+        run: |
+          for doc in paper*.tex; do
+            latexmk "$doc"
+
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "## $doc" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            texlogsieve < "${doc%.tex}.log" >> "$GITHUB_STEP_SUMMARY" || true
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          done
+
       - run: |
           mkdir publish
           cp *.pdf publish/
