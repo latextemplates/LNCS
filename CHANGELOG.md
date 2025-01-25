@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 From 2022-03-01 onwards, versioning is done using [Calendar Versioning](https://calver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- Renamed to `lncs-enhanced` to show that it is an enhanced version of the [Document class and bibliography style for Lecture Notes in Computer Science (LNCS)](https://ctan.org/pkg/llncs)
+
 ## [2025-01-25]
 
 ### Added
@@ -237,6 +243,7 @@ From 2022-03-01 onwards, versioning is done using [Calendar Versioning](https://
 
 First release using semantic versioning.
 
+[Unreleased]: https://github.com/latextemplates/LNCS/compare/2025-01-25...main
 [2025-01-25]: https://github.com/latextemplates/LNCS/compare/2025-01-20...2025-01-25
 [2025-01-20]: https://github.com/latextemplates/LNCS/compare/2025-01-14...2025-01-20
 [2025-01-14]: https://github.com/latextemplates/LNCS/compare/2022-06-06...2025-01-14
