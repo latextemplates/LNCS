@@ -125,7 +125,7 @@ Currently, following extensionsa re recommended:
 Then, change the setting of LaTeX Workshop to use biber:
 Update the following lines in the VSCode `settings.json` to contain:
 
-```json
+```javascript
     "latex-workshop.latex.recipes": [
         {
             "name": "lualatex ➞ bibtex ➞ lualatex × 2 🔃",
@@ -138,7 +138,7 @@ Update the following lines in the VSCode `settings.json` to contain:
         },
     ],
     "latex-workshop.latex.tools": [
-        ...
+        // ...
         {
             "name": "bibtex",
             "command": "bibtex",
@@ -147,19 +147,19 @@ Update the following lines in the VSCode `settings.json` to contain:
             ],
             "env": {}
         },
-        ...
+        // ...
     ],
 ```
 
 The following settings are additionally recommended:
 
-```json
+```javascript
 {
-    "editor.wordWrap": "on",                              # enable soft line breaks
-    "latex-workshop.view.pdf.viewer": "tab",              # display the generaded PDF in a separate tab
-    "latex-workshop.view.pdf.backgroundColor": "#cccccc", # use a darker background in de PDF viewer to lift of the pages from it
-    "latex-workshop.latex.autoBuild.run": "onSave",       # automatically build on saving .tex files
-    "editor.renderWhitespace": "all",                     # display all whitespaces
+    "editor.wordWrap": "on",                              // enable soft line breaks
+    "latex-workshop.view.pdf.viewer": "tab",              // display the generaded PDF in a separate tab
+    "latex-workshop.view.pdf.backgroundColor": "#cccccc", // use a darker background in de PDF viewer to lift of the pages from it
+    "latex-workshop.latex.autoBuild.run": "onSave",       // automatically build on saving .tex files
+    "editor.renderWhitespace": "all",                     // display all whitespaces
 }
 ```
 
