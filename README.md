@@ -4,7 +4,7 @@
 
 ## Usage
 
-- `thesis-example.tex` is the main document
+- `paper.tex` is the main document
 - Use "lualatex + bibtex" in your TeX editor or `latexmk  paper` / `make` in the command line
 
 ### Using `latexmk`
@@ -34,6 +34,9 @@ On the command line, there are additional features:
 - `latexmk -C` or `make clean` for cleaning up
 - `make format` to reformat the `.tex` files (one sentence per line and indent)
 - `make aspell` for interactive spell checking
+- `make stand`: Creates a new PDF with the current status of the thesis.
+- `make view`: Opens the configured viewer
+- `make mrproper`: Cleans up and removes also editor backup files.
 
 ## Benefits
 
@@ -205,6 +208,29 @@ Following one-time setup is required:
 docker build -t ltg .
 ```
 
+
+## Contained Directories and Files
+
+### Directories
+
+- [figures](graphics/) Directory containing the figures.
+  By using LuaLaTex/PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
+
+### Files
+
+- `paper.tex` - The main `.tex` file loading all LaTeX packages and their configurations.
+  - Add text here
+  - Adjust title etc. here
+- [bibliography.bib](bibliography.bib) - Bibliography. [biblatex] format. Manage it with [JabRef].
+- [abbreviations.tex](abbreviations.tex) - Acronyms and abbreviations.
+- [commands.tex](commands.tex) - Example LaTeX macros.
+
+Following additional files are included, which do not need to be adapted:
+
+- [localSettings.yaml](localSettings.yaml) - Settings for [latexindent](https://ctan.org/pkg/latexindent)
+- [Makefile](Makefile) - The Makefile. Builds on latexmk.
+- [Texlivefile](Texlivefile) - List of packages required for a minimal TeXLive installation.
+
 ## FAQs
 
 ### Q: Overleaf outputs a warning regarding the llncs class
@@ -246,19 +272,21 @@ The most simple solution to get more space is to exchange the font.
 
 ### Q: How can I reformat my `.tex` files?
 
-Execute following command:
+Execute `latexindent -l -s -sl -w paper.tex`
 
-```bash
-latexindent -l -s -sl -w paper.tex
-```
+Alternatively, execute `make format`.
 
-### Q: I want to obey the one-sentence-per-line rule. How can I do that?
+### Q: How I want to obey the one-sentence-per-line rule. How to do?
 
-Execute following command:
+See "How can I reformat my `.tex` files?"
 
-```bash
-latexindent -m -l -s -sl -w paper.tex
-```
+### Q: I want to use minted, because I think its syntax highlighting seems to be better.
+
+You can re-generate the template and choose `minted` as listings environment.
+Moreover, ensure that python and [pygments](https://pygments.org/) are installed properly:
+
+- `choco install python`
+- `pip install pygments`
 
 ### Q: Is it possible to have a footer indicating that the paper is intended to be submitted/submitted/published?
 
@@ -279,17 +307,56 @@ You seem to use `latexmk` locally.
 Please move `_latexmkrc` to `latexmkrc` to get `latexmk` working.
 If you don't do this, `latexmk` tries to execute `latex`, which tries to produce a DVI file (and not a PDF file).
 
+### Q: I get `Font "LatinModernMath-Regular" not found.`. What can I do?
+
+Error message:
+
+```text
+luaotfload | db : Reload initiated (formats: otf,ttf,ttc); reason: Font "LatinModernMath-Regular" not found.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+
+! Package fontspec Error: The font "LatinModernMath-Regular" cannot be found.
+```
+
+Install the package `lm-math` manually.
+
+### Q: I get `! Package fontspec Error: The font "TeXGyreTermes" cannot be found.`. What can I do?
+
+Install the package `tex-gyre` and `tex-gyre-math` manually.
+
+### Q: I get `! error:  (type 1): cannot find encoding file 'ntx-ot1-tlf.enc' for reading`. What can I do?
+
+See <https://tex.stackexchange.com/a/240850/9075>: Install the packages `newpx` and `newtxsf` manually.
+
+### Q: I get `! TeX capacity exceeded, sorry [main memory size=3000000].`. What can I do?
+
+Follow the steps at <https://tex.stackexchange.com/a/548335/9075>
+
+Try with following command
+
+```bash
+lualatex -shell-escape --extra-mem-top=10000000 --synctex=1 paper.tex
+```
+
+See <https://tex.stackexchange.com/a/124206/9075> for details.
+
 ## Further information
 
 - tex.stackexchange.com questions regarding LNCS: <https://tex.stackexchange.com/questions/tagged/lncs>
 - Original LNCS demonstration (without the improvements): [llncs-dem.pdf](llncs-dem.pdf)
 - Original LNCS documentation (without the improvements): [llncs-doc.pdf](llncs-doc.pdf)
 - Other templates: <https://latextemplates.github.io/>
+- For German users, go to <https://texfragen.de/>.
+- Frank Mittelbach with Ulrike Fischer: [The LaTeX Companion](https://www.latex-project.org/news/2023/03/17/TLC3/) is the ultimate guide for LaTeX: The authors went through all packages offered by [CTAN](https://ctan.org/), selected the most promising ones, described them, and provide minimal working example for each of it.
+- Lutz Hering, Heike Hering: [How to Write Technial Reports](https://doi.org/10.1007/978-3-540-69929-3), Springer, 2010; also available in German [Technische Berichte - verständlich gliedern, gut gestalten, überzeugend vortragen](https://doi.org/10.1007/978-3-8348-8317-9). - Highly recommended, because it guides through all aspects of a report (such as a Master Thesis).
+- Marcus Deininger et al.: [Studienarbeiten - Ein Leitfaden zur Erstellung, Durchführung und Präsentation wissenschaftlicher Abschlussarbeiten am Beispiel Informatik](https://vdf.ch/studienarbeiten.html?author_id=2877), vdf. - Recommended as guideline for planning and working on the whole thesis.
+- Charles Lipson, [Cite Right, Second Edition: A Quick Guide to Citation Styles--MLA, APA, Chicago, the Sciences, Professions, and More](http://www.press.uchicago.edu/ucp/books/book/chicago/C/bo10702043.html), Chicago Guides to Writing, Editing, and Publishing, 2011. - Recommended in case you are unsure about how to correctly cite something.
 
 ## License
 
 The license of this work is [0BSD](https://spdx.org/licenses/0BSD.html) which corresponds to "public domain".
 Any derived work can freely be relicensed and can omit original copyright and license information.
+
 [biber]: https://www.ctan.org/pkg/biber
 [biblatex]: http://tex.stackexchange.com/tags/biblatex/info
 [bibtex]: https://www.ctan.org/pkg/bibtex
