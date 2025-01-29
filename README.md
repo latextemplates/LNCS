@@ -135,7 +135,11 @@ In case you think, a package needs to be altered or added, feel free to open an 
 - Mac OS X: Recent [TeX Live](https://www.tug.org/texlive/) (e.g. through [MacTeX](https://tug.org/mactex/)) - Try `sudo tlmgr update --all` if you encounter issues with biblatex
 - Linux: Recent TeX Live distribution
 
-See [docs/latex-setup](docs/latex-setup) for refined installation instructions.
+- Grammar and spell checking is available at [TeXstudio].
+  Please download [LanguageTool] (Windows: `choco install languagetool`) and [configure TeXstudio to use it](http://wiki.languagetool.org/checking-la-tex-with-languagetool#toc4).
+  Note that it is enough to point to `languagetool.jar`.
+  **If TeXstudio doesn't fit your need, check [the list of all available LaTeX Editors](http://tex.stackexchange.com/questions/339/latex-editors-ides).**
+- Use [JabRef] to manage your bibliography (Windows: `choco install jabref`).
 
 ### Usage of `minted`
 
