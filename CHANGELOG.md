@@ -11,6 +11,10 @@ From 2022-03-01 onwards, versioning is done using [Calendar Versioning](https://
 
 - Renamed to `lncs-enhanced` to show that it is an enhanced version of the [Document class and bibliography style for Lecture Notes in Computer Science (LNCS)](https://ctan.org/pkg/llncs)
 
+### Added
+
+- Added `commands.tex` to collects all LaTeX macros / commands for a better overview on available (custom) LaTeX commands.
+
 ## [2025-01-25]
 
 ### Added
