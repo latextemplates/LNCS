@@ -100,6 +100,7 @@ jobs:
           if [ "${{ matrix.listings }}" != "minted" ] || [ "${{ matrix.language }}" != "en" ]; then
             rm _latexmkrc
             rm -r .github/workflows
+            rm commands.tex
           fi
 
           # the LICENSE of the repository should be kept
@@ -118,7 +119,8 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Update files based on generated files by template generator'
-          committer_email: actions@github.com
+          author_name: 'github-actions[bot]'
+          author_email: 'github-actions[bot]@users.noreply.github.com'
           push: false
       - name: Push changes
         run: |
