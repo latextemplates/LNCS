@@ -321,6 +321,15 @@ Moreover, ensure that python and [pygments](https://pygments.org/) are installed
 - `choco install python`
 - `pip install pygments`
 
+### Q: I have troubles with minted on Windows.
+
+Try out following command to update `latexminted`.
+See [minted#425](https://github.com/gpoore/minted/issues/425) for details.
+
+```shell
+py -m pip install --force-reinstall latexminted
+```
+
 ### Q: Is it possible to have a footer indicating that the paper is intended to be submitted/submitted/published?
 
 Activate the `llncsconf` package.
